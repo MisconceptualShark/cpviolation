@@ -1,0 +1,22 @@
+%NOTE: COMPILE IN TERMINAL USING LUALATEX
+\documentclass[a4paper,11pt]{standalone}
+
+\usepackage{tikz-feynman}
+%\usetikzlibrary{external}             %% Load the `external` library
+%\tikzexternalize
+%\immediate\write18{mkdir -p pgf-img}
+%\tikzexternalize[                     %% Activate externalization
+%  system call={                       %% Use lualatex in system call
+%    lualatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname="\image" "\texsource" || rm "\image.pdf"
+%  },
+%]
+
+\begin{document}
+
+
+\feynmandiagram [vertical=b to a] {
+    i1 -- [fermion] a -- [fermion] b,
+    a -- [photon] i2,
+};
+
+\end{document}
