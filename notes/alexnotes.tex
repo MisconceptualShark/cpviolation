@@ -13,7 +13,7 @@
 
 \maketitle
 
-\section*{First Meeting}
+\section*{Meeting 10/10}
 \textbf{\large QED:}
 \begin{align}
     \La &= \bar{\psi}(i\cancel{\p}-m)\psi - \frac14F_{\mu\nu}F^{\mu\nu} \\
@@ -50,5 +50,43 @@ The theoretical scattering rate of $B^- \to  K^-\mu^+\mu^-$ does not match that 
 Eq (7) shows the suggested sum, with the second diagram showing the new \textit{Z'} that may account for the difference. \\
 For this \textit{Z'} to be the solution to the inconsistencies, it must also hold for all other couplings it could affect in the Standard Model.
 
-
+\section*{Meeting 17/10}
+\textit{Taken by Aleksey this week, just a few maths notes.}
+\begin{align}
+    F_{\mu\nu} &= D_\mu A_\nu - D_\nu A_\mu \\
+               &= (\p_\mu - igA_\mu)A_\nu - (\p_\nu - igA_\nu)A_\mu \\
+               &= \p_\mu A_\nu - \p_\nu A_\mu - ig[A_\mu,A_\nu] \\
+    A_\mu &= \sum_{a=1}^{n^2-1} A_\mu^at^a \\
+    U(1) &\implies [A_\mu,A_\nu] = 0 \\
+    \psi(x) \to \psi'(x) &= e^{ig\alpha(x)} \\
+    A_\mu \to A_\mu' &= A_\mu + \p_\mu\alpha(x) \\
+    \La &= -\frac14 F_{\mu\nu}F^{\mu\nu} + \bar{\psi}(i\p_\mu\gamma^\mu - m)\psi \\
+    \p_\mu \to D_\mu &= \p_\mu - igA_\mu 
+\end{align}
+\begin{align}
+    \La^{SM} &= -\frac14 F_{\mu\nu}F^{\mu\nu}~ \to \text{gauge term} \\ 
+             &+ i\bar{\psi}\cancel{D}\psi ~ \to \text{Fermion term} \\
+             &+ (D_\mu\phi)^\dagger(D^\mu)\phi - V(\phi) ~ \to \text{Higgs term} \\
+             &- Y_{ij}\bar{\psi}_i\phi\psi_j + h.c. ~ \to \text{Yukawa term} \\
+             & SU_c(3)\otimes SU(2)_L\otimes U(1)
+\end{align}
+Very reduced form, most terms can be largely expanded, i.e.
+\begin{align}
+    -\frac14 F_{\mu\nu}F^{\mu\nu} &= \underbrace{-\frac14 G_{\mu\nu}G^{\mu\nu}}_{SU_c(3)} - \underbrace{\frac14 F_{\mu\nu}F^{\mu\nu}}_{SU(2)_L} - \underbrace{\frac14 B_{\mu\nu}B^{\mu\nu}}_{U(1)} \\
+    G_{\mu\nu} &= D_\mu A_\nu - D_\nu A_\mu \\
+    D_\mu &= \p_\mu - igA_\mu,\; A_\mu = \frac12 A_\mu^a\lambda^a,\; a = 1,\dots,8 \\
+    [A_\mu^a\lambda^a,A_\nu^a\lambda^a] &\neq 0
+\end{align}
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
