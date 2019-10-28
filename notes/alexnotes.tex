@@ -82,6 +82,71 @@ Very reduced form, most terms can be largely expanded, i.e.
     D_\mu &= \p_\mu - igA_\mu,\; A_\mu = \frac12 A_\mu^a\lambda^a,\; a = 1,\dots,8 \\
     [A_\mu^a\lambda^a,A_\nu^a\lambda^a] &\neq 0
 \end{align}
+
+\section{Meeting 24/10}
+Now that we're comprehending the gauge invariance of SU(N) Lagrangians, moving on. 
+\begin{align}
+    \La = \bar{\psi}(i\cancel{D}-m)\psi - \frac14 F_{\mu\nu}F^{\mu\nu}
+\end{align}
+Gauge symmetry thus far has been relatively straightforward, but the mass terms cause some problems.
+\begin{enumerate}
+    \item Spontaneous Symmetry Breaking: We start off by discussing the issues with the mass terms in these theories, how they initially to symmetry breaking and parity violation of the weak force. 
+        \begin{itemize}
+            \item $m_A^2A_\mu A^\mu$ - bosons
+            \item $m\bar{\psi}\psi$ - fermions
+        \end{itemize}
+        Introducing the concept of right- and left-handed particles can resolve some of these issues within electroweak theory, where left-handed particles transform under SU(2) space, and right-handed particles transform as a number, so do not transform under the weak interaction. 
+        \begin{align}
+            \psi &= \underbrace{\psi_L}_{SU(2)_L} + \underbrace{\psi_R}_{\land} = \frac{1-\gamma_5}{2}\psi + \frac{1+\gamma_5}{2}\psi \\
+            \implies m\bar{\psi}\psi &= m\left(\bar{\psi}_L\psi_R + \bar{\psi}_R\psi_L\right)
+        \end{align}
+        So including right-handed fermions in the mass term leads to no gauge invariance(?). 
+        Including spontaneous symmetry breaking into the theory can account for this (?) - but the SM still has SU(2)$_L$ space.
+    \item Quantum Field Theory: A possible explanation used to recapture mass terms into gauge invariant lagrangian was from something called \emph{renormalisation.} 
+        Every interaction is not a single Feynman diagram, but an infinite sum of all possible valid interactions, even for just $\psi\to\psi$. \\
+        \textit{doodle diagrams}\\
+        Attempting to calculate for a single diagram would result in an infinity, or even a single vertex, but taking the entire sum will lead to a finite result. 
+        People proved this in the 70s as true for any gauge field theory(?) which is why like them so much and still use them. 
+\end{enumerate}
+Higgs mechanism:
+\begin{itemize}
+    \item sorts out $m\psi,mA$ issues
+    \item gauge symmetry and field theory - renormalisable and stuff
+    \item Only really issue with it was that it predicted a particle to explain it that hadn't been seen before, until 2012, then everyone was happy, \textit{doodle mechanism}
+\end{itemize}
+\begin{multicols}{2}
+Higgs - $\phi \in$ SU(2)$_L$:
+\begin{align}
+    (D_\mu\phi)(D^\mu\phi)^\dagger &- V(\phi,\phi^\dagger) \\
+    \langle\phi\rangle &= \begin{pmatrix} 0 \\ v\end{pmatrix}
+\end{align}
+    \begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[->] (-2,0) -- (2,0) node[anchor=north] {$\phi$};
+        \draw[->] (0,-1) -- (0,2) node[anchor=east] {$V(\phi)$};
+        \draw (-1.5,1.5) sin (-0.75,-0.5) cos (-0.25,0.25) sin (0,0.75) cos (0.25,0.25) sin (0.75,-0.5) cos (1.5,1.5);
+    \end{tikzpicture}
+\end{figure}
+\end{multicols}
+In the early universe, so high energy that the Higgs mechanism resembled a simple $x^2$ potential around $\phi=0$, but as the universe cooled, the symmmetry broke into the double-welled potential shown above. 
+This is developed using Goldstone's theorem, akin to symmetry breaking in ferromagnets.
+\begin{align}
+    \La &= \frac12\p_\mu\phi\p^\mu\phi - \left(\frac12\mu^2\phi^2 + \frac14\lambda\phi^4\right)
+\end{align}
+In this Lagrangian, setting $\mu^2>0$ corresponds to a potential well around $\phi=0$ as would be seen in the early universe, but there is no reason for $\mu^2>0$, so must also look at $\mu^2<0$, where you get the double well above and a Goldstone boson can be found.
+\begin{align}
+    (\p_\mu + igA_\mu)\begin{pmatrix} 0 \\ v\end{pmatrix} (\p^\mu + igA^\nu)\begin{pmatrix}v \\ 0\end{pmatrix} &= \dots + \underbrace{g^2v^2}_{m_A^2}A_\mu A^\nu \\
+    g\bar{\psi}_L\phi\psi_R \to g\bar{\psi}_L\begin{pmatrix} 0\\ v\end{pmatrix} \psi_R &= gv\bar{\psi}_L\psi_R
+\end{align}
+
+
+
+
+
+
+
+
 \end{document}
 
 
