@@ -1,0 +1,32 @@
+%NOTE: COMPILE IN TERMINAL USING LUALATEX
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{tikz-feynman}
+%\usetikzlibrary{external}             %% Load the `external` library
+%\tikzexternalize
+%\immediate\write18{mkdir -p pgf-img}
+%\tikzexternalize[                     %% Activate externalization
+%  system call={                       %% Use lualatex in system call
+%    lualatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname="\image" "\texsource" || rm "\image.pdf"
+%  },
+%]
+
+\begin{document}
+
+\begin{equation}
+\feynmandiagram [inline=(a.base), horizontal=a to b] {
+    a [particle=$\psi$] -- [fermion] b [particle=$\psi$],
+};
++
+\feynmandiagram [inline=(a.base), horizontal=a to d] {
+    a [particle=$\psi$] -- [fermion] b -- [plain] c -- [fermion] d [particle=$\psi$],
+    b -- [boson, half left] c,
+};
++
+\feynmamdiagram [inline=(a.base), horizontal=a to d] {
+    a [particle=$\psi$] -- [fermion] b -- [plain] c -- [fermion] d [particle=$\psi$],
+
+};
+\end{equation}
+
+\end{document}
