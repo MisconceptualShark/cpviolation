@@ -83,7 +83,7 @@ Very reduced form, most terms can be largely expanded, i.e.
     [A_\mu^a\lambda^a,A_\nu^a\lambda^a] &\neq 0
 \end{align}
 
-\section{Meeting 24/10}
+\section*{Meeting 24/10}
 Now that we're comprehending the gauge invariance of SU(N) Lagrangians, moving on. 
 \begin{align}
     \La = \bar{\psi}(i\cancel{D}-m)\psi - \frac14 F_{\mu\nu}F^{\mu\nu}
@@ -139,6 +139,79 @@ In this Lagrangian, setting $\mu^2>0$ corresponds to a potential well around $\p
     (\p_\mu + igA_\mu)\begin{pmatrix} 0 \\ v\end{pmatrix} (\p^\mu + igA^\nu)\begin{pmatrix}v \\ 0\end{pmatrix} &= \dots + \underbrace{g^2v^2}_{m_A^2}A_\mu A^\nu \\
     g\bar{\psi}_L\phi\psi_R \to g\bar{\psi}_L\begin{pmatrix} 0\\ v\end{pmatrix} \psi_R &= gv\bar{\psi}_L\psi_R
 \end{align}
+
+\section*{31/10}
+The Higgs model symmetry breaking leaves you with
+\begin{align}
+    \phi &= \begin{pmatrix} \phi_1(x) \\ \phi_2(x)\end{pmatrix} \to \begin{pmatrix} 0 + \phi_1(x) \\ v+\phi_2(x)\end{pmatrix}
+\end{align}
+You should go down three steps when working through the Higgs model:
+\begin{enumerate}
+    \item Test it out in U(1) symmetry
+    \item Try out SU(2) symmetry breaking
+    \item Make use of the unitary gauge, to see that we get left with 1 physical Higgs, and 3 unphysical fields that get "eaten" by the W,Z bosons to give them mass. 
+        \begin{align}
+            \phi &= \begin{pmatrix} \phi_1(x)+i\phi_2(x) \\\phi_3(x)+i\phi_4(x)\end{pmatrix}
+        \end{align}
+        If we define our $\phi$ as
+        \begin{align}
+            \phi(x) &= \left(\frac{v+\sigma(x)}{\sqrt{2}}\right)e^{i\pi(x)/F_{\pi}}
+        \end{align}
+        where $F_\pi$ is just a number, $\sigma(x)$ and $\pi(x)$ are two real fields, and $v$ is the minimum around which we expand, then the \textbf{unitary gauge} sets $\pi(x)$ to zero in the gauge symmetry,
+\end{enumerate}
+
+The next big thing to look at is the CKM matrix, which on basic terms transforms quark states and allows quark mixing as
+\begin{align}
+    \psi_d' &= U_d\psi_d \\
+    \psi_u' &= U_u\psi_d^*
+\end{align}
+The $U_d$ and $U_u$ we want as unitary matrix elements to transform between the eigenstates. 
+This leads to the CKM matrix, for all quark flavours and their mixing potentials - crucial for CP violation. \\
+A good analogy to start with is how neutrinos have mass oscillations. 
+In reality, neutrinos are a linear combination of electron-, and muon-neutrinos (and tau if you want to add the third family later). 
+At one point in time, the neutrino may be fully the electron-neutrino, and then at a later time, may be the muon-neutrino, and then could be part muon-, part electron-. 
+\begin{align}
+    |\nu\rangle &= \alpha e^{-im_1t}|\nu_1\rangle + \beta e^{-im_2t}|\nu_2\rangle
+\end{align} 
+
+\section*{7/11}
+We see lots of mixing in particle physics:
+\begin{itemize}
+    \item Neutrino mass oscillations, \textit{see last week for brief overview, or look at \href{https://www.ippp.dur.ac.uk/~lenz/Lecture_Flavour_2017.pdf}{Alex's Flavour notes.}}
+    \item We see mixing of the neutral mesons, $K^0,D^0,B_d^0,B_s^0$.
+        \begin{figure}[H]
+            \centering
+            \includegraphics[scale=0.75]{bts.pdf}
+        \end{figure}
+    \item In $U(1)\otimes SU(2)$ symmetry, we find mixing of the gauge fields to get our physical gauge bosons.
+        \begin{align}
+            W^+_\mu &= \frac{1}{\sqrt{2}}(-W^1 + iW^2) & W^-_\mu &= \frac{1}{\sqrt{2}}(-W^1-iW^2) \\
+            A_\mu &= \frac{g}{\sqrt{g^2+g'^2}}B_\mu + \frac{g'}{\sqrt{g^2+g'^2}}W^3_\mu & Z_\mu &= -\frac{g'}{\sqrt{g^2+g'^2}}B_\mu + \frac{g}{\sqrt{g^2+g'^2}}W^3_\mu
+        \end{align}
+        Where $g$ and $g'$ are the U(1) and SU(2) coupling constants respectively, $W^{1,2,3}_\mu,B_\mu$ are the SU(2) and U(1) gauge fields, and $W^{+,-}_\mu,Z_\mu,A_\mu$ are the $W^{+,-}$, Z, and photon fields in $U(1)\otimes SU(2)$.
+    \item Mixing that we'll be dealing with mainly from here is the quark flavour mixing, through the CKM matrix. 
+\end{itemize}
+CKM matrix is a 3x3 unitary matrix, holding the strength of transition for one quark to another. 
+The strength for anti-quarks is given by the Hermitian conjugate of the matrix. 
+There is no current theoretical method of deriving these matrix elements, instead we can simply measure them through experiment. 
+However, there is a common parameterisation of the CKM matrix that can be used to help describe this theoretically - the Wolfenstein parameterisation, where $\lambda\approx0.22$.
+\begin{align}
+    V_{CKM} &= \begin{pmatrix} V_{ud} & V_{us} & V_{ub} \\ V_{cd} & V_{cs} & V_{cb} \\ V_{td} & V_{ts} & V_{tb}\end{pmatrix} = \begin{pmatrix} 1-\frac{\lambda^2}{2} & \lambda & \lambda^3 \\ -\lambda & 1-\frac{\lambda^2}{2} & \lambda^2 \\ \lambda^3 & \lambda^2 & 1\end{pmatrix}
+\end{align}
+We can however write this out in full, using an extension of the Cabibbo angle.
+The matrix has 3 rotations, so three angles are needed - $\theta_{12},\theta_{13},\theta_{23}$, where $\theta_{12}$ is the Cabibbo angle, and each $\theta_{ij}$ describes couplings between the ith and the jth generation of quark. 
+There is also 1 phase, $e^{i\delta}$ - the existence of this phase means the matrix is not Hermitian, and CP symmetry will be violated in matrix elements that contain this phase. 
+The CKM matrix was formed using these angles and phase, as three matrices (one for each inter-generation coupling) were multiplied together.
+\begin{align}
+    V_{CKM} &= \begin{pmatrix} 1 & 0 & 0 \\ 0 & \cos\theta_{23} & \sin\theta_{23} \\ 0 & -\sin\theta_{23} & \cos\theta_{23} \end{pmatrix}\begin{pmatrix} \cos\theta_{13} & 0 & \sin\theta_{13}e^{i\delta} \\ 0 & 1 & 0 \\ -\sin\theta_{13}e^{i\delta} & 0 & \cos\theta_{13}\end{pmatrix}\begin{pmatrix}\cos\theta_{12} & \sin\theta_{12} & 0 \\ -\sin\theta_{12} & \cos\theta_{12} & 0 \\ 0 & 0 & 1 \end{pmatrix}\\
+            &= \begin{pmatrix} c_{12}c_{13} & s_{12}c_{13} & s_{13}e^{-i\delta} \\ -s_{12}c_{23}-c_{12}s_{23}s_{13}e^{i\delta} & c_{12}c_{23} - s_{12}s_{23}s_{13}e^{i\delta} & s_{23}c_{13} \\ s_{12}s_{23}-c_{12}c_{23}s_{13}e^{i\delta} & -c_{12}s_{23}-s_{12}c_{23}s_{13}e^{i\delta} & c_{23}c_{13}\end{pmatrix}
+\end{align}
+For current values of all CKM parameters, see \href{https://ckmfitter.in2p3.fr}{CKMfitter.}
+But how do we measure these values?
+\begin{figure}[H]
+    \centering
+    \includegraphics{ckm_bmin.pdf}
+\end{figure}
 
 
 

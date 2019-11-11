@@ -13,31 +13,16 @@
 
 \begin{document}
 
+%\feynmandiagram [horizontal=a to d]{
+%    i1 -- i3 [blob] -- i2,
+%    i1 -- [fermion,edge label=$b$] a -- [fermion,edge label=$\bar{u}$] i2,
+%    a -- [photon,edge label=$W^-$] d -- [fermion] f1 [particle=$\mu^+$],
+%    d -- [anti fermion] f2 [particle=$\bar{\nu}_{\mu}$],
+%};
+
 \begin{tikzpicture}
     \begin{feynman}
-        \vertex (a1) {\(b\)};
-        \vertex[right=2.3cm of a1] (a2);
-        \vertex[right=2.2cm of a2] (a4) {\(s\)};
-
-        \vertex[below=3em of a1] (b1) {\(\overline u\)};
-        \vertex[below=3em of a4] (b2) {\(\overline u\)};
-        \vertex[right=2.3cm of b1] (b3);
-
-%        \vertex at ($(a2)!0.5!(a3)!0.7cm!90:(a3)$) (d);
-
-        \vertex[above=of a4] (c1) {\(\mu^-\)};
-        \vertex[above=2em of c1] (c3) {\(\mu^+\)};
-        \vertex at ($(c1)!0.5!(c3) - (1cm, 0)$) (c2);
-
-        \diagram* {
-            (a1) -- [fermion] (a2) -- [fermion] (a4),
-            (b2) -- [fermion] (b3) -- [fermion] (b1),
-            (c3) -- [fermion, out=180, in=45] (c2) -- [fermion, out=-45, in=180] (c1),
-            (a2) -- [scalar, bend left, edge label=\(Z'\)] (c2),
-        };
-
-        \draw[decoration={brace},decorate] (b1.south west) -- (a1.north west) node[pos=0.5,left] {\(B^-\)};
-        \draw[decoration={brace},decorate] (a4.north east) -- (b2.south east) node[pos=0.5,right] {\(K^{-}\)};
+        \vertex (a1) {$\bar{b}$};
     \end{feynman}
 \end{tikzpicture}
 
