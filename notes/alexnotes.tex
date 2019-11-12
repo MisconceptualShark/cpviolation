@@ -3,6 +3,7 @@
 \usepackage{../../LaTeX-Templates/Notes}
 \usepackage{subfiles}
 \usepackage{adjustbox}
+\usetikzlibrary{arrows.meta}
 
 \title{The Little Crash Course of Particle Physics \vspace{-20pt}}
 \author{Prof. Alex Lenz}
@@ -208,15 +209,74 @@ The CKM matrix was formed using these angles and phase, as three matrices (one f
 \end{align}
 For current values of all CKM parameters, see \href{https://ckmfitter.in2p3.fr}{CKMfitter.}
 But how do we measure these values?
+We can use the cross sections of processes where all values are known but the matrix elements:
+\begin{itemize}
+    \item $\Gamma(B^-\to\tau^+\nu_{\tau}) \approx f[V_{ub},m_b,m_W,m_\tau,m_\nu,\alpha_s,\dots]$
+        \begin{figure}[H]
+            \centering
+            \includegraphics{ckm_bmin.pdf}
+        \end{figure}
+        In this coupling, we simply have a decay constant, $f_B$, which is simpler to figure out but less informative \textit{? he said something that effect at least}. 
+    \item $\Gamma(B^-\to D^0l\nu) \approx f[V_{cb},\dots]$
+        \begin{figure}[H]
+            \centering
+            \includegraphics{btod.pdf}
+        \end{figure}
+        This coupling is more complex as $F_B$ is a form factor and requires more precision, but can be more informative. 
+\end{itemize}
+So we know that the CKM matrix is Hermitian, i.e.
+\begin{align}
+    V_{CKM}V_{CKM}^\dagger = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{pmatrix}
+\end{align}
+From the full Wolfenstein parameterisation,
+\begin{align}
+    V_{CKM} &= \begin{pmatrix} 1 - \frac{\lambda^2}{2} & \lambda & A\lambda^3(\rho-i\eta) \\ -\lambda & 1-\frac{\lambda^2}{2} & A\lambda^2 \\ A\lambda^3(1-\rho-i\eta) & -A\lambda^2 & 1\end{pmatrix} + \mathcal{O}(\lambda^4) 
+\end{align}
+we can apply the Hermitian constraints of the CKM matrix to derive the \textbf{unitarity triangle.}\\
+\textit{Note that we can see all CP violation is contained within the $\rho-i\eta$ terms.}
+\begin{align}
+    V_{ud}V_{ub}^* + V_{cd}V_{cb}^* + V_{td}V_{tb}^* &= 0  \\
+    \left(1-\frac{\lambda^2}{2}\right)(A\lambda^3)(\rho+i\eta) + (-\lambda)(A\lambda^2) + A\lambda^3(1-\rho-i\eta)\cdot1 &= 0 \\
+    A\lambda^3\left[\left(1-\frac{\lambda^2}{2}\right)(\rho+i\eta) - 1 + 1 - \rho-i\eta\right] &= 0
+\end{align}
+And so we can define the unitarity triangle in the $\rho-\eta$ plane.
 \begin{figure}[H]
     \centering
-    \includegraphics{ckm_bmin.pdf}
+    \begin{tikzpicture}
+        \draw[-Latex] (0,0) -- (4.4,0) node[anchor=north] {$\rho$};
+        \draw[-Latex] (0,0) -- (0,2.5) node[anchor=east] {$\eta$};
+        \draw[-{Latex[length=3mm,width=2mm]}] (0,0) -- (2,2) node[anchor=north east,xshift=-15pt,yshift=-5pt] {$\frac{V_{ud}V_{ub}^*}{A\lambda^3}$};
+        \draw[-{Latex[length=3mm,width=2mm]}] (2,2) node[anchor=north west,xshift=18pt,yshift=-5pt] {$\frac{V_{td}V_{tb}^*}{A\lambda^3}$} -- (4,0);
+        \draw[-Latex] (4,-0.1) -- (0,-0.1) node[anchor=north,midway] {$\frac{V_{cd}V_{cb}^*}{A\lambda^3}$};
+    \end{tikzpicture}
+\end{figure}
+We can use the unitarity triangle to describe many things in quark mixing, such as CP violation, which will depend on one of the angles of the triangle. 
+\begin{align}
+    \Gamma(B^-\to\tau\nu_\tau) &= |V_{ub}|^2f \\
+    \Gamma^{exp} &= (\rho^2+\eta^2)A^2\lambda^6 f \\
+    \rho^2+\eta^2 &= \frac{\Gamma^{exp}}{A^2\lambda^6f}
+\end{align}
+So by equating theory and experimental methods for a decay width, we can settle on a unitarity circle, that will centre on the origin of the $\rho-\eta$ plane. 
+This will in fact be a disc around the origin due to uncertainties. 
+We can do this with many processes and develop the $\rho-\eta$ plane to describe most of the current picture of flavour physics, using all measurements and behaviours of CP violations and rare decays.
+The shaded regions in this plane can then give us hints to new physics if they do not align properly with the unitarity triangle fit. 
+\textit{clarify what all the circles and areas mean?}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{rhoeta_large.png}
+    \caption{Global CKM fit in $\rho-\eta$ plane from \href{http://ckmfitter.in2p3.fr/www/results/plots_summer18/ckm_res_summer18.html}{CKMfitter's current plots}, as of 12/11/2019.}
 \end{figure}
 
-
-
-
-
+Could a lot of the possible signs of new physics be down to a fourth generation of particles?
+Well one indicator of that is through the Higgs mechanism.
+Only massive particles can couple well to the Higgs, so the lighter quarks essentially do not couple with it, while the top quark does:
+\begin{figure}[H]
+    \centering
+    \includegraphics{higgs.pdf}
+\end{figure}
+For a fourth generation to exist, we would expect this more massive pair of the top and bottom quarkto have a coupling like above to the Higgs boson. 
+A fourth generation would be expected to have the exact physics replicated as in the Standard Model for three generations, and this would lead to a scattering amplitude for the above Higgs production 6 times that of the current amplitude; however, other methods would suggest 9 times the amplitude \textit{(I think I'm missing something in this explanation, but can't remember it).}
+This discrepancy can possibly be reconciled by using the two Higgs doublet model.
 
 
 

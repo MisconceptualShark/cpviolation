@@ -13,18 +13,37 @@
 
 \begin{document}
 
-%\feynmandiagram [horizontal=a to d]{
-%    i1 -- i3 [blob] -- i2,
-%    i1 -- [fermion,edge label=$b$] a -- [fermion,edge label=$\bar{u}$] i2,
-%    a -- [photon,edge label=$W^-$] d -- [fermion] f1 [particle=$\mu^+$],
-%    d -- [anti fermion] f2 [particle=$\bar{\nu}_{\mu}$],
-%};
+\feynmandiagram [horizontal=a to d]{
+    b -- [gluon] c -- [fermion,edge label'=$t$] c1 -- [gluon] b1,
+    c -- [fermion,edge label=$t$] a -- [fermion,edge label=$\bar t$] c1,
+    a -- [scalar,edge label=$H$] d,
+    b -- [opacity=0] b1,
+};
 
-\begin{tikzpicture}
-    \begin{feynman}
-        \vertex (a1) {$\bar{b}$};
-    \end{feynman}
-\end{tikzpicture}
+%\begin{tikzpicture}
+%    \begin{feynman}
+%        \vertex (a1) {$b$};
+%        \vertex[right=2cm of a1] (a2);
+%        \vertex[right=2cm of a2] (a4){\(c\)};
+%
+%        \vertex[below=2em of a1] (b1){\(\bar u\)};
+%        \vertex[below=2em of a4] (b2){\(\bar u\)};
+%
+%        \vertex[above=of a4] (c1){\(l\)};
+%        \vertex[above=2em of c1] (c3){\(\overline \nu\)};
+%        \vertex at ($(c1)!0.5!(c3)- (1cm, 0)$) (c2);
+%
+%        \diagram* {
+%            (a1) -- [fermion] (a2) -- [fermion] (a4),
+%            (b2) -- [fermion] (b1),
+%            (c3) -- [fermion,out=180,in=45] (c2)-- [fermion,out=-45,in=180] (c1),
+%            (a2) -- [boson, bend left,edge label=\(W^{+}\)] (c2),
+%        };
+%
+%        \draw[decoration={brace}, decorate] (b1.south west)-- (a1.north west)node[pos=0.5, left] {  \(B^{0}\)};
+%        \draw[decoration={brace}, decorate] (a4.north east)-- (b2.south east)node[pos=0.5, right] {  \(D^{0}\)};
+%    \end{feynman}
+%\end{tikzpicture}
 
 
 \end{document}
