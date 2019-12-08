@@ -1,211 +1,209 @@
 from __future__ import division
 import numpy as np
 import matplotlib.pyplot as plt
+from functions import bsm,rh,bthe,error_branching,itera,mixing,error_mixing,itera_mix,decay_ratios,decay_bsm,error_kpi,itera_kpi
 
-g = (1.1663787e-5)**2
-hbar = 6.58212e-25
+g_gev = (1.1663787e-5)**2
+hbar_gev = 6.582119514e-25
+g_mev = (1.1663787e-11)**2
+hbar_mev = 6.582119514e-22
 
-def bsm(mm,ml,Vud,fm,taum):
-    '''
-        Calculates SM branching ratio 
-    '''
-    Bs = (1/(8*np.pi))*(g*mm*ml**2)*((1-(ml**2/mm**2))**2)*(Vud**2)*(fm**2)*taum
-    return Bs
+################ LEPTONIC DECAY
 
-def rh(mu,md,mm,tanb,mH):
-    '''
-        Returns 2HDM correction factor rh 
-    '''
-    r = ((mu-md*tanb**2)/(mu+md))*(mm/mH)**2
-    return r
-
-def bthe(mm,ml,Vud,fm,taum,mu,md,tanb,mH):
-    '''
-        bsm*(1+rh)^2 to check against exp
-    '''
-    branching = bsm(mm,ml,Vud,fm,taum)*(1+rh(mu,md,mm,tanb,mH))**2
-    return branching
-
-
-def error_branching(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,md_err,tanb,mH):
-    '''
-        Calculates errors in branching ratios, using functional method
-        - all err vars are [up,low] 
-    '''
-    brt = bthe(mm,ml,Vud,fm,taum,mu,md,tanb,mH)
-    err1_up = abs(bthe(mm+mm_err[0],ml,Vud,fm,taum,mu,md,tanb,mH)-brt)
-    err1_low = abs(bthe(mm+mm_err[1],ml,Vud,fm,taum,mu,md,tanb,mH)-brt)
-    err2_up = abs(bthe(mm,ml+ml_err[0],Vud,fm,taum,mu,md,tanb,mH)-brt)
-    err2_low = abs(bthe(mm,ml+ml_err[1],Vud,fm,taum,mu,md,tanb,mH)-brt)
-    err3_up = abs(bthe(mm,ml,Vud+Vud_err[0],fm,taum,mu,md,tanb,mH)-brt)
-    err3_low = abs(bthe(mm,ml,Vud+Vud_err[1],fm,taum,mu,md,tanb,mH)-brt)
-    err4_up = abs(bthe(mm,ml,Vud,fm+fm_err[0],taum,mu,md,tanb,mH)-brt)
-    err4_low = abs(bthe(mm,ml,Vud,fm+fm_err[1],taum,mu,md,tanb,mH)-brt)
-    err5_up = abs(bthe(mm,ml,Vud,fm,taum+taum_err[0],mu,md,tanb,mH)-brt)
-    err5_low = abs(bthe(mm,ml,Vud,fm,taum+taum_err[1],mu,md,tanb,mH)-brt)
-    err6_up = abs(bthe(mm,ml,Vud,fm,taum,mu+mu_err[0],md,tanb,mH)-brt)
-    err6_low = abs(bthe(mm,ml,Vud,fm,taum,mu+mu_err[1],md,tanb,mH)-brt)
-    err7_up = abs(bthe(mm,ml,Vud,fm,taum,mu,md+md_err[0],tanb,mH)-brt)
-    err7_low = abs(bthe(mm,ml,Vud,fm,taum,mu,md+md_err[1],tanb,mH)-brt)
-
-    upper = np.sqrt(err1_up**2 + err2_up**2 + err3_up**2 + err4_up**2 + err5_up**2 + err6_up**2 + err7_up**2)
-    lower = np.sqrt(err1_low**2 + err2_low**2 + err3_low**2 + err4_low**2 + err5_low**2 + err6_low**2 + err7_low**2)
-
-    return upper, lower
-
-def itera(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,md_err,branch_exp,branch_exp_error):
-    '''
-        Choose min,max limits for scope of tan(beta) and mH+, then check for each point in this if:
-            - upper error on branching sm is above the lower error on branching exp
-            - lower error on branching sm is below the upper error on branching exp
-        If either is true, plot a point at coordinate, and tadaa
-    '''
-    exp_branch_up,exp_branch_down = branch_exp+branch_exp_error[0],branch_exp+branch_exp_error[1]
-    log_mH_range = np.linspace(0,3,300)
-    log_tanb_range = np.linspace(-1,2,300)
-    mH_range = 10**log_mH_range
-    tanb_range = 10**log_tanb_range
-    mH_loc = []
-    tanb_loc = []
-    for i in mH_range:
-        for j in tanb_range: 
-            expect_branch = bthe(mm,ml,Vud,fm,taum,mu,md,j,i)
-            print expect_branch
-            expect_error = error_branching(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,md_err,j,i)
-            expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
-#            gam_bet = exp_branch_up - expect_branch_down
-#            alp_delt = expect_branch_down - exp_branch_down
-#            if alp_delt/gam_bet >= 0.95 or gam_bet/alp_delt >= 0.95:
-            if (branch_exp >= expect_branch and expect_branch_up >= exp_branch_down) or (branch_exp <= expect_branch and expect_branch_down <= exp_branch_up):
-                i_log, j_log = np.log10(i), np.log10(j)
-                mH_loc = np.append(mH_loc,i_log)
-                tanb_loc = np.append(tanb_loc,j_log)
-
-    return mH_loc, tanb_loc
-
-def higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum):
-    '''
-        Function of tan(beta) and other stuff for higgs mass
-    '''
-    bs = bsm(mm,ml,Vud,fm,taum)
-    rh_plus = -1 + np.sqrt(bexp/bs)
-    rh_min = -1 - np.sqrt(bexp/bs)
-    delta_plus = (mm**2/rh_plus)*(mu - md*tanb**2)/(mu + md)
-    delta_min = (mm**2/rh_min)*(mu - md*tanb**2)/(mu + md)
-    imagine_plus = []
-    imagine_min = []
-    for i in range(len(delta_plus)):
-        if delta_plus[i] < 0:
-            imagine_plus = np.append(imagine_plus,i)
-    delta_plus = np.delete(delta_plus,imagine_plus)
-    for i in range(len(delta_min)):
-        if delta_min[i] < 0:
-            imagine_min = np.append(imagine_min,i)
-    delta_min = np.delete(delta_min,imagine_min)
-    higgs_plus = np.sqrt(delta_plus)
-    higgs_min = np.sqrt(delta_min)
-    higgs = np.append(higgs_plus,higgs_min)
-    return higgs
-        
-def errors_2(bexp,bexp_err,mm,mm_err,mu,mu_err,md,md_err,tanb,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err):
-    '''
-        probabilistic boogaloo
-    '''
-    err1_up = abs(higgsy(bexp+bexp_err[0],mm,mu,md,tanb,ml,Vud,fm,taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err1_down = abs(higgsy(bexp+bexp_err[1],mm,mu,md,tanb,ml,Vud,fm,taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err2_up = abs(higgsy(bexp,mm+mm_err[0],mu,md,tanb,ml,Vud,fm,taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err2_down = abs(higgsy(bexp,mm+mm_err[1],mu,md,tanb,ml,Vud,fm,taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err3_up = abs(higgsy(bexp,mm,mu,md+md_err[0],tanb,ml,Vud,fm,taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err3_down = abs(higgsy(bexp,mm,mu,md+md_err[1],tanb,ml,Vud,fm,taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err4_up = abs(higgsy(bexp,mm,mu+mu_err[0],md,tanb,ml,Vud,fm,taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err4_down = abs(higgsy(bexp,mm,mu+mu_err[1],md,tanb,ml,Vud,fm,taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err5_up = abs(higgsy(bexp,mm,mu,md,tanb,ml+ml_err[0],Vud,fm,taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err5_down = abs(higgsy(bexp,mm,mu,md,tanb,ml+ml_err[1],Vud,fm,taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err6_up = abs(higgsy(bexp,mm,mu,md,tanb,ml,Vud+Vud_err[0],fm,taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err6_down = abs(higgsy(bexp,mm,mu,md,tanb,ml,Vud+Vud_err[1],fm,taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err7_up = abs(higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm+fm_err[0],taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err7_down = abs(higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm+fm_err[1],taum)-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err8_up = abs(higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum+taum_err[0])-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-    err8_down = abs(higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum+taum_err[1])-higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum))
-
-    upper = np.sqrt(err1_up**2 + err2_up**2 + err3_up**2 + err4_up**2 + err5_up**2 + err6_up**2 + err7_up**2 + err8_up**2)
-    lower = np.sqrt(err1_down**2 + err2_down**2 + err3_down**2 + err4_down**2 + err5_down**2 + err6_down**2 + err7_down**2 + err8_down**2)
-    higgs_up = higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum) + upper
-    higgs_down = higgsy(bexp,mm,mu,md,tanb,ml,Vud,fm,taum) - lower
-
-    return higgs_up, higgs_down
-
-m_bplus, m_bplus_err = [5.27925,[0.00026,-0.00026]]
-m_dplus, m_dplus_err = [1.8695,[0.0004,-0.0004]]
-m_dsplus, m_dsplus_err = [1.969,[0.0014,-0.0014]]
+m_bplus, m_bplus_err = [5.27933,[0.00013,-0.00013]]
+m_dplus, m_dplus_err = [1.86965,[0.00005,-0.00005]]
+m_dsplus, m_dsplus_err = [1.96834,[0.00007,-0.00007]]
+m_K, m_K_err = [0.493677,[0.000016,-0.000016]]
+m_pi, m_pi_err = [0.13957061,[0.00000024,-0.00000024]]
 m_tau, m_tau_err = [1.77686,[0.00012,-0.00012]]
 m_mu, m_mu_err = [0.1056583745,[0.0000000024,-0.0000000024]]
 m_u, m_u_err = [0.00216,[0.00049,-0.00026]]
 m_d, m_d_err = [0.00467,[0.00048,-0.00017]]
+m_s, m_s_err = [0.093,[0.011,-0.005]]
 m_c, m_c_err = [1.27,[0.02,-0.02]]
 m_b, m_b_err = [4.18,[0.03,-0.02]]
-m_s, m_s_err = [0.093,[0.011,-0.005]]
 
-Vub, Vub_err = [0.00375,[0.0003,-0.00021]]
-Vcd, Vcd_err = [0.22461,[0.00106,-0.00018]]
-Vcs, Vcs_err = [0.97353,[0.0001,-0.00025]]
+Vub, Vub_err = [0.003746,[0.00009,-0.000062]]
+Vcd, Vcd_err = [0.224608,[0.000254,-0.00006]]
+Vcs, Vcs_err = [0.973526,[0.00005,-0.000061]]
+Vus, Vus_err = [0.224745,[0.000254,-0.000059]]
+Vud, Vud_err = [0.974410,[0.000014,-0.000058]]
 
 f_bplus, f_bplus_err = [0.190,[0.0013,-0.0013]]
 f_dplus, f_dplus_err = [0.212,[0.0007,-0.0007]]
 f_dsplus, f_dsplus_err = [0.2499,[0.0005,-0.0005]]
+f_Kpi, f_Kpi_err = [1.1928,[0.0026,-0.0026]]
 
-tau_bplus, tau_bplus_err = [(1.638e-12)/hbar,[(0.004e-12)/hbar,-(0.004e-12)/hbar]]
-tau_dplus, tau_dplus_err = [(1040e-15)/hbar,[(7e-15)/hbar,-(7e-15)/hbar]]
-tau_dsplus, tau_dsplus_err = [(504e-15)/hbar,[(4e-15)/hbar,-(4e-15)/hbar]]
+delt_kpi, delt_kpi_err = [-0.0069,[0.0017,-0.0017]]
+delt_kpitau, delt_kpitau_err = [0.0003,[0,0]]
 
-bplus_exp, bplus_err_exp = [0.847e-4,[0.150e-4,-0.097e-4]]
-dplus_exp, dplus_err_exp = [4.019e-4,[0.11e-4,-0.15e-4]]
-dsplus_exp, dsplus_err_exp = [0.05107,[0.0011,-0.0013]]
+tau_bplus, tau_bplus_err = [(1.638e-12)/hbar_gev,[(0.004e-12)/hbar_gev,-(0.004e-12)/hbar_gev]]
+tau_dplus, tau_dplus_err = [(1040e-15)/hbar_gev,[(7e-15)/hbar_gev,-(7e-15)/hbar_gev]]
+tau_dsplus, tau_dsplus_err = [(504e-15)/hbar_gev,[(4e-15)/hbar_gev,-(4e-15)/hbar_gev]]
 
-#br = bsm(m_dplus,m_mu,Vcd,f_dplus,tau_dplus)
-#err_up, err_down = error_branching(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err)
-#print err_up, err_down
-#log_tanb = np.linspace(-1,2,300)
-#tanb = 10**log_tanb
-#b_up, b_down = errors_2(bplus_exp,bplus_err_exp,m_bplus,m_bplus_err,m_u,m_u_err,m_b,m_b_err,tanb,m_tau,m_tau_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err)
-#tanb = np.append(tanb,tanb)
+bplus_exp, bplus_err_exp = [1.09e-4,[0.24e-4,-0.24e-4]]
+dplus_exp, dplus_err_exp = [3.82e-4,[0.33e-4,-0.33e-4]]
+dsplus_exp, dsplus_err_exp = [0.0548,[0.0023,-0.0023]]
+kpi_exp, kpi_exp_err = [1.337,[0.0032,-0.0032]]
+kpitau_exp, kpitau_exp_err = [6.438e-2,[9.384e-4,-9.384e-4]]
 
-#plt.figure()
-#plt.plot(tanb,b_up)
-#plt.plot(tanb,b_down)
-#plt.plot(tanb,b_up-b_down)
-#plt.fill_between(tanb,b_down,b_up,color='gray')
-#plt.yscale('log')
-#plt.xscale('log')
-#plt.show()
-
+# B+ -> tau+ nu
 mH_bplus, tanb_bplus = itera(m_bplus,m_bplus_err,m_tau,m_tau_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,m_u,m_u_err,m_b,m_b_err,bplus_exp,bplus_err_exp)
 
-plt.figure()
+#plt.figure()
 plt.scatter(tanb_bplus,mH_bplus,c='green',marker=',')
 plt.ylabel('$\\log[m_{H+}$, GeV]')
 plt.xlabel('$\\log[\\tan(\\beta)]$')
 plt.title('$B^+\\to\\tau^+\\nu$')
+#plt.show()
 
-#expect, err_up, err_down, rd = itera(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,m_c,m_c_err,m_d,m_d_err,dplus_exp,dplus_err_exp)
-#fig = plt.figure()
-#plt.plot(rd, expect
+# D+ -> mu+ nu
 mH_dplus, tanb_dplus = itera(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,m_c,m_c_err,m_d,m_d_err,dplus_exp,dplus_err_exp)
 
-plt.figure()
+#plt.figure()
 plt.scatter(tanb_dplus,mH_dplus,c='green',marker=',')
 plt.ylabel('$\\log[m_{H+}$, GeV]')
 plt.xlabel('$\\log[\\tan(\\beta)]$')
 plt.title('$D^+\\to\\mu^+\\nu$')
-#
+plt.axis([-1,2,0,3])
+#plt.show()
+
+# Ds+ -> tau+ nu
 mH_dsplus, tanb_dsplus = itera(m_dsplus,m_dsplus_err,m_tau,m_tau_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,m_c,m_c_err,m_s,m_s_err,dsplus_exp,dsplus_err_exp)
 
-plt.figure()
+#plt.figure()
 plt.scatter(tanb_dsplus,mH_dsplus,c='green',marker=',')
 plt.ylabel('$\\log[m_{H+}$, GeV]')
 plt.xlabel('$\\log[\\tan(\\beta)]$')
 plt.title('$D_s^+\\to\\tau^+\\nu$')
+#plt.show()
+
+# (K -> mu)/(pi -> mu) + (tau -> K)/(tau -> pi)
+#mH_kpi, tanb_kpi, 
+mH2, tanb2 = itera_kpi(m_K,m_K_err,m_pi,m_pi_err,m_mu,m_mu_err,m_tau,m_tau_err,Vus,Vus_err,Vud,Vud_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,m_s,m_s_err,m_d,m_d_err,m_u,m_u_err,kpi_exp,kpi_exp_err,kpitau_exp,kpi_exp_err)
+
+#plt.figure()
+#plt.scatter(tanb_kpi,mH_kpi,c='green',marker=',')
+#plt.ylabel('$\\log[m_{H+}$, GeV]')
+#plt.xlabel('$\\log[\\tan(\\beta)]$')
+#plt.title('$K\\to\\mu\\nu/\\pi\\to\\mu\\nu$ & $\\tau\\to K\\nu/\\tau\\to\\pi\\nu$')
+#plt.show()
+
+#plt.figure()
+plt.scatter(tanb2,mH2,c='green',marker=',')
+plt.ylabel('$\\log[m_{H+}$, GeV]')
+plt.xlabel('$\\log[\\tan(\\beta)]$')
+plt.title('$K\\to\\mu\\nu/\\pi\\to\\mu\\nu$ & $\\tau\\to K\\nu/\\tau\\to\\pi\\nu$')
+#plt.show()
+
+###############   MIXING
+
+mt, mt_err = [172.9e3,[0.4e3,-0.4e3]]
+mW, mW_err = [80.379e3,[0.012e3,-0.012e3]]
+mBd, mBd_err = [5279.64,[0.13,-0.13]]
+mBs, mBs_err = [5366.88,[0.17,-0.17]]
+
+Vts, Vts_err = [0.04169,[0.00028,-0.00108]]
+Vtd, Vtd_err = [0.00871,[0.000086,-0.000246]]
+Vtb, Vtb_err = [0.999093,[0.000049,-0.000013]]
+
+etaB, etaB_err = [0.551,[0.0022,-0.0022]]
+
+fBs, fBs_err = [230.3,[1.3,-1.3]]
+fBd, fBd_err = [190,[1.3,-1.3]]
+
+BBs, BBs_err = [1.327,[0.046,-0.046]]
+BBd, BBd_err = [1.318,[0.35,-0.35]]
+
+delt_md, delt_md_err = [0.5064e12,[0.0019e12,-0.0019e12]]
+delt_ms, delt_ms_err = [17.757e12,[0.021e12,-0.021e12]]
+delt_md_expect, delt_md_err_exp = [0.533e12,[0.022e12,-0.036e12]]
+delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
+
+# B0d mixing
+mH_md, tanb_md = itera_mix(mt,mt_err,mW,mW_err,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp)
+
+#plt.figure()
+plt.scatter(tanb_md,mH_md,marker=',',c='green')
+plt.axis([-1,2,0,3])
+plt.ylabel('$\\log[m_{H+}$, GeV]')
+plt.xlabel('$\\log[\\tan(\\beta)]$')
+plt.title('$B^0_d-\\bar{B}^0_d$')
+#plt.show()
+
+# B0s mixing
+mH_ms, tanb_ms = itera_mix(mt,mt_err,mW,mW_err,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,delt_ms,delt_ms_err,delt_ms_expect,delt_ms_err_exp)
+
+#plt.figure()
+plt.scatter(tanb_ms,mH_ms,marker=',',c='green')
+plt.axis([-1,2,0,3])
+plt.ylabel('$\\log[m_{H+}$, GeV]')
+plt.xlabel('$\\log[\\tan(\\beta)]$')
+plt.title('$B^0_s-\\bar{B}^0_s$')
+#plt.show()
+
+
+
+###################### b to s gamma
+
+
+###################### GLOBAL CONSTRAINT
+
+h = np.linspace(0,3,300)
+t = np.linspace(-1,2,300)
+hl = []
+tl = []
+
+for i in range(len(h)):
+    for j in range(len(t)):
+        hb = np.where(mH_bplus==h[i])[0]# and tanb_bplus==t[j]))[0]
+        hd = np.where(mH_dplus==h[i])[0]# and tanb_dplus==t[j]))[0]
+        hds = np.where(mH_dsplus==h[i])[0]# and tanb_dsplus==t[j]))[0]
+        hkpi = np.where(mH2==h[i])[0]# and tanb2==t[j]))[0]
+        hmd = np.where(mH_md==h[i])[0]# and tanb_md==t[j]))[0]
+        hms = np.where(mH_ms==h[i])[0]# and tanb_ms==t[j]))[0]
+        
+        lb,ld,lds,lkpi,lmd,lms = [],[],[],[],[],[]
+        for k in range(len(hb)):
+            if tanb_bplus[hb[k]] == t[j]:
+                lb = np.append(lb,hb[k])
+        for l in range(len(hd)):
+            if tanb_dplus[hd[l]] == t[j]:
+                ld = np.append(ld,hd[l])
+        for m in range(len(hds)):
+            if tanb_dsplus[hds[m]] == t[j]:
+                lds = np.append(lds,hds[m])
+        for n in range(len(hkpi)):
+            if tanb2[hkpi[n]] == t[j]:
+                lkpi = np.append(lkpi,hkpi[n])
+        for o in range(len(hmd)):
+            if tanb_md[hmd[o]] == t[j]:
+                lmd = np.append(lb,hmd[o])
+        for p in range(len(hms)):
+            if tanb_ms[hms[p]] == t[j]:
+                lms = np.append(lms,hms[p])
+
+        if len(lb) > 0 and len(ld) > 0 and len(lds) > 0 and len(lkpi) > 0 and len(lmd) > 0 and len(lms) > 0:
+            hl = np.append(hl,h[i])
+            tl = np.append(tl,t[j])
+
+plt.figure()
+plt.scatter(tl,hl,c='orange')
+plt.axis([-1,2,0,3])
+plt.ylabel('$\\log[m_{H+}$, GeV]')
+plt.xlabel('$\\log[\\tan(\\beta)]$')
+plt.title('Global Fit')
 plt.show()
+
+
+
+#plt.show()
+
+
+
+
+
+
 
 
 

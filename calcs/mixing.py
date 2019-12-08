@@ -1,6 +1,5 @@
 from __future__ import division
 import numpy as np
-from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 
 g2 = (1.1663788e-11)**2
