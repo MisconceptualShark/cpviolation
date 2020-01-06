@@ -259,10 +259,6 @@ def itera_kpi(mK,mK_err,mpi,mpi_err,ml,ml_err,mtau,mtau_err,Vus,Vus_err,Vud,Vud_
     tanb_range = 10**log_tanb_range
     mH_loc = []
     tanb_loc = []
-#    mH_loc1 = []
-#    tanb_loc1 = []
-#    mH_loc2 = []
-#    tanb_loc2 = []
     for i in mH_range:
         for j in tanb_range:
             expect_kpi,expect_kpi_tau = decay_bsm(mK,mpi,ml,mtau,Vus,Vud,fKpi,delt_kpi,delt_tau,ms,md,mu,j,i)
@@ -274,19 +270,8 @@ def itera_kpi(mK,mK_err,mpi,mpi_err,ml,ml_err,mtau,mtau_err,Vus,Vus_err,Vud,Vud_
                 i_log, j_log = np.log10(i), np.log10(j)
                 mH_loc = np.append(mH_loc,i_log)
                 tanb_loc = np.append(tanb_loc,j_log)
-#            if (kpi_tau_exp >= expect_kpi_tau and expect_kpi_tau_up >= kpi_tau_exp_down) or (kpi_tau_exp <= expect_kpi_tau and expect_kpi_tau_down <= kpi_tau_exp_up):
-#                i_log2, j_log2 = np.log10(i), np.log10(j)
-#                mH_loc2 = np.append(mH_loc2,i_log2)
-#                tanb_loc2 = np.append(tanb_loc2,j_log2)
-
-#    for m in range(len(tanb_loc2)):
-#        for n in range(len(tanb_loc1)):
-#            if (tanb_loc2[m] == tanb_loc1[n]) and (mH_loc2[m] == mH_loc1[n]):
-#                mH_loc = np.append(mH_loc,mH_loc1[n])
-#                tanb_loc = np.append(tanb_loc,tanb_loc1[n])
 
     return mH_loc, tanb_loc
-#    return mH_loc1, tanb_loc1, mH_loc2, tanb_loc2
 
 def bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM):
     '''

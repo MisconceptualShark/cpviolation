@@ -50,10 +50,10 @@ kpitau_exp, kpitau_exp_err = [6.438e-2,[9.384e-4,-9.384e-4]]
 # B+ -> tau+ nu
 mH_bplus, tanb_bplus = itera(m_bplus,m_bplus_err,m_tau,m_tau_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,m_u,m_u_err,m_b,m_b_err,bplus_exp,bplus_err_exp)
 
-plt.figure()
-plt.scatter(tanb_bplus,mH_bplus,c='green',marker=',')
-plt.ylabel('$\\log[m_{H+}$, GeV]')
-plt.xlabel('$\\log[\\tan(\\beta)]$')
+#plt.figure()
+#plt.scatter(tanb_bplus,mH_bplus,c='green',marker=',')
+#plt.ylabel('$\\log[m_{H+}$, GeV]')
+#plt.xlabel('$\\log[\\tan(\\beta)]$')
 #plt.title('$B^+\\to\\tau^+\\nu$')
 #plt.show()
 
@@ -61,7 +61,7 @@ plt.xlabel('$\\log[\\tan(\\beta)]$')
 mH_dplus, tanb_dplus = itera(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,m_c,m_c_err,m_d,m_d_err,dplus_exp,dplus_err_exp)
 
 #plt.figure()
-plt.scatter(tanb_dplus,mH_dplus,c='green',marker=',')
+#plt.scatter(tanb_dplus,mH_dplus,c='green',marker=',')
 #plt.ylabel('$\\log[m_{H+}$, GeV]')
 #plt.xlabel('$\\log[\\tan(\\beta)]$')
 #plt.title('$D^+\\to\\mu^+\\nu$')
@@ -72,27 +72,70 @@ plt.scatter(tanb_dplus,mH_dplus,c='green',marker=',')
 mH_dsplus, tanb_dsplus = itera(m_dsplus,m_dsplus_err,m_tau,m_tau_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,m_c,m_c_err,m_s,m_s_err,dsplus_exp,dsplus_err_exp)
 
 #plt.figure()
-plt.scatter(tanb_dsplus,mH_dsplus,c='green',marker=',')
+#plt.scatter(tanb_dsplus,mH_dsplus,c='green',marker=',')
 #plt.ylabel('$\\log[m_{H+}$, GeV]')
 #plt.xlabel('$\\log[\\tan(\\beta)]$')
 #plt.title('$D_s^+\\to\\tau^+\\nu$')
 #plt.show()
 
 # (K -> mu)/(pi -> mu) + (tau -> K)/(tau -> pi)
-#mH_kpi, tanb_kpi, 
 mH2, tanb2 = itera_kpi(m_K,m_K_err,m_pi,m_pi_err,m_mu,m_mu_err,m_tau,m_tau_err,Vus,Vus_err,Vud,Vud_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,m_s,m_s_err,m_d,m_d_err,m_u,m_u_err,kpi_exp,kpi_exp_err,kpitau_exp,kpi_exp_err)
 
 #plt.figure()
-#plt.scatter(tanb_kpi,mH_kpi,c='green',marker=',')
+#plt.scatter(tanb2,mH2,c='green',marker=',')
 #plt.ylabel('$\\log[m_{H+}$, GeV]')
 #plt.xlabel('$\\log[\\tan(\\beta)]$')
 #plt.title('$K\\to\\mu\\nu/\\pi\\to\\mu\\nu$ & $\\tau\\to K\\nu/\\tau\\to\\pi\\nu$')
 #plt.show()
 
-#plt.figure()
-plt.scatter(tanb2,mH2,c='green',marker=',')
-#plt.ylabel('$\\log[m_{H+}$, GeV]')
-#plt.xlabel('$\\log[\\tan(\\beta)]$')
+hak,tak = [],[]
+for r in range(len(tanb_bplus)):
+    if tanb_bplus[r] > -0.3 and tanb_bplus[r] < 0.7 and mH_bplus[r] > 1.1:
+        tak = np.append(tak,tanb_bplus[r])
+        hak = np.append(hak,mH_bplus[r])
+store_s = []
+for s in range(len(tak)):
+    if tak[s] > 0.4 and tak[s] < 0.75 and hak[s] > 1 and hak[s] < 1.4:
+        store_s = np.append(store_s,s)
+tak = np.delete(tak,store_s)
+hak = np.delete(hak,store_s)
+
+hlep = np.linspace(0,3,300)
+tlep = np.linspace(-1,2,300)
+hlepi = []
+tlepi = []
+
+for i in range(len(hlep)):
+    for j in range(len(tlep)):
+        hb = np.where(mH_bplus==hlep[i])[0]
+        hd = np.where(mH_dplus==hlep[i])[0]
+        hds = np.where(mH_dsplus==hlep[i])[0]
+        hkpi = np.where(mH2==hlep[i])[0]
+        
+        lb,ld,lds,lkpi = [],[],[],[]
+        for k in range(len(hb)):
+            if tanb_bplus[hb[k]] == tlep[j]:
+                lb = np.append(lb,hb[k])
+        for l in range(len(hd)):
+            if tanb_dplus[hd[l]] == tlep[j]:
+                ld = np.append(ld,hd[l])
+        for m in range(len(hds)):
+            if tanb_dsplus[hds[m]] == tlep[j]:
+                lds = np.append(lds,hds[m])
+        for n in range(len(hkpi)):
+            if tanb2[hkpi[n]] == tlep[j]:
+                lkpi = np.append(lkpi,hkpi[n])
+
+        if len(lb) > 0 and len(ld) > 0 and len(lds) > 0 and len(lkpi) > 0:
+            hlepi = np.append(hlepi,hlep[i])
+            tlepi = np.append(tlepi,tlep[j])
+
+plt.figure()
+plt.scatter(tlepi,hlepi,c='green',marker=',')
+plt.scatter(tak,hak,c='green',marker=',')
+plt.ylabel('$\\log[m_{H+}$, GeV]')
+plt.xlabel('$\\log[\\tan(\\beta)]$')
+plt.axis([-1,2,0,3])
 #plt.title('$K\\to\\mu\\nu/\\pi\\to\\mu\\nu$ & $\\tau\\to K\\nu/\\tau\\to\\pi\\nu$')
 #plt.show()
 
@@ -143,8 +186,8 @@ plt.axis([-1,2,0,3])
 #plt.show()
 
 
-
 ###################### b to s gamma
+
 lambda_QCD, QCD_err = [0.224972,[0.012412,-0.012886]]
 mt1, mt1_err = [173.1,[0.9,-0.9]]
 mW1, mW1_err = [80.379,[0.012,-0.012]]
@@ -177,38 +220,26 @@ t = np.linspace(-1,2,300)
 hl = []
 tl = []
 
-for i in range(len(h)):
-    for j in range(len(t)):
-        hb = np.where(mH_bplus==h[i])[0]# and tanb_bplus==t[j]))[0]
-        hd = np.where(mH_dplus==h[i])[0]# and tanb_dplus==t[j]))[0]
-        hds = np.where(mH_dsplus==h[i])[0]# and tanb_dsplus==t[j]))[0]
-        hkpi = np.where(mH2==h[i])[0]# and tanb2==t[j]))[0]
-        hmd = np.where(mH_md==h[i])[0]# and tanb_md==t[j]))[0]
-        hgam = np.where(mH_gam==h[i])[0]# and tanb_ms==t[j]))[0]
+for x in range(len(h)):
+    for y in range(len(t)):
+        hlp = np.where(hlepi==h[x])[0]# and tanb2==t[j]))[0]
+        hmd = np.where(mH_md==h[x])[0]# and tanb_md==t[j]))[0]
+        hgam = np.where(mH_gam==h[x])[0]# and tanb_ms==t[j]))[0]
         
-        lb,ld,lds,lkpi,lmd,lgam = [],[],[],[],[],[]
-        for k in range(len(hb)):
-            if tanb_bplus[hb[k]] == t[j]:
-                lb = np.append(lb,hb[k])
-        for l in range(len(hd)):
-            if tanb_dplus[hd[l]] == t[j]:
-                ld = np.append(ld,hd[l])
-        for m in range(len(hds)):
-            if tanb_dsplus[hds[m]] == t[j]:
-                lds = np.append(lds,hds[m])
-        for n in range(len(hkpi)):
-            if tanb2[hkpi[n]] == t[j]:
-                lkpi = np.append(lkpi,hkpi[n])
-        for o in range(len(hmd)):
-            if tanb_md[hmd[o]] == t[j]:
-                lmd = np.append(lb,hmd[o])
-        for p in range(len(hgam)):
-            if tanb_gam[hgam[p]] == t[j]:
-                lgam = np.append(lgam,hgam[p])
+        llp,lmd,lgam = [],[],[]
+        for ni in range(len(hlp)):
+            if tlepi[hlp[ni]] == t[y]:
+                llp = np.append(llp,hlp[ni])
+        for oi in range(len(hmd)):
+            if tanb_md[hmd[oi]] == t[y]:
+                lmd = np.append(lb,hmd[oi])
+        for pi in range(len(hgam)):
+            if tanb_gam[hgam[pi]] == t[y]:
+                lgam = np.append(lgam,hgam[pi])
 
-        if len(lb) > 0 and len(ld) > 0 and len(lds) > 0 and len(lkpi) > 0 and len(lmd) > 0 and len(lgam) > 0:
-            hl = np.append(hl,h[i])
-            tl = np.append(tl,t[j])
+        if len(llp) > 0 and len(lmd) > 0 and len(lgam) > 0:
+            hl = np.append(hl,h[x])
+            tl = np.append(tl,t[y])
 
 #plt.figure()
 plt.scatter(tl,hl,c='orange')
@@ -216,7 +247,7 @@ plt.axis([-1,2,0,3])
 plt.ylabel('$\\log[m_{H+}$, GeV]')
 plt.xlabel('$\\log[\\tan(\\beta)]$')
 plt.title('Global Fit')
-plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.25,0.5),xycoords='axes fraction')
+plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.15,0.5),xycoords='axes fraction')
 plt.annotate('$b\\to s\\gamma$',xy=(0.33,0.9),xycoords='axes fraction')
 plt.annotate('All',xy=(0.65,0.9),xycoords='axes fraction')
 plt.annotate('$\\Delta M_q$',xy=(0.8,0.5),xycoords='axes fraction')
