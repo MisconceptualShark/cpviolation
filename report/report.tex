@@ -59,14 +59,44 @@ There are twenty-five fundamental particles currently described in the Standard 
 The basis for the Standard Model are the quantum theories of electroweak and strong interactions, and then the symmetry breaking Higgs mechanism to give masses to these theories.
 Both the electroweak and strong theories are non-Abelian gauge theories of massless fermions; the electroweak theory has a gauge symmetry of SU(2)$_{L}\otimes$U(1), and strong of SU(3)$_{c}$.
 To formulate the Standard Model Lagrangian, we start with the free Lagrangian of a massless Dirac fermion coupled to a gauge field tensor,
+\begin{align}
+    \label{eq:dirac:1}
+    \mathcal{L} &= i\bar{\psi}\gamma^\mu\partial_\mu\psi - \frac14F^{\mu\nu}F_{\mu\nu}, \\
+    \label{eq:dirac:2}
+    F^{\mu\nu} &= \partial^\mu A^\nu - \partial^\nu A^\mu.
+\end{align}
+The Lagrangian must be formed such that it is invariant for a local gauge transformation of the fermion field, $\psi$:
 \begin{equation}
-    \label{eq:dirac}
-    \mathcal{L} = i\bar{\psi}\gamma^\mu\partial_\mu\psi - \frac14F^{\mu\nu}F_{\mu\nu}
+    \label{eq:local}
+    \psi(x)\to U(x)\psi(x),\quad \bar{\psi}(x)\to\bar{\psi}(x)U^\dagger(x),
 \end{equation}
+where $U(x)$ is the gauge transformation.
+For U(1) and SU(N) symmetries respectively, we have
+\begin{align}
+    \label{eq:gauge} 
+    U_{U(1)} &= e^{ig\alpha},\quad U_{SU(N)} = e^{ig\alpha^a(x)T^a},
+\end{align}
+where $g$ is the gauge coupling parameter of the force.
+For SU(N) symmetries, the index $a$ is summed from 1 to $N^2-1$: this is the number of gauge fields of the group, where $T^a$ are the generators of the fields. 
+For SU(2), there are three generators, which will lead to the three associated bosons - $W^{\pm},Z$ - when mixed with U(1); and for SU(3), there are eight generators, leading to the eight gluons.
+Clearly for U(1) there is only a single generator, which will lead to the photon when mixed with the SU(2) gauge fields.\\
+In addition to the definitions given in \eqref{eq:gauge}, to make \eqref{eq:dirac:1} gauge invariant, it is necessary to transform the gauge field, as well as introduce the Covariant Derivative:
+\begin{align}
+    \label{eq:transform:1}
+    A_\mu &\to A_\mu + \partial_\mu\alpha(x), \\
+    \label{eq:transform:2}
+    \partial_\mu &\to D_\mu = \partial_\mu - igA_\mu.
+\end{align}
+From these definitions, the gauge invariance of \eqref{eq:dirac:1} for U(1) symmetry is trivial, and for SU(N) symmetries, it will simply follow after defining a commutation relation between generators:
+\begin{equation}
+    \label{eq:commute}
+    [T^a,T^b] = if^{abc}T^c.
+\end{equation}
+$f^{abc}$ are the structure constants of the SU(N) groups, and are found across literature when needed. \\
+Gauge symmetry has thus far yielded a Lagrangian to describe fermions and forces and their interactions, but only when all particles are massles, which is clearly not the case. 
+For massive fermions and bosons respectively, the Lagrangian would require terms of the form $m\bar{\psi}\psi$ and $m_A^2A_\mu A^\mu$.
+However simply introducing these terms would break the gauge symmetries of the Lagrangian, so there must be some modification needed. 
 \begin{itemize}
-    \item impose gauge transformation
-    \item $\partial\to D$
-    \item Tr and $f^{abc}$
     \item Weak imposes lefthandedness
     \item SSB and Higgs, Yukawa
     \item Combine for SM
@@ -229,6 +259,8 @@ A. Sibidanov et al [Belle], \emph{Study of Exclusive $B\to X_ul\nu$ Decays and E
 \bibitem{f}
 A. Lenz and G. Tetlalmatzi-Xolocotzi, \emph{Model-independent bounds on new physics effects in non-leptonic tree-level decays of B-mesons}, \href{https://arxiv.org/pdf/1912.07621.pdf}{arxiv:1912.07621}.
 
+\bibitem{g}
+CKMfitter Group (J. Charles et al.), Eur. Phys. J. C41, 1-131 (2005) [hep-ph/0406184], updated results and plots available at: \href{http://ckmfitter.in2p3.fr}{http://ckmfitter.in2p3.fr}
 
 % Please avoid comments such as "For a review'', "For some examples",
 % "and references therein" or move them in the text. In general,
