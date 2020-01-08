@@ -57,13 +57,11 @@ This theory is a quantum field theory so all particles of the theory are quantum
 There are twenty-five fundamental particles currently described in the Standard Model: twelve fermions (quarks and leptons), four gauge bosons of the electroweak theory ($W^\pm,Z,\gamma$), eight gluons of the strong force, and the Higgs boson.
 
 The basis for the Standard Model are the quantum theories of electroweak and strong interactions, and then the symmetry breaking Higgs mechanism to give masses to these theories.
-Both the electroweak and strong theories are non-Abelian gauge theories of massless fermions; the electroweak theory has a gauge symmetry of SU(2)$_{L}\otimes$U(1), and strong of SU(3)$_{c}$.
+Both the electroweak and strong theories are non-Abelian gauge theories; the electroweak theory has a gauge symmetry of SU(2)$_{L}\otimes$U(1)$_Y$, and strong of SU(3)$_{c}$.
 To formulate the Standard Model Lagrangian, we start with the free Lagrangian of a massless Dirac fermion coupled to a gauge field tensor,
 \begin{align}
     \label{eq:dirac:1}
-    \mathcal{L} &= i\bar{\psi}\gamma^\mu\partial_\mu\psi - \frac14F^{\mu\nu}F_{\mu\nu}, \\
-    \label{eq:dirac:2}
-    F^{\mu\nu} &= \partial^\mu A^\nu - \partial^\nu A^\mu.
+    \mathcal{L} &= i\bar{\psi}\gamma^\mu\partial_\mu\psi - \frac14F^{\mu\nu}F_{\mu\nu}.
 \end{align}
 The Lagrangian must be formed such that it is invariant for a local gauge transformation of the fermion field, $\psi$:
 \begin{equation}
@@ -71,38 +69,74 @@ The Lagrangian must be formed such that it is invariant for a local gauge transf
     \psi(x)\to U(x)\psi(x),\quad \bar{\psi}(x)\to\bar{\psi}(x)U^\dagger(x),
 \end{equation}
 where $U(x)$ is the gauge transformation.
-For U(1) and SU(N) symmetries respectively, we have
+For U(1), SU(2), and SU(3) symmetries, we have
 \begin{align}
     \label{eq:gauge} 
-    U_{U(1)} &= e^{ig\alpha},\quad U_{SU(N)} = e^{ig\alpha^a(x)T^a},
+    U_{U(1)} &= \exp\left[i\alpha\right],\quad U_{SU(N)} = \exp\left[i\alpha^a\frac{T^a}{2}\right]
 \end{align}
-where $g$ is the gauge coupling parameter of the force.
-For SU(N) symmetries, the index $a$ is summed from 1 to $N^2-1$: this is the number of gauge fields of the group, where $T^a$ are the generators of the fields. 
+For SU(N) symmetries, the index $a$ is summed from 1 to $N^2-1$: this is the number of gauge fields of the group.
+$T^a$ are the generators of these fields, which are represented by the Pauli matrices for SU(2) and the Gell-Mann matrices for SU(3).
 For SU(2), there are three generators, which will lead to the three associated bosons - $W^{\pm},Z$ - when mixed with U(1); and for SU(3), there are eight generators, leading to the eight gluons.
 Clearly for U(1) there is only a single generator, which will lead to the photon when mixed with the SU(2) gauge fields.\\
-In addition to the definitions given in \eqref{eq:gauge}, to make \eqref{eq:dirac:1} gauge invariant, it is necessary to transform the gauge field, as well as introduce the Covariant Derivative:
+In addition to the definitions in \eqref{eq:gauge}, to make \eqref{eq:dirac:1} gauge invariant, it is necessary to transform the gauge field, as well as introduce the \textit{covariant derivative}, $D_\mu$:
 \begin{align}
     \label{eq:transform:1}
-    A_\mu &\to A_\mu + \partial_\mu\alpha(x), \\
+    A^a_\mu &\to A^a_\mu + \frac{1}{g}\partial_\mu\alpha^a + gf^{abc}\alpha^bA^c_\mu, \\
     \label{eq:transform:2}
-    \partial_\mu &\to D_\mu = \partial_\mu - igA_\mu.
+    \partial_\mu &\to D_\mu = \partial_\mu - igT^aA^a_\mu,
 \end{align}
+where $g$ is the relevant gauge coupling parameter.
+Note that \eqref{eq:transform:1} and \eqref{eq:transform:2} are the general forms for the SU(N) theories; if considering U(1), these can be simplified.\\
 From these definitions, the gauge invariance of \eqref{eq:dirac:1} for U(1) symmetry is trivial, and for SU(N) symmetries, it will simply follow after defining a commutation relation between generators:
 \begin{equation}
     \label{eq:commute}
-    [T^a,T^b] = if^{abc}T^c.
+    [T^a,T^b] = if^{abc}T^c,
 \end{equation}
-$f^{abc}$ are the structure constants of the SU(N) groups, and are found across literature when needed. \\
-Gauge symmetry has thus far yielded a Lagrangian to describe fermions and forces and their interactions, but only when all particles are massles, which is clearly not the case. 
+where $f^{abc}$ are the structure constants which define the SU(N) groups. \\
+It can be useful to define the fermion spinor $\psi$ into an upper and lower part, which can be done in many ways, but it is important in the formulation of the Standard Model to separation the fermion field into left- and right-handed components. 
+To this end, we define the operators
+\begin{align}
+    \label{eq:helix}
+    P_L &= \frac{1-\gamma^5}{2}, & P_R &= \frac{1+\gamma^5}{2},
+\end{align}
+where $\gamma^5$ is defined in the conventional representation. 
+The left-handed projection of the fermion field $\psi$ would then be
+\begin{equation}
+    \label{eq:projection}
+    \psi_L = P_L\psi.
+\end{equation}
+Now when forming the SU(2) symmetry of the weak force, there is a difference between the interaction of right- and left-handed fermions; that is, left-handed fermions transform under the SU(2) space, whereas right-handed do not.
+Considering both quarks and leptons in the traditional three generations, then under the electroweak SU(2) space, each generation forms a left-handed doublet and a right-handed singlet, e.g.
+\begin{align}
+    \label{eq:doublet}
+    L&=\begin{pmatrix} \nu_e \\ e^- \end{pmatrix}_L,\; e_R^-, & L_\alpha &=\begin{pmatrix} u_\alpha \\ d_\alpha\end{pmatrix}_L,\; u_{R\alpha},d_{R\alpha},
+\end{align}
+where $\alpha$ represents the colour charge of the quarks under the strong interaction.
+Neutrinos only appear in the left-handed doublets and do not form right-handed singlets, as there is currently no experimental evidence for their existence.
+So right- and left-handed fermions are in different SU(2) multiplets; this represents a parity violation in the Standard Model which is also found in nature. 
+This is an important criterion of a theory of nature, as will be discussed more in section \ref{subsec:flavobs}.
+
+Gauge symmetry has thus far yielded a Lagrangian to describe fermions and forces and their interactions, but only for massless fermions and bosons, which is clearly not the case. 
 For massive fermions and bosons respectively, the Lagrangian would require terms of the form $m\bar{\psi}\psi$ and $m_A^2A_\mu A^\mu$.
-However simply introducing these terms would break the gauge symmetries of the Lagrangian, so there must be some modification needed. 
+However these terms break the gauge symmetries of the Lagrangian, so something else is needed.
+The fermion mass term would initially seem invariant, but under the electroweak symmetry, it is rewritten as
+\begin{equation}
+    \label{eq:mass}
+    m\bar{\psi}\psi = m(\bar{\psi}_R\psi_L+\bar{\psi}_L\psi_R),
+\end{equation}
+and so is no longer invariant.
 \begin{itemize}
-    \item Weak imposes lefthandedness
     \item SSB and Higgs, Yukawa
     \item Combine for SM
 \end{itemize}
+The full covariant derivative as it is currently defined can be written
+\begin{equation}
+    \label{eq:covar}
+    D_\mu = \partial_\mu - ig_1\frac{Y}{2}B_\mu - ig_2\frac{\sigma^i}{2}W^i_\mu - ig_3\frac{\lambda^a}{2}G^a_\mu.
+\end{equation}
 
 \subsection{Flavour Observables and Inconsistencies}
+\label{subsec:flavobs}
 \begin{itemize}
     \item Sakharov criteria? -> CPv needed
     \item Exp vs Theory no agree, diagram
