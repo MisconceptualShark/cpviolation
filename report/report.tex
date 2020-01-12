@@ -7,10 +7,12 @@
 \usepackage[T1]{fontenc} % if needed
 \usepackage{float}
 \usepackage{cancel}
+\usepackage[a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[export]{adjustbox}
 %\graphicspath{{../calcs/}}
 
 %\title{\boldmath A title with some math: $x=1$}
-\title{CP Violation In and Beyond The Standard Model: Two Higgs Doublet Model Corrections to Standard Model Flavour Observables}
+\title{CP Violation In and Beyond The Standard Model: Two Higgs Doublet Model Corrections to Flavour Observables}
 
 
 %% %simple case: 2 authors, same institution
@@ -34,7 +36,7 @@
 
 \begin{document} 
 \maketitle
-\flushbottom
+%\flushbottom
 
 \section{Introduction}
 The Standard Model is one of the most successful theories ever developed, describing the fundamental forces currently observed, excluding gravity, through a quantum field theory Lagrangian, see \eqref{eq:sm}.
@@ -49,16 +51,16 @@ Throughout the latter half of the 20th century and through the 21st, the Standar
     \end{split}
 \end{equation}
 However, there are still many observations that do not align with the Standard Model; some more large scale such as unification with gravity or a description of dark matter, some more specific such as B meson oscillation frequencies or leptonic and semi-leptonic meson decays.
-The smaller scale innacuracies may seem less important than the larger scale ones, but the modifications to the Standard Model required to realign these observables open the door to possibilities for new physics models, perhaps with new particles and new forces at play.
+The modifications and additions to the Standard Model needed for these smaller scale problems could open the door to new phenomena that could bring us closer a complete theory of nature. 
 
 \subsection{The Standard Model}
-The physics of the Standard Model is perfectly contained within its Lagrangian in \eqref{eq:sm}, and most of its terms can be expanded to more clearly describe each part of the theory. 
-This theory is a quantum field theory so all particles of the theory are quantum fields permeating throughout space time. 
+The Standard Model is a quantum field theory, describing all constituent particles as quantum fields permeating throughout space-time. 
 There are twenty-five fundamental particles currently described in the Standard Model: twelve fermions (quarks and leptons), four gauge bosons of the electroweak theory ($W^\pm,Z,\gamma$), eight gluons of the strong force, and the Higgs boson.
 
 The basis for the Standard Model are the quantum theories of electroweak and strong interactions, and then the symmetry breaking Higgs mechanism to give masses to these theories.
 Both the electroweak and strong theories are non-Abelian gauge theories; the electroweak theory has a gauge symmetry of SU(2)$_{L}\otimes$U(1)$_Y$, and strong of SU(3)$_{c}$.
-To formulate the Standard Model Lagrangian, we start with the free Lagrangian of a massless Dirac fermion coupled to a gauge field tensor,
+\hspace{-10pt}\footnote{The subscripts of the symmetries describe the "charge" under which particles interact with each gauge theory: $c$ represents the color charge of the strong force, $L$ states that the weak force interacts only with left-handed doublets (through which the weak isospin will be defined analagous to electric charge), and $Y$ represents the weak hypercharge of U(1) before the spontaneous symmetry breaking of the Higgs mechanism to introduce the electric charge of the electromagnetic force.}
+\hspace{-5pt}To formulate the Standard Model Lagrangian, we start with the free Lagrangian of a massless Dirac fermion coupled to a gauge field tensor,
 \begin{align}
     \label{eq:dirac:1}
     \mathcal{L} &= i\bar{\psi}\gamma^\mu\partial_\mu\psi - \frac14F^{\mu\nu}F_{\mu\nu}.
@@ -69,15 +71,15 @@ The Lagrangian must be formed such that it is invariant for a local gauge transf
     \psi(x)\to U(x)\psi(x),\quad \bar{\psi}(x)\to\bar{\psi}(x)U^\dagger(x),
 \end{equation}
 where $U(x)$ is the gauge transformation.
-For U(1), SU(2), and SU(3) symmetries, we have
+For U(1) and SU(N) symmetries, we have
 \begin{align}
     \label{eq:gauge} 
     U_{U(1)} &= \exp\left[i\alpha\right],\quad U_{SU(N)} = \exp\left[i\alpha^a\frac{T^a}{2}\right]
 \end{align}
 For SU(N) symmetries, the index $a$ is summed from 1 to $N^2-1$: this is the number of gauge fields of the group.
 $T^a$ are the generators of these fields, which are represented by the Pauli matrices for SU(2) and the Gell-Mann matrices for SU(3).
-For SU(2), there are three generators, which will lead to the three associated bosons - $W^{\pm},Z$ - when mixed with U(1); and for SU(3), there are eight generators, leading to the eight gluons.
-Clearly for U(1) there is only a single generator, which will lead to the photon when mixed with the SU(2) gauge fields.\\
+For SU(2), there are three gauge fields, which will lead to the three associated bosons ($W^{\pm},Z$) when mixed with U(1); and for SU(3), there are eight gauge field, leading to the eight gluons.
+Clearly for U(1) there is only a single gauge field, which will lead to the photon when mixed with the SU(2) gauge fields.
 In addition to the definitions in \eqref{eq:gauge}, to make \eqref{eq:dirac:1} gauge invariant, it is necessary to transform the gauge field, as well as introduce the \textit{covariant derivative}, $D_\mu$:
 \begin{align}
     \label{eq:transform:1}
@@ -86,13 +88,13 @@ In addition to the definitions in \eqref{eq:gauge}, to make \eqref{eq:dirac:1} g
     \partial_\mu &\to D_\mu = \partial_\mu - igT^aA^a_\mu,
 \end{align}
 where $g$ is the relevant gauge coupling parameter.
-Note that \eqref{eq:transform:1} and \eqref{eq:transform:2} are the general forms for the SU(N) theories; if considering U(1), these can be simplified.\\
+Note that \eqref{eq:transform:1} and \eqref{eq:transform:2} are the general forms for the SU(N) theories; if considering U(1), these are simplified.
 From these definitions, the gauge invariance of \eqref{eq:dirac:1} for U(1) symmetry is trivial, and for SU(N) symmetries, it will simply follow after defining a commutation relation between generators:
 \begin{equation}
     \label{eq:commute}
     [T^a,T^b] = if^{abc}T^c,
 \end{equation}
-where $f^{abc}$ are the structure constants which define the SU(N) groups. \\
+where $f^{abc}$ are the structure constants which define the SU(N) groups. 
 It can be useful to define the fermion spinor $\psi$ into an upper and lower part, which can be done in many ways, but it is important in the formulation of the Standard Model to separation the fermion field into left- and right-handed components. 
 To this end, we define the operators
 \begin{align}
@@ -116,18 +118,76 @@ Neutrinos only appear in the left-handed doublets and do not form right-handed s
 So right- and left-handed fermions are in different SU(2) multiplets; this represents a parity violation in the Standard Model which is also found in nature. 
 This is an important criterion of a theory of nature, as will be discussed more in section \ref{subsec:flavobs}.
 
-Gauge symmetry has thus far yielded a Lagrangian to describe fermions and forces and their interactions, but only for massless fermions and bosons, which is clearly not the case in nature. 
+Gauge symmetry has thus far yielded a Lagrangian to describe fermions and forces and their interactions, but only for massless particles, which is not observed in nature. 
 For massive fermions and bosons respectively, the Lagrangian would require terms of the form $m\bar{\psi}\psi$ and $m_A^2A_\mu A^\mu$.
 The fermion mass term would initially seem invariant, but under the electroweak symmetry, it is rewritten as
 \begin{equation}
     \label{eq:mass}
     m\bar{\psi}\psi = m(\bar{\psi}_R\psi_L+\bar{\psi}_L\psi_R),
 \end{equation}
-and so is no longer invariant.
+and so is no longer invariant, due to the mixing of right-handed and left-handed spinors. 
+
 To solve this problem, the Higgs mechanism can be introduced as a way to spontaneously break the symmetry of the electroweak force to generate massive bosons. 
+The Lagrangian of the scalar Higgs reads
+\begin{equation}
+    \label{eq:higgslag}
+    \mathcal{L} = (D^\mu\phi)^\dagger(D_\mu\phi) - V(\phi).
+\end{equation}
+Consider a complex scalar field under the SU(2) left-handed doublet representation,
+\begin{equation}
+    \label{eq:doubscal}
+    \phi = \begin{pmatrix}\phi^+\\\phi^0\end{pmatrix},
+\end{equation}
+which has a U(1) hypercharge $Y=+\frac12$.
+The covariant derivative in \eqref{eq:higgslag} is that defined for SU(2)$\otimes$U(1):
+\begin{equation}
+    \label{eq:covarhiggs}
+    D_\mu\phi = \left(\partial_\mu + igT^iW_\mu^i + \frac{i}{2}g'B_\mu\right)\phi,
+\end{equation}
+with $W^i_\mu$ and $B_\mu$ the gauge fields of SU(2)$_L$ and U(1)$_Y$, and $g$ and $g'$ the SU(2) and U(1) gauge couplings respectively. 
+The Higgs potential $V(\phi)$ in \eqref{eq:higgslag} is defined as
+\begin{equation}
+    \label{eq:goldpot}
+    V(\phi) = -\mu^2\phi^\dagger\phi + \lambda(\phi^\dagger\phi)^2.
+\end{equation}
+If $\mu^2>0$, then the scalar field will acquire a non-zero vacuum expectation value (VEV), which will spontaneously break the symmetry. 
+The VEV can be arbitrarily defined as
+\begin{equation}
+    \label{eq:vev}
+    \langle\phi\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}0\\v\end{pmatrix}.
+\end{equation}
+To ensure that the symmetry of electromagnetism is not broken, the scalar field $\phi^0$ is taken to have charge $Q=0$.
+Under this scheme, both the hypercharge $Y$ and the weak isospin $T_3$ are not conserved, but the specific combination of them which is defined as electric charge, $Q=T_3+\frac12 Y$ is conserved, so the electroweak symmetry is spontaneously broken to form a U(1) symmetry of electric charge $Q$,
+\begin{equation}
+    \label{eq:symbreak}
+    SU(2)_L\otimes U(1)_Y \to U(1)_Q.
+\end{equation}
+The $W^\pm$ and $Z$ masses can now be generated from this mechanism. 
+In the unitary gauge, the scalar doublet can be written
+\begin{equation}
+    \label{eq:unig}
+    \phi = \frac{1}{\sqrt{2}}\begin{pmatrix}0\\v+h\end{pmatrix}.
+\end{equation}
+Through substituting the above into \eqref{eq:higgslag}, the gauge fields of the real electroweak bosons $W^{\pm},Z,\gamma$ can be found as linear combinations of $W^i_\mu$ and $B_\mu$,
+\begin{align}
+    \label{eq:gagmix}
+    W^\pm_\mu &\equiv \frac{1}{\sqrt{2}}(W_\mu^1 \mp iW_\mu^2), & Z_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(gW^3_\mu-g'B_\mu), & A_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(g'W_\mu^3+gB_\mu),
+\end{align}
+where the missing mass terms of the Lagrangian are now found, as
+\begin{align}
+    \label{eq:hvy}
+    m_W &= \frac{gv}{2}, & m_Z &= \frac{v}{2}\sqrt{g^2+g'^2}, & m_A &= 0.
+\end{align}
+Now the final piece of the puzzle is fermion masses. 
+We consider the final term of \eqref{eq:sm}, the Yukawa Lagrangian:
+\begin{align}
+    \label{eq:yuk}
+    \mathcal{L}_{Yuk} &= Y^u_{mn}\bar{q}_{m,L}\tilde{\phi}u_{n,R} + Y_{mn}^d\bar{q}_{m,L}\phi d_{n,R} + Y_{mn}^e\bar{l}_{m,L}\phi e_{n,R} + Y_{mn}^\nu\bar{l}_{m,L}\tilde{\phi}\nu_{n,R} + h.c.
+\end{align}
+
 \begin{itemize}
-    \item SSB and Higgs, Yukawa
     \item Combine for SM
+    \item CKM big time
 \end{itemize}
 The full covariant derivative as it is currently defined can be written
 \begin{equation}
@@ -135,17 +195,51 @@ The full covariant derivative as it is currently defined can be written
     D_\mu = \partial_\mu - ig_1\frac{Y}{2}B_\mu - ig_2\frac{\sigma^i}{2}W^i_\mu - ig_3\frac{\lambda^a}{2}G^a_\mu.
 \end{equation}
 
-\subsection{Flavour Observables and Inconsistencies}
+\subsection{Flavour Physics and CP Violation}
 \label{subsec:flavobs}
-\begin{itemize}
-    \item Sakharov criteria? -> CPv needed
-    \item Exp vs Theory no agree, diagram
-    \item Indicates searching for new physics
-    \item New Z', 2HDM, SM4, etc
-    \item Any new theory must be renormalisable, and also be consistent in modifying SM - can't fix some problems while sacrificing other results
-\end{itemize}
+A significant focus of flavour physics is the study of CP violation - the violation of CP symmetry (the product of Charge and Parity symmetries) in the Standard Model.
+CP symmetry was introduced as a candidate for the fundamental symmetry of Standard Model interactions after Parity violation was discovered in the 1950s.
+One of the big questions about the formulation of our universe is why is there an asymmetry between matter and anti-matter. 
+One of the conditions Sakharov found in 1967 to answer this question is a necessity of CP violation \cite{h}; if left-handed baryons interact differently to right-handed anti-baryons, then one of these can be more prominent than the other. 
+Both the electromagnetic and strong forces appear to conserve CP, however the weak force, through the chiral nature of its couplings, does not.
+Through the weak force, there are two ways for CP violating interactions to occur: through complex Yukawa couplings in the CKM matrix; through complex Higgs parameters, such as those in the 2 Higgs Doublet Model to be discussed in section \ref{subsec:2hdm}.
+There is also a question of whether CP violation can be found in the strong sector, but this will not be discussed here.
+
+Currently, there are two cruxes to the study of Sakharov's condition of CP violation: experiment finds larger scattering amplitudes than theory for many CP-violating processes; and the amount of CP violation currently observed would not be enough to account for the large baryon asymmetry of the universe. 
+Both these cruxes point towards physics beyond the Standard Model to add to the CP violation predicted and perhaps predict where to observe the CP violation needed in nature. 
+There are many proposals for Standard Model extensions which could bridge the gap between theory and experiment, although these extensions would require new particles to be observed to explain their phenomena, none of which have so far been observed. 
+
+The $Z'$ boson is a common extension to the Standard Model, which in its simplest application behaves akin to the $Z^0$ boson but with a higher mass. 
+There are many descriptions of the $Z'$ boson ranging from introduction of a new U(1) gauge symmetry to inclusion of string theory. 
+The consideration of a $Z'$ boson to flavour physics is to add extra coupling paths to scattering amplitudes which could better explain flavour observables. 
+An example of how $Z'$ could modify Standard Model decays is given in Figure \ref{fig:bmes}.
+\begin{figure}[H]
+    \vspace{-20pt}
+    \begin{equation}
+        \Gamma_{\text{Exp}} = \includegraphics[scale=0.8,raise=-16pt]{../notes/bminus.pdf} + \includegraphics[scale=0.8,raise=-16pt]{../notes/bminusprime.pdf}
+    \end{equation}
+    \caption{\label{fig:bmes} Proposed $Z'$ model extension to $\Gamma[B^-\to K^-\mu^+\mu^-]_{SM}$}
+\end{figure}
+
+It could also be possible that there is a fourth generation of fermions, perfectly replicating the first generation to higher masses as the second and third generations do. 
+The presence of the fourth generation could add extra Feynman diagrams to decays, increasing the resulting decay amplitude. 
+Another interesting implication of a fourth generation would be that the CKM matrix would now be a 4x4 matrix, which could see some alterations to flavour-changing interactions, perhaps even some additional complex terms where CP violation would arise. 
+A key indicator on this extension is in the Higgs mechanism. 
+\begin{figure}[H]
+    \centering
+    \includegraphics{../notes/higgs.pdf}
+    \caption{\label{fig:higgs} Higgs boson production through the top quark loop.}
+\end{figure}
+The Higgs couples more strongly to heavier particles, so the top-Higgs interaction seen in \ref{fig:higgs} should be replicated with the theoretical $t'$ and $b'$ quarks with increased amplitudes. 
+However, when just considering the SM4 model, the new prediction of the Higgs scattering amplitude is far greater than that observed. 
+It could be possible that the SM4 model is physical, but would also need another extension to resolve its issues, such as the Two Higgs Doublet Model discussed below. 
+
+Whenever constructing new theories to extend the Standard Model, the inspiration can frequently come from a few specific cases of inconsistency. 
+However it is important to test these extensions across all observables which could involve the new processes.
+If the extension resolves issues with some observables while creating new ones with others, then it is of no use; only extensions which work across the whole spectrum of phenomena can be physical. 
 
 \subsection{2HDM Explanation}
+\label{subsec:2hdm}
 \begin{itemize}
     \item Add second doublet instead of h.c.
     \item Two VEVs, 5 bosons
@@ -158,24 +252,87 @@ The full covariant derivative as it is currently defined can be written
     \item Explain each type of observable
     \item Input parameters
 \end{itemize}
+\subsection{Leptonic Decays}
+In the Standard Model, the leptonic decay $M\to l\nu_l$, where $M$ is a charged meson, has a branching ratio of
+\begin{equation}
+    \label{eq:mlv}
+    \mathcal{B}[M\to l\nu_l]_{\text{SM}} = \frac{G_F^2m_Mm_l^2}{8\pi}\left(1-\frac{m_l^2}{m_M^2}\right)^2 |V_{q_uq_d}|^2f_M^2\tau_M(1+\delta_{EM}^{Ml2}),
+\end{equation}
+where $q_u$ and $q_d$ represent the up- and down-like quarks of the meson, $V_{q_uq_d}$ the CKM element, and $f_M$ the $M$ meson's decay constant.
+$\delta_{EM}^{Ml2}$ is a corrective factor for electromagnetic radiative corrections. 
+For $\pi$ and $K$ mesons, the effect is around 2-3\%, and around 1\% for $D$ mesons.
+For $B$ meson phenemona, the effect is approximated to 0. 
+
+For the light mesons, kaons and pions, it is easier to determine the ratio of their decay constants $f_K/f_\pi$ than the individual values, and so it is then easier to consider the ratio of their branching fractions as well. 
+In the Standard Model, 
+\begin{equation}
+    \label{eq:kpi}
+    \frac{\Gamma[K\to\mu\nu]_{\text{SM}}}{\Gamma[\pi\to\mu\nu]_{\text{SM}}} = \frac{m_K}{m_\pi}\left(\frac{1-m_l^2/m_K^2}{1-m_l^2/m_\pi^2}\right)^2 \bigg|\frac{V_{us}}{V_{ud}}\bigg|^2\left(\frac{f_K}{f_\pi}\right)^2(1+\delta^{Kl2/\pi l2}_{EM}).
+\end{equation}
+It is also worth considering the ratio of tau decays of kaons to pions:
+\begin{equation}
+    \label{ep:tkpi}
+    \frac{\Gamma[\tau\to K\nu]_{\text{SM}}}{\Gamma[\tau\to\pi\nu]_{\text{SM}}} = \left(\frac{1-m_K^2/m_\tau^2}{1-m_\pi^2/m_\tau^2}\right)^2\bigg|\frac{V_{us}}{V_{ud}}\bigg|^2\left(\frac{f_K}{f_\pi}\right)^2(1+\delta_{EM}^{\tau K2/\tau\pi2}).
+\end{equation}
+
+These SM branching values will take alterations from the two Higgs doublet model of the form
+\begin{equation}
+    \label{eq:mesrh}
+    \mathcal{B}[M\to l\nu] = \mathcal{B}[M\to l\nu]_{\text{SM}}(1+r_H)^2,
+\end{equation}
+where $r_H$ is the corrective factor of the two Higgs doublet model:
+\begin{align}
+    \label{eq:rh}
+    r_H &= \left(\frac{m_{q_u}-m_{q_d}\tan^2\beta}{m_{q_u}+m_{q_d}}\right)\left(\frac{m_M}{m_{H^+}}\right)^2.
+\end{align}
+It can still be possible through this method for some leptonic decays to have agreement between the SM predictions and experiment, where $r_H = 0,-2$.
+$r_H=0$ is known as the decoupling solution which can be found as $m_{H^+}$ approaches infinity; $r_H=-2$, the fine-tuned solution, is obtained from a linear relationship between $m_{H^+}$ and $\tan\beta$, which will be dependent of the masses of the meson and its constituent quarks, so will vary between mesons. 
+
+
+\subsection{Mass mixing}
+\begin{align}
+    \Delta m_q &= \frac{G_F^2}{24\pi^2}(V_{tq}V_{tb}^*)^2\eta_Bm_Bm_t^2f_{B_q}^2\hat{B}_{B_q}(S_{WW}+S_{WH}+S_{HH}), \\
+    S_{WW} &= \left(1+\frac{9}{1-x_{tW}}-\frac{6}{(1-x_{tW})^2}-\frac{6x_{tW}^2\ln(x_{tW})}{(1-x_{tW})^3}\right), \\
+    S_{WH} &= \frac{x_{tH}}{\tan^2\beta}\left(\frac{(2x_{HW}-8)\ln(x_{tH}}{(1-x_{HW})(1-x_{tH})^2}+\frac{6x_{HW}\ln(x_{tW})}{(1-x_{tW})(1-x_{tW})^2}-\frac{8-2x_{tW}}{(1-x_{tW})(1-x_{tH})}\right),\\
+    S_{HH} &= \frac{x_{tH}}{\tan^4\beta}\left(\frac{1+x_{tH}}{(1-x_{tH})^2}+\frac{2x_{tH}\ln(x_{tH})}{(1-x_{tH})^3}\right).
+\end{align}
+
+\subsection{Radiative decay}
+\begin{equation}
+    \label{eq:xsgam}
+    \mathcal{R}_{b\to s\gamma} = \frac{\mathcal{B}[\bar{B}\to X_s\gamma]}{\mathcal{B}[\bar{B}\to X_cl\bar{\nu}]} = \bigg|\frac{V_{ts}^*V_{tb}}{V_{cb}}\bigg|^2 = \frac{6\alpha_{\text{EM}}}{\pi C}(P+N)
+\end{equation}
+
+\begin{equation}
+    \label{eq:pplsn}
+    P+N = (C^{eff,(0)}_{7,SM}+B\Delta C_{7,H^+}^{eff,(0)})^2+A
+\end{equation}
+\subsection{Input and Fits}
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.8]{../calcs/global.png}
     \caption{\label{fig:glob} Global fit, tadaaaaa}
 \end{figure}
 
-\section{Next?}
+\section{Next Steps}
+\begin{itemize}
+    \item SM4
+    \item SM4 and Higgs
+    \item more Higgs
+    \item Z' model and comparison to Higgs, join with Higgs?
+    \item something else?
+\end{itemize}
 
-\appendix
-\section{Some title}
-Please always give a title also for appendices.
-
-\acknowledgments
-This is the most common positions for acknowledgments. A macro is
-available to maintain the same layout and spelling of the heading.
-
-\paragraph{Note added.} This is also a good position for notes added
-after the paper has been written.
+%\appendix
+%\section{Some title}
+%Please always give a title also for appendices.
+%
+%\acknowledgments
+%This is the most common positions for acknowledgments. A macro is
+%available to maintain the same layout and spelling of the heading.
+%
+%\paragraph{Note added.} This is also a good position for notes added
+%after the paper has been written.
 
 
 
@@ -279,7 +436,7 @@ after the paper has been written.
 O. Deschamps et al, \emph{The Two Higgs Doublet Model of Type II facing flavour physics data}, \href{https://arxiv.org/pdf/0907.5135.pdf}{arxiv:0907.5135}.
 
 \bibitem{b}
-G. Degrassi, P. Gambino, and P. Slavich, \emph{SusyBSG: a fortran code for BR$[\to X_s\gamma]$ in the MSSM with Minimal Flavor Violation}, \href{https://arxiv.org/pdf/0712.3265.pdf}{arxiv:0712.3265}.
+G. Degrassi, P. Gambino, and P. Slavich, \emph{SusyBSG: a fortran code for} BR$[B\to X_s\gamma]$ \emph{in the MSSM with Minimal Flavor Violation}, \href{https://arxiv.org/pdf/0712.3265.pdf}{arxiv:0712.3265}.
 
 \bibitem{c}
 Y. Amhis et al [HFLAV], \emph{Averages of b-hadron, c-hadron, and $\tau$-lepton properties as of 2018}, \href{https://arxiv.org/pdf/1909.12524.pdf}{arxiv:1909.12524}.
@@ -295,6 +452,9 @@ A. Lenz and G. Tetlalmatzi-Xolocotzi, \emph{Model-independent bounds on new phys
 
 \bibitem{g}
 CKMfitter Group (J. Charles et al.), Eur. Phys. J. C41, 1-131 (2005) [hep-ph/0406184], updated results and plots available at: \href{http://ckmfitter.in2p3.fr}{http://ckmfitter.in2p3.fr}
+
+\bibitem{h}
+A. Sakharov, \emph{Violation of CP Invariance, C asymmetry, and Baryon Asymmetry of the Universe}, Pisma Zh. Eksp. Teor. Fiz. 5 (1967) 32 [JETP Lett. 5 (1967) 24] [Sov. Phys. Usp. 34 (1991) 392] [Usp. Fiz. Nauk 161 (1991) 61].
 
 % Please avoid comments such as "For a review'', "For some examples",
 % "and references therein" or move them in the text. In general,
