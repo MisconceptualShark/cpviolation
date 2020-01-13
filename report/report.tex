@@ -9,6 +9,8 @@
 \usepackage{cancel}
 \usepackage[a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage[export]{adjustbox}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
 %\graphicspath{{../calcs/}}
 
 %\title{\boldmath A title with some math: $x=1$}
@@ -45,9 +47,9 @@ Throughout the latter half of the 20th century and through the 21st, the Standar
     \label{eq:sm}
     \begin{split}
         \mathcal{L} = -&\frac14 F^{\mu\nu}F_{\mu\nu} \qquad\qquad\qquad\quad\to \text{gauge term}\\
-                      +& i\bar{\psi}\cancel{D}\psi \qquad\qquad\qquad\qquad\;\to \text{Fermion term} \\
-                      +& (D_\mu\phi)^\dagger(D^\mu\phi) - V(\phi) \quad\;\;\,\to \text{Higgs term}\\
-                      -& Y_{ij}\bar{\psi}_i\phi\psi_j + h.c. \qquad\qquad\;\to\text{Yukawa term}
+                      +& i\bar{\Psi}\cancel{D}\Psi \qquad\qquad\qquad\qquad\;\to \text{Fermion term} \\
+                      +& (D_\mu\Phi)^\dagger(D^\mu\Phi) - V(\phi) \quad\;\;\,\to \text{Higgs term}\\
+                      -& Y_{ij}\bar{\Psi}_i\Phi\Psi_j + h.c. \qquad\qquad\;\to\text{Yukawa term}
     \end{split}
 \end{equation}
 However, there are still many observations that do not align with the Standard Model; some more large scale such as unification with gravity or a description of dark matter, some more specific such as B meson oscillation frequencies or leptonic and semi-leptonic meson decays.
@@ -88,13 +90,19 @@ In addition to the definitions in \eqref{eq:gauge}, to make \eqref{eq:dirac:1} g
     \partial_\mu &\to D_\mu = \partial_\mu - igT^aA^a_\mu,
 \end{align}
 where $g$ is the relevant gauge coupling parameter.
+The full covariant derivative of the Standard Model is
+\begin{equation}
+    \label{eq:covar}
+    D_\mu = \partial_\mu - ig_1\frac{Y}{2}B_\mu - ig_2\frac{\sigma^i}{2}W^i_\mu - ig_3\frac{\lambda^a}{2}G^a_\mu,
+\end{equation}
+combining all constituent gauge groups, with $g_{1,2,3}$ the gauge coupling of U(1)$_Y$, SU(2)$_L$, and SU(3)$_c$ respectively where the gauge field(s) and generator(s) of each group are in the term of their coupling.   
 Note that \eqref{eq:transform:1} and \eqref{eq:transform:2} are the general forms for the SU(N) theories; if considering U(1), these are simplified.
 From these definitions, the gauge invariance of \eqref{eq:dirac:1} for U(1) symmetry is trivial, and for SU(N) symmetries, it will simply follow after defining a commutation relation between generators:
 \begin{equation}
     \label{eq:commute}
     [T^a,T^b] = if^{abc}T^c,
 \end{equation}
-where $f^{abc}$ are the structure constants which define the SU(N) groups. 
+where $f^{abc}$ are the structure constants which define each SU(N) group. 
 It can be useful to define the fermion spinor $\psi$ into an upper and lower part, which can be done in many ways, but it is important in the formulation of the Standard Model to separation the fermion field into left- and right-handed components. 
 To this end, we define the operators
 \begin{align}
@@ -111,7 +119,7 @@ Now when forming the SU(2) symmetry of the weak force, there is a difference bet
 Considering both quarks and leptons in the traditional three generations, then under the electroweak SU(2) space, each generation forms a left-handed doublet and a right-handed singlet, e.g.
 \begin{align}
     \label{eq:doublet}
-    L&=\begin{pmatrix} \nu_e \\ e^- \end{pmatrix}_L,\; e_R^-, & L_\alpha &=\begin{pmatrix} u_\alpha \\ d_\alpha\end{pmatrix}_L,\; u_{R\alpha},d_{R\alpha},
+    \Psi_L &=\begin{pmatrix} \nu_e \\ e^- \end{pmatrix}_L,\; e_R^-, & \Psi_{L\alpha} &=\begin{pmatrix} u_\alpha \\ d_\alpha\end{pmatrix}_L,\; u_{R\alpha},d_{R\alpha},
 \end{align}
 where $\alpha$ represents the colour charge of the quarks under the strong interaction.
 Neutrinos only appear in the left-handed doublets and do not form right-handed singlets, as there is currently no experimental evidence for their existence.
@@ -136,7 +144,7 @@ The Lagrangian of the scalar Higgs reads
 Consider a complex scalar field under the SU(2) left-handed doublet representation,
 \begin{equation}
     \label{eq:doubscal}
-    \phi = \begin{pmatrix}\phi^+\\\phi^0\end{pmatrix},
+    \Phi = \frac{1}{\sqrt{2}}\begin{pmatrix}\phi_1+i\phi_2\\\phi_0+i\phi_3\end{pmatrix} = \begin{pmatrix} \phi^+\\\phi^0\end{pmatrix},
 \end{equation}
 which has a U(1) hypercharge $Y=+\frac12$.
 The covariant derivative in \eqref{eq:higgslag} is that defined for SU(2)$\otimes$U(1):
@@ -151,7 +159,7 @@ The Higgs potential $V(\phi)$ in \eqref{eq:higgslag} is defined as
     V(\phi) = -\mu^2\phi^\dagger\phi + \lambda(\phi^\dagger\phi)^2.
 \end{equation}
 If $\mu^2>0$, then the scalar field will acquire a non-zero vacuum expectation value (VEV), which will spontaneously break the symmetry. 
-The VEV can be arbitrarily defined as
+The VEV can be defined as
 \begin{equation}
     \label{eq:vev}
     \langle\phi\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}0\\v\end{pmatrix}.
@@ -166,34 +174,110 @@ The $W^\pm$ and $Z$ masses can now be generated from this mechanism.
 In the unitary gauge, the scalar doublet can be written
 \begin{equation}
     \label{eq:unig}
-    \phi = \frac{1}{\sqrt{2}}\begin{pmatrix}0\\v+h\end{pmatrix}.
+    \Phi = \frac{1}{\sqrt{2}}\begin{pmatrix}0\\v+h\end{pmatrix}.
 \end{equation}
-Through substituting the above into \eqref{eq:higgslag}, the gauge fields of the real electroweak bosons $W^{\pm},Z,\gamma$ can be found as linear combinations of $W^i_\mu$ and $B_\mu$,
+Through substituting the above into \eqref{eq:higgslag}, the gauge fields of the real electroweak bosons $W^{\pm},Z,\gamma$ can be found as linear combinations of $W^i_\mu$ and $B_\mu$ with their mass terms now generated in a gauge invariant form:
 \begin{align}
     \label{eq:gagmix}
-    W^\pm_\mu &\equiv \frac{1}{\sqrt{2}}(W_\mu^1 \mp iW_\mu^2), & Z_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(gW^3_\mu-g'B_\mu), & A_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(g'W_\mu^3+gB_\mu),
-\end{align}
-where the missing mass terms of the Lagrangian are now found, as
-\begin{align}
-    \label{eq:hvy}
-    m_W &= \frac{gv}{2}, & m_Z &= \frac{v}{2}\sqrt{g^2+g'^2}, & m_A &= 0.
+    W^\pm_\mu &\equiv \frac{1}{\sqrt{2}}(W_\mu^1 \mp iW_\mu^2), & m_W &= \frac{gv}{2}, \\
+    Z_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(gW^3_\mu-g'B_\mu), & m_Z &= \frac{v}{2}\sqrt{g^2+g'^2}\\
+    A_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(g'W_\mu^3+gB_\mu), & m_A &= 0.
 \end{align}
 Now the final piece of the puzzle is fermion masses. 
-We consider the final term of \eqref{eq:sm}, the Yukawa Lagrangian:
+We consider the final term of \eqref{eq:sm}, the Yukawa Lagrangian. 
+It is split into terms, the one written and "h.c.", representing the hermitian conjugate of the former.
+The hermitian conjugate term is required so both up-type quarks, and down-type quarks and charged leptons gain mass. 
+In the unitary gauge, the down-type quark Yukawa term reads
 \begin{align}
     \label{eq:yuk}
-    \mathcal{L}_{Yuk} &= Y^u_{mn}\bar{q}_{m,L}\tilde{\phi}u_{n,R} + Y_{mn}^d\bar{q}_{m,L}\phi d_{n,R} + Y_{mn}^e\bar{l}_{m,L}\phi e_{n,R} + Y_{mn}^\nu\bar{l}_{m,L}\tilde{\phi}\nu_{n,R} + h.c.
+    -\mathcal{L}_{Yuk}^d = \sum_{a,b} Y^{(d)}_{ab} \begin{pmatrix} \bar{u}_{aL} & \bar{d}_{aL}\end{pmatrix}\begin{pmatrix}0\\\frac{v}{\sqrt{2}}\end{pmatrix}d_{bR} = \sum_{a,b}Y^{(d)}_{ab}\phi_0\bar{d}_{aL}d_{bR},
 \end{align}
+where $\phi^0$ is defined as $\frac{v}{\sqrt{2}}$ through the transformation
+\begin{align}
+    \label{eq:vtoh}
+    \Phi = \frac{1}{\sqrt{2}}\begin{pmatrix}0\\v+h\end{pmatrix}\to\frac{1}{\sqrt{2}}\begin{pmatrix}0\\v\end{pmatrix}
+\end{align}
+from the spontaneous symmetry breaking. 
+So now down-type quarks and charged leptons have gained masses. 
+To generate the masses of the up-type quarks and charged leptons, the hermitian cojugate term is used, where now a second Higgs doublet (not dependent of the first, but its charge-conjugate) is introduced as
+\begin{align}
+    \label{eq:highc}
+    \tilde{\Phi} &= i\sigma_2\Phi^* = \begin{pmatrix}\phi^{0*}\\-\phi^{+*}\end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}v+h\\0\end{pmatrix}.
+\end{align}
+The up-type quark Yukawa term is then
+\begin{align}
+    \label{eq:yukhc}
+    -\mathcal{L}_{Yuk}^u = \sum_{a,b} Y^{(u)}_{ab}\begin{pmatrix}\bar{u}_{aL} & \bar{d}_{aL}\end{pmatrix}\begin{pmatrix}\frac{v}{\sqrt{2}}\\0\end{pmatrix}u_{bR} = \sum_{a,b}Y^{(u)}_{ab}\phi^0\bar{u}_{aL}u_{bR}.
+\end{align}
+The charged lepton masses are generated similarly, and the expressions of masses read
+\begin{align}
+    \label{eq:fermas}
+    m_i = -\frac{Y_iv}{\sqrt{2}},
+\end{align}
+where $i$ represents whichever fermion is in question. 
+The question of neutrino mass is at the forefront of some research, and so won't be mentioned in this study, other than that it is now known that neutrinos do have mass, however small. 
 
-\begin{itemize}
-    \item Combine for SM
-    \item CKM big time
-\end{itemize}
-The full covariant derivative as it is currently defined can be written
+In \eqref{eq:yuk} and \eqref{eq:yukhc}, we have formed non-diagonal mass matrices. 
+These can be diagonalised in which the constituent states are the mass eigenstates, e.g. for the quarks, there would be 
+\begin{align}
+    \label{eq:massmat}
+    \frac{v}{\sqrt{2}}V_1^\dagger Y_uV_1 &= \begin{pmatrix} m_u & & \\ & m_c & \\ & & m_t\end{pmatrix}, & \frac{v}{\sqrt{2}}V_2^\dagger Y_dV_2 &= \begin{pmatrix} m_d & & \\ & m_s & \\ & & m_b\end{pmatrix}.
+\end{align}
+However these cannot both be diagonalised simultaneously. 
+By convention, it is chosen to diagonalise the up-type quarks, and then rotate the down-type quarks between their weak eigenstates and their mass eigenstates. 
+The famous CKM matrix, defined $V_{CKM}\equiv V_1^\dagger V_2$, is the matrix connecting to mass and weak eigenstates,
 \begin{equation}
-    \label{eq:covar}
-    D_\mu = \partial_\mu - ig_1\frac{Y}{2}B_\mu - ig_2\frac{\sigma^i}{2}W^i_\mu - ig_3\frac{\lambda^a}{2}G^a_\mu.
+    \label{eq:ckmone}
+    \begin{pmatrix} d \\ s \\ b\end{pmatrix} = V_{CKM}\begin{pmatrix} d' \\ s' \\ b'\end{pmatrix},
 \end{equation}
+as well as describing quark mixing between the up- and down-type quarks. 
+The CKM matrix in its full form is a unitary matrix; it is currently believed to be a $3\times3$ unitary matrix, however this could be section of a $4\times4$ unitary matrix if a fourth generation of fermions existed, meaning the current $3\times3$ matrix would not be unitary. 
+The strengths of quark coupling is stored in elements of the CKM matrix as
+\begin{align}
+    \label{eq:ckmub}
+    V_{CKM} &= \begin{pmatrix}V_{ud}&V_{us}&V_{ub}\\V_{cd}&V_{cs}&V_{cb}\\V_{td}&V_{ts}&V_{tb}\end{pmatrix}.
+\end{align}
+These individual elements can be found through quark coupling processes. 
+For better understanding of the CKM matrix however, it can be easier to parameterise it. 
+There are many parameterisations that can be used for this, though the two most common are the \emph{standard parameterisation} and the \emph{Wolfenstein parameterisation}.
+The standard parameterisation follows from extension of the Cabibbo angle for first and second generation mixing, where we now use three Cabibbo-like matrices for interactions of two quark generations, and multiply them for the CKM matrix, including a phase required by the formation of a $3\times3$ unitary matrix:
+\begin{equation}
+    \label{eq:standpar}
+    \begin{split}
+        V_{CKM} &= \begin{pmatrix}1&0&0\\0&\cos\theta_{23}&\sin\theta_{23}\\0&-\sin\theta_{23}&\cos\theta_{23}\end{pmatrix}\begin{pmatrix}\cos\theta_{13}&0&\sin\theta_{13}e^{i\delta}\\0&1&0\\-\sin\theta_{13}e^{i\delta}&0&\cos\theta_{13}\end{pmatrix}\begin{pmatrix}\cos\theta_{12}&\sin\theta_{12}&0\\-\sin\theta_{12}&\cos\theta_{12}&0\\0&0&1\end{pmatrix}\\
+                &= \begin{pmatrix}c_{12}c_{13} & s_{12}c_{13} & s_{13}e^{-i\delta} \\ -s_{12}c_{23}-c_{12}s_{23}s_{13}e^{i\delta} & c_{12}c_{23}-s_{12}s_{23}s_{13}e^{i\delta} & s_{23}c_{13} \\ s_{12}c_{23}-c_{12}c_{23}s_{13}e^{i\delta} & -c_{12}s_{23}-s_{12}c_{23}s_{12}e^{i\delta} & c_{23}c_{13}\end{pmatrix}
+    \end{split}
+\end{equation}
+The Wolfenstein parameterisation approximates the standard parameterisation as $\lambda=s_{12}\approx0.22543$, $A\lambda^2=s_{23}$, and $A\lambda^3(\rho-i\eta)=s_{13}e^{-i\delta}$, and performs a Taylor expansion traditionally to order $\lambda^3$ to yield
+\begin{align}
+    \label{eq:wolfie}
+    V_{CKM} &= \begin{pmatrix} 1-\frac{\lambda^2}{2} & \lambda & A\lambda^3(\rho-i\eta) \\ -\lambda & 1-\frac{\lambda^2}{2} & A\lambda^2 \\ A\lambda^3(1-\rho-i\eta) & -A\lambda^2 & 1\end{pmatrix} + \mathcal{O}(\lambda^4).
+\end{align}
+This parameterisation makes it very easy to see the relative strengths of the coupling. 
+
+An important element of the CKM matrix is its complex phase.
+\hspace{-10pt}\footnote{If its real form were a $4\times4$ matrix, there would be three phases.}
+\hspace{-5pt}The presence of a complex phase allows for CP-violating processes to take place in the Standard Model: the CKM matrix's Hermitian conjugate would will give the complex conjugated phase, yielding different physics over CP conjugation for complex coupling elements. 
+In the Wolfenstein parameterisation, all CP violation is held with the $\rho-i\eta$ terms. 
+Plotting measurements in the $\rho-\eta$ plane can prove useful in understanding these terms, to which end, the unitarity triangle can be formed:
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}
+        \draw[-Latex] (0,0) -- (4.4,0) node[anchor=north] {$\rho$};
+        \draw[-Latex] (0,0) -- (0,2.5) node[anchor=east] {$\eta$};
+        \draw[-{Latex[length=3mm,width=2mm]}] (0,0) -- (2,2) node[anchor=north east,xshift=-15pt,yshift=-5pt] {$\frac{V_{ud}V_{ub}^*}{A\lambda^3}$};
+        \draw[-{Latex[length=3mm,width=2mm]}] (2,2) node[anchor=north west,xshift=18pt,yshift=-5pt] {$\frac{V_{td}V_{tb}^*}{A\lambda^3}$} -- (4,0);
+        \draw[-Latex] (4,-0.1) -- (0,-0.1) node[anchor=north,midway] {$\frac{V_{cd}V_{cb}^*}{A\lambda^3}$};
+    \end{tikzpicture}
+    \caption{\label{fig:unitang} The unitarity triangle from the Wolfenstein parameterisation in $(\rho,\eta)$ space.}
+\end{figure}
+The unitarity triangle can help describe many things in quark mixing, such as Cp violation, through the length of its side and its angles. 
+It can also be useful to define a unitarity circle through comparison of experiment and theory in CP violating processes, and from these and others, many regions in the $\rho-\eta$ plane can be defined to interpret various constants and effects in quark mixing. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{rhoeta_large.png}
+    \caption{\label{fig:ckmfitter} The global CKM fit in the $(\rho,\eta)$ plane, as of 13/01/20 \cite{g}.}
+\end{figure}
 
 \subsection{Flavour Physics and CP Violation}
 \label{subsec:flavobs}
@@ -238,7 +322,7 @@ Whenever constructing new theories to extend the Standard Model, the inspiration
 However it is important to test these extensions across all observables which could involve the new processes.
 If the extension resolves issues with some observables while creating new ones with others, then it is of no use; only extensions which work across the whole spectrum of phenomena can be physical. 
 
-\subsection{2HDM Explanation}
+\subsection{The Two Higgs Doublet Model}
 \label{subsec:2hdm}
 \begin{itemize}
     \item Add second doublet instead of h.c.
@@ -246,7 +330,7 @@ If the extension resolves issues with some observables while creating new ones w
     \item Adjustment to theory
 \end{itemize}
 
-\section{Testing of 2HDM}
+\section{Probing the 2HDM}
 \begin{itemize}
     \item Follow lots from 0907.5135
     \item Explain each type of observable
