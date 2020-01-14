@@ -183,6 +183,7 @@ Through substituting the above into \eqref{eq:higgslag}, the gauge fields of the
     Z_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(gW^3_\mu-g'B_\mu), & m_Z &= \frac{v}{2}\sqrt{g^2+g'^2}\\
     A_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(g'W_\mu^3+gB_\mu), & m_A &= 0.
 \end{align}
+It can be said that three of component scalar fields in \eqref{eq:doubscal} were "eaten" to form the gauge boson masses, and the fourth field goes on to become the Higgs phenomenom.\\
 Now the final piece of the puzzle is fermion masses. 
 We consider the final term of \eqref{eq:sm}, the Yukawa Lagrangian. 
 It is split into terms, the one written and "h.c.", representing the hermitian conjugate of the former.
@@ -322,13 +323,23 @@ Whenever constructing new theories to extend the Standard Model, the inspiration
 However it is important to test these extensions across all observables which could involve the new processes.
 If the extension resolves issues with some observables while creating new ones with others, then it is of no use; only extensions which work across the whole spectrum of phenomena can be physical. 
 
-\subsection{The Two Higgs Doublet Model}
+\subsection{The Two Higgs Doublet Model of Type II}
 \label{subsec:2hdm}
-\begin{itemize}
-    \item Add second doublet instead of h.c.
-    \item Two VEVs, 5 bosons
-    \item Adjustment to theory
-\end{itemize}
+Previously in the Standard Model Higgs mechanism, to generate the masses of the weak gauge bosons and fermions, a single Higgs SU(2) doublet was introduced of complex scalar fields, as in \eqref{eq:doubscal}.
+To form masses for both up- and down-type quarks and charged leptons, we introduced the hermitian conjugate doublet in \eqref{eq:highc}, otherwise the Higgs field would only give mass to the down-type quarks. 
+Instead, two Higgs doublets can be postulated, of the general form
+\begin{align}
+    \label{eq:gdbl}
+    \Phi_1 &= \begin{pmatrix} \phi_1 + i\phi_2 \\ \phi_0 + i\phi_3\end{pmatrix}, & \Phi_2 &= \begin{pmatrix} \phi_5+i\phi_6\\\phi_4+i\phi_7\end{pmatrix}.
+\end{align}
+These two doublets would have opposite hypercharge so one would couple to up-type quarks, and the other to down-type, thus requiring no need for a conjugate field. 
+Each doublet would have its own VEV, with the quadrature addition of these two VEVs creating the value known in the Standard Model:
+\begin{align}
+    \label{eq:dbldbl}
+    \Phi_1 &= \frac{1}{\sqrt{2}}\begin{pmatrix}0\\v_1\end{pmatrix}, & \Phi_2 &= \frac{1}{\sqrt{2}}\begin{pmatrix}v_2\\0\end{pmatrix}, & v_{SM}^2 &= v_1^2 + v_2^2.
+\end{align}
+Under this model, the masses of the three weak gauge bosons can still be generated in the same way, each eating one of the scalar fields, however this time there would be 5 residual scalar fields, and so, five Higgs fields should be found: three neutral Higgs, two scalar $H$ and $h$ (where $h$ is the SM Higgs particle) and one pseudoscalar $A$; and two charged Higgs $H^\pm$.
+The introduction of these new particles requires searching for additional parameters to describe them: the masses of $H$, $A$, and $H^\pm$; the mixing angle between $h$ and $H$; and the VEV ratio $\tan\beta=v_2/v_1$.
 
 \section{Probing the 2HDM}
 \begin{itemize}
