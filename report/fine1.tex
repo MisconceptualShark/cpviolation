@@ -1,0 +1,41 @@
+%NOTE: COMPILE IN TERMINAL USING LUALATEX
+\documentclass[a4paper,11pt]{standalone}
+
+\usepackage{tikz-feynman}
+%\usetikzlibrary{external}             %% Load the `external` library
+%\tikzexternalize
+%\immediate\write18{mkdir -p pgf-img}
+%\tikzexternalize[                     %% Activate externalization
+%  system call={                       %% Use lualatex in system call
+%    lualatex \tikzexternalcheckshellescape -halt-on-error -interaction=batchmode -jobname="\image" "\texsource" || rm "\image.pdf"
+%  },
+%]
+
+\begin{document}
+
+%\feynmandiagram [horizontal=b to c]{
+%    a -- [fermion,edge label=$b$] b -- [boson,edge label'=$W$] c -- [fermion,edge label=$s$] d,
+%    b -- [half left,fermion] c,
+%};
+
+\begin{tikzpicture}
+    \begin{feynman}
+        \vertex (a1);
+        \vertex[right=2.5cm of a1] (a2);
+        \vertex[right=1.5cm of a2] (a3);
+        \vertex[right=2.5cm of a3] (a4);
+        \vertex[above=of a4] (c);
+
+        \vertex at ($(a2)!0.7!(a3)!0.6cm!90:(a3)$) (d);
+
+        \diagram* {
+            (a1) -- [fermion,edge label=$b$] (a2) -- [boson,edge label'=$W$] (a3) -- [fermion,edge label=$s$] (a4),
+            (a2) -- [half left,fermion,edge label=$t$] (a3),
+            (d) -- [photon,edge label=$\gamma$] (c),
+        };
+    \end{feynman}
+\end{tikzpicture}
+
+
+
+\end{document}
