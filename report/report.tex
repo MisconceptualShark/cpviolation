@@ -62,8 +62,8 @@ The Standard Model is a quantum field theory, describing all constituent particl
 There are twenty-five fundamental particles currently described in the Standard Model: twelve fermions (quarks and leptons), four gauge bosons of the electroweak theory ($W^\pm,Z,\gamma$), eight gluons of the strong force, and the Higgs boson.
 
 The basis for the Standard Model are the quantum theories of electroweak and strong interactions, and then the symmetry breaking Higgs mechanism to give masses to these theories.
-Both the electroweak and strong theories are non-Abelian gauge theories; the electroweak theory has a gauge symmetry of SU(2)$_{L}\otimes$U(1)$_Y$, and the strong theory of SU(3)$_{c}$.
-\hspace{-10pt}\footnote{The subscripts of the symmetries describe the "charge" under which particles interact with each gauge theory: $c$ represents the color charge of the strong force, $L$ states that the weak force interacts only with left-handed doublets (through which the weak isospin will be defined analagous to electric charge), and $Y$ represents the weak hypercharge of U(1) before the spontaneous symmetry breaking of the Higgs mechanism to introduce the electric charge of the electromagnetic force.}
+Both the electroweak and strong theories are non-Abelian gauge theories; the electroweak theory has a gauge symmetry of SU(2)$_{L}\otimes$U(1)$_Y$, and the strong theory of SU(3)$_{c}$ \cite{n}.
+\hspace{-10pt}\footnote{The subscripts of the symmetries describe the "charge" under which particles interact with each gauge theory: $c$ represents the color charge of the strong force, $L$ states that the weak force interacts only with left-handed doublets (through which the weak isospin will be defined analagous to electric charge), and $Y$ represents the weak hypercharge of U(1) before the spontaneous symmetry breaking of the Higgs mechanism to introduce the electric charge of the electromagnetic force.\cite{o}}
 \hspace{-5pt}To formulate the Standard Model Lagrangian, we start with the free Lagrangian of a massless Dirac fermion coupled to a gauge field tensor,
 \begin{align}
     \label{eq:dirac:1}
@@ -97,14 +97,14 @@ The full covariant derivative of the Standard Model is
     \label{eq:covar}
     D_\mu = \partial_\mu - ig_1\frac{Y}{2}B_\mu - ig_2\frac{\sigma^i}{2}W^i_\mu - ig_3\frac{\lambda^a}{2}G^a_\mu,
 \end{equation}
-combining all constituent gauge groups, with $g_{1,2,3}$ the gauge coupling of U(1)$_Y$, SU(2)$_L$, and SU(3)$_c$ respectively where the gauge field(s) and generator(s) of each group are in the term of their coupling.   
+combining all constituent gauge groups, with $g_{1,2,3}$ the gauge coupling of U(1)$_Y$, SU(2)$_L$, and SU(3)$_c$ respectively where the gauge field(s) and generator(s) of each group are in the term of their coupling \cite{m}.   
 Note that Eqs.\eqref{eq:transform:1} and \eqref{eq:transform:2} are the general forms for the SU(N) theories; if considering U(1), these are simplified.
 From these definitions, the gauge invariance of Eq.\eqref{eq:dirac:1} for U(1) symmetry is trivial, and for SU(N) symmetries, it will simply follow after defining a commutation relation between generators:
 \begin{equation}
     \label{eq:commute}
     [T^a,T^b] = if^{abc}T^c,
 \end{equation}
-where $f^{abc}$ are the structure constants which define each SU(N) group. 
+where $f^{abc}$ are the structure constants which define each SU(N) group \cite{n}. 
 It can be useful to define the fermion spinor $\psi$ into an upper and lower part, which can be done in many ways, but it is important in the formulation of the Standard Model to separate the fermion field into left- and right-handed components. 
 To this end, we define the operators
 \begin{align}
@@ -123,7 +123,7 @@ Considering both quarks and leptons in the traditional three generations, then u
     \label{eq:doublet}
     \Psi_L &=\begin{pmatrix} \nu_e \\ e^- \end{pmatrix}_L,\; e_R^-, & \Psi_{L\alpha} &=\begin{pmatrix} u_\alpha \\ d_\alpha\end{pmatrix}_L,\; u_{R\alpha},d_{R\alpha},
 \end{align}
-where $\alpha$ represents the colour charge of the quarks under the strong interaction.
+where $\alpha$ represents the colour charge of the quarks under the strong interaction \cite{m}.
 Neutrinos only appear in the left-handed doublets and do not form right-handed singlets, as there is currently no experimental evidence for their existence.
 So right- and left-handed fermions are in different SU(2) multiplets; this represents a parity violation in the Standard Model which is also found in nature. 
 This is an important criterion of a theory of nature, as will be discussed more in section \ref{subsec:flavobs}.
@@ -148,7 +148,7 @@ Consider a complex scalar field under the SU(2) left-handed doublet representati
     \label{eq:doubscal}
     \Phi = \frac{1}{\sqrt{2}}\begin{pmatrix}\phi_1+i\phi_2\\\phi_0+i\phi_3\end{pmatrix} = \begin{pmatrix} \phi^+\\\phi^0\end{pmatrix},
 \end{equation}
-which has a U(1) hypercharge $Y=+\frac12$.
+which has a U(1) hypercharge $Y=+\frac12$ \cite{l}.
 The covariant derivative in Eq.\eqref{eq:higgslag} is that defined for SU(2)$\otimes$U(1):
 \begin{equation}
     \label{eq:covarhiggs}
@@ -185,11 +185,11 @@ Through substituting the above into Eq.\eqref{eq:higgslag}, the gauge fields of 
     Z_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(gW^3_\mu-g'B_\mu), & m_Z &= \frac{v}{2}\sqrt{g^2+g'^2}\\
     A_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(g'W_\mu^3+gB_\mu), & m_A &= 0.
 \end{align}
-It can be said that three of component scalar fields in Eq.\eqref{eq:doubscal} were "eaten" to form the gauge boson masses, and the fourth field goes on to become the Higgs phenomenon.\\
+It can be said that three of component scalar fields in Eq.\eqref{eq:doubscal} were "eaten" to form the gauge boson masses, and the fourth field goes on to become the Higgs phenomenon \cite{o}.\\
 Now the final piece of the puzzle is fermion masses. 
 We consider the final term of Eq.\eqref{eq:sm}, the Yukawa Lagrangian. 
 It is split into terms, the one written and "h.c.", representing the hermitian conjugate of the former.
-The hermitian conjugate term is required so both up-type quarks, and down-type quarks and charged leptons gain mass. 
+The hermitian conjugate term is required so both up-type quarks, and down-type quarks and charged leptons gain mass \cite{m}. 
 In the unitary gauge, the down-type quark Yukawa term reads
 \begin{align}
     \label{eq:yuk}
@@ -217,7 +217,7 @@ The charged lepton masses are generated similarly, and the expressions of masses
     \label{eq:fermas}
     m_i = -\frac{Y_iv}{\sqrt{2}},
 \end{align}
-where $i$ represents whichever fermion is in question. 
+where $i$ represents whichever fermion is in question \cite{o}. 
 The question of neutrino mass is at the forefront of some research, and so won't be mentioned in this study, other than that it is now known that neutrinos do have mass, however small. 
 
 In Eqs.\eqref{eq:yuk} and \eqref{eq:yukhc}, we have formed non-diagonal mass matrices. 
@@ -227,7 +227,7 @@ These can be diagonalised in which the constituent states are the mass eigenstat
     \frac{v}{\sqrt{2}}V_1^\dagger Y_uV_1 &= \begin{pmatrix} m_u & & \\ & m_c & \\ & & m_t\end{pmatrix}, & \frac{v}{\sqrt{2}}V_2^\dagger Y_dV_2 &= \begin{pmatrix} m_d & & \\ & m_s & \\ & & m_b\end{pmatrix}.
 \end{align}
 However these cannot both be diagonalised simultaneously. 
-By convention, it is chosen to diagonalise the up-type quarks, and then rotate the down-type quarks between their weak eigenstates and their mass eigenstates. 
+By convention, it is chosen to diagonalise the up-type quarks, and then rotate the down-type quarks between their weak eigenstates and their mass eigenstates \cite{l}. 
 The famous CKM matrix, defined $V_{CKM}\equiv V_1^\dagger V_2$, is the matrix connecting to mass and weak eigenstates,
 \begin{equation}
     \label{eq:ckmone}
@@ -242,7 +242,7 @@ The strengths of quark coupling are stored in elements of the CKM matrix as
 \end{align}
 These individual elements can be found through quark coupling processes. 
 For better understanding of the CKM matrix however, it can be easier to parameterise it. 
-There are many parameterisations that can be used for this, though the two most common are the \emph{standard parameterisation} and the \emph{Wolfenstein parameterisation}.
+There are many parameterisations that can be used for this, though the two most common are the \emph{standard parameterisation} and the \emph{Wolfenstein parameterisation} \cite{l}.
 The standard parameterisation follows from extension of the Cabibbo angle for first and second generation mixing, where we now use three Cabibbo-like matrices for interactions of two quark generations, and multiply them for the CKM matrix, including a phase required by the formation of a $3\times3$ unitary matrix:
 \begin{equation}
     \label{eq:standpar}
@@ -290,10 +290,10 @@ One of the big questions about the formulation of our universe is why is there a
 One of the conditions Sakharov found in 1967 to answer this question is a necessity of CP violation \cite{h}; if left-handed baryons interact differently to right-handed anti-baryons, then one of these can be more prominent than the other. 
 Both the electromagnetic and strong forces appear to conserve CP, however the weak force, through the chiral nature of its couplings, does not.
 Through the weak force, there are two ways for CP violating interactions to occur: through complex Yukawa couplings in the CKM matrix; through complex Higgs parameters, such as those in the 2 Higgs Doublet Model to be discussed in section \ref{subsec:2hdm}.
-There is also a question of whether CP violation can be found in the strong sector, but this will not be discussed here.
+There is also a question of whether CP violation can be found in the strong sector, but this will not be discussed here \cite{m}.
 
 Currently, there are two cruxes to the study of Sakharov's condition of CP violation: experiment finds larger scattering amplitudes than theory for many CP-violating processes; and the amount of CP violation currently observed would not be enough to account for the large baryon asymmetry of the universe. 
-Both these cruxes point towards physics beyond the Standard Model to add to the CP violation predicted and perhaps predict where to observe the CP violation needed in nature. 
+Both these cruxes point towards physics beyond the Standard Model to add to the CP violation predicted and perhaps predict where to observe the CP violation needed in nature \cite{l}. 
 There are many proposals for Standard Model extensions which could bridge the gap between theory and experiment, although these extensions would require new particles to be observed to explain their phenomena, none of which have so far been observed. 
 
 The $Z'$ boson is a common extension to the Standard Model, which in its simplest application behaves akin to the $Z^0$ boson but with a higher mass. 
@@ -572,6 +572,20 @@ S. Aoki et al [FLAG], \emph{FLAG Review 2019}, \href{https://arxiv.org/pdf/1902.
 
 \bibitem{k}
 A. Lenz, private correspondence.
+
+\bibitem{l} %CKM ref
+J.F. Donoghue, E. Golowich, and B.R. Holstein, \emph{Dynamics of the Standard Model} (Cambridge University Press, 2014).
+
+\bibitem{m} %covar deriv
+G. Kane, \emph{Modern Elementary Particle Physics} (Addison-Wesley, 1987).
+
+\bibitem{n} %gauge transforms
+D. Bailin and A. Love, \emph{Introduction to Gauge Field Theory} (Institute of Physics, 1993).
+
+\bibitem{o} %Higgs
+M.D. Schwartz, \emph{Quantum Field Theory and the Standard Model} (Cambridge University Press, 2018).
+
+
 
 % Please avoid comments such as "For a review'', "For some examples",
 % "and references therein" or move them in the text. In general,
