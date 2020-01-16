@@ -13,7 +13,7 @@
 \usepackage[export]{adjustbox}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
-%\graphicspath{{../calcs/}}
+\graphicspath{{../images/}}
 
 %\title{\boldmath A title with some math: $x=1$}
 \title{CP Violation In and Beyond The Standard Model: Two Higgs Doublet Model Type II Corrections to Flavour Observables}
@@ -358,7 +358,7 @@ This study considers where regions of the 2HDM Type II parameters can align SM p
 \section{Probing the 2HDM Type II}
 \label{sec:probe}
 Below will follow \cite{a} closely in describing the SM theory for the decays relevant to charged Higgs searches and extending these into the 2HDM. 
-The measurements and parameters used for these expressions is given in \emph{table}.
+The measurements and parameters used for these expressions is given in Tables \ref{tab:branches} and \ref{tab:params}.
 
 \subsection{Leptonic Decays}
 \label{subsec:lep}
@@ -454,6 +454,8 @@ From \cite{f}, it is defined as
 
 \subsection{Input and Fits}
 \label{subsec:fit}
+All processes mentioned above were used to test the constraints on the 2HDM parameters $m_{H^+}$ and $\tan\beta$. 
+The 2HDM-extended branching ratios were tested in $(m_{H^+},\tan\beta)$ parameter space to search for regions where a charged Higgs would be allowed by nature. 
 \begin{table}[H]
     \centering
     \begin{tabular}{c|ccc}
@@ -467,7 +469,8 @@ From \cite{f}, it is defined as
         $\Gamma[\tau\to K\nu]/\Gamma[\tau\to\pi\nu]$ & $6.438\pm0.094$ & $10^{-2}$ & \cite{d} \\
         $\Delta m_d$ & $0.5064\pm0.0019$ & $ps^{-1}$ & \cite{c} \\ 
         $\Delta m_s$ & $17.757\pm0.021$ & $ps^{-1}$ & \cite{c} \\
-        $\mathcal{B}[\bar{B}\to X_s\gamma]/\mathcal{B}[\bar{B}\to X_c e\bar{\nu}]$ & $3.117\pm0.005$ & $10^{-3}$ & \cite{e,f}\\
+        $\mathcal{B}[\bar{B}\to X_s\gamma]/\mathcal{B}[\bar{B}\to X_c e\bar{\nu}]$ & $3.117\pm0.005$ & $10^{-3}$ & \cite{c,f}\\
+        $\Gamma[\bar{B}\to X_ue\bar{\nu}]$ & $8.41\pm0.59$ & $10^{-4}$ & \cite{e} \\
         \hline\hline
     \end{tabular}
     \caption{\label{tab:branches}\hspace{-7pt}Branching ratios using in testing parameter space of 2HDM Type II. In the case of normalised ratios, values have been calculated using the constituent values taken from reference.}
@@ -505,20 +508,39 @@ From \cite{f}, it is defined as
     \end{tabular}
     \caption{\label{tab:params} Parameters used in the 2HDM fits for decays outlined in sections \ref{subsec:lep}-\ref{subsec:rad}.}
 \end{table}
+The individual constraints found for leptonic decays, B meson mixing, and the radiative $b\to s\gamma$ decay are shown in figure \ref{fig:indies}, in a log-log scale.
+After the constraints on the 2HDM for each individual process were found, they were combined for a global fit shown in figure \ref{fig:glob} (again in a log-log scale), yielding an overall allowed region in $(m_{H^+},\tan\beta)$ space. 
+\begin{figure}[H]
+    \vspace{-5pt}
+    \centering
+    \includegraphics[width=0.49\textwidth]{leps.png}
+    \includegraphics[width=0.49\textwidth]{bmix.png}
+    \includegraphics[width=0.49\textwidth]{bsgam.png}
+    \caption{\label{fig:indies}Constraints of $(m_{H+},\tan\beta)$ space from leptonic decays (top left), meson mixing (top right), and the radiative $b\to s\gamma$ decay (bottom). The leptonic decays used were $B^+\to\tau^+\nu$, $D^+\to\mu^+\nu$, $D_s^+\to\tau^+\nu$, and the ratios $K\to\mu\nu/\pi\to\mu\nu$ and $\tau\to K\nu/\tau\to\pi\nu$. The meson mixings considered are that of $B^0_d$ and $B_s^0$.}
+\end{figure}
+\vspace{-25pt}
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.8]{../calcs/global.png}
-    \caption{\label{fig:glob} Global fit, tadaaaaa}
+    \includegraphics[scale=0.55]{../calcs/global.png}
+    \caption{\label{fig:glob} Global fit of constraints on $m_{H+}$ and $\tan\beta$ from all observables considered. The green, blue, and coral regions represent constraints shown individually in figure \ref{fig:indies}, and the orange region is the global constraint to $1\sigma$.}
 \end{figure}
+In previous works, such as \cite{a}, the global fit has extended to the very top of the the parameter space, so it could not be ruled out that the allowed region did not extend higher. 
+However, here it can be scene that the global constraint region is limited to within the region of parameter space shown, so both upper and lower limits for the 2HDM parameters can be found.
+Here, it is found as
+\begin{align}
+    \label{eq:const}
+    370 &< m_{H+} (\text{GeV}) < 891 & 2.16 &< \tan\beta < 33.0.
+\end{align}
 
 \section{Next Steps}
+\begin{multicols}{2}
 \begin{itemize}
-    \item SM4
-    \item SM4 and Higgs
-    \item more Higgs
-    \item Z' model and comparison to Higgs, join with Higgs?
-    \item something else?
+    \item SM4 and Higgs?
+    \item Z' model, comparison to Higgs?
+    \item Move SM intro to appendix
+    \item Add appendix for $b\to s\gamma$ maths
 \end{itemize}
+\end{multicols}
 
 %\appendix
 %\section{Some title}
