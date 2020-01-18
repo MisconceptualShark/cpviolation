@@ -7,6 +7,7 @@
 \usepackage[T1]{fontenc} % if needed
 \usepackage{float}
 \usepackage{multicol}
+\usepackage[section]{placeins}
 \usepackage{cancel}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage[a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
@@ -36,7 +37,12 @@
 % e-mail addresses: one for each author, in the same order as the authors
 %\emailAdd{matthew.rossetter@durham.ac.uk}
 
-\abstract{Abstract...}
+\abstract{
+    In this preliminary report, we test the Two Higgs Doublet Model (2HDM) of Type II as an extension of the Standard Model (SM) using indicative flavour observables, with particular focus on leptonic decays of $B$ and $D$ mesons, $B\bar{B}$ mixing, and the $b\to s\gamma$ radiative decay.
+    Testing the 2HDM parameter space $m_{H^+},\tan\beta$ to find alignment between theoretical calculations and experiment, constraints on the parameters were found for the above flavour phenomena both individually and then as a global fit. Strongly dominated by the $b\to s\gamma$ branching ratio, the mass of a charged Higgs particle would be expected to lie between $370$ GeV and $891$ GeV. 
+    The 2HDM vacuum expectation value ratio $\tan\beta$ is calculated to lie between $2.16$ and $33.0$.
+    Discussions on the goals of the study from here are ongoing, likely a further study into the 2HDM and its validity as a SM extension. 
+}
 
 \begin{document} 
 \maketitle
@@ -63,7 +69,7 @@ There are twenty-five fundamental particles currently described in the Standard 
 
 The basis for the Standard Model are the quantum theories of electroweak and strong interactions, and then the symmetry breaking Higgs mechanism to give masses to these theories.
 Both the electroweak and strong theories are non-Abelian gauge theories; the electroweak theory has a gauge symmetry of SU(2)$_{L}\otimes$U(1)$_Y$, and the strong theory of SU(3)$_{c}$ \cite{n}.
-\hspace{-10pt}\footnote{The subscripts of the symmetries describe the "charge" under which particles interact with each gauge theory: $c$ represents the color charge of the strong force, $L$ states that the weak force interacts only with left-handed doublets (through which the weak isospin will be defined analagous to electric charge), and $Y$ represents the weak hypercharge of U(1) before the spontaneous symmetry breaking of the Higgs mechanism to introduce the electric charge of the electromagnetic force.\cite{o}}
+\hspace{-10pt}\footnote{The subscripts of the symmetries describe the "charge" under which particles interact with each gauge theory: $c$ represents the color charge of the strong force, $L$ states that the weak force interacts only with left-handed doublets (through which the weak isospin will be defined analagous to spin), and $Y$ represents the weak hypercharge of U(1) before the spontaneous symmetry breaking of the Higgs mechanism to introduce the electric charge of the electromagnetic force.\cite{o}}
 \hspace{-5pt}To formulate the Standard Model Lagrangian, we start with the free Lagrangian of a massless Dirac fermion coupled to a gauge field tensor,
 \begin{align}
     \label{eq:dirac:1}
@@ -78,7 +84,7 @@ where $U(x)$ is the gauge transformation.
 For U(1) and SU(N) symmetries, we have
 \begin{align}
     \label{eq:gauge} 
-    U_{U(1)} &= \exp\left[i\alpha\right],\quad U_{SU(N)} = \exp\left[i\alpha^a\frac{T^a}{2}\right]
+    U_{U(1)} &= \exp\left[i\alpha\right],\quad U_{SU(N)} = \exp\left[i\alpha^a\frac{T^a}{2}\right].
 \end{align}
 For SU(N) symmetries, the index $a$ is summed from 1 to $N^2-1$: this is the number of gauge fields of the group.
 $T^a$ are the generators of these fields, which are represented by the Pauli matrices for SU(2) and the Gell-Mann matrices for SU(3).
@@ -92,20 +98,20 @@ In addition to the definitions in Eq.\eqref{eq:gauge}, to make Eq.\eqref{eq:dira
     \partial_\mu &\to D_\mu = \partial_\mu - igT^aA^a_\mu,
 \end{align}
 where $g$ is the relevant gauge coupling parameter.
+Note that Eqs.\eqref{eq:transform:1} and \eqref{eq:transform:2} are the general forms for the SU(N) theories; if considering U(1), these are simplified.
 The full covariant derivative of the Standard Model is
 \begin{equation}
     \label{eq:covar}
     D_\mu = \partial_\mu - ig_1\frac{Y}{2}B_\mu - ig_2\frac{\sigma^i}{2}W^i_\mu - ig_3\frac{\lambda^a}{2}G^a_\mu,
 \end{equation}
 combining all constituent gauge groups, with $g_{1,2,3}$ the gauge coupling of U(1)$_Y$, SU(2)$_L$, and SU(3)$_c$ respectively where the gauge field(s) and generator(s) of each group are in the term of their coupling \cite{m}.   
-Note that Eqs.\eqref{eq:transform:1} and \eqref{eq:transform:2} are the general forms for the SU(N) theories; if considering U(1), these are simplified.
 From these definitions, the gauge invariance of Eq.\eqref{eq:dirac:1} for U(1) symmetry is trivial, and for SU(N) symmetries, it will simply follow after defining a commutation relation between generators:
 \begin{equation}
     \label{eq:commute}
     [T^a,T^b] = if^{abc}T^c,
 \end{equation}
 where $f^{abc}$ are the structure constants which define each SU(N) group \cite{n}. 
-It can be useful to define the fermion spinor $\psi$ into an upper and lower part, which can be done in many ways, but it is important in the formulation of the Standard Model to separate the fermion field into left- and right-handed components. 
+It can be useful to define the fermion field $\psi$ into an upper and lower part, which can be done in many ways, but it is important in the formulation of the Standard Model to separate the fermion field into left- and right-handed components. 
 To this end, we define the operators
 \begin{align}
     \label{eq:helix}
@@ -124,6 +130,7 @@ Considering both quarks and leptons in the traditional three generations, then u
     \Psi_L &=\begin{pmatrix} \nu_e \\ e^- \end{pmatrix}_L,\; e_R^-, & \Psi_{L\alpha} &=\begin{pmatrix} u_\alpha \\ d_\alpha\end{pmatrix}_L,\; u_{R\alpha},d_{R\alpha},
 \end{align}
 where $\alpha$ represents the colour charge of the quarks under the strong interaction \cite{m}.
+We can define the weak isospin quantum number $T$ analagous to spin; in the left-handed doublet: up-type quarks and neutrinos have $T_3=+\frac12$, and down-type quarks and charged leptons have $T_3=-\frac12$.
 Neutrinos only appear in the left-handed doublets and do not form right-handed singlets, as there is currently no experimental evidence for their existence.
 So right- and left-handed fermions are in different SU(2) multiplets; this represents a parity violation in the Standard Model which is also found in nature. 
 This is an important criterion of a theory of nature, as will be discussed more in section \ref{subsec:flavobs}.
@@ -182,7 +189,7 @@ Through substituting the above into Eq.\eqref{eq:higgslag}, the gauge fields of 
 \begin{align}
     \label{eq:gagmix}
     W^\pm_\mu &\equiv \frac{1}{\sqrt{2}}(W_\mu^1 \mp iW_\mu^2), & m_W &= \frac{gv}{2}, \\
-    Z_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(gW^3_\mu-g'B_\mu), & m_Z &= \frac{v}{2}\sqrt{g^2+g'^2}\\
+    Z_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(gW^3_\mu-g'B_\mu), & m_Z &= \frac{v}{2}\sqrt{g^2+g'^2},\\
     A_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(g'W_\mu^3+gB_\mu), & m_A &= 0.
 \end{align}
 It can be said that three of component scalar fields in Eq.\eqref{eq:doubscal} were "eaten" to form the gauge boson masses, and the fourth field goes on to become the Higgs phenomenon \cite{o}.\\
@@ -202,7 +209,7 @@ where $\phi^0$ is defined as $\frac{v}{\sqrt{2}}$ through the transformation
 \end{align}
 from the spontaneous symmetry breaking. 
 So now down-type quarks and charged leptons have gained masses. 
-To generate the masses of the up-type quarks and charged leptons, the hermitian cojugate term is used, where now a second Higgs doublet (not dependent of the first, but its charge-conjugate) is introduced as
+To generate the masses of the up-type quarks, the hermitian cojugate term is used, where now a second Higgs doublet (not dependent of the first, but its charge conjugate) is introduced as
 \begin{align}
     \label{eq:highc}
     \tilde{\Phi} &= i\sigma_2\Phi^* = \begin{pmatrix}\phi^{0*}\\-\phi^{+*}\end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}v+h\\0\end{pmatrix}.
@@ -217,7 +224,7 @@ The charged lepton masses are generated similarly, and the expressions of masses
     \label{eq:fermas}
     m_i = -\frac{Y_iv}{\sqrt{2}},
 \end{align}
-where $i$ represents whichever fermion is in question \cite{o}. 
+where $i$ will represent the fermions \cite{o}. 
 The question of neutrino mass is at the forefront of some research, and so won't be mentioned in this study, other than that it is now known that neutrinos do have mass, however small. 
 
 In Eqs.\eqref{eq:yuk} and \eqref{eq:yukhc}, we have formed non-diagonal mass matrices. 
@@ -259,8 +266,8 @@ The Wolfenstein parameterisation approximates the standard parameterisation as $
 This parameterisation makes it very easy to see the relative strengths of the coupling. 
 
 An important element of the CKM matrix is its complex phase.
-\hspace{-10pt}\footnote{If its real form were a $4\times4$ matrix, there would be three phases.}
-\hspace{-5pt}The presence of a complex phase allows for CP-violating processes to take place in the Standard Model: the CKM matrix's Hermitian conjugate will give the complex conjugated phase, yielding different physics over CP conjugation for complex coupling elements. 
+\hspace{-10pt}\footnote{If its real form were a $4\times4$ matrix, there would be three phases, implying significantly more CP violation.}
+\hspace{-5pt}The presence of a complex phase allows for CP-violating processes to take place in the Standard Model: the CKM matrix's hermitian conjugate will give the complex conjugated phase, yielding different physics over CP conjugation for complex coupling elements. 
 In the Wolfenstein parameterisation, all CP violation is held with the $\rho-i\eta$ terms. 
 Plotting measurements in the $(\rho,\eta)$ plane can prove useful in understanding these terms, to which end, the unitarity triangle can be formed:
 \begin{figure}[H]
@@ -289,7 +296,7 @@ CP symmetry was introduced as a candidate for the fundamental symmetry of Standa
 One of the big questions about the formulation of our universe is why is there an asymmetry between matter and anti-matter. 
 One of the conditions Sakharov found in 1967 to answer this question is a necessity of CP violation \cite{h}; if left-handed baryons interact differently to right-handed anti-baryons, then one of these can be more prominent than the other. 
 Both the electromagnetic and strong forces appear to conserve CP, however the weak force, through the chiral nature of its couplings, does not.
-Through the weak force, there are two ways for CP violating interactions to occur: through complex Yukawa couplings in the CKM matrix; through complex Higgs parameters, such as those in the 2 Higgs Doublet Model to be discussed in section \ref{subsec:2hdm}.
+Through the weak force, there are two ways for CP violating interactions to occur: through complex Yukawa couplings in the CKM matrix; and through complex Higgs parameters, such as those in the 2 Higgs Doublet Model to be discussed in section \ref{subsec:2hdm}.
 There is also a question of whether CP violation can be found in the strong sector, but this will not be discussed here \cite{m}.
 
 Currently, there are two cruxes to the study of Sakharov's condition of CP violation: experiment finds larger scattering amplitudes than theory for many CP-violating processes; and the amount of CP violation currently observed would not be enough to account for the large baryon asymmetry of the universe. 
@@ -297,7 +304,7 @@ Both these cruxes point towards physics beyond the Standard Model to add to the 
 There are many proposals for Standard Model extensions which could bridge the gap between theory and experiment, although these extensions would require new particles to be observed to explain their phenomena, none of which have so far been observed. 
 
 The $Z'$ boson is a common extension to the Standard Model, which in its simplest application behaves akin to the $Z^0$ boson but with a higher mass. 
-There are many descriptions of the $Z'$ boson ranging from the introduction of a new U(1) gauge symmetry to the inclusion of string theory. 
+There are many descriptions of the $Z'$ boson ranging from the introduction of a new U(1) gauge symmetry to the inclusion of string theory \cite{p}. 
 The consideration of a $Z'$ boson to flavour physics is to add extra coupling paths to scattering amplitudes which could better explain flavour observables. 
 An example of how $Z'$ could modify Standard Model decays is given in Figure \ref{fig:bmes}.
 \begin{figure}[H]
@@ -305,54 +312,53 @@ An example of how $Z'$ could modify Standard Model decays is given in Figure \re
     \begin{equation}
         \Gamma_{\text{Exp}} = \includegraphics[scale=0.8,raise=-16pt]{../notes/bminus.pdf} + \includegraphics[scale=0.8,raise=-16pt]{../notes/bminusprime.pdf}
     \end{equation}
-    \caption{\label{fig:bmes} Proposed $Z'$ model extension to $\Gamma[B^-\to K^-\mu^+\mu^-]_{SM}$}
+    \caption{\label{fig:bmes} Proposed $Z'$ extension to $\Gamma[B^-\to K^-\mu^+\mu^-]_{SM}$ (without higher order corrections).}
 \end{figure}
 
 It could also be possible that there is a fourth generation of fermions, perfectly replicating the first generation to higher masses as the second and third generations do. 
 The presence of the fourth generation could add extra Feynman diagrams to decays, increasing the resulting decay amplitude. 
-Another interesting implication of a fourth generation would be that the CKM matrix would now be a 4x4 matrix, which could see some alterations to flavour-changing interactions, perhaps even some additional complex terms where CP violation would arise. 
+Another interesting implication of a fourth generation would be that the CKM matrix would now be a 4x4 matrix, which could see some alterations to flavour-changing interactions, even some additional complex terms where CP violation would arise. 
 A key indicator on this extension is in the Higgs mechanism. 
 \begin{figure}[H]
     \centering
     \includegraphics{../notes/higgs.pdf}
     \caption{\label{fig:higgs} Higgs boson production through the top quark loop.}
 \end{figure}
-The Higgs couples more strongly to heavier particles, so the top-Higgs interaction seen in \ref{fig:higgs} should be replicated with the theoretical $t'$ and $b'$ quarks with increased amplitudes. 
-However, when just considering the SM4 model, the new prediction of the Higgs scattering amplitude is far greater than that observed. 
-It could be possible that the SM4 model is physical, but would also need another extension to resolve its issues, such as the Two Higgs Doublet Model discussed below. 
+The Higgs couples more strongly to heavier particles, so the top-Higgs vertex seen in figure \ref{fig:higgs} should be replicated with the theoretical $t'$ and $b'$ quarks with increased amplitudes. 
+However, when just considering the SM4 model, the new prediction of the Higgs scattering amplitude is far greater than that observed \cite{r}. 
+It could be possible that the SM4 model is physical, but would also need another extension to resolve its issues, such as the Two Higgs Doublet Model discussed below \cite{q}. 
 
-Whenever constructing new theories to extend the Standard Model, the inspiration can frequently come from a few specific cases of inconsistency. 
-However it is important to test these extensions across all observables which could involve the new processes.
-If the extension resolves issues with some observables while creating new ones with others, then it is of no use; only extensions which work across the whole spectrum of phenomena can be physical. 
-
+%Whenever constructing new theories to extend the Standard Model, the inspiration can frequently come from a few specific cases of inconsistency. 
+%However it is important to test these extensions across all observables which could involve the new processes.
+%If the extension resolves issues with some observables while creating new ones with others, then it is of no use; only extensions which work across the whole spectrum of phenomena can be physical. 
+%
 \subsection{The Two Higgs Doublet Model of Type II}
 \label{subsec:2hdm}
 Previously in the Standard Model Higgs mechanism, to generate the masses of the weak gauge bosons and fermions, a single Higgs SU(2) doublet of complex scalar fields was introduced, as in Eq.\eqref{eq:doubscal}.
 To form masses for both up- and down-type quarks and charged leptons, we introduced the hermitian conjugate doublet in Eq.\eqref{eq:highc}, otherwise the Higgs field would only give mass to the down-type quarks. 
-Instead, two Higgs doublets can be postulated, of the general form
+Now two Higgs doublets can be postulated, of the general form
 \begin{align}
     \label{eq:gdbl}
     \Phi_1 &= \begin{pmatrix} \phi_1 + i\phi_2 \\ \phi_0 + i\phi_3\end{pmatrix}, & \Phi_2 &= \begin{pmatrix} \phi_5+i\phi_6\\\phi_4+i\phi_7\end{pmatrix}.
 \end{align}
-These two doublets would have opposite hypercharge so one would couple to up-type quarks, and the other to down-type, thus requiring no need for a conjugate field. 
-Each doublet would have its own VEV, with the quadrature addition of these two VEVs creating the value known in the Standard Model:
+These two doublets would have opposite hypercharge so one would couple to up-type quarks, and the other to down-type \cite{s}. 
+Each doublet would have its own VEV, with the quadrature addition of these two VEVs creating the value measured in experiment:
 \begin{align}
     \label{eq:dbldbl}
     \Phi_1 &= \frac{1}{\sqrt{2}}\begin{pmatrix}0\\v_1\end{pmatrix}, & \Phi_2 &= \frac{1}{\sqrt{2}}\begin{pmatrix}v_2\\0\end{pmatrix}, & v_{SM}^2 &= v_1^2 + v_2^2.
 \end{align}
 Under this model, the masses of the three weak gauge bosons can still be generated in the same way, each eating one of the scalar fields, however this time there would be 5 residual scalar fields, and so, five Higgs fields should be found: three neutral Higgs, two scalar $H$ and $h$ (where $h$ is the SM Higgs particle) and one pseudoscalar $A$; and two charged Higgs $H^\pm$.
-The introduction of these new particles requires searching for additional parameters to describe them: the masses of $H$, $A$, and $H^\pm$; the mixing angle between $h$ and $H$; and the VEV ratio $\tan\beta=v_2/v_1$.
+The introduction of these new particles requires searching for additional parameters to describe them: the masses of $H$, $A$, and $H^\pm$; the mixing angle between $h$ and $H$; and the VEV ratio $\tan\beta=v_2/v_1$ \cite{a}.
 
 The two Higgs doublet model (2HDM) described above is the type II version, where $\Phi_1$ couples to down-type quarks and $\Phi_2$ couples to up-type quarks and charged leptons. 
 There are other types of 2HDM where the two Higgs doublets couple in different ways, but the promising sign from Type II is that it yields a similar expression for the Yukawa Lagrangian to the SM. 
 This in turn yields a similar CKM matrix through which all flavour-changing interactions can be described. 
-The addition of 4 new Higgs fields introduces new interactions, where the charged Higgs fields can replace $W$ fields in flavour-changing charged interactions, as well as additional neutral interactions between the neutral Higgs scalar and pseudoscalar fields. 
+The addition of 4 new Higgs fields introduces new interactions, where the charged Higgs fields can replace $W$ fields in flavour-changing charged interactions, as well as additional neutral interactions between the neutral Higgs scalar and pseudoscalar fields \cite{s}. 
 
 The presence of charged Higgs fields presents the opportunity to bridge the gap between theory and experiment. 
-The charged Higgs particles can mediate weak charged currents in the same way as $W^{\pm}$, and the additional contribution of $H^{\pm}$ to many weak-mediated decays could correct the Standard Model to correctly predict these decay paths. 
-The important factors to determine whether these charged Higgs could be the answer to the inconsistencies are the relevant parameters from the 2HDM: the charged Higgs mass $m_{H^+}$, and the VEV ratio $\tan\beta$. 
-Values of these parameters which align theory and observation can indicate where LHC experiments can probe for these theorised new particles. 
-If either these particles cannot be found, or are found with parameters that do not lie in regions of agreement, then there must be some other factors at play yet to be addressed. 
+The charged Higgs particles can mediate weak charged currents in the same way as $W^{\pm}$, and the additional contribution of $H^{\pm}$ to many weak-mediated decays could correct the Standard Model to correctly predict these decay paths \cite{s}. 
+The important factors to determine whether these charged Higgs could be the answer to the inconsistencies are the relevant parameters from the 2HDM: the charged Higgs mass $m_{H^+}$, and the VEV ratio $\tan\beta$ \cite{a}. 
+Values of these parameters which align theory and observation can indicate where LHC experiments could probe for these theorised new particles. 
 This study considers where regions of the 2HDM Type II parameters can align SM predictions with experiment, giving indication of where they could be found in nature if this model is to be a real extension of the Standard Model.
 
 \section{Probing the 2HDM Type II}
@@ -404,7 +410,7 @@ Neutral B meson mixing is a common study in flavour physics, due to the strong d
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{bmix.pdf}
-    \caption{\label{fig:bmix} Box diagrams detailing $B_d$ and $B_s$ meson mixing.}
+    \caption{\label{fig:bmix} Examples of the box diagrams detailing $B_d$ and $B_s$ meson mixing.}
 \end{figure}
 In 2HDM, the mass difference between the two mixed states receives two additional contributions from box diagrams using the heavy charged Higgs in place of both $W$s or one $W$. 
 For $B_q$, where $q=d,s$, this results in:
@@ -415,7 +421,7 @@ For $B_q$, where $q=d,s$, this results in:
     S_{HH} &= \frac{x_{tH}}{\tan^4\beta}\left(\frac{1+x_{tH}}{(1-x_{tH})^2}+\frac{2x_{tH}\ln(x_{tH})}{(1-x_{tH})^3}\right),
 \end{align}
 where $x_{ij} = m_i^2/m_j^2$, and $S_{xy}$ describes the internal bosonic lines for the two bosons $x,y = H^\pm,W^\pm$.
-The current SM calculations for the mass differences are calculated in \cite{i} to be
+The current SM predictions for the mass differences are calculated in \cite{i} to be
 \begin{align}
     \Delta m^{\text{SM}}_d &= \left(0.533^{+0.022}_{-0.036}\right)ps^{-1} = \left(1.05^{+0.04}_{-0.07}\right)\Delta m_d^{\text{exp}}, \\
     \Delta m^{\text{SM}}_s &= \left(18.4^{+0.7}_{-1.2}\right)ps^{-1} = \left(1.04^{+0.04}_{-0.07}\right)\Delta m_s^{\text{exp}}.
@@ -456,7 +462,7 @@ From \cite{f}, it is defined as
 \label{subsec:fit}
 All processes mentioned above were used to test the constraints on the 2HDM parameters $m_{H^+}$ and $\tan\beta$. 
 The 2HDM-extended branching ratios were tested in $(m_{H^+},\tan\beta)$ parameter space to search for regions where a charged Higgs would be allowed by nature. 
-\begin{table}[H]
+\begin{table}[ht]
     \centering
     \begin{tabular}{c|ccc}
         \hline\hline
@@ -469,13 +475,14 @@ The 2HDM-extended branching ratios were tested in $(m_{H^+},\tan\beta)$ paramete
         $\Gamma[\tau\to K\nu]/\Gamma[\tau\to\pi\nu]$ & $6.438\pm0.094$ & $10^{-2}$ & \cite{d} \\
         $\Delta m_d$ & $0.5064\pm0.0019$ & $ps^{-1}$ & \cite{c} \\ 
         $\Delta m_s$ & $17.757\pm0.021$ & $ps^{-1}$ & \cite{c} \\
-        $\mathcal{B}[\bar{B}\to X_s\gamma]/\mathcal{B}[\bar{B}\to X_c e\bar{\nu}]$ & $3.117\pm0.005$ & $10^{-3}$ & \cite{c,f}\\
+        $\mathcal{B}[\bar{B}\to X_s\gamma]$ & $3.32\pm0.15$ & $10^{-4}$ & \cite{c,f} \\
+        $\mathcal{B}[\bar{B}\to X_c e\bar{\nu}]$ & $10.65\pm0.16$ & $10^{-2}$ & \cite{c,d} \\
         $\Gamma[\bar{B}\to X_ue\bar{\nu}]$ & $8.41\pm0.59$ & $10^{-4}$ & \cite{e} \\
         \hline\hline
     \end{tabular}
     \caption{\label{tab:branches}\hspace{-7pt}Branching ratios using in testing parameter space of 2HDM Type II. In the case of normalised ratios, values have been calculated using the constituent values taken from reference.}
 \end{table}
-\begin{table}[H]
+\begin{table}[ht]
     \centering
     \begin{tabular}{c|ccc}
         \hline\hline
@@ -510,26 +517,26 @@ The 2HDM-extended branching ratios were tested in $(m_{H^+},\tan\beta)$ paramete
 \end{table}
 The individual constraints found for leptonic decays, B meson mixing, and the radiative $b\to s\gamma$ decay are shown in figure \ref{fig:indies}, in a log-log scale.
 After the constraints on the 2HDM for each individual process were found, they were combined for a global fit shown in figure \ref{fig:glob} (again in a log-log scale), yielding an overall allowed region in $(m_{H^+},\tan\beta)$ space. 
-\begin{figure}[H]
-    \vspace{-5pt}
+\begin{figure}[ht]
+    \vspace{-12pt}
     \centering
     \includegraphics[width=0.49\textwidth]{leps.png}
     \includegraphics[width=0.49\textwidth]{bmix.png}
     \includegraphics[width=0.49\textwidth]{bsgam.png}
     \caption{\label{fig:indies}Constraints of $(m_{H+},\tan\beta)$ space from leptonic decays (top left), meson mixing (top right), and the radiative $b\to s\gamma$ decay (bottom). The leptonic decays used were $B^+\to\tau^+\nu$, $D^+\to\mu^+\nu$, $D_s^+\to\tau^+\nu$, and the ratios $K\to\mu\nu/\pi\to\mu\nu$ and $\tau\to K\nu/\tau\to\pi\nu$. The meson mixings considered are that of $B^0_d$ and $B_s^0$.}
 \end{figure}
-\vspace{-25pt}
-\begin{figure}[H]
+\begin{figure}[ht]
+    \vspace{-20pt}
     \centering
     \includegraphics[scale=0.55]{../calcs/global.png}
     \caption{\label{fig:glob} Global fit of constraints on $m_{H+}$ and $\tan\beta$ from all observables considered. The green, blue, and coral regions represent constraints shown individually in figure \ref{fig:indies}, and the orange region is the global constraint to $1\sigma$.}
 \end{figure}
-In previous works, such as \cite{a}, the global fit has extended to the very top of the the parameter space, so it could not be ruled out that the allowed region did not extend higher. 
+In previous works, such as \cite{a}, the global fit has extended to the very top of the parameter space, so it could not be ruled out that the allowed region did not extend higher. 
 However, here it can be scene that the global constraint region is limited to within the region of parameter space shown, so both upper and lower limits for the 2HDM parameters can be found.
 Here, it is found as
 \begin{align}
     \label{eq:const}
-    370 &< m_{H+} (\text{GeV}) < 891 & 2.16 &< \tan\beta < 33.0.
+    370 &< m_{H+} (\text{GeV}) < 891, & 2.16 &< \tan\beta < 33.0.
 \end{align}
 
 \section{Next Steps}
@@ -607,7 +614,17 @@ D. Bailin and A. Love, \emph{Introduction to Gauge Field Theory} (Institute of P
 \bibitem{o} %Higgs
 M.D. Schwartz, \emph{Quantum Field Theory and the Standard Model} (Cambridge University Press, 2018).
 
+\bibitem{p}
+T.G. Rizzo, \emph{Z' Phenomenology and the LHC}, \href{https://arxiv.org/pdf/hep-ph/0610104.pdf}{arxiv:0610104}.
 
+\bibitem{q}
+S. Bar-Shalom, M. Geller, S. Nandi, and A. Soni, \emph{Two Higgs doublets, a 4th generation and a 125 GeV Higgs: a review}, \href{https://arxiv.org/pdf/1208.3195v2.pdf}{arxiv:1208.3195}.
+
+\bibitem{r}
+A. Lenz, \emph{Constraints on a Fourth Generation of Fermions from Higgs Boson Searches}, Advances in High Energy Physics \textbf{2013}, 1 (2013).
+
+\bibitem{s}
+G.C. Branco et al, \emph{Theory and phenomenology of two-Higgs-doublet models}, \href{https://arxiv.org/pdf/1106.0034.pdf}{arxiv:1106.0034}.
 
 % Please avoid comments such as "For a review'', "For some examples",
 % "and references therein" or move them in the text. In general,
