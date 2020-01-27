@@ -130,7 +130,7 @@ for i in range(len(hlep)):
             hlepi = np.append(hlepi,hlep[i])
             tlepi = np.append(tlepi,tlep[j])
 
-plt.figure()
+plt.figure(figsize=(8,6))
 plt.scatter(tlepi,hlepi,c='green',marker=',')
 plt.scatter(tak,hak,c='green',marker=',')
 plt.ylabel('$\\log[m_{H+}$, GeV]')
@@ -191,7 +191,7 @@ plt.axis([-1,2,0,3])
 lambda_QCD, QCD_err = [0.224972,[0.012412,-0.012886]]
 mt1, mt1_err = [173.1,[0.9,-0.9]]
 mW1, mW1_err = [80.379,[0.012,-0.012]]
-mub = 1.5
+mub = 2
 hi = [626126/272277,-56281/51730,-3/7,-1/14,-0.6494,-0.038,-0.0185,-0.0057]
 a = [14/23,16/23,6/23,-12/23,0.4086,-0.4223,-0.8994,0.1456]
 A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
@@ -242,23 +242,18 @@ for x in range(len(h)):
             tl = np.append(tl,t[y])
 
 ind_h = []
-ind_t = []
 for z in range(len(hl)):
     ind_h = np.append(ind_h,hl[z])
-    ind_t = np.append(ind_t,tl[z])
-    loh = np.where(ind_h==hl[z])
-    lot = np.where(ind_t==tl[z])
+    loh = np.where(ind_h==hl[z])[0]
     if len(loh) > 1:
-        ind_h = np.delete(ind_h,lo[1:])
-    if len(lot) > 1:
-        ind_h = np.delete(ind_h,lo[1:])
+        ind_h = np.delete(ind_h,loh[1:])
 
 tl3 = []
 hl3 = []
 for i in ind_h:
     tl2 = []
     hl2 = []
-    loct = np.where(hl==i)
+    loct = np.where(hl==i)[0]
     rangt = []
     for j in loct:
         rangt = np.append(rangt,tl[j])
@@ -268,8 +263,8 @@ for i in ind_h:
     for k in rangt:
         if k > mint and k < maxt:
             tl2 = np.append(tl2,k)
-    for l in range(len(tl2)):
-        hlep = np.where(tl==tl2[l])
+    for l in tl2:
+        hlep = np.where(tl==l)[0]
         for m in hlep:
             for n in loct:
                 if m == n:
@@ -278,46 +273,56 @@ for i in ind_h:
         tl3 = np.append(tl3,tl2[o])
         hl3 = np.append(hl3,hl2[o])
 
+ind_t = []
+for z in range(len(tl3)):
+    ind_t = np.append(ind_t,tl3[z])
+    lot = np.where(ind_t==tl3[z])[0]
+    if len(lot) > 1:
+        ind_h = np.delete(ind_h,lot[1:])
+
+tl4 = []
+hl4 = []
 for i in ind_t:
     tl2 = []
     hl2 = []
-    loch = np.where(tl==i)
+    loch = np.where(tl==i)[0]
     rangt = []
-    for j in loct:
+    for j in loch:
         rangt = np.append(rangt,hl[j])
     tlims = max(rangt) - min(rangt)
     mint = 0.05*tlims + min(rangt)
     for k in rangt:
         if k > mint:
             hl2 = np.append(hl2,k)
-    for l in range(len(hl2)):
-        hlep = np.where(hl==hl2[l])
+    for l in hl2:
+        hlep = np.where(hl==l)[0]
         for m in hlep:
-            for n in loct:
+            for n in loch:
                 if m == n:
                     tl2 = np.append(tl2,tl[m])
     for o in range(len(tl2)):
-        tl3 = np.append(tl3,tl2[o])
-        hl3 = np.append(hl3,hl2[o])
+        tl4 = np.append(tl4,tl2[o])
+        hl4 = np.append(hl4,hl2[o])
 
-print 10**min(hl3)
-print 10**min(tl3)
+print 10**min(hl4)
+print 10**min(tl4)
 #plt.figure()
 plt.scatter(tl,hl,c='orange')
-plt.scatter(tl3,hl3,c='red')
+plt.scatter(tl4,hl4,c='red')
 plt.axis([-1,2,0,3])
-plt.ylabel('$\\log[m_{H+}$, GeV]')
-plt.xlabel('$\\log[\\tan(\\beta)]$')
-plt.title('Global Fit')
-plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.15,0.5),xycoords='axes fraction')
-plt.annotate('$b\\to s\\gamma$',xy=(0.33,0.9),xycoords='axes fraction')
-plt.annotate('All',xy=(0.65,0.9),xycoords='axes fraction')
-plt.annotate('$\\Delta M_q$',xy=(0.8,0.5),xycoords='axes fraction')
-plt.show()
-
-
-
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.title('Global Fit',fontsize=18)
+plt.rcParams.update({'font.size':18})
+plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.05,0.5),xycoords='axes fraction',fontsize=18)
+plt.annotate('$b\\to s\\gamma$',xy=(0.28,0.92),xycoords='axes fraction',fontsize=18)
+plt.annotate('All',xy=(0.6,0.92),xycoords='axes fraction',fontsize=18)
+plt.annotate('$\\Delta M_q$',xy=(0.75,0.5),xycoords='axes fraction',fontsize=18)
 #plt.show()
+plt.savefig('global_cl.png')
+
+
+
 
 
 
