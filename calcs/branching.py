@@ -191,7 +191,7 @@ plt.axis([-1,2,0,3])
 lambda_QCD, QCD_err = [0.224972,[0.012412,-0.012886]]
 mt1, mt1_err = [173.1,[0.9,-0.9]]
 mW1, mW1_err = [80.379,[0.012,-0.012]]
-mub = 2.5
+mub = 1.5
 hi = [626126/272277,-56281/51730,-3/7,-1/14,-0.6494,-0.038,-0.0185,-0.0057]
 a = [14/23,16/23,6/23,-12/23,0.4086,-0.4223,-0.8994,0.1456]
 A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
@@ -232,7 +232,7 @@ for x in range(len(h)):
                 llp = np.append(llp,hlp[ni])
         for oi in range(len(hmd)):
             if tanb_md[hmd[oi]] == t[y]:
-                lmd = np.append(lb,hmd[oi])
+                lmd = np.append(lmd,hmd[oi])
         for pi in range(len(hgam)):
             if tanb_gam[hgam[pi]] == t[y]:
                 lgam = np.append(lgam,hgam[pi])
@@ -241,8 +241,70 @@ for x in range(len(h)):
             hl = np.append(hl,h[x])
             tl = np.append(tl,t[y])
 
+ind_h = []
+ind_t = []
+for z in range(len(hl)):
+    ind_h = np.append(ind_h,hl[z])
+    ind_t = np.append(ind_t,tl[z])
+    loh = np.where(ind_h==hl[z])
+    lot = np.where(ind_t==tl[z])
+    if len(loh) > 1:
+        ind_h = np.delete(ind_h,lo[1:])
+    if len(lot) > 1:
+        ind_h = np.delete(ind_h,lo[1:])
+
+tl3 = []
+hl3 = []
+for i in ind_h:
+    tl2 = []
+    hl2 = []
+    loct = np.where(hl==i)
+    rangt = []
+    for j in loct:
+        rangt = np.append(rangt,tl[j])
+    tlims = max(rangt) - min(rangt)
+    maxt = 0.975*tlims + min(rangt)
+    mint = 0.025*tlims + min(rangt)
+    for k in rangt:
+        if k > mint and k < maxt:
+            tl2 = np.append(tl2,k)
+    for l in range(len(tl2)):
+        hlep = np.where(tl==tl2[l])
+        for m in hlep:
+            for n in loct:
+                if m == n:
+                    hl2 = np.append(hl2,hl[m])
+    for o in range(len(hl2)):
+        tl3 = np.append(tl3,tl2[o])
+        hl3 = np.append(hl3,hl2[o])
+
+for i in ind_t:
+    tl2 = []
+    hl2 = []
+    loch = np.where(tl==i)
+    rangt = []
+    for j in loct:
+        rangt = np.append(rangt,hl[j])
+    tlims = max(rangt) - min(rangt)
+    mint = 0.05*tlims + min(rangt)
+    for k in rangt:
+        if k > mint:
+            hl2 = np.append(hl2,k)
+    for l in range(len(hl2)):
+        hlep = np.where(hl==hl2[l])
+        for m in hlep:
+            for n in loct:
+                if m == n:
+                    tl2 = np.append(tl2,tl[m])
+    for o in range(len(tl2)):
+        tl3 = np.append(tl3,tl2[o])
+        hl3 = np.append(hl3,hl2[o])
+
+print 10**min(hl3)
+print 10**min(tl3)
 #plt.figure()
 plt.scatter(tl,hl,c='orange')
+plt.scatter(tl3,hl3,c='red')
 plt.axis([-1,2,0,3])
 plt.ylabel('$\\log[m_{H+}$, GeV]')
 plt.xlabel('$\\log[\\tan(\\beta)]$')
