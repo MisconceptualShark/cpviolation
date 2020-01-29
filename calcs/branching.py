@@ -241,74 +241,74 @@ for x in range(len(h)):
             hl = np.append(hl,h[x])
             tl = np.append(tl,t[y])
 
-ind_h = []
-for z in range(len(hl)):
-    ind_h = np.append(ind_h,hl[z])
-    loh = np.where(ind_h==hl[z])[0]
-    if len(loh) > 1:
-        ind_h = np.delete(ind_h,loh[1:])
-
-tl3 = []
-hl3 = []
-for i in ind_h:
-    tl2 = []
-    hl2 = []
-    loct = np.where(hl==i)[0]
-    rangt = []
-    for j in loct:
-        rangt = np.append(rangt,tl[j])
-    tlims = max(rangt) - min(rangt)
-    maxt = 0.975*tlims + min(rangt)
-    mint = 0.025*tlims + min(rangt)
-    for k in rangt:
-        if k > mint and k < maxt:
-            tl2 = np.append(tl2,k)
-    for l in tl2:
-        hlep = np.where(tl==l)[0]
-        for m in hlep:
-            for n in loct:
-                if m == n:
-                    hl2 = np.append(hl2,hl[m])
-    for o in range(len(hl2)):
-        tl3 = np.append(tl3,tl2[o])
-        hl3 = np.append(hl3,hl2[o])
-
-ind_t = []
-for z in range(len(tl3)):
-    ind_t = np.append(ind_t,tl3[z])
-    lot = np.where(ind_t==tl3[z])[0]
-    if len(lot) > 1:
-        ind_h = np.delete(ind_h,lot[1:])
-
-tl4 = []
-hl4 = []
-for i in ind_t:
-    tl2 = []
-    hl2 = []
-    loch = np.where(tl==i)[0]
-    rangt = []
-    for j in loch:
-        rangt = np.append(rangt,hl[j])
-    tlims = max(rangt) - min(rangt)
-    mint = 0.05*tlims + min(rangt)
-    for k in rangt:
-        if k > mint:
-            hl2 = np.append(hl2,k)
-    for l in hl2:
-        hlep = np.where(hl==l)[0]
-        for m in hlep:
-            for n in loch:
-                if m == n:
-                    tl2 = np.append(tl2,tl[m])
-    for o in range(len(tl2)):
-        tl4 = np.append(tl4,tl2[o])
-        hl4 = np.append(hl4,hl2[o])
-
-print 10**min(hl4)
-print 10**min(tl4)
+#ind_h = []
+#for z in range(len(hl)):
+#    ind_h = np.append(ind_h,hl[z])
+#    loh = np.where(ind_h==hl[z])[0]
+#    if len(loh) > 1:
+#        ind_h = np.delete(ind_h,loh[1:])
+#
+#tl3 = []
+#hl3 = []
+#for i in ind_h:
+#    tl2 = []
+#    hl2 = []
+#    loct = np.where(hl==i)[0]
+#    rangt = []
+#    for j in loct:
+#        rangt = np.append(rangt,tl[j])
+#    tlims = max(rangt) - min(rangt)
+#    maxt = 0.975*tlims + min(rangt)
+#    mint = 0.025*tlims + min(rangt)
+#    for k in rangt:
+#        if k > mint and k < maxt:
+#            tl2 = np.append(tl2,k)
+#    for l in tl2:
+#        hlep = np.where(tl==l)[0]
+#        for m in hlep:
+#            for n in loct:
+#                if m == n:
+#                    hl2 = np.append(hl2,hl[m])
+#    for o in range(len(hl2)):
+#        tl3 = np.append(tl3,tl2[o])
+#        hl3 = np.append(hl3,hl2[o])
+#
+#ind_t = []
+#for z in range(len(tl3)):
+#    ind_t = np.append(ind_t,tl3[z])
+#    lot = np.where(ind_t==tl3[z])[0]
+#    if len(lot) > 1:
+#        ind_h = np.delete(ind_h,lot[1:])
+#
+#tl4 = []
+#hl4 = []
+#for i in ind_t:
+#    tl2 = []
+#    hl2 = []
+#    loch = np.where(tl==i)[0]
+#    rangt = []
+#    for j in loch:
+#        rangt = np.append(rangt,hl[j])
+#    tlims = max(rangt) - min(rangt)
+#    mint = 0.05*tlims + min(rangt)
+#    for k in rangt:
+#        if k > mint:
+#            hl2 = np.append(hl2,k)
+#    for l in hl2:
+#        hlep = np.where(hl==l)[0]
+#        for m in hlep:
+#            for n in loch:
+#                if m == n:
+#                    tl2 = np.append(tl2,tl[m])
+#    for o in range(len(tl2)):
+#        tl4 = np.append(tl4,tl2[o])
+#        hl4 = np.append(hl4,hl2[o])
+#
+#print 10**min(hl4)
+#print 10**min(tl4)
+#plt.scatter(tl4,hl4,c='red')
 #plt.figure()
 plt.scatter(tl,hl,c='orange')
-plt.scatter(tl4,hl4,c='red')
 plt.axis([-1,2,0,3])
 plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
