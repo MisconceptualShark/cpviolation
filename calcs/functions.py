@@ -378,6 +378,131 @@ def iter_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,b
 
     return mH_loc, tanb_loc
 
+def bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH):
+    '''
+        Branching ratio of b(s/d) to mu mu
+        tau in ps, f in MeV, mt in GeV
+    '''
+    Yt = 0.997*(mt/166)**1.55
+    r = (mH/mt)**2
+
+    bd1 = (3e-7)*(taubd/1.54)*pow((fbd/210),2)*pow((Vtd/0.008),2)*pow((mmu/mbd),2)*np.sqrt(1-((4*mmu**2)/(mbd**2)))
+    bd2 = (1-((4*mmu**2)/(mbd**2)))*pow(((mbd**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)),2) + pow(((mbd**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1))-Yt,2) 
+    bd = bd1*bd2
+
+    bs1 = (1.1e-5)*(taubs/1.54)*pow((fbs/245),2)*pow((Vts/0.008),2)*pow((mmu/mbs),2)*np.sqrt(1-((4*mmu**2)/(mbs**2)))
+    bs2 = (1-((4*mmu**2)/(mbs**2)))*pow(((mbs**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)),2) + pow(((mbs**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1))-Yt,2) 
+    bs = bs1*bs2
+
+    return bd, bs
+
+def error_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,tanb,mH):
+    '''
+        Error propagation for b(s/d) to mumu
+    '''
+    bd, bs = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+
+    ## errors
+    err1_up = bmumu(mt+mt_err[0],taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err1_low = bmumu(mt+mt_err[1],taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err2_up = bmumu(mt,taubd+taubd_err[0],taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err2_low = bmumu(mt,taubd+taubd_err[1],taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err3_up = bmumu(mt,taubd,taubs+taubs_err[0],fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err3_low = bmumu(mt,taubd,taubs+taubs_err[1],fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err4_up = bmumu(mt,taubd,taubs,fbd+fbd_err[0],fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err4_low = bmumu(mt,taubd,taubs,fbd+fbd_err[1],fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err5_up = bmumu(mt,taubd,taubs,fbd,fbs+fbs_err[0],Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err5_low = bmumu(mt,taubd,taubs,fbd,fbs+fbs_err[1],Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err6_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd+Vtd_err[0],Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err6_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd+Vtd_err[1],Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err7_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts+Vtd_err[0],mmu,mbd,mbs,mW,tanb,mH)
+    err7_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts+Vts_err[1],mmu,mbd,mbs,mW,tanb,mH)
+    err8_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu+mmu_err[0],mbd,mbs,mW,tanb,mH)
+    err8_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu+mmu_err[1],mbd,mbs,mW,tanb,mH)
+    err9_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd+mbd_err[0],mbs,mW,tanb,mH)
+    err9_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd+mbd_err[1],mbs,mW,tanb,mH)
+    err10_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs+mbs_err[0],mW,tanb,mH)
+    err10_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs+mbs_err[1],mW,tanb,mH)
+    err11_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW+mW_err[0],tanb,mH)
+    err11_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW+mW_err[1],tanb,mH)
+
+    ## bd
+    err1_up1, err1_low1 = abs(err1_up[0]-bd),abs(err1_low[0]-bd)
+    err2_up1, err2_low1 = abs(err2_up[0]-bd),abs(err2_low[0]-bd)
+    err3_up1, err3_low1 = abs(err3_up[0]-bd),abs(err3_low[0]-bd)
+    err4_up1, err4_low1 = abs(err4_up[0]-bd),abs(err4_low[0]-bd)
+    err5_up1, err5_low1 = abs(err5_up[0]-bd),abs(err5_low[0]-bd)
+    err6_up1, err6_low1 = abs(err6_up[0]-bd),abs(err6_low[0]-bd)
+    err7_up1, err7_low1 = abs(err7_up[0]-bd),abs(err7_low[0]-bd)
+    err8_up1, err8_low1 = abs(err8_up[0]-bd),abs(err8_low[0]-bd)
+    err9_up1, err9_low1 = abs(err9_up[0]-bd),abs(err9_low[0]-bd)
+    err10_up1, err10_low1 = abs(err10_up[0]-bd),abs(err10_low[0]-bd)
+    err11_up1, err11_low1 = abs(err11_up[0]-bd),abs(err11_low[0]-bd)
+
+    upper1 = np.sqrt(err1_up1**2 + err2_up1**2 + err3_up1**2 + err4_up1**2 + err5_up1**2 + err6_up1**2 + err7_up1**2 + err9_up1**2 + err10_up1**2 + err11_up1**2 + err11_up1**2)
+    lower1 = np.sqrt(err1_low1**2 + err2_low1**2 + err3_low1**2 + err4_low1**2 + err5_low1**2 + err6_low1**2 + err7_low1**2 + err9_low1**2 + err10_low1**2 + err11_low1**2 + err11_low1**2)
+
+    ## bs
+    err1_up2, err1_low2 = abs(err1_up[1]-bs),abs(err1_low[1]-bs)
+    err2_up2, err2_low2 = abs(err2_up[1]-bs),abs(err2_low[1]-bs)
+    err3_up2, err3_low2 = abs(err3_up[1]-bs),abs(err3_low[1]-bs)
+    err4_up2, err4_low2 = abs(err4_up[1]-bs),abs(err4_low[1]-bs)
+    err5_up2, err5_low2 = abs(err5_up[1]-bs),abs(err5_low[1]-bs)
+    err6_up2, err6_low2 = abs(err6_up[1]-bs),abs(err6_low[1]-bs)
+    err7_up2, err7_low2 = abs(err7_up[1]-bs),abs(err7_low[1]-bs)
+    err8_up2, err8_low2 = abs(err8_up[1]-bs),abs(err8_low[1]-bs)
+    err9_up2, err9_low2 = abs(err9_up[1]-bs),abs(err9_low[1]-bs)
+    err10_up2, err10_low2 = abs(err10_up[1]-bs),abs(err10_low[1]-bs)
+    err11_up2, err11_low2 = abs(err11_up[1]-bs),abs(err11_low[1]-bs)
+
+    upper2 = np.sqrt(err1_up2**2 + err2_up2**2 + err3_up2**2 + err4_up2**2 + err5_up2**2 + err6_up2**2 + err7_up2**2 + err9_up2**2 + err10_up2**2 + err11_up2**2 + err11_up2**2)
+    lower2 = np.sqrt(err1_low2**2 + err2_low2**2 + err3_low2**2 + err4_low2**2 + err5_low2**2 + err6_low2**2 + err7_low2**2 + err9_low2**2 + err10_low2**2 + err11_low2**2 + err11_low2**2)
+
+    return upper1, lower1, upper2, lower2
+
+def itera_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,bs_exp,bs_exp_error,bd_exp,bd_exp_error):
+    '''
+        Iterate of mH,tanb space for b(s/d) to mumu
+    '''
+    bs_exp_up,bs_exp_down = bs_exp+bs_exp_error[0],bs_exp+bs_exp_error[1]
+    bd_exp_up,bd_exp_down = bd_exp+bd_exp_error[0],bd_exp+bd_exp_error[1]
+    log_mH_range = np.linspace(0,3,300)
+    log_tanb_range = np.linspace(-1,2,300)
+    mH_range = 10**log_mH_range
+    tanb_range = 10**log_tanb_range
+    mH_loc = []
+    tanb_loc = []
+    for i in mH_range:
+        for j in tanb_range:
+            expect_bd,expect_bs = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,j,i)
+            print expect_bd,expect_bs
+            expect_bd_uperr,expect_bd_downerr,expect_bs_uperr,expect_bs_downerr = error_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,j,i)
+            expect_bd_up, expect_bd_down = expect_bd+expect_bd_uperr, expect_bd-expect_bd_downerr
+            expect_bs_up, expect_bs_down = expect_bs+expect_bs_uperr, expect_bs-expect_bs_downerr
+            if ((bd_exp >= expect_bd and expect_bd_up >= bd_exp_down) or (bd_exp <= expect_bd and expect_bd_down <= bd_exp_up)) and ((bs_exp >= expect_bs and expect_bs_up >= bs_exp_down) or (bs_exp <= expect_bs and expect_bs_down <= bs_exp_up)):
+                i_log, j_log = np.log10(i), np.log10(j)
+                mH_loc = np.append(mH_loc,i_log)
+                tanb_loc = np.append(tanb_loc,j_log)
+
+    return mH_loc, tanb_loc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
