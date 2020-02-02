@@ -1,8 +1,9 @@
 from __future__ import division
 import numpy as np
 import matplotlib.pyplot as plt
-#from functions import bsm,rh,bthe,error_branching,itera,mixing,error_mixing,itera_mix,decay_ratios,decay_bsm,error_kpi,itera_kpi,bsgamma,error_gamma,iter_gamma
 from functions import *
+from fitting import *
+#from rangeplus import *
 
 g_gev = (1.1663787e-5)**2
 hbar_gev = 6.582119514e-25
@@ -89,54 +90,12 @@ kpitau_exp, kpitau_exp_err = [6.438e-2,[9.384e-4,-9.384e-4]]
 #plt.title('$K\\to\\mu\\nu/\\pi\\to\\mu\\nu$ & $\\tau\\to K\\nu/\\tau\\to\\pi\\nu$')
 #plt.show()
 
-#hak,tak = [],[]
-#for r in range(len(tanb_bplus)):
-#    if tanb_bplus[r] > -0.3 and tanb_bplus[r] < 0.7 and mH_bplus[r] > 1.1:
-#        tak = np.append(tak,tanb_bplus[r])
-#        hak = np.append(hak,mH_bplus[r])
-#store_s = []
-#for s in range(len(tak)):
-#    if tak[s] > 0.4 and tak[s] < 0.75 and hak[s] > 1 and hak[s] < 1.4:
-#        store_s = np.append(store_s,s)
-#tak = np.delete(tak,store_s)
-#hak = np.delete(hak,store_s)
-#
-#hlep = np.linspace(0,3,300)
-#tlep = np.linspace(-1,2,300)
-#hlepi = []
-#tlepi = []
-#
-#for i in range(len(hlep)):
-#    for j in range(len(tlep)):
-#        hb = np.where(mH_bplus==hlep[i])[0]
-#        hd = np.where(mH_dplus==hlep[i])[0]
-#        hds = np.where(mH_dsplus==hlep[i])[0]
-#        hkpi = np.where(mH2==hlep[i])[0]
-#        
-#        lb,ld,lds,lkpi = [],[],[],[]
-#        for k in range(len(hb)):
-#            if tanb_bplus[hb[k]] == tlep[j]:
-#                lb = np.append(lb,hb[k])
-#        for l in range(len(hd)):
-#            if tanb_dplus[hd[l]] == tlep[j]:
-#                ld = np.append(ld,hd[l])
-#        for m in range(len(hds)):
-#            if tanb_dsplus[hds[m]] == tlep[j]:
-#                lds = np.append(lds,hds[m])
-#        for n in range(len(hkpi)):
-#            if tanb2[hkpi[n]] == tlep[j]:
-#                lkpi = np.append(lkpi,hkpi[n])
-#
-#        if len(lb) > 0 and len(ld) > 0 and len(lds) > 0 and len(lkpi) > 0:
-#            hlepi = np.append(hlepi,hlep[i])
-#            tlepi = np.append(tlepi,tlep[j])
-#
-#plt.figure(figsize=(8,6))
-#plt.scatter(tlepi,hlepi,c='green',marker=',')
-#plt.scatter(tak,hak,c='green',marker=',')
+hlepi,tlepi = itera_lepis(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,m_tau,m_tau_err,m_mu,m_mu_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,)
+plt.figure(figsize=(8,6))
+plt.scatter(tlepi,hlepi,c='green',marker=',')
 #plt.ylabel('$\\log[m_{H+}$, GeV]')
 #plt.xlabel('$\\log[\\tan(\\beta)]$')
-#plt.axis([-1,2,0,3])
+#plt.axis([-1,2,0,4])
 #plt.title('$K\\to\\mu\\nu/\\pi\\to\\mu\\nu$ & $\\tau\\to K\\nu/\\tau\\to\\pi\\nu$')
 #plt.show()
 
@@ -165,14 +124,14 @@ delt_md_expect, delt_md_err_exp = [0.533e12,[0.022e12,-0.036e12]]
 delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 
 # B0d mixing
-#mH_md, tanb_md = itera_mix(mt,mt_err,mW,mW_err,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp)
+mH_md, tanb_md = itera_mix(mt,mt_err,mW,mW_err,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp)
 
 #plt.figure()
-#plt.scatter(tanb_md,mH_md,marker=',',c='cornflowerblue')
-#plt.axis([-1,2,0,3])
-#plt.ylabel('$\\log[m_{H+}$, GeV]')
-#plt.xlabel('$\\log[\\tan(\\beta)]$')
-#plt.title('$B^0_d-\\bar{B}^0_d$')
+plt.scatter(tanb_md,mH_md,marker=',',c='cornflowerblue')
+#plt.axis([-1,2,0,4])
+##plt.ylabel('$\\log[m_{H+}$, GeV]')
+##plt.xlabel('$\\log[\\tan(\\beta)]$')
+##plt.title('$B^0_d-\\bar{B}^0_d$')
 #plt.show()
 
 # B0s mixing
@@ -192,7 +151,7 @@ delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 lambda_QCD, QCD_err = [0.224972,[0.012412,-0.012886]]
 mt1, mt1_err = [173.1,[0.9,-0.9]]
 mW1, mW1_err = [80.379,[0.012,-0.012]]
-mub = 2
+mub = 1.5
 hi = [626126/272277,-56281/51730,-3/7,-1/14,-0.6494,-0.038,-0.0185,-0.0057]
 a = [14/23,16/23,6/23,-12/23,0.4086,-0.4223,-0.8994,0.1456]
 A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
@@ -205,135 +164,58 @@ branchs, branchs_err = [3.32e-4,[0.15e-4,-0.15e-4]]
 gamc, gamc_err = [10.18e-2,[0.24e-2,-0.24e-2]]
 gamu, gamu_err = [8.41e-4,[0.59e-4,-0.59e-4]]
 
-#mH_gam, tanb_gam = iter_gamma(mt1,mt1_err,mW1,mW1_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,branch_c,branchc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,1/137,branch_c,branchc_err,branchs,branchs_err)
+mH_gam, tanb_gam = iter_gamma(mt1,mt1_err,mW1,mW1_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,branch_c,branchc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,1/137,branch_c,branchc_err,branchs,branchs_err)
 
 #plt.figure()
-#plt.scatter(tanb_gam,mH_gam,marker=',',c='coral')
-#plt.axis([-1,2,0,3])
-#plt.ylabel('$\\log[m_{H+}$, GeV]')
-#plt.xlabel('$\\log[\\tan(\\beta)]$')
+plt.scatter(tanb_gam,mH_gam,marker=',',c='coral')
+#plt.axis([-1,2,0,4])
+##plt.ylabel('$\\log[m_{H+}$, GeV]')
+##plt.xlabel('$\\log[\\tan(\\beta)]$')
 #plt.show()
 
 ###################### b(s/d) to mumu
+
 taubd, taubd_err = [1.519,[0.004,-0.004]] #ps
 taubs, taubs_err = [1.510,[0.004,-0.004]]
 mbd, mbd_err = [5.27964,[0.00013,-0.00013]] #GeV
 mbs, mbs_err = [5.36688,[0.00017,-0.00017]]
 bs_exp, bs_exp_err = [3.1e-9,[0.6e-9,-0.6e-9]] #hflav
 bd_exp, bd_exp_err = [1.4e-10,[1.6e-10,-1.4e-10]] #pdg
+sm, sm_err = [3.1e-9,[0.7e-9,-0.7e-9]]
 mH_bmumu, tanb_bmumu = itera_bmumu(mt1,mt1_err,taubd,taubd_err,taubs,taubs_err,fBd,fBd_err,fBs,fBs_err,Vtd,Vtd_err,Vts,Vts_err,m_mu,m_mu_err,mbd,mbd_err,mbs,mbs_err,mW1,mW1_err,bs_exp,bs_exp_err,bd_exp,bd_exp_err)
 
-plt.figure()
+##plt.figure()
 plt.scatter(tanb_bmumu,mH_bmumu,marker=',',c='red')
-plt.axis([-1,2,0,3])
-plt.ylabel('$\\log[m_{H+}$, GeV]')
-plt.xlabel('$\\log[\\tan(\\beta)]$')
+#plt.axis([-1,2,0,3])
+#plt.ylabel('$\\log[m_{H+}$, GeV]')
+#plt.xlabel('$\\log[\\tan(\\beta)]$')
 #plt.show()
-plt.savefig('bmumu.png')
-
-
+#plt.savefig('bmumu.png')
 
 ###################### GLOBAL CONSTRAINT
 
-h = np.linspace(0,3,300)
-t = np.linspace(-1,2,300)
-hl = []
-tl = []
+hl,tl = itera_firstglobal(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,branchs,branchs_err,branch_c,branchc_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,mBd,mBd_err,m_tau,m_tau_err,m_mu,m_mu_err,etaB,etaB_err,fBd,fBd_err,BBd,BBd_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt1,mt1_err,mt,mt_err,mW1,mW1_err,mW,mW_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,gamu,gamu_err,1/137,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err)
+hl2,tl2 = itera_global(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,branchs,branchs_err,branch_c,branchc_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,mBd,mBd_err,m_tau,m_tau_err,m_mu,m_mu_err,etaB,etaB_err,fBd,fBd_err,BBd,BBd_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt1,mt1_err,mt,mt_err,mW1,mW1_err,mW,mW_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,gamu,gamu_err,1/137,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,taubd,taubd_err,taubs,taubs_err,fBs,fBs_err,mbd,mbd_err,mbs,mbs_err,bs_exp,bs_exp_err,bd_exp,bd_exp_err)
 
-for x in range(len(h)):
-    for y in range(len(t)):
-        hlp = np.where(hlepi==h[x])[0]# and tanb2==t[j]))[0]
-        hmd = np.where(mH_md==h[x])[0]# and tanb_md==t[j]))[0]
-        hgam = np.where(mH_gam==h[x])[0]# and tanb_ms==t[j]))[0]
-        
-        llp,lmd,lgam = [],[],[]
-        for ni in range(len(hlp)):
-            if tlepi[hlp[ni]] == t[y]:
-                llp = np.append(llp,hlp[ni])
-        for oi in range(len(hmd)):
-            if tanb_md[hmd[oi]] == t[y]:
-                lmd = np.append(lmd,hmd[oi])
-        for pi in range(len(hgam)):
-            if tanb_gam[hgam[pi]] == t[y]:
-                lgam = np.append(lgam,hgam[pi])
+print 10**min(hl)
+X = np.vstack((tl,hl)).T
+matr = cov_mat(X.T)
+print matr
 
-        if len(llp) > 0 and len(lmd) > 0 and len(lgam) > 0:
-            hl = np.append(hl,h[x])
-            tl = np.append(tl,t[y])
+print 10**min(hl2)
+Y = np.vstack((tl2,hl2)).T
+matr2 = cov_mat(Y.T)
+print matr2
 
-#ind_h = []
-#for z in range(len(hl)):
-#    ind_h = np.append(ind_h,hl[z])
-#    loh = np.where(ind_h==hl[z])[0]
-#    if len(loh) > 1:
-#        ind_h = np.delete(ind_h,loh[1:])
-#
-#tl3 = []
-#hl3 = []
-#for i in ind_h:
-#    tl2 = []
-#    hl2 = []
-#    loct = np.where(hl==i)[0]
-#    rangt = []
-#    for j in loct:
-#        rangt = np.append(rangt,tl[j])
-#    tlims = max(rangt) - min(rangt)
-#    maxt = 0.975*tlims + min(rangt)
-#    mint = 0.025*tlims + min(rangt)
-#    for k in rangt:
-#        if k > mint and k < maxt:
-#            tl2 = np.append(tl2,k)
-#    for l in tl2:
-#        hlep = np.where(tl==l)[0]
-#        for m in hlep:
-#            for n in loct:
-#                if m == n:
-#                    hl2 = np.append(hl2,hl[m])
-#    for o in range(len(hl2)):
-#        tl3 = np.append(tl3,tl2[o])
-#        hl3 = np.append(hl3,hl2[o])
-#
-#ind_t = []
-#for z in range(len(tl3)):
-#    ind_t = np.append(ind_t,tl3[z])
-#    lot = np.where(ind_t==tl3[z])[0]
-#    if len(lot) > 1:
-#        ind_h = np.delete(ind_h,lot[1:])
-#
-#tl4 = []
-#hl4 = []
-#for i in ind_t:
-#    tl2 = []
-#    hl2 = []
-#    loch = np.where(tl==i)[0]
-#    rangt = []
-#    for j in loch:
-#        rangt = np.append(rangt,hl[j])
-#    tlims = max(rangt) - min(rangt)
-#    mint = 0.05*tlims + min(rangt)
-#    for k in rangt:
-#        if k > mint:
-#            hl2 = np.append(hl2,k)
-#    for l in hl2:
-#        hlep = np.where(hl==l)[0]
-#        for m in hlep:
-#            for n in loch:
-#                if m == n:
-#                    tl2 = np.append(tl2,tl[m])
-#    for o in range(len(tl2)):
-#        tl4 = np.append(tl4,tl2[o])
-#        hl4 = np.append(hl4,hl2[o])
-#
-#print 10**min(hl4)
-#print 10**min(tl4)
-#plt.scatter(tl4,hl4,c='red')
 #plt.figure()
 plt.scatter(tl,hl,c='orange')
-plt.axis([-1,2,0,3])
+plt.scatter(tl2,hl2,c='darkorchid')
+plt.axis([-1,2,0,3.5])
 plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
 plt.title('Global Fit',fontsize=18)
-plt.rcParams.update({'font.size':18})
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
 plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.05,0.5),xycoords='axes fraction',fontsize=18)
 plt.annotate('$b\\to s\\gamma$',xy=(0.28,0.92),xycoords='axes fraction',fontsize=18)
 plt.annotate('All',xy=(0.6,0.92),xycoords='axes fraction',fontsize=18)

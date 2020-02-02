@@ -9,4 +9,11 @@ def exp_like(err,x,xt):
         like = like*like_i
     return like
 
+def cov(x,y):
+    xbar, ybar = x.mean(), y.mean()
+    return np.sum((x-xbar)*(y-ybar))/(len(x)-1)
+
+def cov_mat(X):
+    return np.array([[cov(X[0],X[0]),cov(X[0],X[1])], \
+                     [cov(X[1],X[0]),cov(X[1],X[1])]])
 
