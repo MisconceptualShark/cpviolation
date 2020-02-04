@@ -91,10 +91,10 @@ def mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect):
     S_WW = (1 + 9/(1-x_tW) - 6/((1-x_tW)**2) - 6*(x_tW**2)*np.log(x_tW)/((1-x_tW)**3))
     S_HH = (x_tH/tanb**4)*((1+x_tH)/((1-x_tH)**2) + 2*x_tH*np.log(x_tH)/((1-x_tH)**3))
 
-    delt_mq = g_mev/(24*np.pi**2)*((Vtq*Vtb)**2)*etaB*mB*(mt**2)*(fBq**2)*BBq*(S_WW + S_WH + S_HH)
-    #delt_mq = expect*(1+(S_WH/S_WW)+(S_HH/S_WW))
+    #delt_mq = g_mev/(24*np.pi**2)*((Vtq*Vtb)**2)*etaB*mB*(mt**2)*(fBq**2)*BBq*(S_WW + S_WH + S_HH)
+    delt_mq = expect*(1+(S_WH/S_WW)+(S_HH/S_WW))
 
-    return delt_mq/hbar_mev
+    return delt_mq#/hbar_mev
 
 def error_mixing(mt,mt_err,mH,mW,mW_err,tanb,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_err,fBq,fBq_err,BBq,BBq_err,expect,expect_err):
     '''
@@ -143,7 +143,7 @@ def itera_mix(mt,mt_err,mW,mW_err,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_er
     for i in mH_range:
         for j in tanb_range:
             expect_branch = mixing(mt,i,mW,j,Vtq,Vtb,etaB,mB,fBq,BBq,expect)
-            print expect_branch
+            print expect_branch*1e-12
             expect_error = error_mixing(mt,mt_err,i,mW,mW_err,j,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_err,fBq,fBq_err,BBq,BBq_err,expect,expect_err)
             expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
             if (branch_exp >= expect_branch and expect_branch_up >= exp_branch_down) or (branch_exp <= expect_branch and expect_branch_down <= exp_branch_up):

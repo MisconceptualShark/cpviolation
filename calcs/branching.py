@@ -89,9 +89,9 @@ kpitau_exp, kpitau_exp_err = [6.438e-2,[9.384e-4,-9.384e-4]]
 #plt.title('$K\\to\\mu\\nu/\\pi\\to\\mu\\nu$ & $\\tau\\to K\\nu/\\tau\\to\\pi\\nu$')
 #plt.show()
 
-#hlepi,tlepi = itera_lepis(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,m_tau,m_tau_err,m_mu,m_mu_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,)
-#plt.figure(figsize=(8,6))
-#plt.scatter(tlepi,hlepi,c='green',marker=',')
+hlepi,tlepi = itera_lepis(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,m_tau,m_tau_err,m_mu,m_mu_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,)
+plt.figure(figsize=(8,6))
+plt.scatter(tlepi,hlepi,c='green',marker=',')
 #plt.ylabel('$\\log[m_{H+}$, GeV]')
 #plt.xlabel('$\\log[\\tan(\\beta)]$')
 #plt.axis([-1,2,0,4])
@@ -122,23 +122,27 @@ delt_ms, delt_ms_err = [17.757e12,[0.021e12,-0.021e12]]
 delt_md_expect, delt_md_err_exp = [0.533e12,[0.022e12,-0.036e12]]
 delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 
-#x,y,z = error_mixing(mt,mt_err,1,mW,mW_err,1,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err)
-#print (1e-12)*(z+x)/hbar_mev
-#print (1e-12)*(z-y)/hbar_mev
-#print 1e-12*z/hbar_mev
 # B0d mixing
 mH_md, tanb_md = itera_mix(mt,mt_err,mW,mW_err,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp)
-
-plt.figure()
+#x,y,z = error_mixing(mt,mt_err,1,mW,mW_err,1,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err)
+#print (1e-12)*(z+x)
+#print (1e-12)*(z-y)
+#print 1e-12*z
+#
+#plt.figure()
 plt.scatter(tanb_md,mH_md,marker=',',c='cornflowerblue')
-#plt.axis([-1,2,0,4])
+#plt.axis([-1,2,0,3.5])
 ##plt.ylabel('$\\log[m_{H+}$, GeV]')
 ##plt.xlabel('$\\log[\\tan(\\beta)]$')
 ##plt.title('$B^0_d-\\bar{B}^0_d$')
-plt.show()
+#plt.show()
 
 # B0s mixing
 #mH_ms, tanb_ms = itera_mix(mt,mt_err,mW,mW_err,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,delt_ms,delt_ms_err,delt_ms_expect,delt_ms_err_exp)
+#x,y,z = error_mixing(mt,mt_err,1,mW,mW_err,1,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,delt_md,delt_md_err)
+#print (1e-12)*(z+x)
+#print (1e-12)*(z-y)
+#print 1e-12*z
 #
 ##plt.figure()
 #plt.scatter(tanb_ms,mH_ms,marker=',',c='cyan')
@@ -167,7 +171,7 @@ branchs, branchs_err = [3.32e-4,[0.15e-4,-0.15e-4]]
 gamc, gamc_err = [10.18e-2,[0.24e-2,-0.24e-2]]
 gamu, gamu_err = [8.41e-4,[0.59e-4,-0.59e-4]]
 
-#mH_gam, tanb_gam = iter_gamma(mt1,mt1_err,mW1,mW1_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,branch_c,branchc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,1/137,branch_c,branchc_err,branchs,branchs_err)
+mH_gam, tanb_gam = iter_gamma(mt1,mt1_err,mW1,mW1_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,branch_c,branchc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,1/137,branch_c,branchc_err,branchs,branchs_err)
 
 #plt.figure()
 plt.scatter(tanb_gam,mH_gam,marker=',',c='coral')
@@ -223,8 +227,8 @@ plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.05,0.5),xycoords='axes fracti
 plt.annotate('$b\\to s\\gamma$',xy=(0.28,0.92),xycoords='axes fraction',fontsize=18)
 plt.annotate('All',xy=(0.6,0.92),xycoords='axes fraction',fontsize=18)
 plt.annotate('$\\Delta M_q$',xy=(0.75,0.5),xycoords='axes fraction',fontsize=18)
-plt.show()
-#plt.savefig('global_cl.png')
+#plt.show()
+plt.savefig('global_cl.png')
 
 
 
