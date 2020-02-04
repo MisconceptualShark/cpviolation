@@ -3,7 +3,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from functions import *
 from fitting import *
-#from rangeplus import *
 
 g_gev = (1.1663787e-5)**2
 hbar_gev = 6.582119514e-25
@@ -25,11 +24,11 @@ m_s, m_s_err = [0.093,[0.011,-0.005]]
 m_c, m_c_err = [1.27,[0.02,-0.02]]
 m_b, m_b_err = [4.18,[0.03,-0.02]]
 
-Vub, Vub_err = [0.003746,[0.00009,-0.000062]]
-Vcd, Vcd_err = [0.224608,[0.000254,-0.00006]]
-Vcs, Vcs_err = [0.973526,[0.00005,-0.000061]]
-Vus, Vus_err = [0.224745,[0.000254,-0.000059]]
-Vud, Vud_err = [0.974410,[0.000014,-0.000058]]
+Vub, Vub_err = [0.003683,[0.000075,-0.000061]]
+Vcd, Vcd_err = [0.224701,[0.000254,-0.000058]]
+Vcs, Vcs_err = [0.973539,[0.000038,-0.000060]]
+Vus, Vus_err = [0.224834,[0.000252,-0.000059]]
+Vud, Vud_err = [0.974390,[0.000014,-0.000058]]
 
 f_bplus, f_bplus_err = [0.190,[0.0013,-0.0013]]
 f_dplus, f_dplus_err = [0.212,[0.0007,-0.0007]]
@@ -90,9 +89,9 @@ kpitau_exp, kpitau_exp_err = [6.438e-2,[9.384e-4,-9.384e-4]]
 #plt.title('$K\\to\\mu\\nu/\\pi\\to\\mu\\nu$ & $\\tau\\to K\\nu/\\tau\\to\\pi\\nu$')
 #plt.show()
 
-hlepi,tlepi = itera_lepis(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,m_tau,m_tau_err,m_mu,m_mu_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,)
-plt.figure(figsize=(8,6))
-plt.scatter(tlepi,hlepi,c='green',marker=',')
+#hlepi,tlepi = itera_lepis(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,m_tau,m_tau_err,m_mu,m_mu_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,)
+#plt.figure(figsize=(8,6))
+#plt.scatter(tlepi,hlepi,c='green',marker=',')
 #plt.ylabel('$\\log[m_{H+}$, GeV]')
 #plt.xlabel('$\\log[\\tan(\\beta)]$')
 #plt.axis([-1,2,0,4])
@@ -106,9 +105,9 @@ mW, mW_err = [80.379e3,[0.012e3,-0.012e3]]
 mBd, mBd_err = [5279.64,[0.13,-0.13]]
 mBs, mBs_err = [5366.88,[0.17,-0.17]]
 
-Vts, Vts_err = [0.04169,[0.00028,-0.00108]]
-Vtd, Vtd_err = [0.00871,[0.000086,-0.000246]]
-Vtb, Vtb_err = [0.999093,[0.000049,-0.000013]]
+Vts, Vts_err = [0.04090,[0.00026,-0.00076]]
+Vtd, Vtd_err = [0.008545,[0.000075,-0.000157]]
+Vtb, Vtb_err = [0.999127,[0.000032,-0.000012]]
 
 etaB, etaB_err = [0.537856,[0,0]]
 
@@ -123,16 +122,20 @@ delt_ms, delt_ms_err = [17.757e12,[0.021e12,-0.021e12]]
 delt_md_expect, delt_md_err_exp = [0.533e12,[0.022e12,-0.036e12]]
 delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 
+#x,y,z = error_mixing(mt,mt_err,1,mW,mW_err,1,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err)
+#print (1e-12)*(z+x)/hbar_mev
+#print (1e-12)*(z-y)/hbar_mev
+#print 1e-12*z/hbar_mev
 # B0d mixing
 mH_md, tanb_md = itera_mix(mt,mt_err,mW,mW_err,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp)
 
-#plt.figure()
+plt.figure()
 plt.scatter(tanb_md,mH_md,marker=',',c='cornflowerblue')
 #plt.axis([-1,2,0,4])
 ##plt.ylabel('$\\log[m_{H+}$, GeV]')
 ##plt.xlabel('$\\log[\\tan(\\beta)]$')
 ##plt.title('$B^0_d-\\bar{B}^0_d$')
-#plt.show()
+plt.show()
 
 # B0s mixing
 #mH_ms, tanb_ms = itera_mix(mt,mt_err,mW,mW_err,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,delt_ms,delt_ms_err,delt_ms_expect,delt_ms_err_exp)
@@ -158,13 +161,13 @@ A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
 B0,bc,bt,b_s = [7.564e-1,-2.43e-1,-7.68e-4,-4.62]
 delt_mc, delt_mt, delt_as = [0.04,1.8,0.002]
 #C, C_err = [0.546,[0.033,-0.033]]
-Vcb, Vcb_err = [0.0424,[0.0003,-0.00115]]
+Vcb, Vcb_err = [0.04162,[0.00026,-0.00080]]
 branch_c, branchc_err = [0.1065,[0.0016,-0.0016]]
 branchs, branchs_err = [3.32e-4,[0.15e-4,-0.15e-4]]
 gamc, gamc_err = [10.18e-2,[0.24e-2,-0.24e-2]]
 gamu, gamu_err = [8.41e-4,[0.59e-4,-0.59e-4]]
 
-mH_gam, tanb_gam = iter_gamma(mt1,mt1_err,mW1,mW1_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,branch_c,branchc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,1/137,branch_c,branchc_err,branchs,branchs_err)
+#mH_gam, tanb_gam = iter_gamma(mt1,mt1_err,mW1,mW1_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,branch_c,branchc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,1/137,branch_c,branchc_err,branchs,branchs_err)
 
 #plt.figure()
 plt.scatter(tanb_gam,mH_gam,marker=',',c='coral')

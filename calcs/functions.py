@@ -91,10 +91,10 @@ def mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect):
     S_WW = (1 + 9/(1-x_tW) - 6/((1-x_tW)**2) - 6*(x_tW**2)*np.log(x_tW)/((1-x_tW)**3))
     S_HH = (x_tH/tanb**4)*((1+x_tH)/((1-x_tH)**2) + 2*x_tH*np.log(x_tH)/((1-x_tH)**3))
 
-    #delt_mq = g_mev/(24*np.pi**2)*((Vtq*Vtb)**2)*etaB*mB*(mt**2)*(fBq**2)*BBq*(S_WW + S_WH + S_HH)
-    delt_mq = expect*(1+(S_WH/S_WW)+(S_HH/S_WW))
+    delt_mq = g_mev/(24*np.pi**2)*((Vtq*Vtb)**2)*etaB*mB*(mt**2)*(fBq**2)*BBq*(S_WW + S_WH + S_HH)
+    #delt_mq = expect*(1+(S_WH/S_WW)+(S_HH/S_WW))
 
-    return delt_mq #/hbar_mev
+    return delt_mq/hbar_mev
 
 def error_mixing(mt,mt_err,mH,mW,mW_err,tanb,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_err,fBq,fBq_err,BBq,BBq_err,expect,expect_err):
     '''
@@ -546,8 +546,6 @@ def itera_firstglobal(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,
     xgam = gam_exp*np.sqrt((gamc_exp_error[0]/gamc_exp)**2 + (gams_exp_error[0]/gams_exp)**2)
     ygam = gam_exp*np.sqrt((gamc_exp_error[1]/gamc_exp)**2 + (gams_exp_error[1]/gams_exp)**2)
     gam_exp_up,gam_exp_down = gam_exp+xgam,gam_exp-ygam
-#    bs_exp_up,bs_exp_down = bs_e+bs_eerr[0],bs_e+bs_eerr[1]
-#    bd_exp_up,bd_exp_down = bd_e+bd_eerr[0],bd_e+bd_eerr[1]
     log_mH_range = np.linspace(0,3.5,350)
     log_tanb_range = np.linspace(-1,2,300)
     mH_range = 10**log_mH_range
@@ -578,12 +576,6 @@ def itera_firstglobal(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,
             gam_err = error_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc_exp,gamc_exp_error,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM)
             gam_the_up,gam_the_down = gam_the+gam_err[0],gam_the-gam_err[1]
             gam_bool = ((gam_exp >= gam_the and gam_the_up >= gam_exp_down) or (gam_exp <= gam_the and gam_the_down <= gam_exp_up))
-
-#            expect_bd,expect_bs = bmumu(mt,tbd,tbs,fBd,fBs,Vtd,Vts,mmu,mbd,mbs,mW,j,i)
-#            expect_bd_uperr,expect_bd_downerr,expect_bs_uperr,expect_bs_downerr = error_bmumu(mt,mt_err,tbd,tbd_err,tbs,tbs_err,fBd,fBd_err,fBs,fBs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,j,i)
-#            expect_bd_up, expect_bd_down = expect_bd+expect_bd_uperr, expect_bd-expect_bd_downerr
-#            expect_bs_up, expect_bs_down = expect_bs+expect_bs_uperr, expect_bs-expect_bs_downerr
-#            bmu_bool = ((bd_e >= expect_bd and expect_bd_up >= bd_exp_down) or (bd_e <= expect_bd and expect_bd_down <= bd_exp_up)) and ((bs_e >= expect_bs and expect_bs_up >= bs_exp_down) or (bs_e <= expect_bs and expect_bs_down <= bs_exp_up))
 
             if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
