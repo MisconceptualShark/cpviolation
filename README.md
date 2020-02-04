@@ -6,7 +6,7 @@
 
 - [x] Source learning 
     - working with Alex to learn the physics of the standard model
-    - must understand before we can move on to specifying project ![Main scattering reaction to be understood](/notes/bmes.png "Innacuracy explanation")
+    - must understand before we can move on to specifying project
 
 - [x] Interim report
     - mid report found in subfolder
