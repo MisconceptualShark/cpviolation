@@ -12,10 +12,10 @@ hbar_mev = 6.582119514e-22
 ################ LEPTONIC AND SEMILEPTONIC DECAY
 
 m_bplus, m_bplus_err = [5.27933,[0.00013,-0.00013]]
-#m_dplus, m_dplus_err = [1.86962,[0.00020,-0.00020]] #08
+m_dplus08, m_dplus08_err = [1.86962,[0.00020,-0.00020]] #08
 m_dplus, m_dplus_err = [1.86965,[0.00005,-0.00005]]
 m_dsplus, m_dsplus_err = [1.96834,[0.00007,-0.00007]]
-#m_B, m_B_err = [5.27953,[0.00033,-0.00033]] #08
+m_B08, m_B08_err = [5.27953,[0.00033,-0.00033]] #08
 m_B, m_B_err = [5.27964,[0.00013,-0.00013]]
 m_K, m_K_err = [0.493677,[0.000016,-0.000016]]
 m_pi, m_pi_err = [0.13957061,[0.00000024,-0.00000024]]
@@ -24,9 +24,9 @@ m_mu, m_mu_err = [0.1056583745,[0.0000000024,-0.0000000024]]
 m_u, m_u_err = [0.00216,[0.00049,-0.00026]]
 m_d, m_d_err = [0.00467,[0.00048,-0.00017]]
 m_s, m_s_err = [0.093,[0.011,-0.005]]
-#m_c, m_c_err = [1.27,[0.07,-0.11]] #08
+m_c08, m_c08_err = [1.27,[0.07,-0.11]] #08
 m_c, m_c_err = [1.27,[0.02,-0.02]]
-#m_b, m_b_err = [4.20,[0.17,-0.07]] #08
+m_b08, m_b08_err = [4.20,[0.17,-0.07]] #08
 m_b, m_b_err = [4.18,[0.03,-0.02]]
 
 Vub, Vub_err = [0.003683,[0.000075,-0.000061]]
@@ -43,7 +43,7 @@ f_Kpi, f_Kpi_err = [1.1932,[0.0019,-0.0019]]
 delt_kpi, delt_kpi_err = [-0.0069,[0.0017,-0.0017]]
 delt_kpitau, delt_kpitau_err = [0.0003,[0,0]]
 
-#rho, rho_err = [1.19,[0.057,-0.057]] #08
+rho08, rho08_err = [1.19,[0.057,-0.057]] #08
 rho, rho_err = [1.131,[0.033,-0.033]] #1909.12524
 delt_rd, delt_rd_err = [0.46,[0.01,-0.01]] #0802.3790
 
@@ -56,78 +56,90 @@ dplus_exp, dplus_err_exp = [3.82e-4,[0.33e-4,-0.33e-4]]
 dsplus_exp, dsplus_err_exp = [0.0548,[0.0023,-0.0023]]
 kpi_exp, kpi_exp_err = [1.337,[0.0032,-0.0032]]
 kpitau_exp, kpitau_exp_err = [6.438e-2,[9.384e-4,-9.384e-4]]
-#rd_exp, rd_exp_err = [0.416,[0.128,-0.128]] #08
+rd08_exp, rd08_exp_err = [0.416,[0.128,-0.128]] #08
 rd_exp, rd_exp_err = [0.34,[0.03,-0.03]] #1909.12524
 
 # B+ -> tau+ nu
-mH_bplus, tanb_bplus = itera(m_bplus,m_bplus_err,m_tau,m_tau_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,m_u,m_u_err,m_b,m_b_err,bplus_exp,bplus_err_exp)
-
-plt.figure(figsize=(8,6))
-plt.scatter(tanb_bplus,mH_bplus,c='green')
-plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-plt.title('$B^+\\to\\tau^+\\nu$',fontsize=18)
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
-plt.axis([-1,2,0,3.5])
-#plt.show()
-plt.savefig('btau.png')
-
-# D+ -> mu+ nu
-mH_dplus, tanb_dplus = itera(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,m_c,m_c_err,m_d,m_d_err,dplus_exp,dplus_err_exp)
-
-plt.figure(figsize=(8,6))
-plt.scatter(tanb_dplus,mH_dplus,c='green')
-plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-plt.title('$D^+\\to\\mu^+\\nu$',fontsize=18)
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
-plt.axis([-1,2,0,3.5])
-#plt.show()
-plt.savefig('dmu.png')
-
-# Ds+ -> tau+ nu
-mH_dsplus, tanb_dsplus = itera(m_dsplus,m_dsplus_err,m_tau,m_tau_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,m_c,m_c_err,m_s,m_s_err,dsplus_exp,dsplus_err_exp)
-
-plt.figure(figsize=(8,6))
-plt.scatter(tanb_dsplus,mH_dsplus,c='green')
-plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-plt.title('$D_s^+\\to\\tau^+\\nu$',fontsize=18)
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
-plt.axis([-1,2,0,3.5])
-#plt.show()
-plt.savefig('dstau.png')
-
-# (K -> mu)/(pi -> mu) + (tau -> K)/(tau -> pi)
-mH2, tanb2 = itera_kpi(m_K,m_K_err,m_pi,m_pi_err,m_mu,m_mu_err,m_tau,m_tau_err,Vus,Vus_err,Vud,Vud_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,m_s,m_s_err,m_d,m_d_err,m_u,m_u_err,kpi_exp,kpi_exp_err,kpitau_exp,kpi_exp_err)
-
-plt.figure(figsize=(8,6))
-plt.scatter(tanb2,mH2,c='green')
-plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-plt.title('$K\\to\\mu\\nu/\\pi\\to\\mu\\nu$ & $\\tau\\to K\\nu/\\tau\\to\\pi\\nu$',fontsize=18)
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
-plt.axis([-1,2,0,3.5])
-#plt.show()
-plt.savefig('kpi.png')
-
-# R(D) and ? R(D*)
-#hrd,trd = itera_rd(m_c,m_c_err,m_b,m_b_err,m_B,m_B_err,m_dplus,m_dplus_err,rho,rho_err,delt_rd,delt_rd_err,rd_exp,rd_exp_err)
+#mH_bplus, tanb_bplus = itera(m_bplus,m_bplus_err,m_tau,m_tau_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,m_u,m_u_err,m_b,m_b_err,bplus_exp,bplus_err_exp)
+#
 #plt.figure(figsize=(8,6))
-#plt.scatter(trd,hrd,c='cadetblue',marker=',')
+#plt.scatter(tanb_bplus,mH_bplus,c='green')
 #plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 #plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('$\\mathcal{R}(D)$',fontsize=18)
+#plt.title('$B^+\\to\\tau^+\\nu$',fontsize=18)
 #plt.xticks(fontsize=18)
 #plt.yticks(fontsize=18)
 #plt.axis([-1,2,0,3.5])
+##plt.show()
+#plt.savefig('btau.png')
+
+# D+ -> mu+ nu
+#mH_dplus, tanb_dplus = itera(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,m_c,m_c_err,m_d,m_d_err,dplus_exp,dplus_err_exp)
+#
+#plt.figure(figsize=(8,6))
+#plt.scatter(tanb_dplus,mH_dplus,c='green')
+#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+#plt.title('$D^+\\to\\mu^+\\nu$',fontsize=18)
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+#plt.axis([-1,2,0,3.5])
+##plt.show()
+#plt.savefig('dmu.png')
+#
+## Ds+ -> tau+ nu
+#mH_dsplus, tanb_dsplus = itera(m_dsplus,m_dsplus_err,m_tau,m_tau_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,m_c,m_c_err,m_s,m_s_err,dsplus_exp,dsplus_err_exp)
+#
+#plt.figure(figsize=(8,6))
+#plt.scatter(tanb_dsplus,mH_dsplus,c='green')
+#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+#plt.title('$D_s^+\\to\\tau^+\\nu$',fontsize=18)
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+#plt.axis([-1,2,0,3.5])
+##plt.show()
+#plt.savefig('dstau.png')
+#
+## (K -> mu)/(pi -> mu) + (tau -> K)/(tau -> pi)
+#mH2, tanb2 = itera_kpi(m_K,m_K_err,m_pi,m_pi_err,m_mu,m_mu_err,m_tau,m_tau_err,Vus,Vus_err,Vud,Vud_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,m_s,m_s_err,m_d,m_d_err,m_u,m_u_err,kpi_exp,kpi_exp_err,kpitau_exp,kpi_exp_err)
+#
+#plt.figure(figsize=(8,6))
+#plt.scatter(tanb2,mH2,c='green')
+#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+#plt.title('$K\\to\\mu\\nu/\\pi\\to\\mu\\nu$ & $\\tau\\to K\\nu/\\tau\\to\\pi\\nu$',fontsize=18)
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+#plt.axis([-1,2,0,3.5])
+##plt.show()
+#plt.savefig('kpi.png')
+
+# R(D) and ? R(D*)
+hrd,trd = itera_rd(m_c,m_c_err,m_b,m_b_err,m_B,m_B_err,m_dplus,m_dplus_err,rho,rho_err,delt_rd,delt_rd_err,rd_exp,rd_exp_err)
+plt.figure(figsize=(8,6))
+plt.scatter(trd,hrd,c='cadetblue',marker=',')
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.title('$\\mathcal{R}(D)$ - 2020 Inputs',fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.axis([-1,2,0,3.5])
 ###plt.show()
-#plt.savefig('rd.png')
-#quit()
+plt.savefig('rd.png')
+hrd,trd = itera_rd(m_c08,m_c08_err,m_b08,m_b08_err,m_B08,m_B08_err,m_dplus08,m_dplus08_err,rho08,rho08_err,delt_rd,delt_rd_err,rd08_exp,rd08_exp_err)
+plt.figure(figsize=(8,6))
+plt.scatter(trd,hrd,c='cadetblue',marker=',')
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.title('$\\mathcal{R}(D)$ - 2008 Inputs',fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.axis([-1,2,0,3.5])
+###plt.show()
+plt.savefig('rd_08.png')
+
+quit()
 
 hlepi,tlepi = itera_lepis(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,m_tau,m_tau_err,m_mu,m_mu_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,)
 plt.figure(figsize=(8,6))
