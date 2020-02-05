@@ -2,6 +2,9 @@
 \documentclass[10pt,xcolor={table,dvipsnames},t]{beamer}
 \usetheme{UCBerkeley}
 
+\usepackage{graphics,graphicx,float}
+\usepackage{multicol}
+
 \title[Your Short Title]{Your Presentation}
 \subtitle{Your subtitle (if there's one)}
 \author{Your Name}
@@ -10,31 +13,66 @@
 
 \begin{document}
 
-\begin{frame}
-  \titlepage
-\end{frame}
+\section{Introduction}
+%\begin{frame}
+%  \titlepage
+%\end{frame}
 
 % Uncomment these lines for an automatically generated outline.
 %\begin{frame}{Outline}
 %  \tableofcontents
 %\end{frame}
 
-\section{Introduction}
 
-\begin{frame}{Introduction}
-
-\begin{itemize}
-  \item Your introduction goes here!
-  \item Use \texttt{itemize} to organize your main points.
-\end{itemize}
-
-\begin{block}{Examples}
-Some examples of commonly used commands and features are included, to help you get started.
-\end{block}
+\begin{frame}{New Global Fit}
+    \begin{columns}[c]
+        \begin{column}{0.33\textwidth}
+            \begin{itemize}
+                \setlength\itemsep{2em}
+                \item Added $B_{s/d}\to\mu^+\mu^-$
+                \item Old: $m_H>520\,$GeV.
+                \item New: $m_H>1100\,$GeV.
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.60\textwidth}
+            \includegraphics[scale=0.35]{../images/global_cl.png}
+        \end{column}
+    \end{columns}
+%\begin{itemize}
+%  \item Your introduction goes here!
+%  \item Use \texttt{itemize} to organize your main points.
+%\end{itemize}
+%
+%\begin{block}{Examples}
+%Some examples of commonly used commands and features are included, to help you get started.
+%\end{block}
 
 \end{frame}
 
+\begin{frame}{$R(D)$ Ratio}
+    \begin{columns}[c]
+        \begin{column}{0.45\textwidth}
+            \begin{itemize}
+                \item $R(D)$ using 0907.5135 values
+                    \includegraphics[scale=0.25]{../images/rd_08}
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.45\textwidth}
+            \begin{itemize}
+                \item $R(D)$ using 2020 measurements
+                    \includegraphics[scale=0.25]{../images/rd}
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \vspace{1em}
+    \ding{229} Tried for parameterisations in 0907.5135 and 0801.4938. 
+\end{frame}
+
 \section{Some \LaTeX{} Examples}
+
+\begin{frame}{A Blank Frame}
+
+\end{frame}
 
 \subsection{Mathematics}
 
