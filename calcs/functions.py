@@ -310,14 +310,73 @@ def itera_lepis(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls_
 
     return mH_loc, tanb_loc
 
-def bsemi():
+def bsemi(mc,mb,m_B,m_D,p,d,mH,tanb):
     '''
         normalised branching ratio for B -> D tau nu
     '''
-    
-    sH = -(pow(tanb,2)/(1-(mc/mb)))*((pow(mb,2)-pow(md,2))/pow(mH,2))
-    R = a0 + a1*sH.real + a2*pow(sH,2)
+#    rV = (-3/1.1)/(-3.4)
+#    rS = (-6.6/1.89)/(-3.5)
+#    r0 = (1.89/1.1)/17
+#    rcb = 0.8/(1-(mc/mb))
+#    gs = (m_B*tanb/mH)**2
+#    NH = -rcb*gs.real*(1.038 + 0.076*rS) + (rcb**2)*(abs(gs)**2)*(0.186 + 0.017*rS)
+#    R = (1.126+ 0.037*rV + (r0**2)*(1.544 + 0.082*rS + NH))/(10 - 0.95*rV)
+    sH = -((tanb**2)/(1-(mc/mb)))*(((m_B**2)-(m_D**2))/(mH**2)) #0801.4938
+    dp2 = p - 1.19
+    dd = d - 0.46
+    a0 = 0.2970 + 0.1286*dp2 + 0.7379*dd
+    a1 = 0.1065 + 0.0546*dp2 + 0.4631*dd
+    a2 = 0.0178 + 0.0010*dp2 + 0.0077*dd
+    R = a0 + a1*sH.real + a2*abs(sH)**2
     return R
+
+def error_bsemi(mc,mc_err,mb,mb_err,m_B,m_B_err,m_D,m_D_err,p,p_err,d,d_err,mH,tanb):
+    '''
+        error propagation for R(D)
+    '''
+    rds = bsemi(mc,mb,m_B,m_D,p,d,mH,tanb)
+    err1_up = abs(bsemi(mc+mc_err[0],mb,m_B,m_D,p,d,mH,tanb)-rds)
+    err1_low = abs(bsemi(mc+mc_err[1],mb,m_B,m_D,p,d,mH,tanb)-rds)
+    err2_up = abs(bsemi(mc,mb+mb_err[0],m_B,m_D,p,d,mH,tanb)-rds)
+    err2_low = abs(bsemi(mc,mb+mb_err[1],m_B,m_D,p,d,mH,tanb)-rds)
+    err3_up = abs(bsemi(mc,mb,m_B+m_B_err[0],m_D,p,d,mH,tanb)-rds)
+    err3_low = abs(bsemi(mc,mb,m_B+m_B_err[1],m_D,p,d,mH,tanb)-rds)
+    err4_up = abs(bsemi(mc,mb,m_B,m_D+m_D_err[0],p,d,mH,tanb)-rds)
+    err4_low = abs(bsemi(mc,mb,m_B,m_D+m_D_err[1],p,d,mH,tanb)-rds)
+    err5_up = abs(bsemi(mc,mb,m_B,m_D,p+p_err[0],d,mH,tanb)-rds)
+    err5_low = abs(bsemi(mc,mb,m_B,m_D,p+p_err[1],d,mH,tanb)-rds)
+    err6_up = abs(bsemi(mc,mb,m_B,m_D,p,d+d_err[0],mH,tanb)-rds)
+    err6_low = abs(bsemi(mc,mb,m_B,m_D,p,d+d_err[1],mH,tanb)-rds)
+
+    upper = np.sqrt(err1_up**2 + err2_up**2 + err3_up**2 + err4_up**2 + err5_up**2 + err6_up**2)
+    lower = np.sqrt(err1_low**2 + err2_low**2 + err3_low**2 + err4_low**2 + err5_low**2 + err6_low**2)
+
+    return upper, lower
+
+def itera_rd(mc,mc_err,mb,mb_err,m_B,m_B_err,m_D,m_D_err,p,p_err,d,d_err,rd_exp,rd_exp_err):
+    '''
+        Iterate over mH, tanb space
+    '''
+    exp_branch_up,exp_branch_down = rd_exp+rd_exp_err[0],rd_exp+rd_exp_err[1]
+    log_mH_range = np.linspace(0,3.5,350)
+    log_tanb_range = np.linspace(-1,2,300)
+    mH_range = 10**log_mH_range
+    tanb_range = 10**log_tanb_range
+    mH_loc = []
+    tanb_loc = []
+    for i in mH_range:
+        for j in tanb_range:
+            expect_branch = bsemi(mc,mb,m_B,m_D,p,d,i,j)
+            print expect_branch
+            expect_error = error_bsemi(mc,mc_err,mb,mb_err,m_B,m_B_err,m_D,m_D_err,p,p_err,d,d_err,i,j)
+            expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
+            if (rd_exp >= expect_branch and expect_branch_up >= exp_branch_down) or (rd_exp <= expect_branch and expect_branch_down <= exp_branch_up):
+                i_log, j_log = np.log10(i), np.log10(j)
+                mH_loc = np.append(mH_loc,i_log)
+                tanb_loc = np.append(tanb_loc,j_log)
+
+    return mH_loc, tanb_loc
+
 
 def bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM):
     '''
@@ -550,8 +609,14 @@ def itera_firstglobal(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,
     log_tanb_range = np.linspace(-1,2,300)
     mH_range = 10**log_mH_range
     tanb_range = 10**log_tanb_range
-    mH_loc = []
-    tanb_loc = []
+    mHl_loc = []
+    tanbl_loc = []
+    mHb_loc = []
+    tanbb_loc = []
+    mHg_loc = []
+    tanbg_loc = []
+    mHa_loc = []
+    tanba_loc = []
     for i in mH_range:
         for j in tanb_range:
             bpls_the, dpls_the, dspls_the = bthe(mbpls,mtau,Vub,fbpls,tbpls,mu,mb,j,i),bthe(mdpls,mmu,Vcd,fdpls,tdpls,mc,md,j,i),bthe(mdspls,mtau,Vcs,fdspls,tdspls,mc,ms,j,i)
@@ -576,13 +641,27 @@ def itera_firstglobal(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,
             gam_err = error_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc_exp,gamc_exp_error,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM)
             gam_the_up,gam_the_down = gam_the+gam_err[0],gam_the-gam_err[1]
             gam_bool = ((gam_exp >= gam_the and gam_the_up >= gam_exp_down) or (gam_exp <= gam_the and gam_the_down <= gam_exp_up))
+            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool:
+                i_log, j_log = np.log10(i), np.log10(j)
+                mHl_loc = np.append(mHl_loc,i_log)
+                tanbl_loc = np.append(tanbl_loc,j_log)
+
+            if bmix_bool:
+                i_log, j_log = np.log10(i), np.log10(j)
+                mHb_loc = np.append(mHb_loc,i_log)
+                tanbb_loc = np.append(tanbb_loc,j_log)
+
+            if gam_bool:
+                i_log, j_log = np.log10(i), np.log10(j)
+                mHg_loc = np.append(mHg_loc,i_log)
+                tanbg_loc = np.append(tanbg_loc,j_log)
 
             if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
-                mH_loc = np.append(mH_loc,i_log)
-                tanb_loc = np.append(tanb_loc,j_log)
+                mHa_loc = np.append(mHa_loc,i_log)
+                tanba_loc = np.append(tanba_loc,j_log)
 
-    return mH_loc, tanb_loc
+    return mHl_loc, tanbl_loc, mHb_loc, tanbb_loc, mHg_loc, tanbg_loc, mHa_loc, tanba_loc
 
 
 def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls_exp_error,bmix_exp,bmix_exp_error,bmix_sm,bmix_sm_error,kpi_exp,kpi_exp_error,tkpi_exp,tkpi_exp_error,gams_exp,gams_exp_error,gamc_exp,gamc_exp_error,mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mK,mK_err,mpi,mpi_err,mB,mB_err,mtau,mtau_err,mmu,mmu_err,etaB,etaB_err,fBd,fBd_err,Bbd,Bbd_err,fbpls,fbpls_err,fdpls,fdpls_err,fdspls,fdspls_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,tbpls,tbpls_err,tdpls,tdpls_err,tdspls,tdspls_err,mu,mu_err,md,md_err,mc,mc_err,ms,ms_err,mb,mb_err,mt,mt_err,mtb,mtb_err,mW,mW_err,mWb,mWb_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamu,gamu_err,alp_EM,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,tbd,tbd_err,tbs,tbs_err,fBs,fBs_err,mbd,mbd_err,mbs,mbs_err,bs_e,bs_eerr,bd_e,bd_eerr):
@@ -605,8 +684,18 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
     log_tanb_range = np.linspace(-1,2,300)
     mH_range = 10**log_mH_range
     tanb_range = 10**log_tanb_range
-    mH_loc = []
-    tanb_loc = []
+    mHl_loc = []
+    tanbl_loc = []
+    mHb_loc = []
+    tanbb_loc = []
+    mHg_loc = []
+    tanbg_loc = []
+    mHa_loc = []
+    tanba_loc = []
+    mHmu_loc = []
+    tanbmu_loc = []
+    mHa2_loc = []
+    tanba2_loc = []
     for i in mH_range:
         for j in tanb_range:
             bpls_the, dpls_the, dspls_the = bthe(mbpls,mtau,Vub,fbpls,tbpls,mu,mb,j,i),bthe(mdpls,mmu,Vcd,fdpls,tdpls,mc,md,j,i),bthe(mdspls,mtau,Vcs,fdspls,tdspls,mc,ms,j,i)
@@ -637,13 +726,37 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
             expect_bd_up, expect_bd_down = expect_bd+expect_bd_uperr, expect_bd-expect_bd_downerr
             expect_bs_up, expect_bs_down = expect_bs+expect_bs_uperr, expect_bs-expect_bs_downerr
             bmu_bool = ((bd_e >= expect_bd and expect_bd_up >= bd_exp_down) or (bd_e <= expect_bd and expect_bd_down <= bd_exp_up)) and ((bs_e >= expect_bs and expect_bs_up >= bs_exp_down) or (bs_e <= expect_bs and expect_bs_down <= bs_exp_up))
+            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool:
+                i_log, j_log = np.log10(i), np.log10(j)
+                mHl_loc = np.append(mHl_loc,i_log)
+                tanbl_loc = np.append(tanbl_loc,j_log)
+
+            if bmix_bool:
+                i_log, j_log = np.log10(i), np.log10(j)
+                mHb_loc = np.append(mHb_loc,i_log)
+                tanbb_loc = np.append(tanbb_loc,j_log)
+
+            if gam_bool:
+                i_log, j_log = np.log10(i), np.log10(j)
+                mHg_loc = np.append(mHg_loc,i_log)
+                tanbg_loc = np.append(tanbg_loc,j_log)
+
+            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool:
+                i_log, j_log = np.log10(i), np.log10(j)
+                mHa_loc = np.append(mHa_loc,i_log)
+                tanba_loc = np.append(tanba_loc,j_log)
+            
+            if bmu_bool:
+                i_log, j_log = np.log10(i), np.log10(j)
+                mHmu_loc = np.append(mHmu_loc,i_log)
+                tanbmu_loc = np.append(tanbmu_loc,j_log)
 
             if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bmu_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
-                mH_loc = np.append(mH_loc,i_log)
-                tanb_loc = np.append(tanb_loc,j_log)
+                mHa2_loc = np.append(mHa2_loc,i_log)
+                tanba2_loc = np.append(tanba2_loc,j_log)
 
-    return mH_loc, tanb_loc
+    return mHl_loc, tanbl_loc, mHb_loc, tanbb_loc, mHg_loc, tanbg_loc, mHa_loc, tanba_loc, mHmu_loc, tanbmu_loc, mHa2_loc, tanba2_loc
 
 
 
