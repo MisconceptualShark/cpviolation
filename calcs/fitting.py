@@ -27,8 +27,6 @@ def chisq_simp(obs,the,sige,sigt):
         sig = np.sqrt(sige[i]**2 + sigt[i]**2)
         val = (obs[i]-the[i])/sig
         chi += val**2
-    if N > 2:
-        chi = chi/(N-2)
     return chi
 
 def chi_del(chi_min,chis,hs,ts):
@@ -38,7 +36,7 @@ def chi_del(chi_min,chis,hs,ts):
     delt_chis = chis-chi_min
     h_min,t_min = [],[]
     for i in range(len(hs)):
-        if delt_chis[i] <= 6.18:
+        if delt_chis[i] <= 5.99:
             h_min = np.append(h_min,hs[i])
             t_min = np.append(t_min,ts[i])
 

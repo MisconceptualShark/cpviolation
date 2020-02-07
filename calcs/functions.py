@@ -1,5 +1,6 @@
 from __future__ import division 
 import numpy as np
+from fitting import *
 
 g_gev = (1.1663787e-5)**2
 hbar_gev = 6.582119514e-25
@@ -745,7 +746,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
                 chi_ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t],[mid_b,mid_d,mid_ds,mid_k,mid_t],[sige_b,sige_d,sige_ds,sige_k,sige_t],[sig_b,sig_d,sig_ds,sig_k,sig_t])
                 chi_ls = np.append(chi_ls,chi_ij)
                 if chi_ij < chi_lprev:
-                    chi_lep = [chi_ij,i_log,j_log]
+                    chi_lep = [chi_ij/3,i_log,j_log]
                 chi_lprev = chi_ij
 
             if bmix_bool:
@@ -779,7 +780,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
                 chi_ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_g],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_g],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_g],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_g])
                 chi_1s = np.append(chi_1s,chi_ij)
                 if chi_ij < chi_1prev:
-                    chi_1 = [chi_ij,i_log,j_log]
+                    chi_1 = [chi_ij/5,i_log,j_log]
                 chi_1prev = chi_ij
            
             if bmu_bool:
@@ -801,7 +802,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
                 chi_ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_g,av_bs,av_bd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_g,mid_smu,mid_dmu],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_g,sige_bs,sige_bd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_g,sig_smu,sig_dmu])
                 chi_2s = np.append(chi_2s,chi_ij)
                 if chi_ij < chi_2prev:
-                    chi_2 = [chi_ij,i_log,j_log]
+                    chi_2 = [chi_ij/7,i_log,j_log]
                 chi_2prev = chi_ij
 
     return mHl_loc, tanbl_loc, mHb_loc, tanbb_loc, mHg_loc, tanbg_loc, mHa_loc, tanba_loc, mHmu_loc, tanbmu_loc, mHa2_loc, tanba2_loc, chi_ls, chi_lep, chi_ms, chi_mix, chi_gs, chi_gam, chi_1s, chi_1, chi_mus, chi_mu, chi_2s, chi_2
