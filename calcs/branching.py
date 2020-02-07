@@ -265,7 +265,7 @@ sm, sm_err = [3.1e-9,[0.7e-9,-0.7e-9]]
 ###################### GLOBAL CONSTRAINT
 
 #hl,tl,hb,tb,hg,tg,ha,ta = itera_firstglobal(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,branchs,branchs_err,branch_c,branchc_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,mBd,mBd_err,m_tau,m_tau_err,m_mu,m_mu_err,etaB,etaB_err,fBd,fBd_err,BBd,BBd_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt1,mt1_err,mt,mt_err,mW1,mW1_err,mW,mW_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,gamu,gamu_err,1/137,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err)
-hl,tl,hb,tb,hg,tg,ha,ta,hmu,tmu,hl2,tl2 = itera_global(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,branchs,branchs_err,branch_c,branchc_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,mBd,mBd_err,m_tau,m_tau_err,m_mu,m_mu_err,etaB,etaB_err,fBd,fBd_err,BBd,BBd_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt1,mt1_err,mt,mt_err,mW1,mW1_err,mW,mW_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,gamu,gamu_err,1/137,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,taubd,taubd_err,taubs,taubs_err,fBs,fBs_err,mbd,mbd_err,mbs,mbs_err,bs_exp,bs_exp_err,bd_exp,bd_exp_err)
+hl,tl,hb,tb,hg,tg,ha,ta,hmu,tmu,hl2,tl2,chi_ls,chi_l,chi_ms,chi_m,chi_gs,chi_g,chi_as,chi_a,chi_mus,chi_mu,chi_2s,chi_2 = itera_global(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,branchs,branchs_err,branch_c,branchc_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,mBd,mBd_err,m_tau,m_tau_err,m_mu,m_mu_err,etaB,etaB_err,fBd,fBd_err,BBd,BBd_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt1,mt1_err,mt,mt_err,mW1,mW1_err,mW,mW_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,gamu,gamu_err,1/137,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,taubd,taubd_err,taubs,taubs_err,fBs,fBs_err,mbd,mbd_err,mbs,mbs_err,bs_exp,bs_exp_err,bd_exp,bd_exp_err)
 
 print 10**min(ha)
 X = np.vstack((ta,ha)).T
@@ -298,8 +298,30 @@ plt.annotate('Global $\\to$',xy=(0.72,0.92),xycoords='axes fraction',fontsize=18
 plt.annotate('$\\Delta M_q$',xy=(0.8,0.35),xycoords='axes fraction',fontsize=18)
 plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.55,0.24),xycoords='axes fraction',fontsize=18,rotation=75)
 plt.annotate('$\\mathcal{R}(D)$',xy=(0.3,0.2),xycoords='axes fraction',fontsize=18,rotation=34)
-plt.show()
-#plt.savefig('global_cl_rd.png')
+#plt.show()
+plt.savefig('global_cl.png')
+
+hchi_leps, tchi_leps = chi_del(chi_l[0],chi_ls,hl,tl)
+hchi_mix, tchi_mix = chi_del(chi_m[0],chi_ms,hb,tb)
+hchi_gam, tchi_gam = chi_del(chi_g[0],chi_gs,hg,tg)
+hchi_mu, tchi_mu = chi_del(chi_mu[0],chi_mus,hmu,tmu)
+hchi_a, tchi_a = chi_del(chi_a[0],chi_as,ha,ta)
+hchi_2, tchi_2 = chi_del(chi_2[0],chi_2s,hl2,tl2)
+
+plt.figure(figsize=(8,6))
+plt.scatter(tchi_leps,hchi_leps,c='green')
+plt.scatter(tchi_mix,hchi_mix,c='cornflowerblue')
+plt.scatter(tchi_gam,hchi_gam,c='coral')
+plt.scatter(tchi_mu,hchi_mu,c='red')
+plt.scatter(tchi_a,hchi_a,c='orange')
+plt.scatter(tchi_2,hchi_2,c='darkorchid')
+plt.axis([-1,2,0,3.5])
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+#plt.show()
+plt.savefig('chisq.png')
 
 
 

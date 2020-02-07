@@ -671,31 +671,39 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
     bpls_exp_up,bpls_exp_down = bpls_exp+bpls_exp_error[0],bpls_exp+bpls_exp_error[1]
     dpls_exp_up,dpls_exp_down = dpls_exp+dpls_exp_error[0],dpls_exp+dpls_exp_error[1]
     dspls_exp_up,dspls_exp_down = dspls_exp+dspls_exp_error[0],dspls_exp+dspls_exp_error[1]
+    av_b,av_d,av_ds = 0.5*(bpls_exp_up+bpls_exp_down),0.5*(dpls_exp_up+dpls_exp_down),0.5*(dspls_exp_up+dspls_exp_down)
+    sige_b,sige_d,sige_ds = (bpls_exp_up-av_b),(dpls_exp_up-av_d),(dspls_exp_up-av_ds)
+
     bmix_exp_up,bmix_exp_down = bmix_exp+bmix_exp_error[0],bmix_exp+bmix_exp_error[1]
+    av_bmix = 0.5*(bmix_exp_up+bmix_exp_down)
+    sige_bmix = (bmix_exp_up-av_bmix)
+
     kpi_exp_up,kpi_exp_down = kpi_exp+kpi_exp_error[0],kpi_exp+kpi_exp_error[1]
     tkpi_exp_up,tkpi_exp_down = tkpi_exp+tkpi_exp_error[0],tkpi_exp+tkpi_exp_error[1]
+    av_k,av_t = 0.5*(kpi_exp_up+kpi_exp_down),0.5*(tkpi_exp_up+tkpi_exp_down)
+    sige_k,sige_t = (kpi_exp_up-av_k),(tkpi_exp_up-av_t)
+
     gam_exp = gams_exp/gamc_exp
     xgam = gam_exp*np.sqrt((gamc_exp_error[0]/gamc_exp)**2 + (gams_exp_error[0]/gams_exp)**2)
     ygam = gam_exp*np.sqrt((gamc_exp_error[1]/gamc_exp)**2 + (gams_exp_error[1]/gams_exp)**2)
     gam_exp_up,gam_exp_down = gam_exp+xgam,gam_exp-ygam
+    av_g = 0.5*(gam_exp_up+gam_exp_down)
+    sige_g = (gam_exp_up-av_g)
+
     bs_exp_up,bs_exp_down = bs_e+bs_eerr[0],bs_e+bs_eerr[1]
     bd_exp_up,bd_exp_down = bd_e+bd_eerr[0],bd_e+bd_eerr[1]
+    av_bs,av_bd = 0.5*(bs_exp_up+bs_exp_down),0.5*(bd_exp_up+bd_exp_down)
+    sige_bs,sige_bd = (bs_exp_up-av_bs),(bd_exp_up-av_bd)
+
+    chi_lprev,chi_mprev,chi_gprev,chi_muprev,chi_1prev,chi_2prev=1000,1000,1000,1000,1000,1000
+    chi_ls,chi_ms,chi_gs,chi_mus,chi_1s,chi_2s=[],[],[],[],[],[]
+
     log_mH_range = np.linspace(0,3.5,350)
     log_tanb_range = np.linspace(-1,2,300)
     mH_range = 10**log_mH_range
     tanb_range = 10**log_tanb_range
-    mHl_loc = []
-    tanbl_loc = []
-    mHb_loc = []
-    tanbb_loc = []
-    mHg_loc = []
-    tanbg_loc = []
-    mHa_loc = []
-    tanba_loc = []
-    mHmu_loc = []
-    tanbmu_loc = []
-    mHa2_loc = []
-    tanba2_loc = []
+    mHl_loc,mHb_loc,mHg_loc,mHa_loc,mHmu_loc,mHa2_loc = [],[],[],[],[],[]
+    tanbl_loc,tanbb_loc,tanbg_loc,tanba_loc,tanbmu_loc,tanba2_loc = [],[],[],[],[],[]
     for i in mH_range:
         for j in tanb_range:
             bpls_the, dpls_the, dspls_the = bthe(mbpls,mtau,Vub,fbpls,tbpls,mu,mb,j,i),bthe(mdpls,mmu,Vcd,fdpls,tdpls,mc,md,j,i),bthe(mdspls,mtau,Vcs,fdspls,tdspls,mc,ms,j,i)
@@ -730,33 +738,73 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHl_loc = np.append(mHl_loc,i_log)
                 tanbl_loc = np.append(tanbl_loc,j_log)
+                mid_b,mid_d,mid_ds=0.5*(bpls_the_up+bpls_the_down),0.5*(dpls_the_up+dpls_the_down),0.5*(dspls_the_up+dspls_the_down)
+                mid_k,mid_t=0.5*(kpi_the_up+kpi_the_down),0.5*(tkpi_the_up+tkpi_the_down)
+                sig_b,sig_d,sig_ds=(bpls_the_up-mid_b),(dpls_the_up-mid_d),(dspls_the_up-mid_ds)
+                sig_k,sig_t=(kpi_the_up-mid_k),(tkpi_the_up-mid_t)
+                chi_ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t],[mid_b,mid_d,mid_ds,mid_k,mid_t],[sige_b,sige_d,sige_ds,sige_k,sige_t],[sig_b,sig_d,sig_ds,sig_k,sig_t])
+                chi_ls = np.append(chi_ls,chi_ij)
+                if chi_ij < chi_lprev:
+                    chi_lep = [chi_ij,i_log,j_log]
+                chi_lprev = chi_ij
 
             if bmix_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHb_loc = np.append(mHb_loc,i_log)
                 tanbb_loc = np.append(tanbb_loc,j_log)
+                mid_bm=0.5*(bmix_the_up+bmix_the_down)
+                sig_bm=(bmix_the_up-mid_bm)
+                chi_ij = chisq_simp([av_bmix],[mid_bm],[sige_bmix],[sig_bm])
+                chi_ms = np.append(chi_ms,chi_ij)
+                if chi_ij < chi_mprev:
+                    chi_mix = [chi_ij,i_log,j_log]
+                chi_mprev = chi_ij
 
             if gam_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHg_loc = np.append(mHg_loc,i_log)
                 tanbg_loc = np.append(tanbg_loc,j_log)
+                mid_g=0.5*(gam_the_up+gam_the_down)
+                sig_g=(gam_the_up-mid_g)
+                chi_ij = chisq_simp([av_g],[mid_g],[sige_g],[sig_g])
+                chi_gs = np.append(chi_gs,chi_ij)
+                if chi_ij < chi_gprev:
+                    chi_gam = [chi_ij,i_log,j_log]
+                chi_gprev = chi_ij
 
             if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHa_loc = np.append(mHa_loc,i_log)
                 tanba_loc = np.append(tanba_loc,j_log)
-            
+                chi_ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_g],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_g],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_g],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_g])
+                chi_1s = np.append(chi_1s,chi_ij)
+                if chi_ij < chi_1prev:
+                    chi_1 = [chi_ij,i_log,j_log]
+                chi_1prev = chi_ij
+           
             if bmu_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHmu_loc = np.append(mHmu_loc,i_log)
                 tanbmu_loc = np.append(tanbmu_loc,j_log)
+                mid_smu,mid_dmu=0.5*(expect_bs_up+expect_bs_down),0.5*(expect_bd_up+expect_bs_down)
+                sig_smu,sig_dmu=(expect_bs_up-mid_smu),(expect_bd_up-mid_dmu)
+                chi_ij = chisq_simp([av_bs,av_bd],[mid_smu,mid_dmu],[sige_bs,sige_bd],[sig_smu,sig_dmu])
+                chi_mus = np.append(chi_mus,chi_ij)
+                if chi_ij < chi_muprev:
+                    chi_mu = [chi_ij,i_log,j_log]
+                chi_muprev = chi_ij
 
             if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bmu_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHa2_loc = np.append(mHa2_loc,i_log)
                 tanba2_loc = np.append(tanba2_loc,j_log)
+                chi_ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_g,av_bs,av_bd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_g,mid_smu,mid_dmu],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_g,sige_bs,sige_bd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_g,sig_smu,sig_dmu])
+                chi_2s = np.append(chi_2s,chi_ij)
+                if chi_ij < chi_2prev:
+                    chi_2 = [chi_ij,i_log,j_log]
+                chi_2prev = chi_ij
 
-    return mHl_loc, tanbl_loc, mHb_loc, tanbb_loc, mHg_loc, tanbg_loc, mHa_loc, tanba_loc, mHmu_loc, tanbmu_loc, mHa2_loc, tanba2_loc
+    return mHl_loc, tanbl_loc, mHb_loc, tanbb_loc, mHg_loc, tanbg_loc, mHa_loc, tanba_loc, mHmu_loc, tanbmu_loc, mHa2_loc, tanba2_loc, chi_ls, chi_lep, chi_ms, chi_mix, chi_gs, chi_gam, chi_1s, chi_1, chi_mus, chi_mu, chi_2s, chi_2
 
 
 
