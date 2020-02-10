@@ -78,8 +78,8 @@ def chi_del2(chi_min,chis):
 #    if len(points) < 4:
 #        # When you have a triangle, there is no sense
 #        # in computing an alpha shape.
-#        return geometry.MultiPoint(list(points))
-#           .convex_hull
+#        return geometry.MultiPoint(list(points)).convex_hull
+#
 #    def add_edge(edges, edge_points, coords, i, j):
 #        """
 #        Add a line between the i-th and j-th points,
@@ -90,8 +90,7 @@ def chi_del2(chi_min,chis):
 #                return
 #            edges.add( (i, j) )
 #            edge_points.append(coords[ [i, j] ])
-#    coords = np.array([point.coords[0]
-#                       for point in points])
+#    coords = np.array([point.coords[0] for point in points])
 #    tri = Delaunay(coords)
 #    edges = set()
 #    edge_points = []
@@ -120,11 +119,21 @@ def chi_del2(chi_min,chis):
 #    m = geometry.MultiLineString(edge_points)
 #    triangles = list(polygonize(m))
 #    return cascaded_union(triangles), edge_points
-#concave_hull, edge_points = alpha_shape(points,
-#                                        alpha=1.87)
-#_ = plot_polygon(concave_hull)
-#_ = pl.plot(x,y,'o', color='#f16824')
-
+##concave_hull, edge_points = alpha_shape(points, alpha=1.87)
+##_ = plot_polygon(concave_hull)
+##_ = pl.plot(x,y,'o', color='#f16824')
+#
+#from descartes import PolygonPatch
+#def plot_polygon(polygon):
+##    fig = plt.figure(figsize=(10,10))
+##    ax = fig.add_subplot(111)
+#    margin = .3
+#    x_min, y_min, x_max, y_max = polygon.bounds
+#    ax.set_xlim([x_min-margin, x_max+margin])
+#    ax.set_ylim([y_min-margin, y_max+margin])
+#    patch = PolygonPatch(polygon, fc='#999999', ec='#000000', fill=True, zorder=-1)
+##    ax.add_patch(patch)
+#    return patch #fig
 
 
 
