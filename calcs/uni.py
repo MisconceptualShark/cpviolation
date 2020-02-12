@@ -11,10 +11,11 @@ Vtd,Vtd_err = [0.008545,[0.000075,-0.000157]]
 Vts,Vts_err = [0.04090,[0.00026,-0.00076]]
 Vtb,Vtb_err = [0.999127,[0.000032,-0.000012]]
 
-print (1-(Vud**2 + Vus**2 + Vub**2))
-print (1-(Vcd**2 + Vcs**2 + Vcb**2))
+print "|Vub'| = ",np.sqrt(1-(Vud**2 + Vus**2 + Vub**2))
+print "|Vcb'| = ",np.sqrt(abs(1-(Vcd**2 + Vcs**2 + Vcb**2)))
 
-print (1-(Vub**2 + Vcb**2 + Vtb**2))
+print "|Vtb'| = ",np.sqrt(abs(1-(Vub**2 + Vcb**2 + Vtb**2)))
 
-print (1-(Vud**2 + Vcd**2))
-print (1-(Vus**2 + Vcs**2))
+print "Vtd^2 + Vt'd^2 = ",(1-(Vud**2 + Vcd**2))
+print "Vts^2 + Vt's^2 = ",(1-(Vus**2 + Vcs**2))
+
