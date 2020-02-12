@@ -116,7 +116,7 @@ rd_exp, rd_exp_err = [0.34,[0.03,-0.03]] #1909.12524
 #plt.savefig('kpi.png')
 
 # R(D) and ? R(D*)
-hrd1,trd1 = itera_rd(m_c,m_c_err,m_b,m_b_err,m_Brd,m_Brd_err,m_dplus,m_dplus_err,rho,rho_err,delt_rd,delt_rd_err,rd_exp,rd_exp_err)
+hrd,trd,chi_rds,chi_r = itera_rd(m_c,m_c_err,m_b,m_b_err,m_Brd,m_Brd_err,m_dplus,m_dplus_err,rho,rho_err,delt_rd,delt_rd_err,rd_exp,rd_exp_err)
 #plt.figure(figsize=(8,6))
 #plt.scatter(trd,hrd,c='cadetblue',marker=',')
 #plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
@@ -267,48 +267,48 @@ sm, sm_err = [3.1e-9,[0.7e-9,-0.7e-9]]
 #hl,tl,hb,tb,hg,tg,ha,ta = itera_firstglobal(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,branchs,branchs_err,branch_c,branchc_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,mBd,mBd_err,m_tau,m_tau_err,m_mu,m_mu_err,etaB,etaB_err,fBd,fBd_err,BBd,BBd_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt1,mt1_err,mt,mt_err,mW1,mW1_err,mW,mW_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,gamu,gamu_err,1/137,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err)
 hl,tl,hb,tb,hg,tg,ha,ta,hmu,tmu,hrd,trd,hl2,tl2,chi_ls,chi_ms,chi_gs,chi_as,chi_mus,chi_rds,chi_2s,chi_l,chi_m,chi_g,chi_a,chi_mu,chi_r,chi_2 = itera_global(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,branchs,branchs_err,branch_c,branchc_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,mBd,mBd_err,m_tau,m_tau_err,m_mu,m_mu_err,etaB,etaB_err,fBd,fBd_err,BBd,BBd_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt1,mt1_err,mt,mt_err,mW1,mW1_err,mW,mW_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,gamu,gamu_err,1/137,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,taubd,taubd_err,taubs,taubs_err,fBs,fBs_err,mbd,mbd_err,mbs,mbs_err,bs_exp,bs_exp_err,bd_exp,bd_exp_err,mBs,mBs_err,BBs,BBs_err,delt_ms,delt_ms_err,delt_ms_expect,delt_ms_err_exp,m_Brd,m_Brd_err,rho,rho_err,delt_rd,delt_rd_err,rd_exp,rd_exp_err)
 
-print 10**min(ha)
-X = np.vstack((ta,ha)).T
-matr = cov_mat(X.T)
-print matr
+#print 10**min(ha)
+#X = np.vstack((ta,ha)).T
+#matr = cov_mat(X.T)
+#print matr
+#
+#print 10**min(hl2)
+#Y = np.vstack((tl2,hl2)).T
+#matr2 = cov_mat(Y.T)
+#print matr2
 
-print 10**min(hl2)
-Y = np.vstack((tl2,hl2)).T
-matr2 = cov_mat(Y.T)
-print matr2
-
-plt.figure(figsize=(8,6))
-plt.scatter(tl,hl,c='green')
-plt.scatter(tb,hb,c='cornflowerblue')
-plt.scatter(tg,hg,c='coral')
-plt.scatter(ta,ha,c='orange')
-plt.scatter(tmu,hmu,c='red')
-plt.scatter(tl2,hl2,c='darkorchid')
-plt.scatter(trd,hrd,c='cadetblue')
-plt.scatter(trd1,hrd1,c='cyan')
-plt.axis([-1,2,0,3.5])
-plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-plt.title('Global Fit',fontsize=18)
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
-plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.05,0.5),xycoords='axes fraction',fontsize=18)
-plt.annotate('$b\\to s\\gamma$',xy=(0.20,0.85),xycoords='axes fraction',fontsize=18)
-plt.annotate('Minimal Global',xy=(0.48,0.85),xycoords='axes fraction',fontsize=18)
-plt.annotate('Global $\\to$',xy=(0.72,0.92),xycoords='axes fraction',fontsize=18)
-plt.annotate('$\\Delta M_q$',xy=(0.8,0.35),xycoords='axes fraction',fontsize=18)
-plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.55,0.24),xycoords='axes fraction',fontsize=18,rotation=75)
-plt.annotate('$\\mathcal{R}(D)$',xy=(0.3,0.2),xycoords='axes fraction',fontsize=18,rotation=34)
+#plt.figure(figsize=(8,6))
+#plt.scatter(tmu,hmu,c='red')
+#plt.scatter(trd,hrd,c='cadetblue')
+#plt.scatter(tl,hl,c='green')
+#plt.scatter(tb,hb,c='cornflowerblue')
+#plt.scatter(tg,hg,c='coral')
+#plt.scatter(ta,ha,c='orange')
+#plt.scatter(tl2,hl2,c='darkorchid')
+#plt.axis([-1,2,0,3.5])
+#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+#plt.title('Global Fit',fontsize=18)
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+#plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.05,0.5),xycoords='axes fraction',fontsize=18)
+#plt.annotate('$b\\to s\\gamma$',xy=(0.20,0.85),xycoords='axes fraction',fontsize=18)
+#plt.annotate('Minimal Global',xy=(0.48,0.85),xycoords='axes fraction',fontsize=18)
+#plt.annotate('Global $\\to$',xy=(0.72,0.92),xycoords='axes fraction',fontsize=18)
+#plt.annotate('$\\Delta M_q$',xy=(0.8,0.35),xycoords='axes fraction',fontsize=18)
+#plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.55,0.24),xycoords='axes fraction',fontsize=18,rotation=75)
+#plt.annotate('$\\mathcal{R}(D)$',xy=(0.3,0.2),xycoords='axes fraction',fontsize=18,rotation=34)
 #plt.show()
 #plt.savefig('global_cl.png')
 
-hchi_leps, tchi_leps = chi_del(chi_l,chi_ls,hl,tl)
-hchi_mix, tchi_mix = chi_del(chi_m,chi_ms,hb,tb)
-hchi_gam, tchi_gam = chi_del(chi_g,chi_gs,hg,tg)
-hchi_mu, tchi_mu = chi_del(chi_mu,chi_mus,hmu,tmu)
-hchi_rd, tchi_rd = chi_del(chi_r,chi_rds,hrd,trd)
-hchi_a, tchi_a = chi_del(chi_a,chi_as,ha,ta)
-hchi_2, tchi_2 = chi_del(chi_2,chi_2s,hl2,tl2)
+m1 = 2.30
+hchi_leps, tchi_leps = chi_del(chi_l,chi_ls,hl,tl,m1)
+hchi_mix, tchi_mix = chi_del(chi_m,chi_ms,hb,tb,m1)
+hchi_gam, tchi_gam = chi_del(chi_g,chi_gs,hg,tg,m1)
+hchi_mu, tchi_mu = chi_del(chi_mu,chi_mus,hmu,tmu,m1)
+hchi_rd, tchi_rd = chi_del(chi_r,chi_rds,hrd,trd,m1)
+hchi_a, tchi_a = chi_del(chi_a,chi_as,ha,ta,m1)
+hchi_2, tchi_2 = chi_del(chi_2,chi_2s,hl2,tl2,m1)
 #hchi_leps, tchi_leps = chi_del2(chi_l,chi_ls)
 #hchi_mix, tchi_mix = chi_del2(chi_m,chi_ms)
 #hchi_gam, tchi_gam = chi_del2(chi_g,chi_gs)
@@ -318,33 +318,28 @@ hchi_2, tchi_2 = chi_del(chi_2,chi_2s,hl2,tl2)
 #hchi_2, tchi_2 = chi_del2(chi_2,chi_2s)
 
 print 10**min(hchi_a)
-print 10**min(hchi_2)
+if len(hchi_2) > 0:
+    print 10**min(hchi_2)
 
 plt.figure(figsize=(8,6))
-plt.scatter(tchi_leps,hchi_leps,c='lime',alpha=0.3)
-plt.scatter(tchi_mix,hchi_mix,c='cyan',alpha=0.3)
-plt.scatter(tchi_gam,hchi_gam,c='salmon',alpha=0.3)
-plt.scatter(tchi_a,hchi_a,c='moccasin',alpha=0.3)
-plt.scatter(tchi_mu,hchi_mu,c='lightcoral',alpha=0.3)
-plt.scatter(tchi_rd,hchi_rd,c='powderblue',alpha=0.3)
-plt.scatter(tchi_2,hchi_2,c='plum',alpha=0.3)
+plt.scatter(tchi_leps,hchi_leps,c='green')#,alpha=0.3)
+plt.scatter(tchi_mix,hchi_mix,c='cornflowerblue')#,alpha=0.3)
+plt.scatter(tchi_gam,hchi_gam,c='coral')#,alpha=0.3)
+plt.scatter(tchi_a,hchi_a,c='orange')#,alpha=0.3)
+plt.scatter(tchi_mu,hchi_mu,c='red')#,alpha=0.3)
+plt.scatter(tchi_rd,hchi_rd,c='cadetblue')#,alpha=0.3)
+plt.scatter(tchi_2,hchi_2,c='darkorchid')#,alpha=0.3)
 plt.axis([-1,2,0,3.5])
 plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
+plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.05,0.5),xycoords='axes fraction',fontsize=18)
+plt.annotate('$\\Delta M_q$',xy=(0.85,0.35),xycoords='axes fraction',fontsize=18)
+plt.annotate('$\\mathcal{R}(D)$',xy=(0.3,0.2),xycoords='axes fraction',fontsize=18,rotation=34)
+plt.annotate('$b\\to s\\gamma$',xy=(0.20,0.85),xycoords='axes fraction',fontsize=18)
+plt.annotate('Minimal Global',xy=(0.48,0.85),xycoords='axes fraction',fontsize=18)
+plt.annotate('Global $\\to$',xy=(0.72,0.92),xycoords='axes fraction',fontsize=18)
+plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.55,0.24),xycoords='axes fraction',fontsize=18,rotation=75)
 plt.show()
-#plt.savefig('chisq.png')
-
-
-
-
-
-
-
-
-
-
-
-
-
+#plt.savefig('glob_95cl.png')

@@ -34,14 +34,14 @@ def chisq_simp(obs,the,sige,sigt):
         chi += val**2
     return chi
 
-def chi_del(chi_min,chis,hs,ts):
+def chi_del(chi_min,chis,hs,ts,parm):
     '''
         computes delta chisq, for several CLs? so 2 sigma so 95.45 just now
     '''
     delt_chis = (chis-chi_min)
     h_min,t_min = [],[]
     for i in range(len(hs)):
-        if delt_chis[i] <= 5.99:
+        if delt_chis[i] <= parm:
             h_min = np.append(h_min,hs[i])
             t_min = np.append(t_min,ts[i])
 
