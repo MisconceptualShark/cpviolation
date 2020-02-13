@@ -496,23 +496,27 @@ def iter_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,b
 
     return mH_loc, tanb_loc
 
-def bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH):
+#def bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH):
+def bmumu(mt,taubd,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH):
     '''
         Branching ratio of b(s/d) to mu mu
         tau in ps, f in MeV, mt in GeV
     '''
-    Yt = 0.997*(mt/166)**1.55
-    r = (mH/mt)**2
+    
+    pref = (g_gev**2)*(mW**4)*(sW**4)/(32*np.pi**5)
+    b1 = ((Vtb*Vts)**2)*frij*mbs**f
+#    Yt = 0.997*(mt/166)**1.55
+#    r = (mH/mt)**2
+#
+#    bd1 = (3e-7)*(taubd/1.54)*pow((fbd/210),2)*pow((Vtd/0.008),2)*pow((mmu/mbd),2)*np.sqrt(1-((4*mmu**2)/(mbd**2)))
+#    bd2 = (1-((4*mmu**2)/(mbd**2)))*pow(((mbd**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)),2) + pow((((mbd**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)))-Yt,2) 
+#    bd = bd1*bd2
+#
+#    bs1 = (1.1e-5)*(taubs/1.54)*pow((fbs/245),2)*pow((Vts/0.040),2)*pow((mmu/mbs),2)*np.sqrt(1-((4*mmu**2)/(mbs**2)))
+#    bs2 = (1-((4*mmu**2)/(mbs**2)))*pow(((mbs**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)),2) + pow(((((mbs**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)))-Yt),2) 
+#    bs = bs1*bs2
 
-    bd1 = (3e-7)*(taubd/1.54)*pow((fbd/210),2)*pow((Vtd/0.008),2)*pow((mmu/mbd),2)*np.sqrt(1-((4*mmu**2)/(mbd**2)))
-    bd2 = (1-((4*mmu**2)/(mbd**2)))*pow(((mbd**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)),2) + pow((((mbd**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)))-Yt,2) 
-    bd = bd1*bd2
-
-    bs1 = (1.1e-5)*(taubs/1.54)*pow((fbs/245),2)*pow((Vts/0.040),2)*pow((mmu/mbs),2)*np.sqrt(1-((4*mmu**2)/(mbs**2)))
-    bs2 = (1-((4*mmu**2)/(mbs**2)))*pow(((mbs**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)),2) + pow(((((mbs**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)))-Yt),2) 
-    bs = bs1*bs2
-
-    return bd, bs
+    return bs
 
 def error_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,tanb,mH):
     '''
