@@ -1,11 +1,11 @@
 from __future__ import division
 import numpy as np
 import matplotlib.pyplot as plt
-from shapely.ops import cascaded_union,polygonize
-from scipy.spatial import Delaunay
-import shapely.geometry as geometry
-import pylab as pl
-import math
+#from shapely.ops import cascaded_union,polygonize
+#from scipy.spatial import Delaunay
+#import shapely.geometry as geometry
+#import pylab as pl
+#import math
 
 def exp_like(err,x,xt):
     like = 1

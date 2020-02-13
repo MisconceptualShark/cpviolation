@@ -11,11 +11,39 @@ Vtd,Vtd_err = [0.008545,[0.000075,-0.000157]]
 Vts,Vts_err = [0.04090,[0.00026,-0.00076]]
 Vtb,Vtb_err = [0.999127,[0.000032,-0.000012]]
 
-print "|Vub'| = ",np.sqrt(1-(Vud**2 + Vus**2 + Vub**2))
-print "|Vcb'| = ",np.sqrt(abs(1-(Vcd**2 + Vcs**2 + Vcb**2)))
+def v2(vs):
+    v = 1
+    for i in range(len(vs)):
+        v -= vs[i]**2
+    return v
 
-print "|Vtb'| = ",np.sqrt(abs(1-(Vub**2 + Vcb**2 + Vtb**2)))
+def Vp2(vs,vse):
+    v = v2(vs)
+    u,l=0,0
+    for i in range(len(vs)):
+        u += pow((2*vse[i][0])/vs[i],2)
+        l += pow((2*vse[i][1])/vs[i],2)
+#        vs[i] += vse[i][0]
+#        u += abs(v2(vs)-v)**2
+#        vs[i] += (vse[i][1]-vse[i][0])
+#        l += abs(v2(vs)-v)**2
+#        vs[i] -= vse[i][1]
+    u = v*np.sqrt(u)
+    l = v*np.sqrt(l)
+    return v, u, l
 
-print "Vtd^2 + Vt'd^2 = ",(1-(Vud**2 + Vcd**2))
-print "Vts^2 + Vt's^2 = ",(1-(Vus**2 + Vcs**2))
+
+Vubp2 = Vp2([Vud,Vus,Vub],[Vud_err,Vus_err,Vub_err])
+print "|Vub'|^2 =(",Vubp2[0]*1e7,"+",Vubp2[1]*1e7,"-",Vubp2[2]*1e7,")* e-7"
+
+Vcbp2 = Vp2([Vcd,Vcs,Vcb],[Vcd_err,Vcs_err,Vcb_err])
+print "|Vcb'|^2 =(",Vcbp2[0]*1e7,"+",Vcbp2[1]*1e7,"-",Vcbp2[2]*1e7,")* e-7"
+
+Vtbp2 = Vp2([Vub,Vcb,Vtb],[Vub_err,Vcb_err,Vtb_err])
+print "|Vt'b|^2 =(",Vtbp2[0]*1e7,"+",Vtbp2[1]*1e7,"-",Vtbp2[2]*1e7,")* e-7"
+
+Vtdp2 = Vp2([Vud,Vcd],[Vud_err,Vcd_err])
+Vtsp2 = Vp2([Vus,Vcs],[Vus_err,Vcs_err])
+print "Vtd^2 + Vt'd^2 =(",Vtdp2[0]*1e5,"+",Vtdp2[1]*1e5,"-",Vtdp2[2]*1e5,")* e-5"
+print "Vts^2 + Vt's^2 =(",Vtsp2[0]*1e3,"+",Vtsp2[1]*1e3,"-",Vtsp2[2]*1e3,")* e-3"
 

@@ -301,7 +301,7 @@ hl,tl,hb,tb,hg,tg,ha,ta,hmu,tmu,hrd,trd,hl2,tl2,chi_ls,chi_ms,chi_gs,chi_as,chi_
 #plt.show()
 #plt.savefig('global_cl.png')
 
-m1 = 2.30
+m1 = 4.61
 hchi_leps, tchi_leps = chi_del(chi_l,chi_ls,hl,tl,m1)
 hchi_mix, tchi_mix = chi_del(chi_m,chi_ms,hb,tb,m1)
 hchi_gam, tchi_gam = chi_del(chi_g,chi_gs,hg,tg,m1)
@@ -322,12 +322,12 @@ if len(hchi_2) > 0:
     print 10**min(hchi_2)
 
 plt.figure(figsize=(8,6))
-plt.scatter(tchi_leps,hchi_leps,c='green')#,alpha=0.3)
 plt.scatter(tchi_mix,hchi_mix,c='cornflowerblue')#,alpha=0.3)
-plt.scatter(tchi_gam,hchi_gam,c='coral')#,alpha=0.3)
-plt.scatter(tchi_a,hchi_a,c='orange')#,alpha=0.3)
 plt.scatter(tchi_mu,hchi_mu,c='red')#,alpha=0.3)
 plt.scatter(tchi_rd,hchi_rd,c='cadetblue')#,alpha=0.3)
+plt.scatter(tchi_leps,hchi_leps,c='green')#,alpha=0.3)
+plt.scatter(tchi_gam,hchi_gam,c='coral')#,alpha=0.3)
+plt.scatter(tchi_a,hchi_a,c='orange')#,alpha=0.3)
 plt.scatter(tchi_2,hchi_2,c='darkorchid')#,alpha=0.3)
 plt.axis([-1,2,0,3.5])
 plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
@@ -342,4 +342,4 @@ plt.annotate('Minimal Global',xy=(0.48,0.85),xycoords='axes fraction',fontsize=1
 plt.annotate('Global $\\to$',xy=(0.72,0.92),xycoords='axes fraction',fontsize=18)
 plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.55,0.24),xycoords='axes fraction',fontsize=18,rotation=75)
 plt.show()
-#plt.savefig('glob_95cl.png')
+plt.savefig('testing.png')

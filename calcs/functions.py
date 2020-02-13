@@ -358,7 +358,7 @@ def itera_rd(mc,mc_err,mb,mb_err,m_B,m_B_err,m_D,m_D_err,p,p_err,d,d_err,rd_exp,
     '''
         Iterate over mH, tanb space
     '''
-    sigma=1
+    sigma=3
     exp_branch_up,exp_branch_down = rd_exp+rd_exp_err[0],rd_exp+rd_exp_err[1]
     av_rd = 0.5*(exp_branch_up+exp_branch_down)
     sige_rd = sigma*(exp_branch_up-av_rd)
@@ -681,7 +681,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
     '''
         Iterate of mH,tanb space for everything
     '''
-    sigma = 1
+    sigma = 1.64
 
     bpls_exp_up,bpls_exp_down = bpls_exp+bpls_exp_error[0],bpls_exp+bpls_exp_error[1]
     dpls_exp_up,dpls_exp_down = dpls_exp+dpls_exp_error[0],dpls_exp+dpls_exp_error[1]
@@ -828,7 +828,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
                 if chi_rij < chi_rmin:
                     chi_rmin = chi_rij
 
-            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool:# and rd_bool:
+            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool and rd_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHa2_loc = np.append(mHa2_loc,i_log)
                 tanba2_loc = np.append(tanba2_loc,j_log)
