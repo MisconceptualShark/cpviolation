@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from functions import *
 from fitting import *
+from ckm_2hdm import *
 
 g_gev = (1.1663787e-5)**2
 hbar_gev = 6.582119514e-25
@@ -34,6 +35,10 @@ Vcd, Vcd_err = [0.224701,[0.000254,-0.000058]]
 Vcs, Vcs_err = [0.973539,[0.000038,-0.000060]]
 Vus, Vus_err = [0.224834,[0.000252,-0.000059]]
 Vud, Vud_err = [0.974390,[0.000014,-0.000058]]
+Vts, Vts_err = [0.04090,[0.00026,-0.00076]]
+Vtd, Vtd_err = [0.008545,[0.000075,-0.000157]]
+Vtb, Vtb_err = [0.999127,[0.000032,-0.000012]]
+Vcb, Vcb_err = [0.04162,[0.00026,-0.00080]]
 
 f_bplus, f_bplus_err = [0.190,[0.0013,-0.0013]]
 f_dplus, f_dplus_err = [0.212,[0.0007,-0.0007]]
@@ -59,48 +64,53 @@ kpitau_exp, kpitau_exp_err = [6.438e-2,[9.384e-4,-9.384e-4]]
 rd08_exp, rd08_exp_err = [0.416,[0.128,-0.128]] #08
 rd_exp, rd_exp_err = [0.34,[0.03,-0.03]] #1909.12524
 
+
 # B+ -> tau+ nu
+#mH_bplus, tanb_bplus, vub_loc = ckmel(Vub,Vub_err,m_u,m_u_err,m_b,m_b_err,m_bplus,m_bplus_err,m_tau,m_tau_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,bplus_exp,bplus_err_exp)
 #mH_bplus, tanb_bplus = itera(m_bplus,m_bplus_err,m_tau,m_tau_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,m_u,m_u_err,m_b,m_b_err,bplus_exp,bplus_err_exp)
 #
 #plt.figure(figsize=(8,6))
 #plt.scatter(tanb_bplus,mH_bplus,c='green')
 #plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 #plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('$B^+\\to\\tau^+\\nu$',fontsize=18)
+#plt.title('$B^+\\to\\tau^+\\nu,\; V_{ub}$',fontsize=18)
 #plt.xticks(fontsize=18)
 #plt.yticks(fontsize=18)
 #plt.axis([-1,2,0,3.5])
 ##plt.show()
-#plt.savefig('btau.png')
+#plt.savefig('vbtau.png')
 
 # D+ -> mu+ nu
+#mH_dplus, tanb_dplus, vud_loc = ckmel(Vcd,Vcd_err,m_c,m_c_err,m_d,m_d_err,m_dplus,m_dplus_err,m_mu,m_mu_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,dplus_exp,dplus_err_exp)
 #mH_dplus, tanb_dplus = itera(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,m_c,m_c_err,m_d,m_d_err,dplus_exp,dplus_err_exp)
 #
 #plt.figure(figsize=(8,6))
 #plt.scatter(tanb_dplus,mH_dplus,c='green')
 #plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 #plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('$D^+\\to\\mu^+\\nu$',fontsize=18)
+#plt.title('$D^+\\to\\mu^+\\nu,\; V_{cd}$',fontsize=18)
 #plt.xticks(fontsize=18)
 #plt.yticks(fontsize=18)
 #plt.axis([-1,2,0,3.5])
-##plt.show()
-#plt.savefig('dmu.png')
+#plt.show()
+#plt.savefig('vdmu.png')
 #
 ## Ds+ -> tau+ nu
 #mH_dsplus, tanb_dsplus = itera(m_dsplus,m_dsplus_err,m_tau,m_tau_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,m_c,m_c_err,m_s,m_s_err,dsplus_exp,dsplus_err_exp)
+#mH_dsplus, tanb_dsplus, vuds_loc = ckmel(Vcs,Vcs_err,m_c,m_c_err,m_s,m_s_err,m_dsplus,m_dsplus_err,m_tau,m_tau_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,dsplus_exp,dsplus_err_exp)
 #
 #plt.figure(figsize=(8,6))
 #plt.scatter(tanb_dsplus,mH_dsplus,c='green')
 #plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 #plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('$D_s^+\\to\\tau^+\\nu$',fontsize=18)
+#plt.title('$D_s^+\\to\\tau^+\\nu,\; V_{cs}$',fontsize=18)
 #plt.xticks(fontsize=18)
 #plt.yticks(fontsize=18)
 #plt.axis([-1,2,0,3.5])
-##plt.show()
-#plt.savefig('dstau.png')
+#plt.show()
+#plt.savefig('vdstau.png')
 #
+#quit()
 ## (K -> mu)/(pi -> mu) + (tau -> K)/(tau -> pi)
 #mH2, tanb2 = itera_kpi(m_K,m_K_err,m_pi,m_pi_err,m_mu,m_mu_err,m_tau,m_tau_err,Vus,Vus_err,Vud,Vud_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,m_s,m_s_err,m_d,m_d_err,m_u,m_u_err,kpi_exp,kpi_exp_err,kpitau_exp,kpi_exp_err)
 #
@@ -116,7 +126,7 @@ rd_exp, rd_exp_err = [0.34,[0.03,-0.03]] #1909.12524
 #plt.savefig('kpi.png')
 
 # R(D) and ? R(D*)
-hrd,trd,chi_rds,chi_r = itera_rd(m_c,m_c_err,m_b,m_b_err,m_Brd,m_Brd_err,m_dplus,m_dplus_err,rho,rho_err,delt_rd,delt_rd_err,rd_exp,rd_exp_err)
+#hrd,trd,chi_rds,chi_r = itera_rd(m_c,m_c_err,m_b,m_b_err,m_Brd,m_Brd_err,m_dplus,m_dplus_err,rho,rho_err,delt_rd,delt_rd_err,rd_exp,rd_exp_err)
 #plt.figure(figsize=(8,6))
 #plt.scatter(trd,hrd,c='cadetblue',marker=',')
 #plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
@@ -159,10 +169,6 @@ mt, mt_err = [172.9e3,[0.4e3,-0.4e3]]
 mW, mW_err = [80.379e3,[0.012e3,-0.012e3]]
 mBd, mBd_err = [5279.64,[0.13,-0.13]]
 mBs, mBs_err = [5366.88,[0.17,-0.17]]
-
-Vts, Vts_err = [0.04090,[0.00026,-0.00076]]
-Vtd, Vtd_err = [0.008545,[0.000075,-0.000157]]
-Vtb, Vtb_err = [0.999127,[0.000032,-0.000012]]
 
 etaB, etaB_err = [0.537856,[0,0]]
 
@@ -223,7 +229,6 @@ A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
 B0,bc,bt,b_s = [7.564e-1,-2.43e-1,-7.68e-4,-4.62]
 delt_mc, delt_mt, delt_as = [0.04,1.8,0.002]
 #C, C_err = [0.546,[0.033,-0.033]]
-Vcb, Vcb_err = [0.04162,[0.00026,-0.00080]]
 branch_c, branchc_err = [0.1065,[0.0016,-0.0016]]
 branchs, branchs_err = [3.32e-4,[0.15e-4,-0.15e-4]]
 gamc, gamc_err = [10.18e-2,[0.24e-2,-0.24e-2]]
@@ -341,5 +346,5 @@ plt.annotate('$b\\to s\\gamma$',xy=(0.20,0.85),xycoords='axes fraction',fontsize
 plt.annotate('Minimal Global',xy=(0.48,0.85),xycoords='axes fraction',fontsize=18)
 plt.annotate('Global $\\to$',xy=(0.72,0.92),xycoords='axes fraction',fontsize=18)
 plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.55,0.24),xycoords='axes fraction',fontsize=18,rotation=75)
-plt.show()
+#plt.show()
 plt.savefig('testing.png')

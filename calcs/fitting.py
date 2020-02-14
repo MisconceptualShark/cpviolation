@@ -22,6 +22,11 @@ def cov_mat(X):
     return np.array([[cov(X[0],X[0]),cov(X[0],X[1])], \
                      [cov(X[1],X[0]),cov(X[1],X[1])]])
 
+def cov_mat3(X):
+    return np.array([[cov(X[0],X[0]),cov(X[0],X[1]),cov(X[0],X[2])], \
+                     [cov(X[1],X[0]),cov(X[1],X[1]),cov(X[1],X[2])], \
+                     [cov(X[2],X[0]),cov(X[2],X[1]),cov(X[2],X[2])])
+
 def chisq_simp(obs,the,sige,sigt):
     '''
         chisq val, all parameters lists of values, simple

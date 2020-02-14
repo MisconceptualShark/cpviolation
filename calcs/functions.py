@@ -497,27 +497,11 @@ def iter_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,b
     return mH_loc, tanb_loc
 
 #def bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH):
-def bmumu(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH):
+def bmumu(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms):
     '''
         Branching ratio of b(s/d) to mu mu
         tau in ps, f in MeV, mt in GeV
     '''
-    rI = mmu/mbs
-    rJ = mmu/mbs
-    fr = np.sqrt(1-2*(rI**2 + rJ**2)+(rI**2 - rJ**2)**2)
-
-    CPmus = 
-    CPmusp =
-    C10mus =
-    C10musp =
-    CSmus = 
-    CSmusp =
-
-    pref = (g_gev**2)*(mW**4)*(sW**4)/(32*np.pi**5)
-    b1 = ((Vtb*Vts)**2)*fr*mbs*(fbs**2)*(4*mmu**2)*taubs
-    b2 = abs((mbs**2)*(CPmus-CPmusp)/((mb+ms)*(2*mmu)) - (C10mus-C10musp))**2
-    b3 = (abs((mbs**2)*(CSmusp-CSmus)/((mb+ms)*(2*mmu)))**2)*(1-(rI+rJ)**2)
-    bs = pref*b1*(b2+b3)
 #    Yt = 0.997*(mt/166)**1.55
 #    r = (mH/mt)**2
 #
@@ -528,6 +512,17 @@ def bmumu(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH):
 #    bs1 = (1.1e-5)*(taubs/1.54)*pow((fbs/245),2)*pow((Vts/0.040),2)*pow((mmu/mbs),2)*np.sqrt(1-((4*mmu**2)/(mbs**2)))
 #    bs2 = (1-((4*mmu**2)/(mbs**2)))*pow(((mbs**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)),2) + pow(((((mbs**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)))-Yt),2) 
 #    bs = bs1*bs2
+    C10 = 
+    C10p = 
+    CP = 
+    CPP = 
+    CS = 
+    CSP = 
+    beta = np.sqrt(1-4*pow(mmu/mbs,2))
+    pref = taubs*((pow(alpha,2)*g_gev*mbs*beta)/(16*np.pi**3))*pow(Vtb*Vts,2)*pow(fbs*mmu,2)
+    bs1 = abs(C10-C10p+(pow(mbs,2)*(CP-CPP)/(2*mmu*(mb+ms))),2)**2
+    bs2 = pow(abs(CS-CSP),2)*(pow(mbs,2)*(pow(mbs,2)-4*pow(mmu,2))/(4*pow(mmu,2)*(mb+ms)**2))
+    bs = pref*(bs1+bs2)
 
     return bs
 
