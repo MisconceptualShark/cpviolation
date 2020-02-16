@@ -496,31 +496,46 @@ def iter_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,b
 
     return mH_loc, tanb_loc
 
-#def bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH):
-def bmumu(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms):
+def bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH):
     '''
         Branching ratio of b(s/d) to mu mu
         tau in ps, f in MeV, mt in GeV
     '''
-#    Yt = 0.997*(mt/166)**1.55
-#    r = (mH/mt)**2
-#
-#    bd1 = (3e-7)*(taubd/1.54)*pow((fbd/210),2)*pow((Vtd/0.008),2)*pow((mmu/mbd),2)*np.sqrt(1-((4*mmu**2)/(mbd**2)))
-#    bd2 = (1-((4*mmu**2)/(mbd**2)))*pow(((mbd**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)),2) + pow((((mbd**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)))-Yt,2) 
-#    bd = bd1*bd2
-#
-#    bs1 = (1.1e-5)*(taubs/1.54)*pow((fbs/245),2)*pow((Vts/0.040),2)*pow((mmu/mbs),2)*np.sqrt(1-((4*mmu**2)/(mbs**2)))
-#    bs2 = (1-((4*mmu**2)/(mbs**2)))*pow(((mbs**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)),2) + pow(((((mbs**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)))-Yt),2) 
-#    bs = bs1*bs2
-    C10 = 
-    C10p = 
-    CP = 
-    CPP = 
-    CS = 
-    CSP = 
+    Yt = 0.997*(mt/166)**1.55
+    r = (mH/mt)**2
+
+    bd1 = (3e-7)*(taubd/1.54)*pow((fbd/210),2)*pow((Vtd/0.008),2)*pow((mmu/mbd),2)*np.sqrt(1-((4*mmu**2)/(mbd**2)))
+    bd2 = (1-((4*mmu**2)/(mbd**2)))*pow(((mbd**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)),2) + pow((((mbd**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)))-Yt,2) 
+    bd = bd1*bd2
+
+    bs1 = (1.1e-5)*(taubs/1.54)*pow((fbs/245),2)*pow((Vts/0.040),2)*pow((mmu/mbs),2)*np.sqrt(1-((4*mmu**2)/(mbs**2)))
+    bs2 = (1-((4*mmu**2)/(mbs**2)))*pow(((mbs**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)),2) + pow(((((mbs**2)*(tanb**2)*np.log(r))/(8*(mW**2)*(r-1)))-Yt),2) 
+    bs = bs1*bs2
+
+    return bd, bs
+
+def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle):
+    lamh = -((mh**2)*(3*cab+ca3b)+4*s2b*sba*mHp**2 - 4*(M**2)*cab)/(2*(v**2)*s2b)
+    lamHh = -((mHh**2)*(3*sab+sa3b)+4*s2b*cba*mHp**2 - 4*(M**2)*sab)/(2*(v**2)*s2b)
+
+    C10Z = (abs(zu)**2)*((xt**2)/(8*wangle))*(1/(xHp-xt) - xHp*np.log(xHp/xt)/((xHp-xt)**2))
+    CPZ1 = np.conj(zu)*zd*np.sqrt(xb*xl)*(xt/(16*wangle))*((xt-3*xHp)/pow(xHp-xt,2) + 2*pow(xHp,2)*np.log(xHp/xt)/pow(xHp-xt,3))
+    CPZ2 = (abs(zu)**2)*np.sqrt(xb*xl)*(xt/216)*((38*xHp**2 + 54*xt*xHp**2 - 79*xHp*xt - 108*xHp*xt**2 + 47*xt**2 + 54*xt**3)/pow(xHp-xt,3) - (6*np.log(xHp/xt)*(4*xHp**3 + 9*xt*xHp**3 - 6*xt*xHp**2 - 18*(xHp**2)*(xt**2) + 9*xHp*xt**3 + 3*xt**3)/pow(xHp-xt,4)) - (3/(2*wangle))*((2xHp**2 + 36*xt*xHp**2 - 7*xHp*xt - 72*xHp*xt**2 + 11*xt**2 + 36*xt**3)/pow(xHp-xt,3) - (6*xt*np.log(xHp/xt)*(6*xHp**3 - 12*xt*xHp**2 + 6xHp*xt**2 + xt**2)/pow(xHp-xt,4))))
+    CSbox = (np.sqrt(xl*xb)*xt/(8*(xHp-xt)*wangle))*(np.conj(zu)*zl*((xt*np.log(xt)/(xt-1)) - (xHp*np.log(xHp)/(xHp-1))) + zu*np.conj(zl)*(1 - (xHp-xt**2)*np.log(xt)/((xHp-xt)*(xt-1)) - (xHp*(xt-1)*np.log(xHp))/((xHp-xt)*(xHp-1))) + 2*zd*np.conj(zl)*np.log(xt/xHp))
+    CPbox = CSbox
+    CPA = -(np.sqrt(xl*xb)*zl*xt/(wangle*2*xA))*(((zu**3)*xt/2)*(1/(xHp-xt) - xHp*np.log(xHp/xt)/pow(xHp-xt,2)) + (zu/4)*(-(3*xHp*xt - 6*xHp - 2*xt**2 + 5*xt)/((xt-1)*(xHp-xt)) + xHp*(xHp**2 - 7*xHp + 6*xt)*np.log(xHp)/(pow(xHp-xt,2)*(xHp-1)) - ((xHp**2)*(xt**2 - 2*xt + 4) + 3*(xt**2)*(2*xt - 2*xHp - 1))*np.log(xt)/pow((xHp-xt)*(xt-1),2)))
+    CSh = (np.sqrt(xl*xb)*xt/(wangle*2*xh))*(sba+cba*zl)*(g1*sba+g2*cba-(g0*2*(v**2)*lamh/mW**2))
+    CSHh = (np.sqrt(xl*xb)*xt/(wangle*2*xHh))*(cba-sba*zl)*(g1*cba-g2*sba-(g0*2*(v**2)*lamHh/mW**2))
+
+    C10 = -4.103 + C10Z
+    C10P = 0
+    CP = CPbox + CPZ1 + CPZ2 + CPA
+    CPP = 0
+    CS = CSbox + CSh + CSHh
+    CSP = 0
     beta = np.sqrt(1-4*pow(mmu/mbs,2))
     pref = taubs*((pow(alpha,2)*g_gev*mbs*beta)/(16*np.pi**3))*pow(Vtb*Vts,2)*pow(fbs*mmu,2)
-    bs1 = abs(C10-C10p+(pow(mbs,2)*(CP-CPP)/(2*mmu*(mb+ms))),2)**2
+    bs1 = abs(C10-C10P+(pow(mbs,2)*(CP-CPP)/(2*mmu*(mb+ms))),2)**2
     bs2 = pow(abs(CS-CSP),2)*(pow(mbs,2)*(pow(mbs,2)-4*pow(mmu,2))/(4*pow(mmu,2)*(mb+ms)**2))
     bs = pref*(bs1+bs2)
 
@@ -693,7 +708,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
     '''
         Iterate of mH,tanb space for everything
     '''
-    sigma = 1.64
+    sigma = 1.96
 
     bpls_exp_up,bpls_exp_down = bpls_exp+bpls_exp_error[0],bpls_exp+bpls_exp_error[1]
     dpls_exp_up,dpls_exp_down = dpls_exp+dpls_exp_error[0],dpls_exp+dpls_exp_error[1]
@@ -728,7 +743,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
     sige_rd = sigma*(rd_exp_up-av_rd)
 
     chi_ls,chi_ms,chi_gs,chi_mus,chi_1s,chi_2s,chi_rds=[],[],[],[],[],[],[]
-    chi_lmin,chi_mmin,chi_gmin,chi_umin,chi_1min,chi_2min,chi_rmin = 100,100,100,100,100,100,100
+    chi_lmin,chi_mmin,chi_gmin,chi_umin,chi_1min,chi_2min,chi_rmin = 100,100,100,100,100,[100,0,0],100
 
     log_mH_range = np.linspace(0,3.5,350)
     log_tanb_range = np.linspace(-1,2,300)
@@ -846,8 +861,8 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
                 tanba2_loc = np.append(tanba2_loc,j_log)
                 chi_2ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bs,av_bd,av_rd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_smu,mid_dmu,mid_rd],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bs,sige_bd,sige_rd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_smu,sig_dmu,sig_rd])
                 chi_2s = np.append(chi_2s,chi_2ij)
-                if chi_2ij < chi_2min:
-                    chi_2min = chi_2ij
+                if chi_2ij < chi_2min[0]:
+                    chi_2min = [chi_2ij,i,j]
 
     return mHl_loc, tanbl_loc, mHb_loc, tanbb_loc, mHg_loc, tanbg_loc, mHa_loc, tanba_loc, mHmu_loc, tanbmu_loc, mHrd_loc, tanbrd_loc, mHa2_loc, tanba2_loc, chi_ls, chi_ms, chi_gs, chi_1s, chi_mus, chi_rds, chi_2s, chi_lmin, chi_mmin, chi_gmin, chi_1min, chi_umin, chi_rmin, chi_2min
 

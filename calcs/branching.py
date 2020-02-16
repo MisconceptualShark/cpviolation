@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from functions import *
 from fitting import *
 from ckm_2hdm import *
+import os 
 
 g_gev = (1.1663787e-5)**2
 hbar_gev = 6.582119514e-25
@@ -257,6 +258,7 @@ mbs, mbs_err = [5.36688,[0.00017,-0.00017]]
 bs_exp, bs_exp_err = [3.1e-9,[0.6e-9,-0.6e-9]] #hflav
 bd_exp, bd_exp_err = [1.4e-10,[1.6e-10,-1.4e-10]] #pdg
 sm, sm_err = [3.1e-9,[0.7e-9,-0.7e-9]]
+wangle, wangle_err = [0.23155,[0.00004,-0.00004]]
 #mH_bmumu, tanb_bmumu = itera_bmumu(mt1,mt1_err,taubd,taubd_err,taubs,taubs_err,fBd,fBd_err,fBs,fBs_err,Vtd,Vtd_err,Vts,Vts_err,m_mu,m_mu_err,mbd,mbd_err,mbs,mbs_err,mW1,mW1_err,bs_exp,bs_exp_err,bd_exp,bd_exp_err)
 
 ##plt.figure()
@@ -306,14 +308,14 @@ hl,tl,hb,tb,hg,tg,ha,ta,hmu,tmu,hrd,trd,hl2,tl2,chi_ls,chi_ms,chi_gs,chi_as,chi_
 #plt.show()
 #plt.savefig('global_cl.png')
 
-m1 = 4.61
+m1 = 2.30
 hchi_leps, tchi_leps = chi_del(chi_l,chi_ls,hl,tl,m1)
 hchi_mix, tchi_mix = chi_del(chi_m,chi_ms,hb,tb,m1)
 hchi_gam, tchi_gam = chi_del(chi_g,chi_gs,hg,tg,m1)
 hchi_mu, tchi_mu = chi_del(chi_mu,chi_mus,hmu,tmu,m1)
-hchi_rd, tchi_rd = chi_del(chi_r,chi_rds,hrd,trd,m1)
-hchi_a, tchi_a = chi_del(chi_a,chi_as,ha,ta,m1)
-hchi_2, tchi_2 = chi_del(chi_2,chi_2s,hl2,tl2,m1)
+#hchi_rd, tchi_rd = chi_del(chi_r,chi_rds,hrd,trd,m1)
+#hchi_a, tchi_a = chi_del(chi_a,chi_as,ha,ta,m1)
+hchi_2, tchi_2 = chi_del(chi_2[0],chi_2s,hl2,tl2,m1)
 #hchi_leps, tchi_leps = chi_del2(chi_l,chi_ls)
 #hchi_mix, tchi_mix = chi_del2(chi_m,chi_ms)
 #hchi_gam, tchi_gam = chi_del2(chi_g,chi_gs)
@@ -322,29 +324,34 @@ hchi_2, tchi_2 = chi_del(chi_2,chi_2s,hl2,tl2,m1)
 #hchi_a, tchi_a = chi_del2(chi_a,chi_as)
 #hchi_2, tchi_2 = chi_del2(chi_2,chi_2s)
 
-print 10**min(hchi_a)
+#print 10**min(hchi_a)
 if len(hchi_2) > 0:
     print 10**min(hchi_2)
+    print 10**min(tchi_2)
+    print chi_2[0]/9
+    print chi_2
 
 plt.figure(figsize=(8,6))
 plt.scatter(tchi_mix,hchi_mix,c='cornflowerblue')#,alpha=0.3)
 plt.scatter(tchi_mu,hchi_mu,c='red')#,alpha=0.3)
-plt.scatter(tchi_rd,hchi_rd,c='cadetblue')#,alpha=0.3)
+#plt.scatter(tchi_rd,hchi_rd,c='cadetblue')#,alpha=0.3)
 plt.scatter(tchi_leps,hchi_leps,c='green')#,alpha=0.3)
 plt.scatter(tchi_gam,hchi_gam,c='coral')#,alpha=0.3)
-plt.scatter(tchi_a,hchi_a,c='orange')#,alpha=0.3)
-plt.scatter(tchi_2,hchi_2,c='darkorchid')#,alpha=0.3)
+#plt.scatter(tchi_a,hchi_a,c='orange')#,alpha=0.3)
+plt.scatter(tl2,hl2,c='darkorchid')
+plt.scatter(tchi_2,hchi_2,c='plum')#,alpha=0.3)
 plt.axis([-1,2,0,3.5])
 plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
-plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.05,0.5),xycoords='axes fraction',fontsize=18)
+plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu + \\mathcal{R}(D)$',xy=(0.05,0.5),xycoords='axes fraction',fontsize=18)
 plt.annotate('$\\Delta M_q$',xy=(0.85,0.35),xycoords='axes fraction',fontsize=18)
-plt.annotate('$\\mathcal{R}(D)$',xy=(0.3,0.2),xycoords='axes fraction',fontsize=18,rotation=34)
+#plt.annotate('$\\mathcal{R}(D)$',xy=(0.3,0.2),xycoords='axes fraction',fontsize=18,rotation=34)
 plt.annotate('$b\\to s\\gamma$',xy=(0.20,0.85),xycoords='axes fraction',fontsize=18)
-plt.annotate('Minimal Global',xy=(0.48,0.85),xycoords='axes fraction',fontsize=18)
-plt.annotate('Global $\\to$',xy=(0.72,0.92),xycoords='axes fraction',fontsize=18)
-plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.55,0.24),xycoords='axes fraction',fontsize=18,rotation=75)
+plt.annotate('Global',xy=(0.55,0.85),xycoords='axes fraction',fontsize=18)
+#plt.annotate('Global $\\to$',xy=(0.72,0.92),xycoords='axes fraction',fontsize=18)
+plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.5,0.2),xycoords='axes fraction',fontsize=18)#,rotation=75)
 #plt.show()
-plt.savefig('testing.png')
+plt.savefig('global_cl_sig.png')
+os.system('play gumdrops.mp3')

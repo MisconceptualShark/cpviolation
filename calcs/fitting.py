@@ -25,7 +25,7 @@ def cov_mat(X):
 def cov_mat3(X):
     return np.array([[cov(X[0],X[0]),cov(X[0],X[1]),cov(X[0],X[2])], \
                      [cov(X[1],X[0]),cov(X[1],X[1]),cov(X[1],X[2])], \
-                     [cov(X[2],X[0]),cov(X[2],X[1]),cov(X[2],X[2])])
+                     [cov(X[2],X[0]),cov(X[2],X[1]),cov(X[2],X[2])]])
 
 def chisq_simp(obs,the,sige,sigt):
     '''
@@ -43,10 +43,9 @@ def chi_del(chi_min,chis,hs,ts,parm):
     '''
         computes delta chisq, for several CLs? so 2 sigma so 95.45 just now
     '''
-    delt_chis = (chis-chi_min)
     h_min,t_min = [],[]
     for i in range(len(hs)):
-        if delt_chis[i] <= parm:
+        if (chis[i]-chi_min) <= parm:
             h_min = np.append(h_min,hs[i])
             t_min = np.append(t_min,ts[i])
 
