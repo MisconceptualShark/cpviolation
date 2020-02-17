@@ -70,7 +70,7 @@ r01, r01_err = [1.14,[0.07,-0.07]]
 r11, r11_err = [1.401,[0.033,-0.033]]
 r21, r21_err = [0.854,[0.02,-0.02]]
 vev, vev_err = [246,[0,0]]
-rdst_exp, rsst_exp_err = [0.295,[0.014,-0.014]]
+rdst_exp, rdst_exp_err = [0.295,[0.014,-0.014]]
 
 # B+ -> tau+ nu
 #mH_bplus, tanb_bplus, vub_loc = ckmel(Vub,Vub_err,m_u,m_u_err,m_b,m_b_err,m_bplus,m_bplus_err,m_tau,m_tau_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,bplus_exp,bplus_err_exp)
@@ -155,7 +155,7 @@ rdst_exp, rsst_exp_err = [0.295,[0.014,-0.014]]
 #plt.axis([-1,2,0,3.5])
 ####plt.show()
 #plt.savefig('rd_08.png')
-hrdst, trdst, chi_rdsst, chi_rstmin = itera_rds(m_Brd,m_Brd_err,m_dplus,m_dplus_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,rdst_exp,rdst_exp_err)
+hrdst, trdst, chi_rdsst, chi_rstmin = itera_rds(m_Brd,m_Brd_err,m_dplus,m_dplus_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rdst_exp,rdst_exp_err)
 plt.figure(figsize=(8,6))
 plt.scatter(trdst,hrdst,c='cadetblue',marker=',')
 plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
