@@ -65,6 +65,12 @@ kpitau_exp, kpitau_exp_err = [6.438e-2,[9.384e-4,-9.384e-4]]
 rd08_exp, rd08_exp_err = [0.416,[0.128,-0.128]] #08
 rd_exp, rd_exp_err = [0.34,[0.03,-0.03]] #1909.12524
 
+rhod, rhod_err = [1.207,[0.028,-0.028]]
+r01, r01_err = [1.14,[0.07,-0.07]]
+r11, r11_err = [1.401,[0.033,-0.033]]
+r21, r21_err = [0.854,[0.02,-0.02]]
+vev, vev_err = [246,[0,0]]
+rdst_exp, rsst_exp_err = [0.295,[0.014,-0.014]]
 
 # B+ -> tau+ nu
 #mH_bplus, tanb_bplus, vub_loc = ckmel(Vub,Vub_err,m_u,m_u_err,m_b,m_b_err,m_bplus,m_bplus_err,m_tau,m_tau_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,bplus_exp,bplus_err_exp)
@@ -149,8 +155,19 @@ rd_exp, rd_exp_err = [0.34,[0.03,-0.03]] #1909.12524
 #plt.axis([-1,2,0,3.5])
 ####plt.show()
 #plt.savefig('rd_08.png')
+hrdst, trdst, chi_rdsst, chi_rstmin = itera_rds(m_Brd,m_Brd_err,m_dplus,m_dplus_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,rdst_exp,rdst_exp_err)
+plt.figure(figsize=(8,6))
+plt.scatter(trdst,hrdst,c='cadetblue',marker=',')
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.title('$\\mathcal{R}(D^*), 1.96\\sigma$',fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.axis([-1,2,0,3.5])
+plt.show()
+#plt.savefig('rd.png')
 
-#quit()
+quit()
 
 #hlepi,tlepi = itera_lepis(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,m_tau,m_tau_err,m_mu,m_mu_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,)
 #plt.figure(figsize=(8,6))

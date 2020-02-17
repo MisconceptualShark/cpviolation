@@ -1,11 +1,137 @@
 from __future__ import division 
 import numpy as np
 from fitting import *
+from scipy.integrate import quad
 
 g_gev = (1.1663787e-5)**2
 hbar_gev = 6.582119514e-25
 g_mev = (1.1663787e-11)**2
 hbar_mev = 6.582118514e-22
+
+def rdst(mB,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,tanb,mH):
+    '''
+        R(D*)
+    '''
+    def rd1(s,mB,mD,rhod,r01,r11,r21,Vcb,ml):
+        hai=1
+        PD = np.sqrt(s**2 + mB**4 + mD**4 - 2*(s*mB**2 + s*mD**2 + (mB**2)*(mD**2)))/(2*mB)
+        ws = (mB**2 + mD**2 - s)/(2*mB*mD)
+        weer = 2*np.sqrt(mB*mD)/(mB+mD)
+        z = (np.sqrt(ws+1)-np.sqrt(2))/(np.sqrt(ws+1)+np.sqrt(2))
+        ha1w = hai*(1 - 8*rhod*z + (53*rhod - 15)*z**2 - (231*rhod - 91)*z**3)
+        r0w = r01 - 0.11*(ws-1) + 0.01*(ws-1)**2
+        r1w = r11 - 0.12*(ws-1) + 0.05*(ws-1)**2
+        r2w = r21 + 0.11*(ws-1) - 0.01*(ws-1)**2
+        A0 = r0w*ha1w/weer
+        A1 = (ws+1)*weer*ha1w/2
+        A2 = r02*ha1w/weer
+        V = r1w*ha1w/weer
+        Hpl = (mB+mD)*A1 - (2*mB*PD*V/(mB+mD))
+        Hmn = (mB+mD)*A1 + (2*mB*PD*V/(mB+mD))
+        H0 = (-1/(2*mD*np.sqrt(s)))*((4*pow(mB*PD,2)/(mB+mD))*A2 - (mB**2 - mD**2 - s)*(mB+mD)*A1)
+        Hs = (2*mB*PD*A0)/np.sqrt(s)
+        dgamsm = (g_gev*(Vcb**2)/(96*(np.pi**3)*mB**2))*((abs(Hpl)**2 + abs(Hmn)**2 + abs(H0)**2)*(1+(ml**2)/(2*s)) + (3*(ml**2)*(abs(Hs)**2)/(2*s)))*s*PD*(1-(ml**2)/s)**2 
+        return dgamsm
+    def rd2(s,mB,mD,rhod,ml,gcp,Vcb,mH,fls,flp,md,mc):
+        hai=1
+        PD = np.sqrt(s**2 + mB**4 + mD**4 - 2*(s*mB**2 + s*mD**2 + (mB**2)*(mD**2)))/(2*mB)
+        ws = (mB**2 + mD**2 - s)/(2*mB*mD)
+        z = (np.sqrt(ws+1)-np.sqrt(2))/(np.sqrt(ws+1)+np.sqrt(2))
+        ha1w = hai*(1 - 8*rhod*z + (53*rhod - 15)*z**2 - (231*rhod - 91)*z**3)
+        r0w = r01 - 0.11*(ws-1) + 0.01*(ws-1)**2
+        A0 = r0w*ha1w/weer
+        dgammix = np.sqrt(g_gev/2)*(ml*gcp*pow(Vcb,2)/(8*(np.pi**3)*mH**2))*((fls+flp)/(mb+mc))*(A0**2)*((1-(ml**2)/s)**2)*pow(PD,3)
+        return dgammix
+    def rd3(s,mB,mD,rhod,ml,gcp,Vcb,mH,fls,flp,md,mc):
+        hai=1
+        PD = np.sqrt(s**2 + mB**4 + mD**4 - 2*(s*mB**2 + s*mD**2 + (mB**2)*(mD**2)))/(2*mB)
+        ws = (mB**2 + mD**2 - s)/(2*mB*mD)
+        z = (np.sqrt(ws+1)-np.sqrt(2))/(np.sqrt(ws+1)+np.sqrt(2))
+        ha1w = hai*(1 - 8*rhod*z + (53*rhod - 15)*z**2 - (231*rhod - 91)*z**3)
+        r0w = r01 - 0.11*(ws-1) + 0.01*(ws-1)**2
+        A0 = r0w*ha1w/weer
+        dgamh = (pow(gcp*Vcb/(mH**2),2)/(16*np.pi**3))*((fls**2 + flp**2)/pow(mb+mc,2))*s*pow(A0,2)*pow(1-(ml**2)/s,2)*pow(PD,3)
+        return dgamh
+    
+    gcp = (-(mc/tanb) + mb*tanb)/(np.sqrt(2)*vev)
+    fmus = -(mmu*tanb/(np.sqrt(2)*vev))
+    fmup = fmus
+    fts = -(mtau*tanb/(np.sqrt(2)*vev))
+    ftp = fts
+
+    mgamsm, err1 = quad(rd1,0,np.inf,args=(mB,mD,rhod,r01,r11,r21,Vcb,mmu))
+    mgammix, err2 = quad(rd2,0,np.inf,args=(mB,mD,rhod,mmu,gcp,Vcb,mH,fls,flp,md,mc))
+    mgamh, err3 = quad(rd3,0,np.inf,args=(mB,mD,rhod,mmu,gcp,Vcb,mH,fls,flp,md,mc))
+    dmu = mgamsm+mgammix+mgamh
+
+    tgamsm, err1 = quad(rd1,0,np.inf,args=(mB,mD,rhod,r01,r11,r21,Vcb,mtau))
+    tgammix, err2 = quad(rd2,0,np.inf,args=(mB,mD,rhod,mtau,gcp,Vcb,mH,fls,flp,md,mc))
+    tgamh, err3 = quad(rd3,0,np.inf,args=(mB,mD,rhod,mtau,gcp,Vcb,mH,fls,flp,md,mc))
+    dtau = tgamsm+tgammix+tamh
+
+    return dtau/dmu
+
+def error_rds(mB,mB_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,tanb,mH):
+
+    rds = rdst(mB,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,tanb,mH)
+
+    u1 = abs(rdst(mB+mB_err[0],mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,tanb,mH)-rds)**2
+    l1 = abs(rdst(mB+mB_err[1],mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,tanb,mH)-rds)**2
+    u2 = abs(rdst(mB,mD+mD_err[0],rhod,r01,r11,r21,Vcb,mmu,mtau,vev,tanb,mH)-rds)**2
+    l2 = abs(rdst(mB,mD+mD_err[1],rhod,r01,r11,r21,Vcb,mmu,mtau,vev,tanb,mH)-rds)**2
+    u3 = abs(rdst(mB,mD,rhod+rhod_err[0],r01,r11,r21,Vcb,mmu,mtau,vev,tanb,mH)-rds)**2
+    l3 = abs(rdst(mB,mD,rhod+rhod_err[1],r01,r11,r21,Vcb,mmu,mtau,vev,tanb,mH)-rds)**2
+    u4 = abs(rdst(mB,mD,rhod,r01+r01_err[0],r11,r21,Vcb,mmu,mtau,vev,tanb,mH)-rds)**2
+    l4 = abs(rdst(mB,mD,rhod,r01+r01_err[1],r11,r21,Vcb,mmu,mtau,vev,tanb,mH)-rds)**2
+    u5 = abs(rdst(mB,mD,rhod,r01,r11+r11_err[0],r21,Vcb,mmu,mtau,vev,tanb,mH)-rds)**2
+    l5 = abs(rdst(mB,mD,rhod,r01,r11+r11_err[1],r21,Vcb,mmu,mtau,vev,tanb,mH)-rds)**2
+    u6 = abs(rdst(mB,mD,rhod,r01,r11,r21+r21_err[0],Vcb,mmu,mtau,vev,tanb,mH)-rds)**2
+    l6 = abs(rdst(mB,mD,rhod,r01,r11,r21+r21_err[1],Vcb,mmu,mtau,vev,tanb,mH)-rds)**2
+    u7 = abs(rdst(mB,mD,rhod,r01,r11,r21,Vcb+Vcb_err[0],mmu,mtau,vev,tanb,mH)-rds)**2
+    l7 = abs(rdst(mB,mD,rhod,r01,r11,r21,Vcb+Vcb_err[1],mmu,mtau,vev,tanb,mH)-rds)**2
+    u8 = abs(rdst(mB,mD,rhod,r01,r11,r21,Vcb,mmu+mmu_err[0],mtau,vev,tanb,mH)-rds)**2
+    l8 = abs(rdst(mB,mD,rhod,r01,r11,r21,Vcb,mmu+mmu_err[1],mtau,vev,tanb,mH)-rds)**2
+    u9 = abs(rdst(mB,mD,rhod,r01,r11,r21,Vcb,mmu,mtau+mtau_err[0],vev,tanb,mH)-rds)**2
+    l9 = abs(rdst(mB,mD,rhod,r01,r11,r21,Vcb,mmu,mtau+mtau_err[1],vev,tanb,mH)-rds)**2
+    u10 = abs(rdst(mB,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev+vev_err[0],tanb,mH)-rds)**2
+    l10 = abs(rdst(mB,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev+vev_err[1],tanb,mH)-rds)**2
+
+    upper = np.sqrt(u1+u2+u3+u4+u5+u6+u7+u8+u9+u10)
+    lower = np.sqrt(l1+l2+l3+l4+l5+l6+l7+l8+l9+l10)
+            
+    return upper, lower
+
+def itera_rds(mB,mB_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,rde,rde_err):
+
+    sigma = 1.96
+    rde_u,rde_d = rde+rde_err[0],rde+rde_err[1]
+    av_rd = 0.5*(rde_u+rde_d)
+    sige_rd = sigma*(rde_u-av_rd)
+    log_mH_range = np.linspace(0,3.5,350)
+    log_tanb_range = np.linspace(-1,2,300)
+    mH_range = 10**log_mH_range
+    tanb_range = 10**log_tanb_range
+    mH_loc, tanb_loc, chi_rds = [],[],[]
+    chi_rmin = 1000
+    for i in mH_range:
+        for j in tanb_range:
+            expect_branch = rdst(mB,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,j,i)
+            expect_error = error_rds(mB,mB_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,j,i)
+            expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
+            mid_rd = 0.5*(expect_branch_up+expect_branch_down)
+            sig_rd = sigma*(expect_branch_up-mid_rd)
+            rd_bool = ((av_rd >= mid_rd and mid_rd+sig_rd >= av_rd-sige_rd) or (av_rd <= mid_rd and mid_rd-sig_rd <= av_rd+sige_rd)) 
+            if rd_bool:
+                i_log, j_log = np.log10(i), np.log10(j)
+                mH_loc = np.append(mH_loc,i_log)
+                tanb_loc = np.append(tanb_loc,j_log)
+                chi_rij = chisq_simp([av_rd],[mid_rd],[sige_rd],[sig_rd])
+                chi_rds = np.append(chi_rds,chi_rij)
+                if chi_rij < chi_rmin:
+                    chi_rmin = chi_rij
+
+    return mH_loc, tanb_loc, chi_rds, chi_rmin
+
 
 def bsm(mm,ml,Vud,fm,taum):
     '''
@@ -520,7 +646,7 @@ def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle):
 
     C10Z = (abs(zu)**2)*((xt**2)/(8*wangle))*(1/(xHp-xt) - xHp*np.log(xHp/xt)/((xHp-xt)**2))
     CPZ1 = np.conj(zu)*zd*np.sqrt(xb*xl)*(xt/(16*wangle))*((xt-3*xHp)/pow(xHp-xt,2) + 2*pow(xHp,2)*np.log(xHp/xt)/pow(xHp-xt,3))
-    CPZ2 = (abs(zu)**2)*np.sqrt(xb*xl)*(xt/216)*((38*xHp**2 + 54*xt*xHp**2 - 79*xHp*xt - 108*xHp*xt**2 + 47*xt**2 + 54*xt**3)/pow(xHp-xt,3) - (6*np.log(xHp/xt)*(4*xHp**3 + 9*xt*xHp**3 - 6*xt*xHp**2 - 18*(xHp**2)*(xt**2) + 9*xHp*xt**3 + 3*xt**3)/pow(xHp-xt,4)) - (3/(2*wangle))*((2xHp**2 + 36*xt*xHp**2 - 7*xHp*xt - 72*xHp*xt**2 + 11*xt**2 + 36*xt**3)/pow(xHp-xt,3) - (6*xt*np.log(xHp/xt)*(6*xHp**3 - 12*xt*xHp**2 + 6xHp*xt**2 + xt**2)/pow(xHp-xt,4))))
+    CPZ2 = (abs(zu)**2)*np.sqrt(xb*xl)*(xt/216)*((38*xHp**2 + 54*xt*xHp**2 - 79*xHp*xt - 108*xHp*xt**2 + 47*xt**2 + 54*xt**3)/pow(xHp-xt,3) - (6*np.log(xHp/xt)*(4*xHp**3 + 9*xt*xHp**3 - 6*xt*xHp**2 - 18*(xHp**2)*(xt**2) + 9*xHp*xt**3 + 3*xt**3)/pow(xHp-xt,4)) - (3/(2*wangle))*((2*xHp**2 + 36*xt*xHp**2 - 7*xHp*xt - 72*xHp*xt**2 + 11*xt**2 + 36*xt**3)/pow(xHp-xt,3) - (6*xt*np.log(xHp/xt)*(6*xHp**3 - 12*xt*xHp**2 + 6*xHp*xt**2 + xt**2)/pow(xHp-xt,4))))
     CSbox = (np.sqrt(xl*xb)*xt/(8*(xHp-xt)*wangle))*(np.conj(zu)*zl*((xt*np.log(xt)/(xt-1)) - (xHp*np.log(xHp)/(xHp-1))) + zu*np.conj(zl)*(1 - (xHp-xt**2)*np.log(xt)/((xHp-xt)*(xt-1)) - (xHp*(xt-1)*np.log(xHp))/((xHp-xt)*(xHp-1))) + 2*zd*np.conj(zl)*np.log(xt/xHp))
     CPbox = CSbox
     CPA = -(np.sqrt(xl*xb)*zl*xt/(wangle*2*xA))*(((zu**3)*xt/2)*(1/(xHp-xt) - xHp*np.log(xHp/xt)/pow(xHp-xt,2)) + (zu/4)*(-(3*xHp*xt - 6*xHp - 2*xt**2 + 5*xt)/((xt-1)*(xHp-xt)) + xHp*(xHp**2 - 7*xHp + 6*xt)*np.log(xHp)/(pow(xHp-xt,2)*(xHp-1)) - ((xHp**2)*(xt**2 - 2*xt + 4) + 3*(xt**2)*(2*xt - 2*xHp - 1))*np.log(xt)/pow((xHp-xt)*(xt-1),2)))
