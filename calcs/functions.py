@@ -14,10 +14,10 @@ def rdst(mBs,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,mc,mb,tanb,mH):
     '''
     def rd1(s,mBs,mD,rhod,r01,r11,r21,Vcb,ml):
         hai=1
-        PD = np.sqrt(s**2 + mBs**4 + mD**4 - 2*(s*mBs**2 + s*mD**2 + (mBs**2)*(mD**2)) + 0j)/(2*mBs)
+        PD = np.sqrt(s**2 + mBs**4 + mD**4 - 2*(s*mBs**2 + s*mD**2 + (mBs**2)*(mD**2)))/(2*mBs)
         ws = (mBs**2 + mD**2 - s)/(2*mBs*mD)
         weer = 2*np.sqrt(mBs*mD)/(mBs+mD)
-        z = (np.sqrt(ws+1 + 0j)-np.sqrt(2))/(np.sqrt(ws+1 + 0j)+np.sqrt(2))
+        z = (np.sqrt(ws+1)-np.sqrt(2))/(np.sqrt(ws+1)+np.sqrt(2))
         ha1w = hai*(1 - 8*rhod*z + (53*rhod - 15)*z**2 - (231*rhod - 91)*z**3)
         r0w = r01 - 0.11*(ws-1) + 0.01*(ws-1)**2
         r1w = r11 - 0.12*(ws-1) + 0.05*(ws-1)**2
@@ -34,10 +34,10 @@ def rdst(mBs,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,mc,mb,tanb,mH):
         return dgamsm
     def rd2(s,mBs,mD,rhod,ml,gcp,Vcb,mH,fls,flp,mb,mc):
         hai=1
-        PD = np.sqrt(s**2 + mBs**4 + mD**4 - 2*(s*mBs**2 + s*mD**2 + (mBs**2)*(mD**2))+0j)/(2*mBs)
+        PD = np.sqrt(s**2 + mBs**4 + mD**4 - 2*(s*mBs**2 + s*mD**2 + (mBs**2)*(mD**2)))/(2*mBs)
         ws = (mBs**2 + mD**2 - s)/(2*mBs*mD)
         weer = 2*np.sqrt(mBs*mD)/(mBs+mD)
-        z = (np.sqrt(ws+1+0j)-np.sqrt(2))/(np.sqrt(ws+1+0j)+np.sqrt(2))
+        z = (np.sqrt(ws+1)-np.sqrt(2))/(np.sqrt(ws+1)+np.sqrt(2))
         ha1w = hai*(1 - 8*rhod*z + (53*rhod - 15)*z**2 - (231*rhod - 91)*z**3)
         r0w = r01 - 0.11*(ws-1) + 0.01*(ws-1)**2
         A0 = r0w*ha1w/weer
@@ -45,10 +45,10 @@ def rdst(mBs,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,mc,mb,tanb,mH):
         return dgammix
     def rd3(s,mBs,mD,rhod,ml,gcp,Vcb,mH,fls,flp,md,mc):
         hai=1
-        PD = np.sqrt(s**2 + mBs**4 + mD**4 - 2*(s*mBs**2 + s*mD**2 + (mBs**2)*(mD**2))+0j)/(2*mBs)
+        PD = np.sqrt(s**2 + mBs**4 + mD**4 - 2*(s*mBs**2 + s*mD**2 + (mBs**2)*(mD**2)))/(2*mBs)
         weer = 2*np.sqrt(mBs*mD)/(mBs+mD)
         ws = (mBs**2 + mD**2 - s)/(2*mBs*mD)
-        z = (np.sqrt(ws+1+0j)-np.sqrt(2))/(np.sqrt(ws+1+0j)+np.sqrt(2))
+        z = (np.sqrt(ws+1)-np.sqrt(2))/(np.sqrt(ws+1)+np.sqrt(2))
         ha1w = hai*(1 - 8*rhod*z + (53*rhod - 15)*z**2 - (231*rhod - 91)*z**3)
         r0w = r01 - 0.11*(ws-1) + 0.01*(ws-1)**2
         A0 = r0w*ha1w/weer
@@ -60,15 +60,17 @@ def rdst(mBs,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,mc,mb,tanb,mH):
     fmup = fmus
     fts = -(mtau*tanb/(np.sqrt(2)*vev))
     ftp = fts
+   
+    top = mBs**2 + mD**2 - 2*mBs*mD
 
-    mgamsm, err1 = quad(rd1,0.001,mBs**4,args=(mBs,mD,rhod,r01,r11,r21,Vcb,mmu))
-    mgammix, err2 = quad(rd2,0.001,mBs**4,args=(mBs,mD,rhod,mmu,gcp,Vcb,mH,fmus,fmup,mb,mc))
-    mgamh, err3 = quad(rd3,0.001,mBs**4,args=(mBs,mD,rhod,mmu,gcp,Vcb,mH,fmus,fmup,mb,mc))
+    mgamsm, err1 = quad(rd1,mmu**2,top,args=(mBs,mD,rhod,r01,r11,r21,Vcb,mmu))
+    mgammix, err2 = quad(rd2,mmu**2,top,args=(mBs,mD,rhod,mmu,gcp,Vcb,mH,fmus,fmup,mb,mc))
+    mgamh, err3 = quad(rd3,mmu**2,top,args=(mBs,mD,rhod,mmu,gcp,Vcb,mH,fmus,fmup,mb,mc))
     dmu = mgamsm+mgammix+mgamh
 
-    tgamsm, err1 = quad(rd1,0.001,mBs**4,args=(mBs,mD,rhod,r01,r11,r21,Vcb,mtau))
-    tgammix, err2 = quad(rd2,0.001,mBs**4,args=(mBs,mD,rhod,mtau,gcp,Vcb,mH,fts,ftp,mb,mc))
-    tgamh, err3 = quad(rd3,0.001,mBs**4,args=(mBs,mD,rhod,mtau,gcp,Vcb,mH,fts,ftp,mb,mc))
+    tgamsm, err1 = quad(rd1,mtau**2,top,args=(mBs,mD,rhod,r01,r11,r21,Vcb,mtau))
+    tgammix, err2 = quad(rd2,mtau**2,top,args=(mBs,mD,rhod,mtau,gcp,Vcb,mH,fts,ftp,mb,mc))
+    tgamh, err3 = quad(rd3,mtau**2,top,args=(mBs,mD,rhod,mtau,gcp,Vcb,mH,fts,ftp,mb,mc))
     dtau = tgamsm+tgammix+tgamh
 
     return dtau/dmu
