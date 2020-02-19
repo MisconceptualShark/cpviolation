@@ -106,12 +106,15 @@ def error_rds(mBs,mBs_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r2
 
     upper = np.sqrt(u1+u2+u3+u4+u5+u6+u7+u8+u9+u10+u11+u12)
     lower = np.sqrt(l1+l2+l3+l4+l5+l6+l7+l8+l9+l10+l11+l12)
+
+    ups = rds+upper
+    downs = rds-lower
             
-    return upper, lower
+    return ups, downs
 
 def itera_rds(mBs,mBs_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,rde,rde_err):
 
-    sigma = 1.96
+    sigma = 1
     rde_u,rde_d = rde+rde_err[0],rde+rde_err[1]
     av_rd = 0.5*(rde_u+rde_d)
     sige_rd = sigma*(rde_u-av_rd)
@@ -123,9 +126,9 @@ def itera_rds(mBs,mBs_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r2
     chi_rmin = 1000
     for i in mH_range:
         for j in tanb_range:
-            expect_branch = rdst(mBs,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,mc,mb,j,i)
-            expect_error = error_rds(mBs,mBs_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
-            expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
+            #expect_branch = rdst(mBs,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,mc,mb,j,i)
+            expect_branch_up, expect_branch_down = error_rds(mBs,mBs_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
+#            expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
             mid_rd = 0.5*(expect_branch_up+expect_branch_down)
             sig_rd = sigma*(expect_branch_up-mid_rd)
             rd_bool = ((av_rd >= mid_rd and mid_rd+sig_rd >= av_rd-sige_rd) or (av_rd <= mid_rd and mid_rd-sig_rd <= av_rd+sige_rd)) 
@@ -195,7 +198,10 @@ def itera(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,m
             - lower error on branching sm is below the upper error on branching exp
         If either is true, plot a point at coordinate, and tadaa
     '''
+    sigma = 1.96
     exp_branch_up,exp_branch_down = branch_exp+branch_exp_error[0],branch_exp+branch_exp_error[1]
+    av_br = 0.5*(exp_branch_up+exp_branch_down)
+    sige_br = sigma*(exp_branch_up-av_br)
     log_mH_range = np.linspace(0,3.5,350)
     log_tanb_range = np.linspace(-1,2,300)
     mH_range = 10**log_mH_range
@@ -205,10 +211,13 @@ def itera(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,m
     for i in mH_range:
         for j in tanb_range:
             expect_branch = bthe(mm,ml,Vud,fm,taum,mu,md,j,i)
-            print expect_branch
+#            print expect_branch
             expect_error = error_branching(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,md_err,j,i)
             expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
-            if (branch_exp >= expect_branch and expect_branch_up >= exp_branch_down) or (branch_exp <= expect_branch and expect_branch_down <= exp_branch_up):
+            mid_br = 0.5*(expect_branch_up+expect_branch_down)
+            sig_br = sigma*(expect_branch_up-mid_br)
+            br_bool = ((av_br >= mid_br and mid_br+sig_br >= av_br-sige_br) or (av_br <= mid_br and mid_br-sig_br <= av_br+sige_br)) 
+            if br_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mH_loc = np.append(mH_loc,i_log)
                 tanb_loc = np.append(tanb_loc,j_log)
@@ -268,7 +277,10 @@ def itera_mix(mt,mt_err,mW,mW_err,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_er
             - lower error on branching sm is below the upper error on branching exp
         If either is true, plot a point at coordinate, and tadaa
     '''
+    sigma = 1.96
     exp_branch_up,exp_branch_down = branch_exp+branch_exp_error[0],branch_exp+branch_exp_error[1]
+    av_br = 0.5*(exp_branch_up+exp_branch_down)
+    sige_br = sigma*(exp_branch_up-av_br)
     log_mH_range = np.linspace(3,6.5,350)
     log_tanb_range = np.linspace(-1,2,300)
     mH_range = 10**log_mH_range
@@ -278,10 +290,13 @@ def itera_mix(mt,mt_err,mW,mW_err,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_er
     for i in mH_range:
         for j in tanb_range:
             expect_branch = mixing(mt,i,mW,j,Vtq,Vtb,etaB,mB,fBq,BBq,expect)
-            print expect_branch*1e-12
+#            print expect_branch*1e-12
             expect_error = error_mixing(mt,mt_err,i,mW,mW_err,j,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_err,fBq,fBq_err,BBq,BBq_err,expect,expect_err)
             expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
-            if (branch_exp >= expect_branch and expect_branch_up >= exp_branch_down) or (branch_exp <= expect_branch and expect_branch_down <= exp_branch_up):
+            mid_br = 0.5*(expect_branch_up+expect_branch_down)
+            sig_br = sigma*(expect_branch_up-mid_br)
+            br_bool = ((av_br >= mid_br and mid_br+sig_br >= av_br-sige_br) or (av_br <= mid_br and mid_br-sig_br <= av_br+sige_br)) 
+            if br_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mH_loc = np.append(mH_loc,i_log)
                 tanb_loc = np.append(tanb_loc,j_log)
@@ -386,8 +401,13 @@ def itera_kpi(mK,mK_err,mpi,mpi_err,ml,ml_err,mtau,mtau_err,Vus,Vus_err,Vud,Vud_
     '''
         Iterate of mH,tanb space for kpi ratios
     '''
+    sigma = 1.96
+
     kpi_exp_up,kpi_exp_down = kpi_exp+kpi_exp_error[0],kpi_exp+kpi_exp_error[1]
     kpi_tau_exp_up,kpi_tau_exp_down = kpi_tau_exp+kpi_tau_exp_err[0],kpi_tau_exp+kpi_tau_exp_err[1]
+
+    av_t,av_k = 0.5*(kpi_tau_exp_up+kpi_tau_exp_down), 0.5*(kpi_exp_up+kpi_exp_down)
+    sige_k, sige_t = sigma*(kpi_exp_up-av_k), sigma*(kpi_tau_exp_up-av_t)
     log_mH_range = np.linspace(0,3.5,350)
     log_tanb_range = np.linspace(-1,2,300)
     mH_range = 10**log_mH_range
@@ -397,11 +417,15 @@ def itera_kpi(mK,mK_err,mpi,mpi_err,ml,ml_err,mtau,mtau_err,Vus,Vus_err,Vud,Vud_
     for i in mH_range:
         for j in tanb_range:
             expect_kpi,expect_kpi_tau = decay_bsm(mK,mpi,ml,mtau,Vus,Vud,fKpi,delt_kpi,delt_tau,ms,md,mu,j,i)
-            print expect_kpi,expect_kpi_tau
+#            print expect_kpi,expect_kpi_tau
             expect_kpi_uperr,expect_kpi_downerr,expect_kpi_tau_uperr,expect_kpi_tau_downerr = error_kpi(mK,mK_err,mpi,mpi_err,ml,ml_err,mtau,mtau_err,Vus,Vus_err,Vud,Vud_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,ms,ms_err,md,md_err,mu,mu_err,j,i)
             expect_kpi_up, expect_kpi_down = expect_kpi+expect_kpi_uperr, expect_kpi-expect_kpi_downerr
             expect_kpi_tau_up, expect_kpi_tau_down = expect_kpi_tau+expect_kpi_tau_uperr,expect_kpi_tau-expect_kpi_tau_downerr
-            if ((kpi_exp >= expect_kpi and expect_kpi_up >= kpi_exp_down) or (kpi_exp <= expect_kpi and expect_kpi_down <= kpi_exp_up)) and ((kpi_tau_exp >= expect_kpi_tau and expect_kpi_tau_up >= kpi_tau_exp_down) or (kpi_tau_exp <= expect_kpi_tau and expect_kpi_tau_down <= kpi_tau_exp_up)):
+            mid_k,mid_t=0.5*(expect_kpi_up+expect_kpi_down),0.5*(expect_kpi_tau_up+expect_kpi_tau_down)
+            sig_k,sig_t=(expect_kpi_up-mid_k),(expect_kpi_tau_up-mid_t)
+            kpi_bool = ((av_k >= mid_k and mid_k+sig_k >= av_k-sige_k) or (av_k <= mid_k and mid_k-sig_k <= av_k+sige_k)) 
+            tkpi_bool = ((av_t >= mid_t and mid_t+sig_t >= av_t-sige_t) or (av_t <= mid_t and mid_t-sig_t <= av_t+sige_t)) 
+            if kpi_bool and tkpi_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mH_loc = np.append(mH_loc,i_log)
                 tanb_loc = np.append(tanb_loc,j_log)
@@ -606,11 +630,15 @@ def iter_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,b
     '''
         Iterate over mH, tanb space
     '''
+    sigma = 1.96
     branch_exp = branchs_exp/branchc_exp
     x = branch_exp*np.sqrt((branchc_exp_error[0]/branchc_exp)**2 + (branchs_exp_error[0]/branchs_exp)**2)
     y = branch_exp*np.sqrt((branchc_exp_error[1]/branchc_exp)**2 + (branchs_exp_error[1]/branchs_exp)**2)
     branch_exp_error = [x,-y]
     exp_branch_up,exp_branch_down = branch_exp+branch_exp_error[0],branch_exp+branch_exp_error[1]
+    av_g = 0.5*(exp_branch_up+exp_branch_down)
+    sige_g = sigma*(exp_branch_up-av_g)
+
     log_mH_range = np.linspace(0,3.5,350)
     log_tanb_range = np.linspace(-1,2,300)
     mH_range = 10**log_mH_range
@@ -623,7 +651,10 @@ def iter_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,b
             print expect_branch
             expect_error = error_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM)
             expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
-            if (branch_exp >= expect_branch and expect_branch_up >= exp_branch_down) or (branch_exp <= expect_branch and expect_branch_down <= exp_branch_up):
+            mid_g = 0.5*(expect_branch_up+expect_branch_down)
+            sig_g = sigma*(expect_branch_up-mid_g)
+            br_bool = ((av_g >= mid_g and mid_g+sig_g >= av_g-sige_g) or (av_g <= mid_g and mid_g-sig_g <= av_g+sige_g)) 
+            if br_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mH_loc = np.append(mH_loc,i_log)
                 tanb_loc = np.append(tanb_loc,j_log)
@@ -877,7 +908,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
     sige_rd = sigma*(rd_exp_up-av_rd)
 
     chi_ls,chi_ms,chi_gs,chi_mus,chi_1s,chi_2s,chi_rds=[],[],[],[],[],[],[]
-    chi_lmin,chi_mmin,chi_gmin,chi_umin,chi_1min,chi_2min,chi_rmin = 100,100,100,100,100,[100,0,0],100
+    chi_lmin,chi_mmin,chi_gmin,chi_umin,chi_1min,chi_2min,chi_rmin = 100,100,100,100,[100,0,0],[100,0,0],100
 
     log_mH_range = np.linspace(0,3.5,350)
     log_tanb_range = np.linspace(-1,2,300)
@@ -891,7 +922,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
             bpls_err, dpls_err, dspls_err = error_branching(mbpls,mbpls_err,mtau,mtau_err,Vub,Vub_err,fbpls,fbpls_err,tbpls,tbpls_err,mu,mu_err,mb,mb_err,j,i),error_branching(mdpls,mdpls_err,mmu,mmu_err,Vcd,Vcd_err,fdpls,fdpls_err,tdpls,tdpls_err,mc,mc_err,md,md_err,j,i),error_branching(mdspls,mdspls_err,mtau,mtau_err,Vcs,Vcs_err,fdspls,fdspls_err,tdspls,tdspls_err,mc,mc_err,ms,ms_err,j,i)
             bpls_the_up,bpls_the_down,dpls_the_up,dpls_the_down,dspls_the_up,dspls_the_down=bpls_the+bpls_err[0],bpls_the-bpls_err[1],dpls_the+dpls_err[0],dpls_the-dpls_err[1],dspls_the+dspls_err[0],dspls_the-dspls_err[1]
             mid_b,mid_d,mid_ds=0.5*(bpls_the_up+bpls_the_down),0.5*(dpls_the_up+dpls_the_down),0.5*(dspls_the_up+dspls_the_down)
-            sig_b,sig_d,sig_ds=(bpls_the_up-mid_b),(dpls_the_up-mid_d),(dspls_the_up-mid_ds)
+            sig_b,sig_d,sig_ds=sigma*(bpls_the_up-mid_b),sigma*(dpls_the_up-mid_d),sigma*(dspls_the_up-mid_ds)
             bpls_bool = ((av_b >= mid_b and mid_b+sig_b >= av_b-sige_b) or (av_b <= mid_b and mid_b-sig_b <= av_b+sige_b)) 
             dpls_bool = ((av_d >= mid_d and mid_d+sig_d >= av_d-sige_d) or (av_d <= mid_d and mid_d-sig_d <= av_d+sige_d))
             dspls_bool = ((av_ds >= mid_ds and mid_ds+sig_ds >= av_ds-sige_ds) or (av_ds <= mid_ds and mid_ds-sig_ds <= av_ds+sige_ds))
@@ -901,14 +932,14 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
             bmix_the_up, bmix_the_down = bmix_the+bmix_err[0],bmix_the-bmix_err[1]
             bmixs_the_up, bmixs_the_down = bmixs_the+bmixs_err[0],bmixs_the-bmixs_err[1]
             mid_bm,mid_bms=0.5*(bmix_the_up+bmix_the_down),0.5*(bmixs_the_up+bmixs_the_down)
-            sig_bm,sig_bms=(bmix_the_up-mid_bm),(bmixs_the_up-mid_bms)
+            sig_bm,sig_bms=sigma*(bmix_the_up-mid_bm),sigma*(bmixs_the_up-mid_bms)
             bmix_bool = ((av_bmix >= mid_bm and mid_bm+sig_bm >= av_bmix-sige_bmix) or (av_bmix <= mid_bm and mid_bm-sig_bm <= av_bmix+sige_bmix)) and ((av_bmixs >= mid_bms and mid_bms+sig_bms >= av_bmixs-sige_bmixs) or (av_bmixs <= mid_bms and mid_bms-sig_bms <= av_bmixs+sige_bmixs))
 
             kpi_the,tkpi_the = decay_bsm(mK,mpi,mmu,mtau,Vus,Vud,fKpi,delt_kpi,delt_tau,ms,md,mu,j,i)
             kpi_uperr,kpi_derr,tkpi_uperr,tkpi_derr = error_kpi(mK,mK_err,mpi,mpi_err,mmu,mmu_err,mtau,mtau_err,Vus,Vus_err,Vud,Vud_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,ms,ms_err,md,md_err,mu,mu_err,j,i)
             kpi_the_up,kpi_the_down,tkpi_the_up,tkpi_the_down = kpi_the+kpi_uperr,kpi_the-kpi_derr,tkpi_the+tkpi_uperr,tkpi_the-tkpi_derr
             mid_k,mid_t=0.5*(kpi_the_up+kpi_the_down),0.5*(tkpi_the_up+tkpi_the_down)
-            sig_k,sig_t=(kpi_the_up-mid_k),(tkpi_the_up-mid_t)
+            sig_k,sig_t=sigma*(kpi_the_up-mid_k),sigma*(tkpi_the_up-mid_t)
             kpi_bool = ((av_k >= mid_k and mid_k+sig_k >= av_k-sige_k) or (av_k <= mid_k and mid_k-sig_k <= av_k+sige_k)) 
             tkpi_bool = ((av_t >= mid_t and mid_t+sig_t >= av_t-sige_t) or (av_t <= mid_t and mid_t-sig_t <= av_t+sige_t)) 
 
@@ -916,7 +947,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
             gam_err = error_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc_exp,gamc_exp_error,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM)
             gam_the_up,gam_the_down = gam_the+gam_err[0],gam_the-gam_err[1]
             mid_g=0.5*(gam_the_up+gam_the_down)
-            sig_g=(gam_the_up-mid_g)
+            sig_g=sigma*(gam_the_up-mid_g)
             gam_bool = ((av_g >= mid_g and mid_g+sig_g >= av_g-sige_g) or (av_g <= mid_g and mid_g-sig_g <= av_g+sige_g)) 
 
             expect_bd,expect_bs = bmumu(mt,tbd,tbs,fBd,fBs,Vtd,Vts,mmu,mbd,mbs,mW,j,i)
@@ -935,7 +966,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
             sig_rd = sigma*(expect_rd_up-mid_rd)
             rd_bool = ((av_rd >= mid_rd and mid_rd+sig_rd >= av_rd-sige_rd) or (av_rd <= mid_rd and mid_rd-sig_rd <= av_rd+sige_rd)) 
 
-            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool:
+            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool and rd_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHl_loc = np.append(mHl_loc,i_log)
                 tanbl_loc = np.append(tanbl_loc,j_log)
@@ -968,8 +999,8 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
                 tanba_loc = np.append(tanba_loc,j_log)
                 chi_1ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g])
                 chi_1s = np.append(chi_1s,chi_1ij)
-                if chi_1ij < chi_1min:
-                    chi_1min = chi_1ij
+                if chi_1ij < chi_1min[0]:
+                    chi_1min = [chi_1ij,i,j]
           
             if bs_bool and bd_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
