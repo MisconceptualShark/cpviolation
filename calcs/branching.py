@@ -5,7 +5,7 @@ from scipy.spatial import Delaunay
 from functions import *
 from rdstarring import *
 from fitting import *
-from ckm_2hdm import *
+#from ckm_2hdm import *
 import os 
 
 g_gev = (1.1663787e-5)**2
@@ -76,6 +76,18 @@ r21, r21_err = [0.854,[0.02,-0.02]]
 vev, vev_err = [246,[0,0]]
 rdst_exp, rdst_exp_err = [0.295,[0.014,-0.014]]
 
+#btau, berr = bsm(m_bplus,m_tau,Vub,f_bplus,tau_bplus), error_branching(m_bplus,m_bplus_err,m_tau,m_tau_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,1,[1,1],1,[1,1],1,1)
+#dtau, derr = bsm(m_dplus,m_mu,Vcd,f_dplus,tau_dplus), error_branching(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,1,[1,1],1,[1,1],1,1)
+#dstau, dserr = bsm(m_dsplus,m_tau,Vcs,f_dsplus,tau_dsplus), error_branching(m_dsplus,m_dsplus_err,m_tau,m_tau_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,1,[1,1],1,[1,1],1,1)
+#print("B -> tau nu Branching =",btau*1e4,"+",berr[0]*1e4,"-",berr[1]*1e4)
+#print("D -> mu nu Branching =",dtau*1e4,"+",derr[0]*1e4,"-",derr[1]*1e4)
+#print("Ds -> tau nu Branching =",dstau*1e2,"+",dserr[0]*1e2,"-",dserr[1]*1e2)
+#
+#kpi, tkpi = decay_ratios(m_K,m_pi,m_mu,m_tau,Vus,Vud,f_Kpi,delt_kpi,delt_kpitau)
+#kerr0, kerr1, terr0, terr1 = error_kpi(m_K,m_K_err,m_pi,m_pi_err,m_mu,m_mu_err,m_tau,m_tau_err,Vus,Vus_err,Vud,Vud_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,m_s,m_s_err,m_d,m_d_err,m_u,m_u_err,1,1)
+#print("K/pi branching",kpi,"+",kerr0,"-",kerr1)
+#print("tau -> K/pi branching",tkpi*1e2,"+",terr0*1e2,"-",terr1*1e2)
+#quit()
 # OLD INPUTS
 #m_bplus, m_bplus_err = [5.27917,[0.00029,-0.00029]]
 #m_dplus, m_dplus_err = [1.86962,[0.00020,-0.00020]] #08
@@ -196,18 +208,18 @@ rdst_exp, rdst_exp_err = [0.295,[0.014,-0.014]]
 ####plt.show()
 #plt.savefig('rd.png')
 
-#hrdst, trdst, chi_rdsst, chi_stmin = itera_rdst(m_Brd,m_Brd_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rdst_exp,rdst_exp_err)
-hrdn, trdn, chi_rdn, chi_nmin = itera_rdn(m_Brd,m_Brd_err,m_dplus,m_dplus_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rdst_exp,rdst_exp_err)
+hrdst, trdst, chi_rdsst, chi_stmin = itera_rds(m_Brd,m_Brd_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rdst_exp,rdst_exp_err)
+##hrdn, trdn, chi_rdn, chi_nmin = itera_rdn(m_Brd,m_Brd_err,m_dplus,m_dplus_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rdst_exp,rdst_exp_err)
 plt.figure(figsize=(8,6))
 plt.scatter(trdst,hrdst,c='cadetblue',marker=',')
 plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-plt.title('$\\mathcal{R}(D^*), 1\\sigma$',fontsize=18)
+plt.title('$\\mathcal{R}(D^*), 1.96\\sigma$',fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
 plt.axis([-1,2,0,3.5])
-#plt.show()
-plt.savefig('rdstar_196sig.png')
+plt.show()
+plt.savefig('rdstar_1sig.png')
 os.system('play gumdrops.mp3')
 quit()
 
@@ -242,6 +254,11 @@ delt_md, delt_md_err = [0.5064e12,[0.0019e12,-0.0019e12]]
 delt_ms, delt_ms_err = [17.757e12,[0.021e12,-0.021e12]]
 delt_md_expect, delt_md_err_exp = [0.533e12,[0.022e12,-0.036e12]]
 delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
+
+#bdmix, bderr = mixing(mt,1,mW,1,Vtd,Vtb,etaB,mBd,fBd,BBd,1),error_mixing(mt,mt_err,1,mW,mW_err,1,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,1,[1,1])
+#bsmix, bserr = mixing(mt,1,mW,1,Vts,Vtb,etaB,mBs,fBs,BBs,1),error_mixing(mt,mt_err,1,mW,mW_err,1,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,1,[1,1])
+#print("Bd mixing =",bdmix*1e-12,"+",bderr[0]*1e-12,"-",bderr[1]*1e-12)
+#print("Bs mixing =",bsmix*1e-12,"+",bserr[0]*1e-12,"-",bserr[1]*1e-12)
 
 # OLD INPUTS
 #mt, mt_err = [172.4e3,[1.2e3,-1.2e3]]
@@ -301,7 +318,7 @@ delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 lambda_QCD, QCD_err = [0.224972,[0.012886,-0.007412]]
 mt1, mt1_err = [173.1,[0.9,-0.9]]
 mW1, mW1_err = [80.379,[0.012,-0.012]]
-mub = 1.5
+mub = 1.0
 hi = [626126/272277,-56281/51730,-3/7,-1/14,-0.6494,-0.038,-0.0185,-0.0057]
 a = [14/23,16/23,6/23,-12/23,0.4086,-0.4223,-0.8994,0.1456]
 A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
@@ -312,6 +329,11 @@ branch_c, branchc_err = [0.1065,[0.0016,-0.0016]]
 branchs, branchs_err = [3.32e-4,[0.15e-4,-0.15e-4]]
 gamc, gamc_err = [10.18e-2,[0.24e-2,-0.24e-2]]
 gamu, gamu_err = [8.41e-4,[0.59e-4,-0.59e-4]]
+
+#bgam, gerr = bsgamma(mt1,mW1,mub,lambda_QCD,hi,a,1,1,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,branch_c,gamu,Vub,Vts,Vtb,Vcb,1/137), error_gamma(mt1,mt1_err,mW1,mW1_err,mub,lambda_QCD,QCD_err,hi,a,1,1,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,branch_c,branchc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,1/137)
+#upg = bgam*branch_c*np.sqrt((branchc_err[0]/branch_c)**2 + (gerr[0]/bgam)**2)
+#lg = bgam*branch_c*np.sqrt((branchc_err[1]/branch_c)**2 + (gerr[1]/bgam)**2)
+#print("b -> s gamma =",bgam*branch_c*1e4,"+",upg*1e4,"-",lg*1e4)
 
 # OLD INPUTS
 #lambda_QCD, QCD_err = [0.22119,[0.02599,-0.02404]]
