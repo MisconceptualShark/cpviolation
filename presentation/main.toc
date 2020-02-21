@@ -1,4 +1,4 @@
 \beamer@sectionintoc {1}{Introduction}{1}{0}{1}
-\beamer@sectionintoc {2}{Some \LaTeX {} Examples}{3}{0}{2}
-\beamer@subsectionintoc {2}{1}{Mathematics}{4}{0}{2}
-\beamer@subsectionintoc {2}{2}{Tables and Figures}{5}{0}{2}
+\beamer@sectionintoc {2}{Global Fits}{5}{0}{2}
+\beamer@sectionintoc {3}{Extension to SM4}{10}{0}{3}
+\beamer@sectionintoc {4}{Questions}{12}{0}{4}

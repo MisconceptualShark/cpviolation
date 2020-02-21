@@ -215,6 +215,7 @@ rdst_exp, rdst_exp_err = [0.295,[0.014,-0.014]]
 #hrdst, trdst, chi_rdsst, chi_stmin = itera_rds(m_Brd,m_Brd_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rdst_exp,rdst_exp_err)
 #hrdn, trdn, chi_rdn, chi_nmin = itera_rdn(m_Brd,m_Brd_err,m_dplus,m_dplus_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rdst_exp,rdst_exp_err)
 #plt.figure(figsize=(8,6))
+##plt.scatter(trdst,hrdst,c='cadetblue',marker=',')
 #plt.scatter(trdn,hrdn,c='cadetblue',marker=',')
 #plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 #plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
@@ -222,9 +223,19 @@ rdst_exp, rdst_exp_err = [0.295,[0.014,-0.014]]
 #plt.xticks(fontsize=18)
 #plt.yticks(fontsize=18)
 #plt.axis([-1,2,0,3.5])
-##plt.show()
 #plt.savefig('rd_196sig.png')
-#os.system('play gumdrops.mp3')
+#
+#plt.figure(figsize=(8,6))
+#plt.scatter(trdst,hrdst,c='cadetblue',marker=',')
+#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+#plt.title('$\\mathcal{R}(D^*), 1\\sigma$',fontsize=18)
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+#plt.axis([-1,2,0,3.5])
+#plt.show()
+#plt.savefig('rdstar_1sig.png')
+##os.system('play gumdrops.mp3')
 #quit()
 
 #hlepi,tlepi = itera_lepis(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,m_tau,m_tau_err,m_mu,m_mu_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,)
@@ -322,7 +333,7 @@ delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 lambda_QCD, QCD_err = [0.224972,[0.012886,-0.007412]]
 mt1, mt1_err = [173.1,[0.9,-0.9]]
 mW1, mW1_err = [80.379,[0.012,-0.012]]
-mub = 1.0
+mub = 1.5
 hi = [626126/272277,-56281/51730,-3/7,-1/14,-0.6494,-0.038,-0.0185,-0.0057]
 a = [14/23,16/23,6/23,-12/23,0.4086,-0.4223,-0.8994,0.1456]
 A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
@@ -380,13 +391,15 @@ bd_exp, bd_exp_err = [1.4e-10,[1.6e-10,-1.4e-10]] #pdg
 sm, sm_err = [3.1e-9,[0.7e-9,-0.7e-9]]
 wangle, wangle_err = [0.23155,[0.00004,-0.00004]]
 #mH_bmumu, tanb_bmumu = itera_bmumu(mt1,mt1_err,taubd,taubd_err,taubs,taubs_err,fBd,fBd_err,fBs,fBs_err,Vtd,Vtd_err,Vts,Vts_err,m_mu,m_mu_err,mbd,mbd_err,mbs,mbs_err,mW1,mW1_err,bs_exp,bs_exp_err,bd_exp,bd_exp_err)
-
-##plt.figure()
+#
+#plt.figure(figsize=(8,6))
 #plt.scatter(tanb_bmumu,mH_bmumu,marker=',',c='red')
-#plt.axis([-1,2,0,3])
+#plt.axis([-1,2,0,3.5])
 #plt.ylabel('$\\log[m_{H+}$, GeV]')
 #plt.xlabel('$\\log[\\tan(\\beta)]$')
-#plt.show()
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+##plt.show()
 #plt.savefig('bmumu.png')
 
 ###################### GLOBAL CONSTRAINT
@@ -394,7 +407,7 @@ wangle, wangle_err = [0.23155,[0.00004,-0.00004]]
 #hl,tl,hb,tb,hg,tg,ha,ta = itera_firstglobal(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,branchs,branchs_err,branch_c,branchc_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,mBd,mBd_err,m_tau,m_tau_err,m_mu,m_mu_err,etaB,etaB_err,fBd,fBd_err,BBd,BBd_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt1,mt1_err,mt,mt_err,mW1,mW1_err,mW,mW_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,gamu,gamu_err,1/137,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err)
 hl,tl,hb,tb,hg,tg,ha,ta,hmu,tmu,hrd,trd,hl2,tl2,chi_ls,chi_ms,chi_gs,chi_as,chi_mus,chi_rds,chi_2s,chi_l,chi_m,chi_g,chi_a,chi_mu,chi_r,chi_2 = itera_global(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,branchs,branchs_err,branch_c,branchc_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,mBd,mBd_err,m_tau,m_tau_err,m_mu,m_mu_err,etaB,etaB_err,fBd,fBd_err,BBd,BBd_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt1,mt1_err,mt,mt_err,mW1,mW1_err,mW,mW_err,mub,lambda_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,gamu,gamu_err,1/137,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,taubd,taubd_err,taubs,taubs_err,fBs,fBs_err,mbd,mbd_err,mbs,mbs_err,bs_exp,bs_exp_err,bd_exp,bd_exp_err,mBs,mBs_err,BBs,BBs_err,delt_ms,delt_ms_err,delt_ms_expect,delt_ms_err_exp,m_Brd,m_Brd_err,rho,rho_err,delt_rd,delt_rd_err,rd_exp,rd_exp_err)
 
-#print 10**min(ha)
+print 10**min(ha)
 #X = np.vstack((ta,ha)).T
 #matr = cov_mat(X.T)
 #print matr
@@ -403,32 +416,45 @@ hl,tl,hb,tb,hg,tg,ha,ta,hmu,tmu,hrd,trd,hl2,tl2,chi_ls,chi_ms,chi_gs,chi_as,chi_
 #Y = np.vstack((tl2,hl2)).T
 #matr2 = cov_mat(Y.T)
 #print matr2
+m1,m2 = 2.30,5.99
+hchi_mu, tchi_mu, mu_edges_e = chi_del(chi_mu,chi_mus,hmu,tmu,m2)
+hchi_mu2, tchi_mu2, mu_edges = chi_del(chi_mu,chi_mus,hmu,tmu,m1)
 
-#plt.figure(figsize=(8,6))
-#plt.scatter(tmu,hmu,c='red')
+plt.figure(figsize=(8,6))
+plt.scatter(tchi_mu,hchi_mu,c='red')
+for i, j in mu_edges[0]:
+    plt.plot(mu_edges[1][[i,j],0],mu_edges[1][[i,j],1],c='black',linestyle='--')
 #plt.scatter(trd,hrd,c='cadetblue')
-#plt.scatter(tb,hb,c='cornflowerblue')
-#plt.scatter(tl,hl,c='green')
-#plt.scatter(tg,hg,c='coral')
 #plt.scatter(ta,ha,c='orange')
 #plt.scatter(tl2,hl2,c='darkorchid')
-#plt.axis([-1,2,1,3])
-#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('Global Fit',fontsize=18)
-#plt.xticks(fontsize=18)
-#plt.yticks(fontsize=18)
-#plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.05,0.5),xycoords='axes fraction',fontsize=18)
-#plt.annotate('$b\\to s\\gamma$',xy=(0.20,0.85),xycoords='axes fraction',fontsize=18)
-#plt.annotate('Minimal Global',xy=(0.48,0.85),xycoords='axes fraction',fontsize=18)
+plt.axis([-1,2,0,3])
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.title('$B_s \\to \\mu^+\\mu^-, 1.96\\sigma$',fontsize=18)
+plt.savefig('mumu.png')
+
+plt.figure(figsize=(8,6))
+plt.scatter(tb,hb,c='cornflowerblue')
+plt.scatter(tl,hl,c='green')
+plt.scatter(tg,hg,c='coral')
+plt.scatter(ta,ha,c='orange')
+plt.axis([-1,2,1,3])
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.title('Global Fit',fontsize=18)
+plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.05,0.5),xycoords='axes fraction',fontsize=18)
+plt.annotate('$b\\to s\\gamma$',xy=(0.20,0.85),xycoords='axes fraction',fontsize=18)
+plt.annotate('Global',xy=(0.55,0.85),xycoords='axes fraction',fontsize=18)
 #plt.annotate('Global $\\to$',xy=(0.72,0.92),xycoords='axes fraction',fontsize=18)
-#plt.annotate('$\\Delta M_q$',xy=(0.8,0.35),xycoords='axes fraction',fontsize=18)
+plt.annotate('$\\Delta M_q$',xy=(0.8,0.35),xycoords='axes fraction',fontsize=18)
 #plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.55,0.24),xycoords='axes fraction',fontsize=18,rotation=75)
 #plt.annotate('$\\mathcal{R}(D)$',xy=(0.3,0.2),xycoords='axes fraction',fontsize=18,rotation=34)
 #plt.show()
-#plt.savefig('global_cl.png')
+plt.savefig('global.png')
+quit()
 
-m1,m2 = 2.30,5.99
 hchi_leps, tchi_leps, lep_edges_e = chi_del(chi_l,chi_ls,hl,tl,m2)
 hchi_leps2, tchi_leps2, lep_edges = chi_del(chi_l,chi_ls,hl,tl,m1)
 
@@ -438,8 +464,6 @@ hchi_mix2, tchi_mix2, mix_edges = chi_del(chi_m,chi_ms,hb,tb,m1)
 hchi_gam, tchi_gam, gam_edges_e = chi_del(chi_g,chi_gs,hg,tg,m2)
 hchi_gam2, tchi_gam2, gam_edges = chi_del(chi_g,chi_gs,hg,tg,m1)
 
-hchi_mu, tchi_mu, mu_edges_e = chi_del(chi_mu,chi_mus,hmu,tmu,m2)
-hchi_mu2, tchi_mu2, mu_edges = chi_del(chi_mu,chi_mus,hmu,tmu,m1)
 
 #hchi_rd, tchi_rd, rd_edges_e = chi_del(chi_r,chi_rds,hrd,trd,m2)
 #hchi_rd2, tchi_rd2, rd_edges = chi_del(chi_r,chi_rds,hrd,trd,m1)
@@ -470,8 +494,6 @@ plt.scatter(tchi_mix,hchi_mix,c='cornflowerblue')#,alpha=0.3)
 #for i, j in mix_edges[0]:
 #    plt.plot(mix_edges[1][[i,j],0],mix_edges[1][[i,j],1],c='midnightblue',linestyle='--')
 plt.scatter(tchi_mu,hchi_mu,c='red')#,alpha=0.3)
-#for i, j in mu_edges[0]:
-#    plt.plot(mu_edges[1][[i,j],0],mu_edges[1][[i,j],1],c='saddlebrown',linestyle='--')
 #plt.scatter(tchi_rd,hchi_rd,c='cadetblue')#,alpha=0.3)
 #for i, j in rd_edges[0]:
 #    plt.plot(rd_edges[1][[i,j],0],rd_edges[1][[i,j],1],c='black',linestyle='--')
