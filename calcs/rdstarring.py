@@ -237,7 +237,7 @@ def error_rdn(mBs,mBs_err,mD,mD_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mm
 
 def itera_rdn(mBs,mBs_err,mD,mD_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,rde,rde_err):
 
-    sigma = 1.96
+    sigma = 1
     rde_u,rde_d = rde+rde_err[0],rde+rde_err[1]
     av_rd = 0.5*(rde_u+rde_d)
     sige_rd = sigma*(rde_u-av_rd)
