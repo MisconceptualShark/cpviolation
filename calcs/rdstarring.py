@@ -265,3 +265,49 @@ def itera_rdn(mBs,mBs_err,mD,mD_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mm
                     chi_rmin = chi_rij
 
     return mH_loc, tanb_loc, chi_rds, chi_rmin
+
+def itera_rda(mBs,mBs_err,mD,mD_err,mDs,mDs_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,rde,rde_err,rdste,rdste_err):
+
+    sigma = 1.96
+    rde_u,rde_d = rde+rde_err[0],rde+rde_err[1]
+    rdste_u,rdste_d = rdste+rdste_err[0],rdste+rdste_err[1]
+    av_rd = 0.5*(rde_u+rde_d)
+    av_rdst = 0.5*(rdste_u+rdste_d)
+    sige_rd = sigma*(rde_u-av_rd)
+    sige_rdst = sigma*(rdste_u-av_rdst)
+    log_mH_range = np.linspace(0,3.5,350)
+    log_tanb_range = np.linspace(-1,2,300)
+    mH_range = 10**log_mH_range
+    tanb_range = 10**log_tanb_range
+    mH_loc, tanb_loc, chi_rds = [],[],[]
+    mHst_loc, tanbst_loc, chist_rds = [],[],[]
+    chi_rmin,chist_rmin = 1000,1000
+    for i in mH_range:
+        for j in tanb_range:
+            st_branch_up, st_branch_down = error_rds(mBs,mBs_err,mDs,mDs_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
+            expect_branch_up, expect_branch_down = error_rdn(mBs,mBs_err,mD,mD_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
+            mid_rd = 0.5*(expect_branch_up+expect_branch_down)
+            mid_rdst = 0.5*(st_branch_up+st_branch_down)
+            sig_rd = sigma*(expect_branch_up-mid_rd)
+            sig_rdst = sigma*(st_branch_up-mid_rdst)
+            rd_bool = ((av_rd >= mid_rd and mid_rd+sig_rd >= av_rd-sige_rd) or (av_rd <= mid_rd and mid_rd-sig_rd <= av_rd+sige_rd)) 
+            rdst_bool = ((av_rdst >= mid_rdst and mid_rdst+sig_rdst >= av_rdst-sige_rdst) or (av_rdst <= mid_rdst and mid_rdst-sig_rdst <= av_rdst+sige_rdst)) 
+            if rd_bool:
+                i_log, j_log = np.log10(i), np.log10(j)
+                mH_loc = np.append(mH_loc,i_log)
+                tanb_loc = np.append(tanb_loc,j_log)
+                chi_rij = chisq_simp([av_rd],[mid_rd],[sige_rd],[sig_rd])
+                chi_rds = np.append(chi_rds,chi_rij)
+                if chi_rij < chi_rmin:
+                    chi_rmin = chi_rij
+
+            if rdst_bool:
+                i_log, j_log = np.log10(i), np.log10(j)
+                mHst_loc = np.append(mHst_loc,i_log)
+                tanbst_loc = np.append(tanbst_loc,j_log)
+                chist_rij = chisq_simp([av_rdst],[mid_rdst],[sige_rdst],[sig_rdst])
+                chist_rds = np.append(chist_rds,chist_rij)
+                if chist_rij < chist_rmin:
+                    chist_rmin = chist_rij
+
+    return mH_loc, tanb_loc, chi_rds, chi_rmin, mHst_loc, tanbst_loc, chist_rds, chist_rmin

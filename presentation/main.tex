@@ -4,6 +4,7 @@
 
 \usepackage{graphics,graphicx,float}
 \usepackage{multicol}
+\usepackage{cancel}
 
 \title{CP Violation In and Beyond The Standard Model}
 \subtitle{Two Higgs Doublet Model Type II Corrections to Flavour Observables}
@@ -25,22 +26,91 @@
 %  \tableofcontents
 %\end{frame}
 \begin{frame}{The Standard Model}
-
+    \begin{itemize}
+        \item One of the great achievements of the 20th Century, the Standard Model:
+            \begin{align}
+                \mathcal{L} &= \underbrace{-\frac14 F_{\mu\nu}F^{\mu\nu}}_{\text{\small gauge fields}} \underbrace{+ i\bar{\Psi}\cancel{D}\Psi}_{\text{\small fermions}} \underbrace{+ (D_\mu\Phi)^\dagger(D^\mu\Phi) - V(\Phi)}_{\text{\small Higgs}} \underbrace{- Y_{ij}\bar{\Psi}_i\Phi\Psi_j + h.c.}_{\text{\small Yukawa}}
+            \end{align}
+        \item A gauge field theory describing matter and its interactions with 25 fundamental particles
+        \item Each particle is described by a field transforming under the gauge groups of the Standard Model: SU(3)$_c\otimes$SU(2)$_L\otimes$U(1)$_Y$
+        \item Has successfully described most particle phenomena we have observed to date
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Unsolved Problems of the Standard Model}
+    \begin{itemize}
+        \item Quantum gravity; Dark matter; Neutrino masses
+        \item Deviations between experiment and theory, e.g. $\mathcal{R}(K^{(*)})$
+        \item Sakharov Criteria for Baryogenesis:
+            \begin{enumerate}
+                \item Baryon Number Violation - found in Sphalerons
+                \item C and CP Violation - present but not enough
+                \item First Order Phase Transition - only if $m_h<60\,$GeV 
+            \end{enumerate}
+    \end{itemize}
+    To answer these questions, we need to consider models to extend our physics Beyond the Standard Model. 
+    These models should:
+    \begin{itemize}
+        \item preserve predictions in agreement with experiment
+        \item agree with experimental bounds
+        \item follow the structures of gauge field theory for a physical model, e.g. renormalisability
+    \end{itemize}
+\end{frame}
 
+\begin{frame}{The Two Higgs Doublet Model Type II}
+    \begin{columns}[t]
+        \begin{column}{0.5\textwidth}
+            In the Standard Model:
+            \begin{itemize}
+                \item One complex Higgs doublet, 4 scalar fields:
+                    \begin{align}
+                        \Phi_1 &= \begin{pmatrix} \phi_1 + i\phi_2 \\ \phi_0+i\phi_3\end{pmatrix}
+                    \end{align}
+                \item 3 fields ``eaten" by $W^\pm,Z$ bosons;\\ 1 real field left, $h$
+                \item Introduce the Hermitian conjugate for masses of all fermions
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            In 2HDM:
+            \begin{itemize}
+                \item Add a second doublet, now 8 scalar fields
+                    \begin{align}
+                        \Phi_2 &= \begin{pmatrix} \phi_5 + i\phi_6 \\ \phi_4 + i \phi_7\end{pmatrix}
+                    \end{align}
+                \item Now 5 fields left - $H^\pm,H^0,h^0,A^0$
+                \item No need for Hermitian conjugate
+                \item In Type II, $\Phi_1$ couples to down quarks; $\Phi_2$ to up quarks and charged leptons
+            \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{Why Two Higgs Doublet Model?}
-
+    \begin{itemize}
+        \item Minimal Extension to SM
+        \item Limited number of new parameters:
+            \begin{itemize}
+                \item Masses of $H^\pm,H^0,A^0$; VEV ratio $\tan\beta=\frac{v_2}{v_1}$; scalar mixing angle
+            \end{itemize}
+        \item Sakharov Criteria:
+            \begin{enumerate}
+                \item Baryon Number Violation - Sphalerons
+                \item C and CP violation - more of it
+                \item First Order Phase Transition - now present
+            \end{enumerate}
+        \item Charged weak currents gain additional decay paths, replacing $W^\pm$ with $H^\pm$ - allows for easy constraining
+    \end{itemize}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[scale=0.6]{../presentation/fine1.pdf}
+    \end{figure}
 \end{frame}
-
 
 \section{Global Fits}
 \begin{frame}{First Inputs}
-    \begin{columns}[c]
+    \begin{columns}[T]
         \begin{column}{0.33\textwidth}
+            \vspace{1.5em}
             \begin{itemize}
                 \item $1\sigma$ scan
                 \item Leptonic, mixing, and radiative
@@ -73,12 +143,25 @@
 \end{frame}
 
 \begin{frame}{Statistical Fitting of Scans}
-    \includegraphics[scale=0.35]{global_08}
+    \begin{columns}[T]
+        \begin{column}{0.35\textwidth}
+            \vspace{1.5em}
+            \begin{itemize}
+                \item Scanning
+                \item Sigma
+                \item Chi
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.6\textwidth}
+            \includegraphics[scale=0.35]{global_08}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{Extended Global Fit}
-    \begin{columns}[c]
+    \begin{columns}[T]
         \begin{column}{0.37\textwidth}
+            \vspace{1.5em}
             \begin{itemize}
                 \item 95\% CL: $m_{H^+}>390\,$GeV
                 \item $1\sigma$: $m_{H^+}>530\,$GeV
