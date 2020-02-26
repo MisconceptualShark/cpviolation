@@ -47,23 +47,23 @@ Vtd,Vtd_err = [0.0081,[0.0005,-0.0005]]
 Vts,Vts_err = [0.0394,[0.0023,-0.0023]]
 Vtb,Vtb_err = [1.019,[0.025,-0.025]]
 
-h1,t1,v1,h2,t2,v2,ha,ta,va = ckmelsr([Vud,Vus,Vub,Vcd,Vcs,Vcb],[Vud_err,Vus_err,Vub_err,Vcd_err,Vcs_err,Vcb_err],mu,mu_err,md,md_err,ms,ms_err,mc,mc_err,mb,mb_err,mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mtau,mtau_err,mmu,mmu_err,fb,fb_err,fd,fd_err,fds,fds_err,taub,taub_err,taud,taud_err,tauds,tauds_err,brb,brb_err,brd,brd_err,brds,brds_err,mK,mK_err,mpi,mpi_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,brk,brk_err,brtk,brtk_err)
-
-print len(h1)
-print len(h2)
-print len(ha)
-
-plt.figure(figsize=(8,6))
-plt.scatter(t1,h1,c='green')
-plt.scatter(t2,h2,c='cornflowerblue')
-plt.scatter(ta,ha,c='darkorchid')
-plt.axis([-1,2,0,3.5])
-plt.title('SM4 Allowed Unitarity with 2HDM',fontsize=18)
-plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-plt.ylabel('$\\log[m_{H+}]$',fontsize=18)
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
-plt.show()
+#h1,t1,v1,h2,t2,v2,ha,ta,va = ckmelsr([Vud,Vus,Vub,Vcd,Vcs,Vcb],[Vud_err,Vus_err,Vub_err,Vcd_err,Vcs_err,Vcb_err],mu,mu_err,md,md_err,ms,ms_err,mc,mc_err,mb,mb_err,mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mtau,mtau_err,mmu,mmu_err,fb,fb_err,fd,fd_err,fds,fds_err,taub,taub_err,taud,taud_err,tauds,tauds_err,brb,brb_err,brd,brd_err,brds,brds_err,mK,mK_err,mpi,mpi_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,brk,brk_err,brtk,brtk_err)
+#
+#print len(h1)
+#print len(h2)
+#print len(ha)
+#
+#plt.figure(figsize=(8,6))
+#plt.scatter(t1,h1,c='green')
+#plt.scatter(t2,h2,c='cornflowerblue')
+#plt.scatter(ta,ha,c='darkorchid')
+#plt.axis([-1,2,0,3.5])
+#plt.title('SM4 Allowed Unitarity with 2HDM',fontsize=18)
+#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+#plt.ylabel('$\\log[m_{H+}]$',fontsize=18)
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+#plt.show()
 #quit()
 ### CKMfitter
 #Vud,Vud_err = [0.974390,[0.000014,-0.000058]]
@@ -107,9 +107,9 @@ def rprop(V,V_err,mu,mu_err,md,md_err,mm,mm_err):
 #print "|Vub'|^2 =(",Vubp2[0]*1e4,"+",Vubp2[1]*1e4,"-",Vubp2[2]*1e4,")* e-4"
 ##print np.sqrt(Vubp2[0])
 #
-#Vcbp2 = Vp2([Vcdn,Vcsn,Vcb],[Vcdn_err,Vcsn_err,Vcb_err])
-#print "|Vcb'|^2 =(",Vcbp2[0]*1e2,"+",Vcbp2[1]*1e2,"-",Vcbp2[2]*1e2,")* e-2"
-##print np.sqrt(abs(Vcbp2[0]))
+Vcbp2 = Vp2([Vcd,Vcs,42.22e-3],[Vcd_err,Vcs_err,[0.60e-3,-0.62e-3]])
+print "|Vcb'|^2 =(",Vcbp2[0]*1e2,"+",Vcbp2[1]*1e2,"-",Vcbp2[2]*1e2,")* e-2"
+#print np.sqrt(abs(Vcbp2[0]))
 #
 #Vtbp2 = Vp2([Vubn,Vcb,Vtb],[Vubn_err,Vcb_err,Vtb_err])
 #print "|Vt'b|^2 =(",Vtbp2[0]*1e2,"+",Vtbp2[1]*1e2,"-",Vtbp2[2]*1e2,")* e-2"

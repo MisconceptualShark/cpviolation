@@ -6,6 +6,8 @@
 \usepackage{multicol}
 \usepackage{cancel}
 
+\hypersetup{pdfstartview={Fit}}
+
 \title{CP Violation In and Beyond The Standard Model}
 \subtitle{Two Higgs Doublet Model Type II Corrections to Flavour Observables}
 \author{Matthew Rossetter}
@@ -124,6 +126,23 @@
     \end{columns}
 \end{frame}
             %Initial stuff from 0907.5135 here.
+\begin{frame}{Statistical Fitting of Scans}
+    \begin{columns}[T]
+        \begin{column}{0.4\textwidth}
+            \begin{itemize}
+                \item Aimed to replicate process of original paper (see below) 
+                \item Scanned at 95\% CL
+                \item $\chi^2$ fit to $1\sigma$
+                \item Replicated $m_{H^+}\gtrapprox316\,$GeV, 95\% CL
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.55\textwidth}
+            \vspace{-1.5em}
+            \includegraphics[scale=0.35]{global_08}
+        \end{column}
+    \end{columns}
+    \emph{\small O Deschamps et al, Phys. Rev. D82 (2010) 073012, arxiv:0907.5135 [hep-ph]}
+\end{frame}
 
 \begin{frame}{New Inputs}
     \begin{columns}[c]
@@ -135,27 +154,15 @@
         \end{column}
         \begin{column}{0.45\textwidth}
             \begin{itemize}
-                \item $R(D^{(*)})$ BOTH 
-                    \includegraphics[scale=0.25]{rd_196sig}
+                \item $R(D^{(*)}) = \frac{\Gamma[B\to D^{(*)}\tau\nu]}{\Gamma[B\to D^{(*)}l\nu]}$ 
+                    \includegraphics[scale=0.25]{rd_95both}
             \end{itemize}
         \end{column}
     \end{columns}
-\end{frame}
-
-\begin{frame}{Statistical Fitting of Scans}
-    \begin{columns}[T]
-        \begin{column}{0.35\textwidth}
-            \vspace{1.5em}
-            \begin{itemize}
-                \item Scanning
-                \item Sigma
-                \item Chi
-            \end{itemize}
-        \end{column}
-        \begin{column}{0.6\textwidth}
-            \includegraphics[scale=0.35]{global_08}
-        \end{column}
-    \end{columns}
+    \begin{itemize}
+        \item 2HDM historically struggles fitting both $\mathcal{R}(D)$ and $\mathcal{R}(D^*)$
+        \item Does this kill the 2HDM?
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Extended Global Fit}
@@ -163,6 +170,8 @@
         \begin{column}{0.37\textwidth}
             \vspace{1.5em}
             \begin{itemize}
+                \item Added $B_s\to\mu^+\mu^-$ and $\mathcal{R}(D)$
+                \item $\mathcal{R}(D^*)$ not included
                 \item 95\% CL: $m_{H^+}>390\,$GeV
                 \item $1\sigma$: $m_{H^+}>530\,$GeV
                 \item $\tan\beta\gtrapprox2$
@@ -175,16 +184,58 @@
 \end{frame}
 
 \begin{frame}{CKM Element Modifications}
-
+    \begin{itemize}
+        \item CKM Matrix contains information of quark mixing 
+        \item In SM, a $3\times3$ unitary matrix
+        \item Measurements would be incorrect in 2HDM; e.g. from leptonic decays, modified as
+            \begin{align}
+                V_{ij} &= \frac{V_{ij}^{SM}}{(1+r_H)^2}
+            \end{align}
+        \item Exclusive measurements from light quark mesons would have negligible change
+        \item Possibility to improve unitarity constraints, e.g. second row currently sums to $>1$
+        \item Space for a fourth generation? %1172, 46
+    \end{itemize}
 \end{frame}
 
 \section{Extension to SM4}
 \begin{frame}{Four Generations?}
-
+    \begin{block}{Why SM4?}
+        \begin{itemize}
+            \item $3\times3$ CKM $\to4\times4$; 1 CP-violating phase to 3
+            \item New heavy quarks, $t'$ and $b'$, extra loop diagrams to change decay widths
+            \item A simple extension, and no reason for 3, so why not 4?
+        \end{itemize}
+    \end{block}
+    \begin{block}{Exclusion of Chiral SM4:}
+        \begin{columns}[c]
+            \begin{column}{0.55\textwidth}
+                \begin{itemize}
+                    \item Light neutrinos measured precisely as $N_\nu=3$
+                    \item SM4 gluon fusion $\approx$ 9 times SM3 gluon fusion from heavy quarks
+                \end{itemize}
+            \end{column}
+            \begin{column}{0.35\textwidth}
+                \includegraphics[scale=0.8]{../notes/higgs.pdf}
+            \end{column}
+        \end{columns}
+    \end{block}
 \end{frame}
 
 \begin{frame}{SM4 with 2HDM Type II}
-
+    \begin{itemize}
+        \item A Chiral SM4 not excluded with 2HDM 
+        \item Introduce a ``wrong sign" limit to cancel new Higgs couplings
+            \begin{align}
+                \kappa_u = -\kappa_{d,l}
+            \end{align}
+        \item For $\tan\beta\gg2$, the wrong sign limit yields
+            \begin{align}
+                \cos(\beta-\alpha) &= \frac{2}{\tan\beta}, & \cos(\beta-\alpha) &= \sin2\beta
+            \end{align}
+        \item These are equivalent in the large $\tan\beta$ limit
+        \item Relations allow us to reduce free parameters of SM4$\times$2HDM
+        \item Aim to extend 2HDM scans to SM4 and constrain model using flavour observables
+    \end{itemize}
 \end{frame}
 
 \section{Questions}

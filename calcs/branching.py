@@ -42,7 +42,8 @@ Vud, Vud_err = [0.974390,[0.000014,-0.000058]]
 Vts, Vts_err = [0.04090,[0.00026,-0.00076]]
 Vtd, Vtd_err = [0.008545,[0.000075,-0.000157]]
 Vtb, Vtb_err = [0.999127,[0.000032,-0.000012]]
-Vcb, Vcb_err = [0.04162,[0.00026,-0.00080]]
+#Vcb, Vcb_err = [0.04162,[0.00026,-0.00080]]
+Vcb, Vcb_err = [41.9e-3,[2e-3,-2e-3]]
 
 f_bplus, f_bplus_err = [0.190,[0.0013,-0.0013]]
 f_dplus, f_dplus_err = [0.212,[0.0007,-0.0007]]
@@ -57,6 +58,7 @@ rho, rho_err = [1.131,[0.033,-0.033]] #1909.12524
 delt_rd, delt_rd_err = [0.46,[0.01,-0.01]] #0802.3790
 
 tau_bplus, tau_bplus_err = [(1.638e-12)/hbar_gev,[(0.004e-12)/hbar_gev,-(0.004e-12)/hbar_gev]]
+tau_b, tau_berr = [(1.519e-12)/hbar_gev,[(0.004e-12)/hbar_gev,-(0.004e-12)/hbar_gev]]
 tau_dplus, tau_dplus_err = [(1040e-15)/hbar_gev,[(7e-15)/hbar_gev,-(7e-15)/hbar_gev]]
 tau_dsplus, tau_dsplus_err = [(504e-15)/hbar_gev,[(4e-15)/hbar_gev,-(4e-15)/hbar_gev]]
 
@@ -76,9 +78,12 @@ r21, r21_err = [0.854,[0.02,-0.02]]
 vev, vev_err = [246,[0,0]]
 rdst_exp, rdst_exp_err = [0.295,[0.014,-0.014]]
 
-#print error_rds(m_Brd,m_Brd_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,1,1)
-#print error_rdn(m_Brd,m_Brd_err,m_dplus,m_dplus_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,1,1)
-#quit()
+bdle = (5.05e-2)/tau_b
+bdle_err = bdle*np.sqrt((0.0014/0.0505)**2 + (tau_berr[0]/tau_b)**2)
+
+print error_rds(m_Brd,m_Brd_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,bdle,[bdle_err,-bdle_err],m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,1,1)
+#print error_rdn(m_Brd,m_Brd_err,m_dplus,m_dplus_err,rhod,rhod_err,delta,delta_err,bdle,[bdle_err,-bdle_err],m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,46,1172)
+quit()
 
 #btau, berr = bsm(m_bplus,m_tau,Vub,f_bplus,tau_bplus), error_branching(m_bplus,m_bplus_err,m_tau,m_tau_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,1,[1,1],1,[1,1],1,1)
 #dtau, derr = bsm(m_dplus,m_mu,Vcd,f_dplus,tau_dplus), error_branching(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,1,[1,1],1,[1,1],1,1)
