@@ -591,97 +591,99 @@ def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v):
     pref = taubs*((pow(alpha,2)*g_gev*mbs*beta)/(16*np.pi**3))*pow(Vtb*Vts,2)*pow(fbs*mmu,2)
     bs1 = abs(C10-C10P+(pow(mbs,2)*(CP-CPP)/(2*mmu*(mb+ms))),2)**2
     bs2 = pow(abs(CS-CSP),2)*(pow(mbs,2)*(pow(mbs,2)-4*pow(mmu,2))/(4*pow(mmu,2)*(mb+ms)**2))
-    bs = pref*(bs1+bs2)
+    bsi = pref*(bs1+bs2)
+    bs = bsi/(1-0.061)
 
     return bs
 
-def error_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,tanb,mH):#,mb,mb_err,ms,ms_err,wangle,wan_err,higgs,higgs_err,v,v_err):
+def error_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,tanb,mH,mb,mb_err,ms,ms_err,wangle,wan_err,higgs,higgs_err,v,v_err):
 #def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v):
     '''
         Error propagation for b(s/d) to mumu
     '''
-    bd, bs = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
-#    bs = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+#    bd, bs = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    bs = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
 
     ## errors
-    err1_up = bmumu(mt+mt_err[0],taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err1_low = bmumu(mt+mt_err[1],taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err2_up = bmumu(mt,taubd+taubd_err[0],taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err2_low = bmumu(mt,taubd+taubd_err[1],taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err3_up = bmumu(mt,taubd,taubs+taubs_err[0],fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err3_low = bmumu(mt,taubd,taubs+taubs_err[1],fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err4_up = bmumu(mt,taubd,taubs,fbd+fbd_err[0],fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err4_low = bmumu(mt,taubd,taubs,fbd+fbd_err[1],fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err5_up = bmumu(mt,taubd,taubs,fbd,fbs+fbs_err[0],Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err5_low = bmumu(mt,taubd,taubs,fbd,fbs+fbs_err[1],Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err6_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd+Vtd_err[0],Vts,mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err6_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd+Vtd_err[1],Vts,mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err7_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts+Vtd_err[0],mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err7_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts+Vts_err[1],mmu,mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err8_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu+mmu_err[0],mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err8_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu+mmu_err[1],mbd,mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err9_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd+mbd_err[0],mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err9_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd+mbd_err[1],mbs,mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err10_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs+mbs_err[0],mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err10_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs+mbs_err[1],mW,tanb,mH)#,mb,ms,wangle,higgs,v)
-    err11_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW+mW_err[0],tanb,mH)#,mb,ms,wangle,higgs,v)
-    err11_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW+mW_err[1],tanb,mH)#,mb,ms,wangle,higgs,v)
-#    err12_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb+mb_err[0],ms,wangle,higgs,v)
-#    err12_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb+mb_err[1],ms,wangle,higgs,v)
-#    err13_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms+ms_err[0],wangle,higgs,v)
-#    err13_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms+ms_err[1],wangle,higgs,v)
-#    err14_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle+wan_err[0],higgs,v)
-#    err14_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle+wan_err[1],higgs,v)
-#    err15_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs+higgs_err[0],v)
-#    err15_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs+higgs_err[1],v)
-#    err16_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v+v_err[0])
-#    err16_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v+v_err[1])
+    err1_up = bmumu2(mt+mt_err[0],taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err1_low = bmumu2(mt+mt_err[1],taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err2_up = bmumu2(mt,taubd+taubd_err[0],taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err2_low = bmumu2(mt,taubd+taubd_err[1],taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err3_up = bmumu2(mt,taubd,taubs+taubs_err[0],fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err3_low = bmumu2(mt,taubd,taubs+taubs_err[1],fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err4_up = bmumu2(mt,taubd,taubs,fbd+fbd_err[0],fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err4_low = bmumu2(mt,taubd,taubs,fbd+fbd_err[1],fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err5_up = bmumu2(mt,taubd,taubs,fbd,fbs+fbs_err[0],Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err5_low = bmumu2(mt,taubd,taubs,fbd,fbs+fbs_err[1],Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err6_up = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd+Vtd_err[0],Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err6_low = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd+Vtd_err[1],Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err7_up = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts+Vtd_err[0],mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err7_low = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts+Vts_err[1],mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err8_up = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu+mmu_err[0],mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err8_low = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu+mmu_err[1],mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err9_up = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd+mbd_err[0],mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err9_low = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd+mbd_err[1],mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err10_up = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs+mbs_err[0],mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err10_low = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs+mbs_err[1],mW,tanb,mH,mb,ms,wangle,higgs,v)
+    err11_up = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW+mW_err[0],tanb,mH,mb,ms,wangle,higgs,v)
+    err11_low = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW+mW_err[1],tanb,mH,mb,ms,wangle,higgs,v)
+    err12_up = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb+mb_err[0],ms,wangle,higgs,v)
+    err12_low = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb+mb_err[1],ms,wangle,higgs,v)
+    err13_up = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms+ms_err[0],wangle,higgs,v)
+    err13_low = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms+ms_err[1],wangle,higgs,v)
+    err14_up = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle+wan_err[0],higgs,v)
+    err14_low = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle+wan_err[1],higgs,v)
+    err15_up = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs+higgs_err[0],v)
+    err15_low = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs+higgs_err[1],v)
+    err16_up = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v+v_err[0])
+    err16_low = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v+v_err[1])
 
     ## bd
-    err1_up1, err1_low1 = abs(err1_up[0]-bd),abs(err1_low[0]-bd)
-    err2_up1, err2_low1 = abs(err2_up[0]-bd),abs(err2_low[0]-bd)
-    err3_up1, err3_low1 = abs(err3_up[0]-bd),abs(err3_low[0]-bd)
-    err4_up1, err4_low1 = abs(err4_up[0]-bd),abs(err4_low[0]-bd)
-    err5_up1, err5_low1 = abs(err5_up[0]-bd),abs(err5_low[0]-bd)
-    err6_up1, err6_low1 = abs(err6_up[0]-bd),abs(err6_low[0]-bd)
-    err7_up1, err7_low1 = abs(err7_up[0]-bd),abs(err7_low[0]-bd)
-    err8_up1, err8_low1 = abs(err8_up[0]-bd),abs(err8_low[0]-bd)
-    err9_up1, err9_low1 = abs(err9_up[0]-bd),abs(err9_low[0]-bd)
-    err10_up1, err10_low1 = abs(err10_up[0]-bd),abs(err10_low[0]-bd)
-    err11_up1, err11_low1 = abs(err11_up[0]-bd),abs(err11_low[0]-bd)
-#    err12_up1, err12_low1 = abs(err12_up-bs),abs(err12_low-bs)
-#    err13_up1, err13_low1 = abs(err13_up-bs),abs(err13_low-bs)
-#    err14_up1, err14_low1 = abs(err14_up-bs),abs(err14_low-bs)
-#    err15_up1, err15_low1 = abs(err15_up-bs),abs(err15_low-bs)
-#    err16_up1, err16_low1 = abs(err16_up-bs),abs(err16_low-bs)
+    err1_up1, err1_low1 = abs(err1_up-bs),abs(err1_low-bs)
+    err2_up1, err2_low1 = abs(err2_up-bs),abs(err2_low-bs)
+    err3_up1, err3_low1 = abs(err3_up-bs),abs(err3_low-bs)
+    err4_up1, err4_low1 = abs(err4_up-bs),abs(err4_low-bs)
+    err5_up1, err5_low1 = abs(err5_up-bs),abs(err5_low-bs)
+    err6_up1, err6_low1 = abs(err6_up-bs),abs(err6_low-bs)
+    err7_up1, err7_low1 = abs(err7_up-bs),abs(err7_low-bs)
+    err8_up1, err8_low1 = abs(err8_up-bs),abs(err8_low-bs)
+    err9_up1, err9_low1 = abs(err9_up-bs),abs(err9_low-bs)
+    err10_up1, err10_low1 = abs(err10_up-bs),abs(err10_low-bs)
+    err11_up1, err11_low1 = abs(err11_up-bs),abs(err11_low-bs)
+    err12_up1, err12_low1 = abs(err12_up-bs),abs(err12_low-bs)
+    err13_up1, err13_low1 = abs(err13_up-bs),abs(err13_low-bs)
+    err14_up1, err14_low1 = abs(err14_up-bs),abs(err14_low-bs)
+    err15_up1, err15_low1 = abs(err15_up-bs),abs(err15_low-bs)
+    err16_up1, err16_low1 = abs(err16_up-bs),abs(err16_low-bs)
 
-    upper1 = np.sqrt(err1_up1**2 + err2_up1**2 + err3_up1**2 + err4_up1**2 + err5_up1**2 + err6_up1**2 + err7_up1**2 + err9_up1**2 + err10_up1**2 + err11_up1**2 + err11_up1**2)# + err12_up1**2 + err13_up1**2 + err14_up1**2 + err15_up1**2 + err16_up1**2)
-    lower1 = np.sqrt(err1_low1**2 + err2_low1**2 + err3_low1**2 + err4_low1**2 + err5_low1**2 + err6_low1**2 + err7_low1**2 + err9_low1**2 + err10_low1**2 + err11_low1**2 + err11_low1**2)# + err12_low1**2 + err13_low1**2 + err14_low1**2 + err15_low1**2 + err16_low1**2)
+    upper1 = np.sqrt(err1_up1**2 + err2_up1**2 + err3_up1**2 + err4_up1**2 + err5_up1**2 + err6_up1**2 + err7_up1**2 + err9_up1**2 + err10_up1**2 + err11_up1**2 + err11_up1**2 + err12_up1**2 + err13_up1**2 + err14_up1**2 + err15_up1**2 + err16_up1**2)
+    lower1 = np.sqrt(err1_low1**2 + err2_low1**2 + err3_low1**2 + err4_low1**2 + err5_low1**2 + err6_low1**2 + err7_low1**2 + err9_low1**2 + err10_low1**2 + err11_low1**2 + err11_low1**2 + err12_low1**2 + err13_low1**2 + err14_low1**2 + err15_low1**2 + err16_low1**2)
 
     ## bs
-    err1_up2, err1_low2 = abs(err1_up[1]-bs),abs(err1_low[1]-bs)
-    err2_up2, err2_low2 = abs(err2_up[1]-bs),abs(err2_low[1]-bs)
-    err3_up2, err3_low2 = abs(err3_up[1]-bs),abs(err3_low[1]-bs)
-    err4_up2, err4_low2 = abs(err4_up[1]-bs),abs(err4_low[1]-bs)
-    err5_up2, err5_low2 = abs(err5_up[1]-bs),abs(err5_low[1]-bs)
-    err6_up2, err6_low2 = abs(err6_up[1]-bs),abs(err6_low[1]-bs)
-    err7_up2, err7_low2 = abs(err7_up[1]-bs),abs(err7_low[1]-bs)
-    err8_up2, err8_low2 = abs(err8_up[1]-bs),abs(err8_low[1]-bs)
-    err9_up2, err9_low2 = abs(err9_up[1]-bs),abs(err9_low[1]-bs)
-    err10_up2, err10_low2 = abs(err10_up[1]-bs),abs(err10_low[1]-bs)
-    err11_up2, err11_low2 = abs(err11_up[1]-bs),abs(err11_low[1]-bs)
+#    err1_up2, err1_low2 = abs(err1_up[1]-bs),abs(err1_low[1]-bs)
+#    err2_up2, err2_low2 = abs(err2_up[1]-bs),abs(err2_low[1]-bs)
+#    err3_up2, err3_low2 = abs(err3_up[1]-bs),abs(err3_low[1]-bs)
+#    err4_up2, err4_low2 = abs(err4_up[1]-bs),abs(err4_low[1]-bs)
+#    err5_up2, err5_low2 = abs(err5_up[1]-bs),abs(err5_low[1]-bs)
+#    err6_up2, err6_low2 = abs(err6_up[1]-bs),abs(err6_low[1]-bs)
+#    err7_up2, err7_low2 = abs(err7_up[1]-bs),abs(err7_low[1]-bs)
+#    err8_up2, err8_low2 = abs(err8_up[1]-bs),abs(err8_low[1]-bs)
+#    err9_up2, err9_low2 = abs(err9_up[1]-bs),abs(err9_low[1]-bs)
+#    err10_up2, err10_low2 = abs(err10_up[1]-bs),abs(err10_low[1]-bs)
+#    err11_up2, err11_low2 = abs(err11_up[1]-bs),abs(err11_low[1]-bs)
+#
+#    upper2 = np.sqrt(err1_up2**2 + err2_up2**2 + err3_up2**2 + err4_up2**2 + err5_up2**2 + err6_up2**2 + err7_up2**2 + err9_up2**2 + err10_up2**2 + err11_up2**2 + err11_up2**2)
+#    lower2 = np.sqrt(err1_low2**2 + err2_low2**2 + err3_low2**2 + err4_low2**2 + err5_low2**2 + err6_low2**2 + err7_low2**2 + err9_low2**2 + err10_low2**2 + err11_low2**2 + err11_low2**2)
 
-    upper2 = np.sqrt(err1_up2**2 + err2_up2**2 + err3_up2**2 + err4_up2**2 + err5_up2**2 + err6_up2**2 + err7_up2**2 + err9_up2**2 + err10_up2**2 + err11_up2**2 + err11_up2**2)
-    lower2 = np.sqrt(err1_low2**2 + err2_low2**2 + err3_low2**2 + err4_low2**2 + err5_low2**2 + err6_low2**2 + err7_low2**2 + err9_low2**2 + err10_low2**2 + err11_low2**2 + err11_low2**2)
+    return upper1, lower1#, upper2, lower2
 
-    return upper1, lower1, upper2, lower2
-
-def itera_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,bs_exp,bs_exp_error,bd_exp,bd_exp_error):
+#def itera_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,bs_exp,bs_exp_error,bd_exp,bd_exp_error):
+def itera_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,bs_exp,bs_exp_errpr,mb,mb_err,ms,ms_err,wangle,wan_err,higgs,higgs_err,v,v_err):
     '''
         Iterate of mH,tanb space for b(s/d) to mumu
     '''
     bs_exp_up,bs_exp_down = bs_exp+bs_exp_error[0],bs_exp+bs_exp_error[1]
-    bd_exp_up,bd_exp_down = bd_exp+bd_exp_error[0],bd_exp+bd_exp_error[1]
+#    bd_exp_up,bd_exp_down = bd_exp+bd_exp_error[0],bd_exp+bd_exp_error[1]
     log_mH_range = np.linspace(0,3.5,350)
     log_tanb_range = np.linspace(-1,2,300)
     mH_range = 10**log_mH_range
@@ -690,12 +692,15 @@ def itera_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_er
     tanb_loc = []
     for i in mH_range:
         for j in tanb_range:
-            expect_bd,expect_bs = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,j,i)
-            print expect_bd,expect_bs
-            expect_bd_uperr,expect_bd_downerr,expect_bs_uperr,expect_bs_downerr = error_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,j,i)
-            expect_bd_up, expect_bd_down = expect_bd+expect_bd_uperr, expect_bd-expect_bd_downerr
+            #expect_bd,
+            expect_bs = bmumu2(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,j,i)
+            print expect_bs
+            #expect_bd_uperr,expect_bd_downerr,
+            expect_bs_uperr,expect_bs_downerr = error_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,j,i,mb,mb_err,ms,ms_err,wangle,wan_err,higgs,higgs_err,v,v_err)
+#            expect_bd_up, expect_bd_down = expect_bd+expect_bd_uperr, expect_bd-expect_bd_downerr
             expect_bs_up, expect_bs_down = expect_bs+expect_bs_uperr, expect_bs-expect_bs_downerr
-            if ((bd_exp >= expect_bd and expect_bd_up >= bd_exp_down) or (bd_exp <= expect_bd and expect_bd_down <= bd_exp_up)) and ((bs_exp >= expect_bs and expect_bs_up >= bs_exp_down) or (bs_exp <= expect_bs and expect_bs_down <= bs_exp_up)):
+            #if ((bd_exp >= expect_bd and expect_bd_up >= bd_exp_down) or (bd_exp <= expect_bd and expect_bd_down <= bd_exp_up)) and ((bs_exp >= expect_bs and expect_bs_up >= bs_exp_down) or (bs_exp <= expect_bs and expect_bs_down <= bs_exp_up)):
+            if ((bs_exp >= expect_bs and expect_bs_up >= bs_exp_down) or (bs_exp <= expect_bs and expect_bs_down <= bs_exp_up)):
                 i_log, j_log = np.log10(i), np.log10(j)
                 mH_loc = np.append(mH_loc,i_log)
                 tanb_loc = np.append(tanb_loc,j_log)
