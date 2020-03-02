@@ -1,10 +1,12 @@
 %% Requires compilation with XeLaTeX 
 \documentclass[10pt,xcolor={table,dvipsnames},t]{beamer}
 \usetheme{UCBerkeley}
+\usefonttheme[onlymath]{serif}
 
 \usepackage{graphics,graphicx,float}
 \usepackage{multicol}
 \usepackage{cancel}
+\usepackage[export]{adjustbox}
 
 \hypersetup{pdfstartview={Fit}}
 
@@ -42,7 +44,7 @@
 \begin{frame}{Unsolved Problems of the Standard Model}
     \begin{itemize}
         \item Quantum gravity; Dark matter; Neutrino masses
-        \item Deviations between experiment and theory, e.g. $\mathcal{R}(K^{(*)})$
+        \item Deviations between experiment and theory, e.g. $\mathcal{R}(K^{(*)})$ to $\approx3\sigma$ %https://arxiv.org/pdf/2002.12910.pdf
         \item Sakharov Criteria for Baryogenesis:
             \begin{enumerate}
                 \item Baryon Number Violation - theorised in Sphalerons
@@ -131,6 +133,7 @@
         \begin{column}{0.4\textwidth}
             \begin{itemize}
                 \item Aimed to replicate process of original paper (see below) 
+                \item Used 2009 inputs
                 \item Scanned at 95\% CL
                 \item $\chi^2$ fit to $1\sigma$
                 \item Replicated $m_{H^+}\gtrapprox316\,$GeV, 95\% CL
@@ -187,13 +190,14 @@
     \begin{itemize}
         \item CKM Matrix contains information of quark mixing 
         \item In SM, a $3\times3$ unitary matrix
-        \item Measurements would be incorrect in 2HDM; e.g. from leptonic decays, modified as
+        \item Measurements would be modified in 2HDM as
             \begin{align*}
-                V_{ij} &= \frac{V_{ij}^{SM}}{(1+r_H)^2}
+                V_{ij} &= \frac{V_{ij}^{SM}}{f^{SM}+f^{2HDM}}, & 
+                \includegraphics[width=0.25\textwidth,valign=c]{bcw.pdf} &+ \includegraphics[width=0.25\textwidth,valign=c]{bch.pdf}
             \end{align*}
-        \item Exclusive measurements from light quark mesons would have negligible change
+        \item Exclusive measurements from light quark mesons would have negligible change, but heavy quarks could introduce significant changes
         \item Possibility to improve unitarity constraints, e.g. second row currently sums to $>1$
-        \item Space for a fourth generation? %1172, 46
+%        \item Space for a fourth generation? %1172, 46
     \end{itemize}
 \end{frame}
 
@@ -201,7 +205,8 @@
 \begin{frame}{Four Generations?}
     \begin{block}{Why SM4?}
         \begin{itemize}
-            \item $3\times3$ CKM $\to4\times4$; 1 CP-violating phase to 3
+            \item $3\times3$ CKM $\to4\times4$; $1\to3$ CP-violating phases; $3\to6$ mixing angles, $\theta_{ij}$
+            \item Jarlskog invariant could increase signficantly - more CP violation!
             \item New heavy quarks, $t'$ and $b'$, extra loop diagrams to change decay widths
             \item A simple extension, and no reason for 3, so why not 4?
         \end{itemize}
@@ -215,7 +220,7 @@
                 \end{itemize}
             \end{column}
             \begin{column}{0.35\textwidth}
-                \includegraphics[scale=0.8]{../notes/higgs.pdf}
+                \includegraphics[width=1.1\textwidth]{../notes/higgs.pdf}
             \end{column}
         \end{columns}
     \end{block}
