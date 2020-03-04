@@ -8,11 +8,11 @@ hbar_gev = 6.582119514e-25
 g_mev = (1.1663787e-11)**2
 hbar_mev = 6.582118514e-22
 
-def bsm(mm,ml,Vud,fm,taum):
+def bsm(mm,ml,Vud,fm,taum,delta):
     '''
         Calculates SM branching ratio
     '''
-    Bs = (1/(8*np.pi))*(g_gev*mm*ml**2)*((1-(ml**2/mm**2))**2)*(Vud**2)*(fm**2)*taum
+    Bs = (1/(8*np.pi))*(g_gev*mm*ml**2)*((1-(ml**2/mm**2))**2)*(Vud**2)*(fm**2)*taum*delta#(0.982*0.99)
     return Bs
 
 def rh(mu,md,mm,tanb,mH):
@@ -22,47 +22,47 @@ def rh(mu,md,mm,tanb,mH):
     r = ((mu-md*tanb**2)/(mu+md))*(mm/mH)**2
     return r
 
-def bthe(mm,ml,Vud,fm,taum,mu,md,tanb,mH):
+def bthe(mm,ml,Vud,fm,taum,mu,md,tanb,mH,delta):
     '''
         bsm*(1+rh)^2 to check against exp
     '''
-    branching = bsm(mm,ml,Vud,fm,taum)*(1+rh(mu,md,mm,tanb,mH))**2
+    branching = bsm(mm,ml,Vud,fm,taum,delta)*(1+rh(mu,md,mm,tanb,mH))**2
     return branching
 
-def error_branching(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,md_err,tanb,mH):
+def error_branching(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,md_err,tanb,mH,delta):
     '''
         Calculates errors in branching ratios, using functional method
         - all err vars are [up,low]
     '''
-    brt = bthe(mm,ml,Vud,fm,taum,mu,md,tanb,mH)
-    err1_up = abs(bthe(mm+mm_err[0],ml,Vud,fm,taum,mu,md,tanb,mH)-brt)
-    err1_low = abs(bthe(mm+mm_err[1],ml,Vud,fm,taum,mu,md,tanb,mH)-brt)
-    err2_up = abs(bthe(mm,ml+ml_err[0],Vud,fm,taum,mu,md,tanb,mH)-brt)
-    err2_low = abs(bthe(mm,ml+ml_err[1],Vud,fm,taum,mu,md,tanb,mH)-brt)
-    err3_up = abs(bthe(mm,ml,Vud+Vud_err[0],fm,taum,mu,md,tanb,mH)-brt)
-    err3_low = abs(bthe(mm,ml,Vud+Vud_err[1],fm,taum,mu,md,tanb,mH)-brt)
-    err4_up = abs(bthe(mm,ml,Vud,fm+fm_err[0],taum,mu,md,tanb,mH)-brt)
-    err4_low = abs(bthe(mm,ml,Vud,fm+fm_err[1],taum,mu,md,tanb,mH)-brt)
-    err5_up = abs(bthe(mm,ml,Vud,fm,taum+taum_err[0],mu,md,tanb,mH)-brt)
-    err5_low = abs(bthe(mm,ml,Vud,fm,taum+taum_err[1],mu,md,tanb,mH)-brt)
-    err6_up = abs(bthe(mm,ml,Vud,fm,taum,mu+mu_err[0],md,tanb,mH)-brt)
-    err6_low = abs(bthe(mm,ml,Vud,fm,taum,mu+mu_err[1],md,tanb,mH)-brt)
-    err7_up = abs(bthe(mm,ml,Vud,fm,taum,mu,md+md_err[0],tanb,mH)-brt)
-    err7_low = abs(bthe(mm,ml,Vud,fm,taum,mu,md+md_err[1],tanb,mH)-brt)
+    brt = bthe(mm,ml,Vud,fm,taum,mu,md,tanb,mH,delta)
+    err1_up = abs(bthe(mm+mm_err[0],ml,Vud,fm,taum,mu,md,tanb,mH,delta)-brt)
+    err1_low = abs(bthe(mm+mm_err[1],ml,Vud,fm,taum,mu,md,tanb,mH,delta)-brt)
+    err2_up = abs(bthe(mm,ml+ml_err[0],Vud,fm,taum,mu,md,tanb,mH,delta)-brt)
+    err2_low = abs(bthe(mm,ml+ml_err[1],Vud,fm,taum,mu,md,tanb,mH,delta)-brt)
+    err3_up = abs(bthe(mm,ml,Vud+Vud_err[0],fm,taum,mu,md,tanb,mH,delta)-brt)
+    err3_low = abs(bthe(mm,ml,Vud+Vud_err[1],fm,taum,mu,md,tanb,mH,delta)-brt)
+    err4_up = abs(bthe(mm,ml,Vud,fm+fm_err[0],taum,mu,md,tanb,mH,delta)-brt)
+    err4_low = abs(bthe(mm,ml,Vud,fm+fm_err[1],taum,mu,md,tanb,mH,delta)-brt)
+    err5_up = abs(bthe(mm,ml,Vud,fm,taum+taum_err[0],mu,md,tanb,mH,delta)-brt)
+    err5_low = abs(bthe(mm,ml,Vud,fm,taum+taum_err[1],mu,md,tanb,mH,delta)-brt)
+    err6_up = abs(bthe(mm,ml,Vud,fm,taum,mu+mu_err[0],md,tanb,mH,delta)-brt)
+    err6_low = abs(bthe(mm,ml,Vud,fm,taum,mu+mu_err[1],md,tanb,mH,delta)-brt)
+    err7_up = abs(bthe(mm,ml,Vud,fm,taum,mu,md+md_err[0],tanb,mH,delta)-brt)
+    err7_low = abs(bthe(mm,ml,Vud,fm,taum,mu,md+md_err[1],tanb,mH,delta)-brt)
 
     upper = np.sqrt(err1_up**2 + err2_up**2 + err3_up**2 + err4_up**2 + err5_up**2 + err6_up**2 + err7_up**2)
     lower = np.sqrt(err1_low**2 + err2_low**2 + err3_low**2 + err4_low**2 + err5_low**2 + err6_low**2 + err7_low**2)
 
     return upper, lower
 
-def itera(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,md_err,branch_exp,branch_exp_error):
+def itera(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,md_err,branch_exp,branch_exp_error,delta):
     '''
         Choose min,max limits for scope of tan(beta) and mH+, then check for each point in this if:
             - upper error on branching sm is above the lower error on branching exp
             - lower error on branching sm is below the upper error on branching exp
         If either is true, plot a point at coordinate, and tadaa
     '''
-    sigma = 1.96
+    sigma = 1
     exp_branch_up,exp_branch_down = branch_exp+branch_exp_error[0],branch_exp+branch_exp_error[1]
     av_br = 0.5*(exp_branch_up+exp_branch_down)
     sige_br = sigma*(exp_branch_up-av_br)
@@ -74,10 +74,10 @@ def itera(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,m
     tanb_loc = []
     for i in mH_range:
         for j in tanb_range:
-            expect_branch = bthe(mm,ml,Vud,fm,taum,mu,md,j,i)
-#            print expect_branch
-            expect_error = error_branching(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,md_err,j,i)
+            expect_branch = bthe(mm,ml,Vud,fm,taum,mu,md,j,i,delta)
+            expect_error = error_branching(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,md_err,j,i,delta)
             expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
+            print expect_branch_down
             mid_br = 0.5*(expect_branch_up+expect_branch_down)
             sig_br = sigma*(expect_branch_up-mid_br)
             br_bool = ((av_br >= mid_br and mid_br+sig_br >= av_br-sige_br) or (av_br <= mid_br and mid_br-sig_br <= av_br+sige_br)) 
@@ -596,7 +596,71 @@ def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v):
 
     return bs
 
-def error_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,tanb,mH,mb,mb_err,ms,ms_err,wangle,wan_err,higgs,higgs_err,v,v_err):
+def error_bmumu(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,tanb,mH):
+    '''
+        Error propagation for b(s/d) to mumu
+    '''
+    bd, bs = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+
+    ## errors
+    err1_up = bmumu(mt+mt_err[0],taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err1_low = bmumu(mt+mt_err[1],taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err2_up = bmumu(mt,taubd+taubd_err[0],taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err2_low = bmumu(mt,taubd+taubd_err[1],taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err3_up = bmumu(mt,taubd,taubs+taubs_err[0],fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err3_low = bmumu(mt,taubd,taubs+taubs_err[1],fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err4_up = bmumu(mt,taubd,taubs,fbd+fbd_err[0],fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err4_low = bmumu(mt,taubd,taubs,fbd+fbd_err[1],fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err5_up = bmumu(mt,taubd,taubs,fbd,fbs+fbs_err[0],Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err5_low = bmumu(mt,taubd,taubs,fbd,fbs+fbs_err[1],Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err6_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd+Vtd_err[0],Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err6_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd+Vtd_err[1],Vts,mmu,mbd,mbs,mW,tanb,mH)
+    err7_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts+Vtd_err[0],mmu,mbd,mbs,mW,tanb,mH)
+    err7_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts+Vts_err[1],mmu,mbd,mbs,mW,tanb,mH)
+    err8_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu+mmu_err[0],mbd,mbs,mW,tanb,mH)
+    err8_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu+mmu_err[1],mbd,mbs,mW,tanb,mH)
+    err9_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd+mbd_err[0],mbs,mW,tanb,mH)
+    err9_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd+mbd_err[1],mbs,mW,tanb,mH)
+    err10_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs+mbs_err[0],mW,tanb,mH)
+    err10_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs+mbs_err[1],mW,tanb,mH)
+    err11_up = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW+mW_err[0],tanb,mH)
+    err11_low = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW+mW_err[1],tanb,mH)
+
+    ## bd
+    err1_up1, err1_low1 = abs(err1_up[0]-bd),abs(err1_low[0]-bd)
+    err2_up1, err2_low1 = abs(err2_up[0]-bd),abs(err2_low[0]-bd)
+    err3_up1, err3_low1 = abs(err3_up[0]-bd),abs(err3_low[0]-bd)
+    err4_up1, err4_low1 = abs(err4_up[0]-bd),abs(err4_low[0]-bd)
+    err5_up1, err5_low1 = abs(err5_up[0]-bd),abs(err5_low[0]-bd)
+    err6_up1, err6_low1 = abs(err6_up[0]-bd),abs(err6_low[0]-bd)
+    err7_up1, err7_low1 = abs(err7_up[0]-bd),abs(err7_low[0]-bd)
+    err8_up1, err8_low1 = abs(err8_up[0]-bd),abs(err8_low[0]-bd)
+    err9_up1, err9_low1 = abs(err9_up[0]-bd),abs(err9_low[0]-bd)
+    err10_up1, err10_low1 = abs(err10_up[0]-bd),abs(err10_low[0]-bd)
+    err11_up1, err11_low1 = abs(err11_up[0]-bd),abs(err11_low[0]-bd)
+
+    upper1 = np.sqrt(err1_up1**2 + err2_up1**2 + err3_up1**2 + err4_up1**2 + err5_up1**2 + err6_up1**2 + err7_up1**2 + err9_up1**2 + err10_up1**2 + err11_up1**2 + err11_up1**2)
+    lower1 = np.sqrt(err1_low1**2 + err2_low1**2 + err3_low1**2 + err4_low1**2 + err5_low1**2 + err6_low1**2 + err7_low1**2 + err9_low1**2 + err10_low1**2 + err11_low1**2 + err11_low1**2)
+
+    ## bs
+    err1_up2, err1_low2 = abs(err1_up[1]-bs),abs(err1_low[1]-bs)
+    err2_up2, err2_low2 = abs(err2_up[1]-bs),abs(err2_low[1]-bs)
+    err3_up2, err3_low2 = abs(err3_up[1]-bs),abs(err3_low[1]-bs)
+    err4_up2, err4_low2 = abs(err4_up[1]-bs),abs(err4_low[1]-bs)
+    err5_up2, err5_low2 = abs(err5_up[1]-bs),abs(err5_low[1]-bs)
+    err6_up2, err6_low2 = abs(err6_up[1]-bs),abs(err6_low[1]-bs)
+    err7_up2, err7_low2 = abs(err7_up[1]-bs),abs(err7_low[1]-bs)
+    err8_up2, err8_low2 = abs(err8_up[1]-bs),abs(err8_low[1]-bs)
+    err9_up2, err9_low2 = abs(err9_up[1]-bs),abs(err9_low[1]-bs)
+    err10_up2, err10_low2 = abs(err10_up[1]-bs),abs(err10_low[1]-bs)
+    err11_up2, err11_low2 = abs(err11_up[1]-bs),abs(err11_low[1]-bs)
+
+    upper2 = np.sqrt(err1_up2**2 + err2_up2**2 + err3_up2**2 + err4_up2**2 + err5_up2**2 + err6_up2**2 + err7_up2**2 + err9_up2**2 + err10_up2**2 + err11_up2**2 + err11_up2**2)
+    lower2 = np.sqrt(err1_low2**2 + err2_low2**2 + err3_low2**2 + err4_low2**2 + err5_low2**2 + err6_low2**2 + err7_low2**2 + err9_low2**2 + err10_low2**2 + err11_low2**2 + err11_low2**2)
+
+    return upper1, lower1, upper2, lower2
+
+def error_bmumu2(mt,mt_err,taubd,taubd_err,taubs,taubs_err,fbd,fbd_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,tanb,mH,mb,mb_err,ms,ms_err,wangle,wan_err,higgs,higgs_err,v,v_err):
 #def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v):
     '''
         Error propagation for b(s/d) to mumu
@@ -780,7 +844,7 @@ def itera_firstglobal(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,
     return mHl_loc, tanbl_loc, mHb_loc, tanbb_loc, mHg_loc, tanbg_loc, mHa_loc, tanba_loc
 
 
-def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls_exp_error,bmix_exp,bmix_exp_error,bmix_sm,bmix_sm_error,kpi_exp,kpi_exp_error,tkpi_exp,tkpi_exp_error,gams_exp,gams_exp_error,gamc_exp,gamc_exp_error,mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mK,mK_err,mpi,mpi_err,mmB,mmB_err,mtau,mtau_err,mmu,mmu_err,etaB,etaB_err,fBd,fBd_err,Bbd,Bbd_err,fbpls,fbpls_err,fdpls,fdpls_err,fdspls,fdspls_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,tbpls,tbpls_err,tdpls,tdpls_err,tdspls,tdspls_err,mu,mu_err,md,md_err,mc,mc_err,ms,ms_err,mb,mb_err,mt,mt_err,mtb,mtb_err,mW,mW_err,mWb,mWb_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamu,gamu_err,alp_EM,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,tbd,tbd_err,tbs,tbs_err,fBs,fBs_err,mbd,mbd_err,mbs,mbs_err,bs_e,bs_eerr,bd_e,bd_eerr,mB_s,mB_serr,BBs,BBs_err,bmixs_exp,bmixs_exp_error,bmixs_sm,bmixs_sm_error,m_Bmu,m_Bmu_err,p,p_err,d,d_err,rd_exp,rd_exp_err):
+def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls_exp_error,bmix_exp,bmix_exp_error,bmix_sm,bmix_sm_error,kpi_exp,kpi_exp_error,tkpi_exp,tkpi_exp_error,gams_exp,gams_exp_error,gamc_exp,gamc_exp_error,mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mK,mK_err,mpi,mpi_err,mmB,mmB_err,mtau,mtau_err,mmu,mmu_err,etaB,etaB_err,fBd,fBd_err,Bbd,Bbd_err,fbpls,fbpls_err,fdpls,fdpls_err,fdspls,fdspls_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,tbpls,tbpls_err,tdpls,tdpls_err,tdspls,tdspls_err,mu,mu_err,md,md_err,mc,mc_err,ms,ms_err,mb,mb_err,mt,mt_err,mtb,mtb_err,mW,mW_err,mWb,mWb_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamu,gamu_err,alp_EM,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,tbd,tbd_err,tbs,tbs_err,fBs,fBs_err,mbd,mbd_err,mbs,mbs_err,bs_e,bs_eerr,bd_e,bd_eerr,mB_s,mB_serr,BBs,BBs_err,bmixs_exp,bmixs_exp_error,bmixs_sm,bmixs_sm_error,m_Bmu,m_Bmu_err,p,p_err,d,d_err,rd_exp,rd_exp_err,delta_b,delta_d):
     '''
         Iterate of mH,tanb space for everything
     '''
@@ -829,8 +893,8 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
     tanbl_loc,tanbb_loc,tanbg_loc,tanba_loc,tanbmu_loc,tanba2_loc,tanbrd_loc = [],[],[],[],[],[],[]
     for i in mH_range:
         for j in tanb_range:
-            bpls_the, dpls_the, dspls_the = bthe(mbpls,mtau,Vub,fbpls,tbpls,mu,mb,j,i),bthe(mdpls,mmu,Vcd,fdpls,tdpls,mc,md,j,i),bthe(mdspls,mtau,Vcs,fdspls,tdspls,mc,ms,j,i)
-            bpls_err, dpls_err, dspls_err = error_branching(mbpls,mbpls_err,mtau,mtau_err,Vub,Vub_err,fbpls,fbpls_err,tbpls,tbpls_err,mu,mu_err,mb,mb_err,j,i),error_branching(mdpls,mdpls_err,mmu,mmu_err,Vcd,Vcd_err,fdpls,fdpls_err,tdpls,tdpls_err,mc,mc_err,md,md_err,j,i),error_branching(mdspls,mdspls_err,mtau,mtau_err,Vcs,Vcs_err,fdspls,fdspls_err,tdspls,tdspls_err,mc,mc_err,ms,ms_err,j,i)
+            bpls_the, dpls_the, dspls_the = bthe(mbpls,mtau,Vub,fbpls,tbpls,mu,mb,j,i,delta_b),bthe(mdpls,mmu,Vcd,fdpls,tdpls,mc,md,j,i,delta_d),bthe(mdspls,mtau,Vcs,fdspls,tdspls,mc,ms,j,i,delta_d)
+            bpls_err, dpls_err, dspls_err = error_branching(mbpls,mbpls_err,mtau,mtau_err,Vub,Vub_err,fbpls,fbpls_err,tbpls,tbpls_err,mu,mu_err,mb,mb_err,j,i,delta_b),error_branching(mdpls,mdpls_err,mmu,mmu_err,Vcd,Vcd_err,fdpls,fdpls_err,tdpls,tdpls_err,mc,mc_err,md,md_err,j,i,delta_d),error_branching(mdspls,mdspls_err,mtau,mtau_err,Vcs,Vcs_err,fdspls,fdspls_err,tdspls,tdspls_err,mc,mc_err,ms,ms_err,j,i,delta_d)
             bpls_the_up,bpls_the_down,dpls_the_up,dpls_the_down,dspls_the_up,dspls_the_down=bpls_the+bpls_err[0],bpls_the-bpls_err[1],dpls_the+dpls_err[0],dpls_the-dpls_err[1],dspls_the+dspls_err[0],dspls_the-dspls_err[1]
             mid_b,mid_d,mid_ds=0.5*(bpls_the_up+bpls_the_down),0.5*(dpls_the_up+dpls_the_down),0.5*(dspls_the_up+dspls_the_down)
             sig_b,sig_d,sig_ds=sigma*(bpls_the_up-mid_b),sigma*(dpls_the_up-mid_d),sigma*(dspls_the_up-mid_ds)
@@ -877,7 +941,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
             sig_rd = sigma*(expect_rd_up-mid_rd)
             rd_bool = ((av_rd >= mid_rd and mid_rd+sig_rd >= av_rd-sige_rd) or (av_rd <= mid_rd and mid_rd-sig_rd <= av_rd+sige_rd)) 
 
-            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool and rd_bool:
+            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool:# and rd_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHl_loc = np.append(mHl_loc,i_log)
                 tanbl_loc = np.append(tanbl_loc,j_log)
@@ -941,6 +1005,25 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
                     chi_2min = [chi_2ij,i,j]
 
     return mHl_loc, tanbl_loc, mHb_loc, tanbb_loc, mHg_loc, tanbg_loc, mHa_loc, tanba_loc, mHmu_loc, tanbmu_loc, mHrd_loc, tanbrd_loc, mHa2_loc, tanba2_loc, chi_ls, chi_ms, chi_gs, chi_1s, chi_mus, chi_rds, chi_2s, chi_lmin, chi_mmin, chi_gmin, chi_1min, chi_umin, chi_rmin, chi_2min
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
