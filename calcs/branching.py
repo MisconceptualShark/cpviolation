@@ -15,79 +15,79 @@ hbar_mev = 6.582119514e-22
 
 ################ LEPTONIC AND SEMILEPTONIC DECAY
 
-#m_bplus, m_bplus_err = [5.27933,[0.00013,-0.00013]]
-#m_dplus08, m_dplus08_err = [1.86962,[0.00020,-0.00020]] #08
-#m_dplus, m_dplus_err = [1.86965,[0.00005,-0.00005]]
-#m_dstar, m_dstar_err = [2.1122,[0.0004,-0.0004]]
-#m_dsplus, m_dsplus_err = [1.96834,[0.00007,-0.00007]]
-#m_B08, m_B08_err = [5.27953,[0.00033,-0.00033]] #08
-#m_Brd, m_Brd_err = [5.27964,[0.00013,-0.00013]]
-#m_K, m_K_err = [0.493677,[0.000016,-0.000016]]
-#m_pi, m_pi_err = [0.13957061,[0.00000024,-0.00000024]]
-#m_tau, m_tau_err = [1.77686,[0.00012,-0.00012]]
-#m_mu, m_mu_err = [0.1056583745,[0.0000000024,-0.0000000024]]
-#m_u, m_u_err = [0.00216,[0.00049,-0.00026]]
-#m_d, m_d_err = [0.00467,[0.00048,-0.00017]]
-#m_s, m_s_err = [0.093,[0.011,-0.005]]
-#m_c08, m_c08_err = [1.27,[0.07,-0.11]] #08
-#m_c, m_c_err = [1.27,[0.02,-0.02]]
-#m_b08, m_b08_err = [4.20,[0.17,-0.07]] #08
-#m_b, m_b_err = [4.18,[0.03,-0.02]]
-#
-#Vub, Vub_err = [0.003683,[0.000075,-0.000061]]
-#Vcd, Vcd_err = [0.224701,[0.000254,-0.000058]]
-#Vcs, Vcs_err = [0.973539,[0.000038,-0.000060]]
-#Vus, Vus_err = [0.224834,[0.000252,-0.000059]]
-#Vud, Vud_err = [0.974390,[0.000014,-0.000058]]
-#Vts, Vts_err = [0.04090,[0.00026,-0.00076]]
-#Vtd, Vtd_err = [0.008545,[0.000075,-0.000157]]
-#Vtb, Vtb_err = [0.999127,[0.000032,-0.000012]]
-##Vcb, Vcb_err = [0.04162,[0.00026,-0.00080]]
+m_bplus, m_bplus_err = [5.27933,[0.00013,-0.00013]]
+m_dplus08, m_dplus08_err = [1.86962,[0.00020,-0.00020]] #08
+m_dplus, m_dplus_err = [1.86965,[0.00005,-0.00005]]
+m_dstar, m_dstar_err = [2.1122,[0.0004,-0.0004]]
+m_dsplus, m_dsplus_err = [1.96834,[0.00007,-0.00007]]
+m_B08, m_B08_err = [5.27953,[0.00033,-0.00033]] #08
+m_Brd, m_Brd_err = [5.27964,[0.00013,-0.00013]]
+m_K, m_K_err = [0.493677,[0.000016,-0.000016]]
+m_pi, m_pi_err = [0.13957061,[0.00000024,-0.00000024]]
+m_tau, m_tau_err = [1.77686,[0.00012,-0.00012]]
+m_mu, m_mu_err = [0.1056583745,[0.0000000024,-0.0000000024]]
+m_u, m_u_err = [0.00216,[0.00049,-0.00026]]
+m_d, m_d_err = [0.00467,[0.00048,-0.00017]]
+m_s, m_s_err = [0.093,[0.011,-0.005]]
+m_c08, m_c08_err = [1.27,[0.07,-0.11]] #08
+m_c, m_c_err = [1.27,[0.02,-0.02]]
+m_b08, m_b08_err = [4.20,[0.17,-0.07]] #08
+m_b, m_b_err = [4.18,[0.03,-0.02]]
+
+Vub, Vub_err = [0.003683,[0.000075,-0.000061]]
+Vcd, Vcd_err = [0.224701,[0.000254,-0.000058]]
+Vcs, Vcs_err = [0.973539,[0.000038,-0.000060]]
+Vus, Vus_err = [0.224834,[0.000252,-0.000059]]
+Vud, Vud_err = [0.974390,[0.000014,-0.000058]]
+Vts, Vts_err = [0.04090,[0.00026,-0.00076]]
+Vtd, Vtd_err = [0.008545,[0.000075,-0.000157]]
+Vtb, Vtb_err = [0.999127,[0.000032,-0.000012]]
+Vcb, Vcb_err = [0.04162,[0.00026,-0.00080]]
 #Vcb, Vcb_err = [41.9e-3,[2e-3,-2e-3]]
-#
-#f_bplus, f_bplus_err = [0.190,[0.0013,-0.0013]]
-#f_dplus, f_dplus_err = [0.212,[0.0007,-0.0007]]
-#f_dsplus, f_dsplus_err = [0.2499,[0.0005,-0.0005]]
-#f_Kpi, f_Kpi_err = [1.1932,[0.0019,-0.0019]]
-#
-#delt_kpi, delt_kpi_err = [-0.0069,[0.0017,-0.0017]]
-#delt_kpitau, delt_kpitau_err = [0.0003,[0,0]]
-#
-#rho08, rho08_err = [1.19,[0.057,-0.057]] #08
-#rho, rho_err = [1.131,[0.033,-0.033]] #1909.12524
-#delt_rd, delt_rd_err = [0.46,[0.01,-0.01]] #0802.3790
-#
-#tau_bplus, tau_bplus_err = [(1.638e-12)/hbar_gev,[(0.004e-12)/hbar_gev,-(0.004e-12)/hbar_gev]]
-#tau_b, tau_berr = [(1.519e-12)/hbar_gev,[(0.004e-12)/hbar_gev,-(0.004e-12)/hbar_gev]]
-#tau_dplus, tau_dplus_err = [(1040e-15)/hbar_gev,[(7e-15)/hbar_gev,-(7e-15)/hbar_gev]]
-#tau_dsplus, tau_dsplus_err = [(504e-15)/hbar_gev,[(4e-15)/hbar_gev,-(4e-15)/hbar_gev]]
-#
-#bplus_exp, bplus_err_exp = [1.09e-4,[0.24e-4,-0.24e-4]]
-#dplus_exp, dplus_err_exp = [3.77e-4,[0.17e-4,-0.17e-4]]
-#dsplus_exp, dsplus_err_exp = [0.0548,[0.0023,-0.0023]]
-#kpi_exp, kpi_exp_err = [1.337,[0.0032,-0.0032]]
-#kpitau_exp, kpitau_exp_err = [6.438e-2,[9.384e-4,-9.384e-4]]
-#rd08_exp, rd08_exp_err = [0.416,[0.128,-0.128]] #08
-#rd_exp, rd_exp_err = [0.34,[0.03,-0.03]] #1909.12524
-#
-#rhod, rhod_err = [1.207,[0.028,-0.028]]
-#delta, delta_err = [1,[1,-1]]
-#r01, r01_err = [1.14,[0.07,-0.07]]
-#r11, r11_err = [1.401,[0.033,-0.033]]
-#r21, r21_err = [0.854,[0.02,-0.02]]
-#vev, vev_err = [246,[0,0]]
-#rdst_exp, rdst_exp_err = [0.295,[0.014,-0.014]]
-#
-#bdle = (5.05e-2)/tau_b
-#bdle_err = bdle*np.sqrt((0.0014/0.0505)**2 + (tau_berr[0]/tau_b)**2)
+
+f_bplus, f_bplus_err = [0.190,[0.0013,-0.0013]]
+f_dplus, f_dplus_err = [0.212,[0.0007,-0.0007]]
+f_dsplus, f_dsplus_err = [0.2499,[0.0005,-0.0005]]
+f_Kpi, f_Kpi_err = [1.1932,[0.0019,-0.0019]]
+
+delt_kpi, delt_kpi_err = [-0.0069,[0.0017,-0.0017]]
+delt_kpitau, delt_kpitau_err = [0.0003,[0,0]]
+
+rho08, rho08_err = [1.19,[0.057,-0.057]] #08
+rho, rho_err = [1.131,[0.033,-0.033]] #1909.12524
+delt_rd, delt_rd_err = [0.46,[0.01,-0.01]] #0802.3790
+
+tau_bplus, tau_bplus_err = [(1.638e-12)/hbar_gev,[(0.004e-12)/hbar_gev,-(0.004e-12)/hbar_gev]]
+tau_b, tau_berr = [(1.519e-12)/hbar_gev,[(0.004e-12)/hbar_gev,-(0.004e-12)/hbar_gev]]
+tau_dplus, tau_dplus_err = [(1040e-15)/hbar_gev,[(7e-15)/hbar_gev,-(7e-15)/hbar_gev]]
+tau_dsplus, tau_dsplus_err = [(504e-15)/hbar_gev,[(4e-15)/hbar_gev,-(4e-15)/hbar_gev]]
+
+bplus_exp, bplus_err_exp = [1.09e-4,[0.24e-4,-0.24e-4]]
+dplus_exp, dplus_err_exp = [3.77e-4,[0.17e-4,-0.17e-4]]
+dsplus_exp, dsplus_err_exp = [0.0548,[0.0023,-0.0023]]
+kpi_exp, kpi_exp_err = [1.337,[0.0032,-0.0032]]
+kpitau_exp, kpitau_exp_err = [6.438e-2,[9.384e-4,-9.384e-4]]
+rd08_exp, rd08_exp_err = [0.416,[0.128,-0.128]] #08
+rd_exp, rd_exp_err = [0.34,[0.03,-0.03]] #1909.12524
+
+rhod, rhod_err = [1.207,[0.028,-0.028]]
+delta, delta_err = [1,[1,-1]]
+r01, r01_err = [1.14,[0.07,-0.07]]
+r11, r11_err = [1.401,[0.033,-0.033]]
+r21, r21_err = [0.854,[0.02,-0.02]]
+vev, vev_err = [246,[0,0]]
+rdst_exp, rdst_exp_err = [0.295,[0.014,-0.014]]
+
+bdle = (5.05e-2)/tau_b
+bdle_err = bdle*np.sqrt((0.0014/0.0505)**2 + (tau_berr[0]/tau_b)**2)
 
 # print error_rds(m_Brd,m_Brd_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,bdle,[bdle_err,-bdle_err],m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,1,1)
 #print error_rdn(m_Brd,m_Brd_err,m_dplus,m_dplus_err,rhod,rhod_err,delta,delta_err,bdle,[bdle_err,-bdle_err],m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,46,1172)
 # quit()
 
-#btau, berr = bsm(m_bplus,m_tau,Vub,f_bplus,tau_bplus), error_branching(m_bplus,m_bplus_err,m_tau,m_tau_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,1,[1,1],1,[1,1],1,1)
-#dtau, derr = bsm(m_dplus,m_mu,Vcd,f_dplus,tau_dplus), error_branching(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,1,[1,1],1,[1,1],1,1)
-#dstau, dserr = bsm(m_dsplus,m_tau,Vcs,f_dsplus,tau_dsplus), error_branching(m_dsplus,m_dsplus_err,m_tau,m_tau_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,1,[1,1],1,[1,1],1,1)
+#btau, berr = bsm(m_bplus,m_tau,Vub,f_bplus,tau_bplus,0.982), error_branching(m_bplus,m_bplus_err,m_tau,m_tau_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,1,[1,1],1,[1,1],1,1,0.982)
+#dtau, derr = bsm(m_dplus,m_mu,Vcd,f_dplus,tau_dplus,0.982*0.99), error_branching(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,1,[1,1],1,[1,1],1,1,0.982*0.99)
+#dstau, dserr = bsm(m_dsplus,m_tau,Vcs,f_dsplus,tau_dsplus,0.982*0.99), error_branching(m_dsplus,m_dsplus_err,m_tau,m_tau_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,1,[1,1],1,[1,1],1,1,0.99*0.982)
 #print("B -> tau nu Branching =",btau*1e4,"+",berr[0]*1e4,"-",berr[1]*1e4)
 #print("D -> mu nu Branching =",dtau*1e4,"+",derr[0]*1e4,"-",derr[1]*1e4)
 #print("Ds -> tau nu Branching =",dstau*1e2,"+",dserr[0]*1e2,"-",dserr[1]*1e2)
@@ -97,52 +97,53 @@ hbar_mev = 6.582119514e-22
 #print("K/pi branching",kpi,"+",kerr0,"-",kerr1)
 #print("tau -> K/pi branching",tkpi*1e2,"+",terr0*1e2,"-",terr1*1e2)
 #quit()
+
 # OLD INPUTS
-m_bplus, m_bplus_err = [5.27917,[0.00029,-0.00029]]
-m_dplus, m_dplus_err = [1.86962,[0.00020,-0.00020]] #08
-m_dsplus, m_dsplus_err = [1.96849,[0.00034,-0.00034]]
-m_Brd, m_Brd_err = [5.27953,[0.00033,-0.00033]] #08
-m_K, m_K_err = [0.493677,[0.000016,-0.000016]]
-m_pi, m_pi_err = [0.13957018,[0.00000035,-0.00000035]]
-m_tau, m_tau_err = [1.77684,[0.00017,-0.00017]]
-m_mu, m_mu_err = [0.1056583668,[0.0000000038,-0.0000000038]]
-m_u, m_u_err = [0.00240,[0.00090,-0.00090]]
-m_d, m_d_err = [0.00475,[0.00125,-0.00125]]
-m_s, m_s_err = [0.096,[0.030,-0.030]]
-m_c, m_c_err = [1.286,[0.042,-0.042]] #08
-m_b, m_b_err = [4.243,[0.043,-0.043]] #08
-
-Vub, Vub_err = [0.00350,[0.00015,-0.00014]]
-Vcd, Vcd_err = [0.224508,[0.00082,-0.00072]]
-Vcs, Vcs_err = [0.97347,[0.00019,-0.00019]]
-Vus, Vus_err = [0.22521,[0.00082,-0.00082]]
-Vud, Vud_err = [0.97430,[0.00019,-0.00019]]
-Vts, Vts_err = [0.04041,[0.00038,-0.00115]]
-Vtd, Vtd_err = [0.00859,[0.00027,-0.00029]]
-Vtb, Vtb_err = [0.999146,[0.000047,-0.000016]]
-Vcb, Vcb_err = [0.04117,[0.00038,-0.00115]]
-
-f_bplus, f_bplus_err = [0.1902,[0.0174,-0.0174]]
-f_dplus, f_dplus_err = [0.2077,[0.0056,-0.0056]]
-f_dsplus, f_dsplus_err = [0.2463,[0.0065,-0.0065]]
-f_Kpi, f_Kpi_err = [1.205,[0.0108,-0.0084]]
-
-delt_kpi, delt_kpi_err = [-0.0070,[0.0035,-0.0035]]
-delt_kpitau, delt_kpitau_err = [0.0003,[0,0]]
-
-rho, rho_err = [1.19,[0.057,-0.057]] #08
-delt_rd, delt_rd_err = [0.46,[0.01,-0.01]] #0802.3790
-
-tau_bplus, tau_bplus_err = [(1.638e-12)/hbar_gev,[(0.011e-12)/hbar_gev,-(0.011e-12)/hbar_gev]]
-tau_dplus, tau_dplus_err = [(1040e-15)/hbar_gev,[(7e-15)/hbar_gev,-(7e-15)/hbar_gev]]
-tau_dsplus, tau_dsplus_err = [(500e-15)/hbar_gev,[(7e-15)/hbar_gev,-(7e-15)/hbar_gev]]
-
-bplus_exp, bplus_err_exp = [1.4e-4,[0.4e-4,-0.4e-4]]
-dplus_exp, dplus_err_exp = [3.82e-4,[0.33e-4,-0.33e-4]]
-dsplus_exp, dsplus_err_exp = [6.6e-2,[0.6e-2,-0.6e-2]]
-kpi_exp, kpi_exp_err = [1.337,[0.003,-0.003]]
-kpitau_exp, kpitau_exp_err = [6.38e-2,[0.215e-2,-0.215e-2]]
-rd_exp, rd_exp_err = [0.416,[0.128,-0.128]] #08
+#m_bplus, m_bplus_err = [5.27917,[0.00029,-0.00029]]
+#m_dplus, m_dplus_err = [1.86962,[0.00020,-0.00020]] #08
+#m_dsplus, m_dsplus_err = [1.96849,[0.00034,-0.00034]]
+#m_Brd, m_Brd_err = [5.27953,[0.00033,-0.00033]] #08
+#m_K, m_K_err = [0.493677,[0.000016,-0.000016]]
+#m_pi, m_pi_err = [0.13957018,[0.00000035,-0.00000035]]
+#m_tau, m_tau_err = [1.77684,[0.00017,-0.00017]]
+#m_mu, m_mu_err = [0.1056583668,[0.0000000038,-0.0000000038]]
+#m_u, m_u_err = [0.00240,[0.00090,-0.00090]]
+#m_d, m_d_err = [0.00475,[0.00125,-0.00125]]
+#m_s, m_s_err = [0.096,[0.030,-0.030]]
+#m_c, m_c_err = [1.286,[0.042,-0.042]] #08
+#m_b, m_b_err = [4.243,[0.043,-0.043]] #08
+#
+#Vub, Vub_err = [0.00350,[0.00015,-0.00014]]
+#Vcd, Vcd_err = [0.224508,[0.00082,-0.00072]]
+#Vcs, Vcs_err = [0.97347,[0.00019,-0.00019]]
+#Vus, Vus_err = [0.22521,[0.00082,-0.00082]]
+#Vud, Vud_err = [0.97430,[0.00019,-0.00019]]
+#Vts, Vts_err = [0.04041,[0.00038,-0.00115]]
+#Vtd, Vtd_err = [0.00859,[0.00027,-0.00029]]
+#Vtb, Vtb_err = [0.999146,[0.000047,-0.000016]]
+#Vcb, Vcb_err = [0.04117,[0.00038,-0.00115]]
+#
+#f_bplus, f_bplus_err = [0.1902,[0.0174,-0.0174]]
+#f_dplus, f_dplus_err = [0.2077,[0.0056,-0.0056]]
+#f_dsplus, f_dsplus_err = [0.2463,[0.0065,-0.0065]]
+#f_Kpi, f_Kpi_err = [1.205,[0.0108,-0.0084]]
+#
+#delt_kpi, delt_kpi_err = [-0.0070,[0.0035,-0.0035]]
+#delt_kpitau, delt_kpitau_err = [0.0003,[0,0]]
+#
+#rho, rho_err = [1.19,[0.057,-0.057]] #08
+#delt_rd, delt_rd_err = [0.46,[0.01,-0.01]] #0802.3790
+#
+#tau_bplus, tau_bplus_err = [(1.638e-12)/hbar_gev,[(0.011e-12)/hbar_gev,-(0.011e-12)/hbar_gev]]
+#tau_dplus, tau_dplus_err = [(1040e-15)/hbar_gev,[(7e-15)/hbar_gev,-(7e-15)/hbar_gev]]
+#tau_dsplus, tau_dsplus_err = [(500e-15)/hbar_gev,[(7e-15)/hbar_gev,-(7e-15)/hbar_gev]]
+#
+#bplus_exp, bplus_err_exp = [1.4e-4,[0.4e-4,-0.4e-4]]
+#dplus_exp, dplus_err_exp = [3.82e-4,[0.33e-4,-0.33e-4]]
+#dsplus_exp, dsplus_err_exp = [6.6e-2,[0.6e-2,-0.6e-2]]
+#kpi_exp, kpi_exp_err = [1.337,[0.003,-0.003]]
+#kpitau_exp, kpitau_exp_err = [6.38e-2,[0.215e-2,-0.215e-2]]
+#rd_exp, rd_exp_err = [0.416,[0.128,-0.128]] #08
 
 # B+ -> tau+ nu
 #mH_bplus, tanb_bplus, vub_loc = ckmel(Vub,Vub_err,m_u,m_u_err,m_b,m_b_err,m_bplus,m_bplus_err,m_tau,m_tau_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,bplus_exp,bplus_err_exp)
@@ -258,23 +259,23 @@ rd_exp, rd_exp_err = [0.416,[0.128,-0.128]] #08
 
 ###############   MIXING
 
-#mt, mt_err = [172.9e3,[0.4e3,-0.4e3]]
-#mW, mW_err = [80.379e3,[0.012e3,-0.012e3]]
-#mBd, mBd_err = [5279.64,[0.13,-0.13]]
-#mBs, mBs_err = [5366.88,[0.17,-0.17]]
-#
-#etaB, etaB_err = [0.537856,[0,0]]
-#
-#fBs, fBs_err = [230.3,[1.3,-1.3]]
-#fBd, fBd_err = [190,[1.3,-1.3]]
-#
-#BBs, BBs_err = [1.290,[0.035,-0.035]]
-#BBd, BBd_err = [1.268,[0.042,-0.042]]
-#
-#delt_md, delt_md_err = [0.5064e12,[0.0019e12,-0.0019e12]]
-#delt_ms, delt_ms_err = [17.757e12,[0.021e12,-0.021e12]]
-#delt_md_expect, delt_md_err_exp = [0.533e12,[0.022e12,-0.036e12]]
-#delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
+mt, mt_err = [172.9e3,[0.4e3,-0.4e3]]
+mW, mW_err = [80.379e3,[0.012e3,-0.012e3]]
+mBd, mBd_err = [5279.64,[0.13,-0.13]]
+mBs, mBs_err = [5366.88,[0.17,-0.17]]
+
+etaB, etaB_err = [0.537856,[0,0]]
+
+fBs, fBs_err = [230.3,[1.3,-1.3]]
+fBd, fBd_err = [190,[1.3,-1.3]]
+
+BBs, BBs_err = [1.290,[0.035,-0.035]]
+BBd, BBd_err = [1.268,[0.042,-0.042]]
+
+delt_md, delt_md_err = [0.5064e12,[0.0019e12,-0.0019e12]]
+delt_ms, delt_ms_err = [17.757e12,[0.021e12,-0.021e12]]
+delt_md_expect, delt_md_err_exp = [0.533e12,[0.022e12,-0.036e12]]
+delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 
 #bdmix, bderr = mixing(mt,1,mW,1,Vtd,Vtb,etaB,mBd,fBd,BBd,1),error_mixing(mt,mt_err,1,mW,mW_err,1,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,1,[1,1])
 #bsmix, bserr = mixing(mt,1,mW,1,Vts,Vtb,etaB,mBs,fBs,BBs,1),error_mixing(mt,mt_err,1,mW,mW_err,1,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,1,[1,1])
@@ -282,23 +283,23 @@ rd_exp, rd_exp_err = [0.416,[0.128,-0.128]] #08
 #print("Bs mixing =",bsmix*1e-12,"+",bserr[0]*1e-12,"-",bserr[1]*1e-12)
 
 # OLD INPUTS
-mt, mt_err = [172.4e3,[1.2e3,-1.2e3]]
-mW, mW_err = [80.398e3,[0.025e3,-0.025e3]]
-mBd, mBd_err = [5279.53,[0.33,-0.33]]
-mBs, mBs_err = [5366.3,[0.6,-0.6]]
-
-etaB, etaB_err = [0.5510,[0.0022,-0.0022]]
-
-fBs, fBs_err = [228.0,[17.3,-17.3]]
-fBd, fBd_err = [190,[15,-15]]
-
-BBs, BBs_err = [1.28,[0.036,-0.036]]
-BBd, BBd_err = [1.219,[0.05,-0.05]]
-
-delt_md, delt_md_err = [0.507e12,[0.005e12,-0.005e12]]
-delt_ms, delt_ms_err = [17.77e12,[0.12e12,-0.12e12]]
-delt_md_expect, delt_md_err_exp = [0.52e12,[0.02e12,-0.02e12]]
-delt_ms_expect, delt_ms_err_exp = [19.0e12,[6.6e12,-6.6e12]]
+#mt, mt_err = [172.4e3,[1.2e3,-1.2e3]]
+#mW, mW_err = [80.398e3,[0.025e3,-0.025e3]]
+#mBd, mBd_err = [5279.53,[0.33,-0.33]]
+#mBs, mBs_err = [5366.3,[0.6,-0.6]]
+#
+#etaB, etaB_err = [0.5510,[0.0022,-0.0022]]
+#
+#fBs, fBs_err = [228.0,[17.3,-17.3]]
+#fBd, fBd_err = [190,[15,-15]]
+#
+#BBs, BBs_err = [1.28,[0.036,-0.036]]
+#BBd, BBd_err = [1.219,[0.05,-0.05]]
+#
+#delt_md, delt_md_err = [0.507e12,[0.005e12,-0.005e12]]
+#delt_ms, delt_ms_err = [17.77e12,[0.12e12,-0.12e12]]
+#delt_md_expect, delt_md_err_exp = [0.52e12,[0.02e12,-0.02e12]]
+#delt_ms_expect, delt_ms_err_exp = [19.0e12,[6.6e12,-6.6e12]]
 
 # B0d mixing
 #mH_md, tanb_md = itera_mix(mt,mt_err,mW,mW_err,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp)
@@ -336,37 +337,37 @@ delt_ms_expect, delt_ms_err_exp = [19.0e12,[6.6e12,-6.6e12]]
 
 ###################### b to s gamma
 
-#lambda_QCD, QCD_err = [0.224972,[0.012886,-0.007412]]
-#mt1, mt1_err = [173.1,[0.9,-0.9]]
-#mW1, mW1_err = [80.379,[0.012,-0.012]]
-#mub = 1.095
-#hi = [626126/272277,-56281/51730,-3/7,-1/14,-0.6494,-0.038,-0.0185,-0.0057]
-#a = [14/23,16/23,6/23,-12/23,0.4086,-0.4223,-0.8994,0.1456]
-#A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
-#B0,bc,bt,b_s = [7.564e-1,-2.43e-1,-7.68e-4,-4.62]
-#delt_mc, delt_mt, delt_as = [0.04,1.8,0.002]
-##C, C_err = [0.546,[0.033,-0.033]]
-#branch_c, branchc_err = [0.1065,[0.0016,-0.0016]]
-#branchs, branchs_err = [3.32e-4,[0.15e-4,-0.15e-4]]
-#gamc, gamc_err = [10.18e-2,[0.24e-2,-0.24e-2]]
-#gamu, gamu_err = [8.41e-4,[0.59e-4,-0.59e-4]]
-
-
-# OLD INPUTS
-lambda_QCD, QCD_err = [0.22119,[0.02599,-0.02404]]
-mt1, mt1_err = [172.4,[1.2,-1.2]]
-mW1, mW1_err = [80.398,[0.025,-0.025]]
-mub = 8.2
+lambda_QCD, QCD_err = [0.224972,[0.012886,-0.007412]]
+mt1, mt1_err = [173.1,[0.9,-0.9]]
+mW1, mW1_err = [80.379,[0.012,-0.012]]
+mub = 1.095
 hi = [626126/272277,-56281/51730,-3/7,-1/14,-0.6494,-0.038,-0.0185,-0.0057]
 a = [14/23,16/23,6/23,-12/23,0.4086,-0.4223,-0.8994,0.1456]
 A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
 B0,bc,bt,b_s = [7.564e-1,-2.43e-1,-7.68e-4,-4.62]
-delt_mc, delt_mt, delt_as = [0.04,1.8,0.004]
-##C, C_err = [0.546,[0.033,-0.033]]
-branch_c, branchc_err = [0.1052,[0.011,-0.011]]
-branchs, branchs_err = [3.52e-4,[0.25e-4,-0.25e-4]]
-gamc, gamc_err = [10.52e-2,[1.1e-2,-1.1e-2]]
-gamu, gamu_err = [1.4e-3,[0.58e-4,-0.58e-4]]
+delt_mc, delt_mt, delt_as = [0.04,1.8,0.002]
+#C, C_err = [0.546,[0.033,-0.033]]
+branch_c, branchc_err = [0.1065,[0.0016,-0.0016]]
+branchs, branchs_err = [3.32e-4,[0.15e-4,-0.15e-4]]
+gamc, gamc_err = [10.18e-2,[0.24e-2,-0.24e-2]]
+gamu, gamu_err = [8.41e-4,[0.59e-4,-0.59e-4]]
+
+
+# OLD INPUTS
+#lambda_QCD, QCD_err = [0.22119,[0.02599,-0.02404]]
+#mt1, mt1_err = [172.4,[1.2,-1.2]]
+#mW1, mW1_err = [80.398,[0.025,-0.025]]
+#mub = 8.2
+#hi = [626126/272277,-56281/51730,-3/7,-1/14,-0.6494,-0.038,-0.0185,-0.0057]
+#a = [14/23,16/23,6/23,-12/23,0.4086,-0.4223,-0.8994,0.1456]
+#A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
+#B0,bc,bt,b_s = [7.564e-1,-2.43e-1,-7.68e-4,-4.62]
+#delt_mc, delt_mt, delt_as = [0.04,1.8,0.004]
+###C, C_err = [0.546,[0.033,-0.033]]
+#branch_c, branchc_err = [0.1052,[0.011,-0.011]]
+#branchs, branchs_err = [3.52e-4,[0.25e-4,-0.25e-4]]
+#gamc, gamc_err = [10.52e-2,[1.1e-2,-1.1e-2]]
+#gamu, gamu_err = [1.4e-3,[0.58e-4,-0.58e-4]]
 
 #bgam, gerr = bsgamma(mt1,mW1,mub,lambda_QCD,hi,a,1,1,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,branch_c,gamu,Vub,Vts,Vtb,Vcb,1/137), error_gamma(mt1,mt1_err,mW1,mW1_err,mub,lambda_QCD,QCD_err,hi,a,1,1,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,branch_c,branchc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,1/137)
 #upg = bgam*branch_c*np.sqrt((branchc_err[0]/branch_c)**2 + (gerr[0]/bgam)**2)
@@ -398,17 +399,19 @@ bs_exp, bs_exp_err = [3.1e-9,[0.6e-9,-0.6e-9]] #hflav
 bd_exp, bd_exp_err = [1.4e-10,[1.6e-10,-1.4e-10]] #pdg
 sm, sm_err = [3.1e-9,[0.7e-9,-0.7e-9]]
 wangle, wangle_err = [0.23155,[0.00004,-0.00004]]
-#mH_bmumu, tanb_bmumu = itera_bmumu(mt1,mt1_err,taubd,taubd_err,taubs,taubs_err,fBd,fBd_err,fBs,fBs_err,Vtd,Vtd_err,Vts,Vts_err,m_mu,m_mu_err,mbd,mbd_err,mbs,mbs_err,mW1,mW1_err,bs_exp,bs_exp_err,bd_exp,bd_exp_err)
+higgs, higgs_err = [125.10,[0.14,-0.14]]
+mH_bmumu, tanb_bmumu = itera_bmumu(mt1,mt1_err,taubs,taubs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,m_mu,m_mu_err,mbs,mbs_err,mW1,mW1_err,m_b,m_b_err,m_s,m_s_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,bs_exp,bs_exp_err)
 #
-#plt.figure(figsize=(8,6))
-#plt.scatter(tanb_bmumu,mH_bmumu,marker=',',c='red')
-#plt.axis([-1,2,0,3.5])
-#plt.ylabel('$\\log[m_{H+}$, GeV]')
-#plt.xlabel('$\\log[\\tan(\\beta)]$')
-#plt.xticks(fontsize=18)
-#plt.yticks(fontsize=18)
-##plt.show()
-#plt.savefig('bmumu.png')
+plt.figure(figsize=(8,6))
+plt.scatter(tanb_bmumu,mH_bmumu,marker=',',c='red')
+plt.axis([-1,2,0,3.5])
+plt.ylabel('$\\log[m_{H+}$, GeV]')
+plt.xlabel('$\\log[\\tan(\\beta)]$')
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+#plt.show()
+plt.savefig('bmumu.png')
+quit()
 
 delta_b,delta_d = 0.982,0.99*0.982
 
