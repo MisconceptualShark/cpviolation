@@ -571,8 +571,12 @@ def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v):
     g1 = -3/4 + zd*np.conj(zu)*(xt/(xHp-xt))*(1 - (xHp/(xHp-xt))*np.log(xHp/xt)) + (abs(zu)**2)*(xt/(2*(xHp-xt)**2))*((xHp+xt)/2 - (xHp*xt/(xHp-xt))*np.log(xHp/xt))
     g2 = zd*(zd*np.conj(zu)+1)*f1 + zd*(np.conj(zu)**2)*f2 + zd*(abs(zu)**2)*f3 + zu*(abs(zu)**2)*f4 - np.conj(zu)*(abs(zu)**2)*f5 - zu*f6 - np.conj(zu)*f7
 
-    lamh = -((higgs**2)*(-6*zu + 2*zu) - 16*mH**2 + 8*zu*M**2)/(4*zu*v**2)
-    lamHh = -((mHh**2)*(6*tanb + 2*tanb) + 16*(zu**2)*mH**2 - 8*tanb*M**2)/(4*zu*v**2)
+ #   lamh = -((higgs**2)*(-6*zu + 2*zu) - 16*mH**2 + 8*zu*M**2)/(4*zu*v**2)
+ #   lamHh = -((mHh**2)*(6*tanb + 2*tanb) + 16*(zu**2)*mH**2 - 8*tanb*M**2)/(4*zu*v**2)
+    b = np.arctan(tanb)
+    a = b-np.pi/2
+    lamh = -((higgs**2)*(3*np.cos(a+b)+np.cos(a-3*b)) + 4*np.sin(2*b)*np.sin(b-a)*mH**2 - 4*np.cos(a+b)*M**2)/(2*np.sin(2*b)*v**2)
+    lamHh = -((mHh**2)*(3*np.sin(a+b)+np.sin(a-3*b)) + 4*np.sin(2*b)*np.cos(b-a)*mH**2 - 4*np.sin(a+b)*M**2)/(2*np.sin(2*b)*v**2)
 
     C10Z = (abs(zu)**2)*((xt**2)/(8*wangle))*(1/(xHp-xt) - xHp*np.log(xHp/xt)/((xHp-xt)**2))
     CPZ1 = np.conj(zu)*zd*np.sqrt(xb*xl)*(xt/(16*wangle))*((xt-3*xHp)/pow(xHp-xt,2) + 2*pow(xHp,2)*np.log(xHp/xt)/pow(xHp-xt,3))
@@ -580,8 +584,8 @@ def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v):
     CSbox = (np.sqrt(xl*xb)*xt/(8*(xHp-xt)*wangle))*(np.conj(zu)*zl*((xt*np.log(xt)/(xt-1)) - (xHp*np.log(xHp)/(xHp-1))) + zu*np.conj(zl)*(1 - (xHp-xt**2)*np.log(xt)/((xHp-xt)*(xt-1)) - (xHp*(xt-1)*np.log(xHp))/((xHp-xt)*(xHp-1))) + 2*zd*np.conj(zl)*np.log(xt/xHp))
     CPbox = CSbox
     CPA = -(np.sqrt(xl*xb)*zl*xt/(wangle*2*xA))*(((zu**3)*xt/2)*(1/(xHp-xt) - xHp*np.log(xHp/xt)/pow(xHp-xt,2)) + (zu/4)*(-(3*xHp*xt - 6*xHp - 2*xt**2 + 5*xt)/((xt-1)*(xHp-xt)) + xHp*(xHp**2 - 7*xHp + 6*xt)*np.log(xHp)/(pow(xHp-xt,2)*(xHp-1)) - ((xHp**2)*(xt**2 - 2*xt + 4) + 3*(xt**2)*(2*xt - 2*xHp - 1))*np.log(xt)/pow((xHp-xt)*(xt-1),2)))
-    CSh = (np.sqrt(xl*xb)*xt/(wangle*2*xh))*(2*zd + 2*zu*zl)*(-2*g1*tanb + 2*g2*zu - g0**2*(v**2)*lamh/(mW**2))
-    CSHh = (np.sqrt(xl*xb)*xt/(wangle*2*xHh))*(2*zu + 2*tanb*zl)*(g1*2*zu + 2*g2*tanb - g0*2*(v**2)*lamHh/(mW**2))
+    CSh = (np.sqrt(xl*xb)*xt/(wangle*2*xh))*(np.sin(b-a)+np.cos(b-a)*zl)*(g1*np.sin(b-a)+g2*np.cos(b-a)-g0*2*lamh*(v/mW)**2)
+    CSHh = (np.sqrt(xl*xb)*xt/(wangle*2*xHh))*(np.cos(b-a)-np.sin(b-a)*zl)*(g1*np.cos(b-a)-g2*np.sin(b-a)-g0*2*lamHh*(v/mW)**2)
 
     C10 = -4.103 + C10Z
     C10P = 0
@@ -590,7 +594,7 @@ def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v):
     CS = CSbox + CSh + CSHh
     CSP = 0
     beta = np.sqrt(1-4*pow(mmu/mbs,2))
-    pref = ((taubs*1e-12)/hbar_gev)*((pow(1/137,2)*g_gev*mbs*beta)/(16*np.pi**3))*pow(Vtb*Vts,2)*pow(fbs*mmu,2)
+    pref = taubs*((pow(1/137,2)*g_gev*mbs*beta)/(16*np.pi**3))*pow(Vtb*Vts,2)*pow(fbs*mmu*1e-3,2)
     bs1 = abs(C10-C10P+(pow(mbs,2)*(CP-CPP)/(2*mmu*(mb+ms))))**2
     bs2 = pow(abs(CS-CSP),2)*(pow(mbs,2)*(pow(mbs,2)-4*pow(mmu,2))/(4*pow(mmu,2)*(mb+ms)**2))
     bsi = pref*(bs1+bs2)
@@ -698,7 +702,7 @@ def error_bmumu2(mt,mt_err,taubs,taubs_err,fbs,fbs_err,Vtb,Vtb_err,Vts,Vts_err,m
     err16_up = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v+v_err[0])
     err16_low = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v+v_err[1])
 
-    ## bd
+    ## bs
     err1_up1, err1_low1 = abs(err1_up-bs),abs(err1_low-bs)
     err3_up1, err3_low1 = abs(err3_up-bs),abs(err3_low-bs)
     err5_up1, err5_low1 = abs(err5_up-bs),abs(err5_low-bs)
@@ -738,7 +742,7 @@ def itera_bmumu(mt,mt_err,taubs,taubs_err,fbs,fbs_err,Vtb,Vtb_err,Vts,Vts_err,mm
         for j in tanb_range:
             #expect_bd,
             expect_bs = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,j,i,mb,ms,wangle,higgs,v)
-            print expect_bs
+            #print expect_bs
             #expect_bd_uperr,expect_bd_downerr,
             expect_bs_uperr,expect_bs_downerr = error_bmumu2(mt,mt_err,taubs,taubs_err,fbs,fbs_err,Vtb,Vtb_err,Vts,Vts_err,mmu,mmu_err,mbs,mbs_err,mW,mW_err,j,i,mb,mb_err,ms,ms_err,wangle,wan_err,higgs,higgs_err,v,v_err)
 #            expect_bd_up, expect_bd_down = expect_bd+expect_bd_uperr, expect_bd-expect_bd_downerr
@@ -828,7 +832,7 @@ def itera_firstglobal(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,
     return mHl_loc, tanbl_loc, mHb_loc, tanbb_loc, mHg_loc, tanbg_loc, mHa_loc, tanba_loc
 
 
-def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls_exp_error,bmix_exp,bmix_exp_error,bmix_sm,bmix_sm_error,kpi_exp,kpi_exp_error,tkpi_exp,tkpi_exp_error,gams_exp,gams_exp_error,gamc_exp,gamc_exp_error,mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mK,mK_err,mpi,mpi_err,mmB,mmB_err,mtau,mtau_err,mmu,mmu_err,etaB,etaB_err,fBd,fBd_err,Bbd,Bbd_err,fbpls,fbpls_err,fdpls,fdpls_err,fdspls,fdspls_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,tbpls,tbpls_err,tdpls,tdpls_err,tdspls,tdspls_err,mu,mu_err,md,md_err,mc,mc_err,ms,ms_err,mb,mb_err,mt,mt_err,mtb,mtb_err,mW,mW_err,mWb,mWb_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamu,gamu_err,alp_EM,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,tbd,tbd_err,tbs,tbs_err,fBs,fBs_err,mbd,mbd_err,mbs,mbs_err,bs_e,bs_eerr,bd_e,bd_eerr,mB_s,mB_serr,BBs,BBs_err,bmixs_exp,bmixs_exp_error,bmixs_sm,bmixs_sm_error,m_Bmu,m_Bmu_err,p,p_err,d,d_err,rd_exp,rd_exp_err,delta_b,delta_d):
+def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls_exp_error,bmix_exp,bmix_exp_error,bmix_sm,bmix_sm_error,kpi_exp,kpi_exp_error,tkpi_exp,tkpi_exp_error,gams_exp,gams_exp_error,gamc_exp,gamc_exp_error,mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mK,mK_err,mpi,mpi_err,mmB,mmB_err,mtau,mtau_err,mmu,mmu_err,etaB,etaB_err,fBd,fBd_err,Bbd,Bbd_err,fbpls,fbpls_err,fdpls,fdpls_err,fdspls,fdspls_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,tbpls,tbpls_err,tdpls,tdpls_err,tdspls,tdspls_err,mu,mu_err,md,md_err,mc,mc_err,ms,ms_err,mb,mb_err,mt,mt_err,mtb,mtb_err,mW,mW_err,mWb,mWb_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamu,gamu_err,alp_EM,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,tbd,tbd_err,tbs,tbs_err,fBs,fBs_err,mbd,mbd_err,mbs,mbs_err,bs_e,bs_eerr,bd_e,bd_eerr,mB_s,mB_serr,BBs,BBs_err,bmixs_exp,bmixs_exp_error,bmixs_sm,bmixs_sm_error,m_Bmu,m_Bmu_err,p,p_err,d,d_err,rd_exp,rd_exp_err,delta_b,delta_d,wangle,wangle_err,higgs,higgs_err,vev,vev_err):
     '''
         Iterate of mH,tanb space for everything
     '''
@@ -858,9 +862,9 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
     sige_g = sigma*(gam_exp_up-av_g)
 
     bs_exp_up,bs_exp_down = bs_e+bs_eerr[0],bs_e+bs_eerr[1]
-    bd_exp_up,bd_exp_down = bd_e+bd_eerr[0],bd_e+bd_eerr[1]
-    av_bs,av_bd = 0.5*(bs_exp_up+bs_exp_down),0.5*(bd_exp_up+bd_exp_down)
-    sige_bs,sige_bd = sigma*(bs_exp_up-av_bs),sigma*(bd_exp_up-av_bd)
+#    bd_exp_up,bd_exp_down = bd_e+bd_eerr[0],bd_e+bd_eerr[1]
+    av_bs = 0.5*(bs_exp_up+bs_exp_down)#,0.5*(bd_exp_up+bd_exp_down)
+    sige_bs = sigma*(bs_exp_up-av_bs)#,sigma*(bd_exp_up-av_bd)
 
     rd_exp_up,rd_exp_down = rd_exp+rd_exp_err[0],rd_exp+rd_exp_err[1]
     av_rd = 0.5*(rd_exp_up+rd_exp_down)
@@ -909,14 +913,16 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
             sig_g=sigma*(gam_the_up-mid_g)
             gam_bool = ((av_g >= mid_g and mid_g+sig_g >= av_g-sige_g) or (av_g <= mid_g and mid_g-sig_g <= av_g+sige_g)) 
 
-            expect_bd,expect_bs = bmumu(mt,tbd,tbs,fBd,fBs,Vtd,Vts,mmu,mbd,mbs,mW,j,i)
-            expect_bd_uperr,expect_bd_downerr,expect_bs_uperr,expect_bs_downerr = error_bmumu(mt,mt_err,tbd,tbd_err,tbs,tbs_err,fBd,fBd_err,fBs,fBs_err,Vtd,Vtd_err,Vts,Vts_err,mmu,mmu_err,mbd,mbd_err,mbs,mbs_err,mW,mW_err,j,i)
-            expect_bd_up, expect_bd_down = expect_bd+expect_bd_uperr, expect_bd-expect_bd_downerr
+          #  expect_bd,
+            expect_bs = bmumu2(mt,tbs,fBs,Vtb,Vts,mmu,mbs,mW,j,i,mb,ms,wangle,higgs,vev)
+            #expect_bd_uperr,expect_bd_downerr,
+            expect_bs_uperr,expect_bs_downerr = error_bmumu2(mt,mt_err,tbs,tbs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,mmu,mmu_err,mbs,mbs_err,mW,mW_err,j,i,mb,mb_err,ms,ms_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err)
+#            expect_bd_up, expect_bd_down = expect_bd+expect_bd_uperr, expect_bd-expect_bd_downerr
             expect_bs_up, expect_bs_down = expect_bs+expect_bs_uperr, expect_bs-expect_bs_downerr
-            mid_smu,mid_dmu=0.5*(expect_bs_up+expect_bs_down),0.5*(expect_bd_up+expect_bd_down)
-            sig_smu,sig_dmu=sigma*(expect_bs_up-mid_smu),sigma*(expect_bd_up-mid_dmu)
+            mid_smu=0.5*(expect_bs_up+expect_bs_down)#,0.5*(expect_bd_up+expect_bd_down)
+            sig_smu=sigma*(expect_bs_up-mid_smu)#,sigma*(expect_bd_up-mid_dmu)
             bs_bool = ((av_bs >= mid_smu and mid_smu+sig_smu >= av_bs-sige_bs) or (av_bs <= mid_smu and mid_smu-sig_smu <= av_bs+sige_bs)) 
-            bd_bool = ((av_bd >= mid_dmu and mid_dmu+sig_dmu >= av_bd-sige_bd) or (av_bd <= mid_dmu and mid_dmu-sig_dmu <= av_bd+sige_bd))
+#            bd_bool = ((av_bd >= mid_dmu and mid_dmu+sig_dmu >= av_bd-sige_bd) or (av_bd <= mid_dmu and mid_dmu-sig_dmu <= av_bd+sige_bd))
 
             expect_rd = bsemi(mc,mb,m_Bmu,mdpls,p,d,i,j)
             expect_rd_err = error_bsemi(mc,mc_err,mb,mb_err,m_Bmu,m_Bmu_err,mdpls,mdpls_err,p,p_err,d,d_err,i,j)
@@ -962,11 +968,11 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
                 if chi_1ij < chi_1min[0]:
                     chi_1min = [chi_1ij,i,j]
           
-            if bs_bool and bd_bool:
+            if bs_bool:# and bd_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHmu_loc = np.append(mHmu_loc,i_log)
                 tanbmu_loc = np.append(tanbmu_loc,j_log)
-                chi_uij = chisq_simp([av_bs,av_bd],[mid_smu,mid_dmu],[sige_bs,sige_bd],[sig_smu,sig_dmu])
+                chi_uij = chisq_simp([av_bs],[mid_smu],[sige_bs],[sig_smu])
                 chi_mus = np.append(chi_mus,chi_uij)
                 if chi_uij < chi_umin:
                     chi_umin = chi_uij
@@ -980,52 +986,14 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
                 if chi_rij < chi_rmin:
                     chi_rmin = chi_rij
 
-            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool and rd_bool:
+            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and rd_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHa2_loc = np.append(mHa2_loc,i_log)
                 tanba2_loc = np.append(tanba2_loc,j_log)
-                chi_2ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bs,av_bd,av_rd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_smu,mid_dmu,mid_rd],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bs,sige_bd,sige_rd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_smu,sig_dmu,sig_rd])
+                chi_2ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bs,av_rd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_smu,mid_rd],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bs,sige_rd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_smu,sig_rd])
                 chi_2s = np.append(chi_2s,chi_2ij)
                 if chi_2ij < chi_2min[0]:
                     chi_2min = [chi_2ij,i,j]
 
     return mHl_loc, tanbl_loc, mHb_loc, tanbb_loc, mHg_loc, tanbg_loc, mHa_loc, tanba_loc, mHmu_loc, tanbmu_loc, mHrd_loc, tanbrd_loc, mHa2_loc, tanba2_loc, chi_ls, chi_ms, chi_gs, chi_1s, chi_mus, chi_rds, chi_2s, chi_lmin, chi_mmin, chi_gmin, chi_1min, chi_umin, chi_rmin, chi_2min
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

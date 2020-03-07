@@ -13,7 +13,7 @@ def rdst(mBs,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,mc,mb,tanb,mH):
         R(D*)
     '''
     def rd1(s,mBs,mD,rhod,r01,r11,r21,Vcb,ml):
-        hai=1
+        hai=0.904
         PD = np.sqrt(s**2 + mBs**4 + mD**4 - 2*(s*mBs**2 + s*mD**2 + (mBs**2)*(mD**2)))/(2*mBs)
         ws = (mBs**2 + mD**2 - s)/(2*mBs*mD)
         weer = 2*np.sqrt(mBs*mD)/(mBs+mD)
@@ -30,11 +30,11 @@ def rdst(mBs,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,mc,mb,tanb,mH):
         Hmn = (mBs+mD)*A1 + (2*mBs*PD*V/(mBs+mD))
         H0 = (-1/(2*mD*np.sqrt(s)))*((4*pow(mBs*PD,2)/(mBs+mD))*A2 - (mBs**2 - mD**2 - s)*(mBs+mD)*A1)
         Hs = (2*mBs*PD*A0)/np.sqrt(s)
-        dgamsm = (g_gev/(96*(np.pi**3)*mBs**2))*((abs(Hpl)**2 + abs(Hmn)**2 + abs(H0)**2)*(1+(ml**2)/(2*s)) + (3*(ml**2)*(abs(Hs)**2)/(2*s)))*s*PD*(1-(ml**2)/s)**2 
-        #dgamsm = (g_gev*(Vcb**2)/(96*(np.pi**3)*mBs**2))*((abs(Hpl)**2 + abs(Hmn)**2 + abs(H0)**2)*(1+(ml**2)/(2*s)) + (3*(ml**2)*(abs(Hs)**2)/(2*s)))*s*PD*(1-(ml**2)/s)**2 
+        #dgamsm = (g_gev/(96*(np.pi**3)*mBs**2))*((abs(Hpl)**2 + abs(Hmn)**2 + abs(H0)**2)*(1+(ml**2)/(2*s)) + (3*(ml**2)*(abs(Hs)**2)/(2*s)))*s*PD*(1-(ml**2)/s)**2 
+        dgamsm = (g_gev*(Vcb**2)/(96*(np.pi**3)*mBs**2))*((abs(Hpl)**2 + abs(Hmn)**2 + abs(H0)**2)*(1+(ml**2)/(2*s)) + (3*(ml**2)*(abs(Hs)**2)/(2*s)))*s*PD*(1-(ml**2)/s)**2 
         return dgamsm
     def rd2(s,mBs,mD,rhod,ml,gcp,Vcb,mH,fls,flp,mb,mc):
-        hai=1
+        hai=0.910
         PD = np.sqrt(s**2 + mBs**4 + mD**4 - 2*(s*mBs**2 + s*mD**2 + (mBs**2)*(mD**2)))/(2*mBs)
         ws = (mBs**2 + mD**2 - s)/(2*mBs*mD)
         weer = 2*np.sqrt(mBs*mD)/(mBs+mD)
@@ -42,11 +42,11 @@ def rdst(mBs,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,mc,mb,tanb,mH):
         ha1w = hai*(1 - 8*rhod*z + (53*rhod - 15)*z**2 - (231*rhod - 91)*z**3)
         r0w = r01 - 0.11*(ws-1) + 0.01*(ws-1)**2
         A0 = r0w*ha1w/weer
-        dgammix = np.sqrt(g_gev/2)*(ml*gcp/(8*(np.pi**3)*mH**2))*((fls+flp)/(mb+mc))*(A0**2)*((1-(ml**2)/s)**2)*pow(PD,3)
-        #dgammix = np.sqrt(g_gev/2)*(ml*gcp*pow(Vcb,2)/(8*(np.pi**3)*mH**2))*((fls+flp)/(mb+mc))*(A0**2)*((1-(ml**2)/s)**2)*pow(PD,3)
+        #dgammix = np.sqrt(g_gev/2)*(ml*gcp/(8*(np.pi**3)*mH**2))*((fls+flp)/(mb+mc))*(A0**2)*((1-(ml**2)/s)**2)*pow(PD,3)
+        dgammix = np.sqrt(g_gev/2)*(ml*gcp*pow(Vcb,2)/(8*(np.pi**3)*mH**2))*((fls+flp)/(mb+mc))*(A0**2)*((1-(ml**2)/s)**2)*pow(PD,3)
         return dgammix
     def rd3(s,mBs,mD,rhod,ml,gcp,Vcb,mH,fls,flp,md,mc):
-        hai=1
+        hai=0.910
         PD = np.sqrt(s**2 + mBs**4 + mD**4 - 2*(s*mBs**2 + s*mD**2 + (mBs**2)*(mD**2)))/(2*mBs)
         weer = 2*np.sqrt(mBs*mD)/(mBs+mD)
         ws = (mBs**2 + mD**2 - s)/(2*mBs*mD)
@@ -54,8 +54,8 @@ def rdst(mBs,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,mc,mb,tanb,mH):
         ha1w = hai*(1 - 8*rhod*z + (53*rhod - 15)*z**2 - (231*rhod - 91)*z**3)
         r0w = r01 - 0.11*(ws-1) + 0.01*(ws-1)**2
         A0 = r0w*ha1w/weer
-        dgamh = (pow(gcp/(mH**2),2)/(16*np.pi**3))*((fls**2 + flp**2)/pow(mb+mc,2))*s*pow(A0,2)*pow(1-(ml**2)/s,2)*pow(PD,3)
-        #dgamh = (pow(gcp*Vcb/(mH**2),2)/(16*np.pi**3))*((fls**2 + flp**2)/pow(mb+mc,2))*s*pow(A0,2)*pow(1-(ml**2)/s,2)*pow(PD,3)
+        #dgamh = (pow(gcp/(mH**2),2)/(16*np.pi**3))*((fls**2 + flp**2)/pow(mb+mc,2))*s*pow(A0,2)*pow(1-(ml**2)/s,2)*pow(PD,3)
+        dgamh = (pow(gcp*Vcb/(mH**2),2)/(16*np.pi**3))*((fls**2 + flp**2)/pow(mb+mc,2))*s*pow(A0,2)*pow(1-(ml**2)/s,2)*pow(PD,3)
         return dgamh
     
     gcp = (-(mc/tanb) + mb*tanb)/(np.sqrt(2)*vev)
@@ -70,16 +70,16 @@ def rdst(mBs,mD,rhod,r01,r11,r21,Vcb,mmu,mtau,vev,mc,mb,tanb,mH):
     mgammix, err2 = quad(rd2,mmu**2,top,args=(mBs,mD,rhod,mmu,gcp,Vcb,mH,fmus,fmup,mb,mc))
     mgamh, err3 = quad(rd3,mmu**2,top,args=(mBs,mD,rhod,mmu,gcp,Vcb,mH,fmus,fmup,mb,mc))
     dmu = mgamsm+mgammix+mgamh
-    mV = (Vcb/mgamsm)/(1+(mgammix+mgamh)/mgamsm)
+#    mV = (Vcb/mgamsm)/(1+(mgammix+mgamh)/mgamsm)
 
     tgamsm, err1 = quad(rd1,mtau**2,top,args=(mBs,mD,rhod,r01,r11,r21,Vcb,mtau))
     tgammix, err2 = quad(rd2,mtau**2,top,args=(mBs,mD,rhod,mtau,gcp,Vcb,mH,fts,ftp,mb,mc))
     tgamh, err3 = quad(rd3,mtau**2,top,args=(mBs,mD,rhod,mtau,gcp,Vcb,mH,fts,ftp,mb,mc))
     dtau = tgamsm+tgammix+tgamh
 
-#    return dtau/dmu
+    return dtau/dmu
 #    return tgamsm/mgamsm
-    return np.sqrt(mV)
+#    return np.sqrt(mV)
 
 def error_rds(mBs,mBs_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,tanb,mH):
 
@@ -115,8 +115,9 @@ def error_rds(mBs,mBs_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r2
 
     ups = rds+upper
     downs = rds-lower
-            
-    return upper*1e3, lower*1e3, rds*1e3
+    
+    return ups, downs
+    #return rds, upper, lower
 
 def itera_rds(mBs,mBs_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,rde,rde_err):
 
@@ -155,37 +156,37 @@ def rdn(mBs,mD,rhod,delta,Vcb,mmu,mtau,vev,mc,mb,tanb,mH):
     '''
     def rdn1(s,mBs,mD,Vcb,ml,delta,rhod):
         PD = np.sqrt(s**2 + mBs**4 + mD**4 - 2*(s*mBs**2 + s*mD**2 + (mBs**2)*(mD**2)))/(2*mBs)
-        V1i = 1.0
+        V1i = 1.0611
         w = (mBs**2 + mD**2 - s)/(2*mBs*mD)
         z = (np.sqrt(w+1)-np.sqrt(2))/(np.sqrt(w+1)+np.sqrt(2))
         V1 = V1i*(1 - 8*rhod*z + (51*rhod - 10)*z**2 - (252*rhod - 84)*z**3)
         S1 = V1*(1 + delta*(-0.019 + 0.041*(w-1) - 0.015*(w-1)**2))
         F0 = (np.sqrt(mBs*mD)/(mBs+mD))*(w+1)*S1
         F1 = (np.sqrt(mBs*mD)*(mBs+mD)/(2*mBs*PD))*np.sqrt(w**2 - 1)*V1
-        dgamsm = (g_gev/(96*(np.pi**3)*mBs**2))*(4*pow(mBs*PD,2)*(1+(ml**2)/(2*s))*abs(F1)**2 + (3/(2*s))*(mBs**4)*pow((1-pow(mD/mBs,2))*ml*F0,2))*PD*(1-(ml**2)/s)**2
-        #dgamsm = (g_gev*(Vcb**2)/(96*(np.pi**3)*mBs**2))*(4*pow(mBs*PD,2)*(1+(ml**2)/(2*s))*abs(F1)**2 + (3/(2*s))*(mBs**4)*pow((1-pow(mD/mBs,2))*ml*F0,2))*PD*(1-(ml**2)/s)**2
+        #dgamsm = (g_gev/(96*(np.pi**3)*mBs**2))*(4*pow(mBs*PD,2)*(1+(ml**2)/(2*s))*abs(F1)**2 + (3/(2*s))*(mBs**4)*pow((1-pow(mD/mBs,2))*ml*F0,2))*PD*(1-(ml**2)/s)**2
+        dgamsm = (g_gev*(Vcb**2)/(96*(np.pi**3)*mBs**2))*(4*pow(mBs*PD,2)*(1+(ml**2)/(2*s))*abs(F1)**2 + (3/(2*s))*(mBs**4)*pow((1-pow(mD/mBs,2))*ml*F0,2))*PD*(1-(ml**2)/s)**2
         return dgamsm
     def rdn2(s,mBs,mD,rhod,delta,ml,gcs,Vcb,mH,fls,flp,mb,mc):
         PD = np.sqrt(s**2 + mBs**4 + mD**4 - 2*(s*mBs**2 + s*mD**2 + (mBs**2)*(mD**2)))/(2*mBs)
         w = (mBs**2 + mD**2 - s)/(2*mBs*mD)
         z = (np.sqrt(w+1)-np.sqrt(2))/(np.sqrt(w+1)+np.sqrt(2))
-        V1i = 1.0
+        V1i = 1.0611
         V1 = V1i*(1 - 8*rhod*z + (51*rhod - 10)*z**2 - (252*rhod - 84)*z**3)
         S1 = V1*(1 + delta*(-0.019 + 0.041*(w-1) - 0.015*(w-1)**2))
         F0 = (np.sqrt(mBs*mD)/(mBs+mD))*(w+1)*S1
-        dgammix = np.sqrt(g_gev/2)*(gcs/(32*np.pi**3))*pow(1/mH,2)*(fls+flp)*ml*(1-pow(mD/mBs,2))*((mBs**2 - mD**2)/(mb - mc))*(abs(F0)**2)*pow(1 - (ml**2)/s,2)*PD
-        #dgammix = np.sqrt(g_gev/2)*(gcs/(32*np.pi**3))*pow(Vcb/mH,2)*(fls+flp)*ml*(1-pow(mD/mBs,2))*((mBs**2 - mD**2)/(mb - mc))*(abs(F0)**2)*pow(1 - (ml**2)/s,2)*PD
+        #dgammix = np.sqrt(g_gev/2)*(gcs/(32*np.pi**3))*pow(1/mH,2)*(fls+flp)*ml*(1-pow(mD/mBs,2))*((mBs**2 - mD**2)/(mb - mc))*(abs(F0)**2)*pow(1 - (ml**2)/s,2)*PD
+        dgammix = np.sqrt(g_gev/2)*(gcs/(32*np.pi**3))*pow(Vcb/mH,2)*(fls+flp)*ml*(1-pow(mD/mBs,2))*((mBs**2 - mD**2)/(mb - mc))*(abs(F0)**2)*pow(1 - (ml**2)/s,2)*PD
         return dgammix
     def rdn3(s,mBs,mD,rhod,delta,ml,gcs,Vcb,mH,fls,flp,md,mc):
         PD = np.sqrt(s**2 + mBs**4 + mD**4 - 2*(s*mBs**2 + s*mD**2 + (mBs**2)*(mD**2)))/(2*mBs)
         w = (mBs**2 + mD**2 - s)/(2*mBs*mD)
         z = (np.sqrt(w+1)-np.sqrt(2))/(np.sqrt(w+1)+np.sqrt(2))
-        V1i = 1.0
+        V1i = 1.0611
         V1 = V1i*(1 - 8*rhod*z + (51*rhod - 10)*z**2 - (252*rhod - 84)*z**3)
         S1 = V1*(1 + delta*(-0.019 + 0.041*(w-1) - 0.015*(w-1)**2))
         F0 = (np.sqrt(mBs*mD)/(mBs+mD))*(w+1)*S1
-        dgamh = (pow(gcs/(mBs*mH**2),2)/(64*np.pi**3))*(fls**2 + flp**2)*(abs(F0)**2)*s*PD*(1 - (ml**2)/s)**2
-        #dgamh = (pow(gcs*Vcb/(mBs*mH**2),2)/(64*np.pi**3))*(fls**2 + flp**2)*(abs(F0)**2)*s*PD*(1 - (ml**2)/s)**2
+        #dgamh = (pow(gcs/(mBs*mH**2),2)/(64*np.pi**3))*(fls**2 + flp**2)*(abs(F0)**2)*s*PD*(1 - (ml**2)/s)**2
+        dgamh = (pow(gcs*Vcb/(mBs*mH**2),2)/(64*np.pi**3))*(fls**2 + flp**2)*(abs(F0)**2)*s*PD*(1 - (ml**2)/s)**2
         return dgamh
     
     gcs = ((mc/tanb) + mb*tanb)/(np.sqrt(2)*vev)
@@ -200,18 +201,18 @@ def rdn(mBs,mD,rhod,delta,Vcb,mmu,mtau,vev,mc,mb,tanb,mH):
     mgammix, err2 = quad(rdn2,mmu**2,top,args=(mBs,mD,rhod,delta,mmu,gcs,Vcb,mH,fmus,fmup,mb,mc))
     mgamh, err3 = quad(rdn3,mmu**2,top,args=(mBs,mD,rhod,delta,mmu,gcs,Vcb,mH,fmus,fmup,mb,mc))
     dmu = mgamsm+mgammix+mgamh
-    mV = (Vcb/mgamsm)/(1+(mgammix+mgamh)/mgamsm)
+#    mV = (Vcb/mgamsm)/(1+(mgammix+mgamh)/mgamsm)
 
     tgamsm, err1 = quad(rdn1,mtau**2,top,args=(mBs,mD,Vcb,mtau,delta,rhod))
     tgammix, err2 = quad(rdn2,mtau**2,top,args=(mBs,mD,rhod,delta,mtau,gcs,Vcb,mH,fts,ftp,mb,mc))
     tgamh, err3 = quad(rdn3,mtau**2,top,args=(mBs,mD,rhod,delta,mtau,gcs,Vcb,mH,fts,ftp,mb,mc))
     dtau = tgamsm+tgammix+tgamh
-    tV = (Vcb/tgamsm)/(1+(tgammix+tgamh)/tgamsm)
+#    tV = (Vcb/tgamsm)/(1+(tgammix+tgamh)/tgamsm)
 
-#    return dtau/dmu
+    return dtau/dmu
 #    return tgamsm/mgamsm
 #    return (tV+mV)/2
-    return np.sqrt(tV)
+#    return np.sqrt(tV)
 
 def error_rdn(mBs,mBs_err,mD,mD_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,tanb,mH):
 
@@ -245,7 +246,7 @@ def error_rdn(mBs,mBs_err,mD,mD_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mm
     ups = rds+upper
     downs = rds-lower
             
-    return ups, downs, rds
+    return ups, downs#, rds
 
 def itera_rdn(mBs,mBs_err,mD,mD_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,rde,rde_err):
 
