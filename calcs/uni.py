@@ -1,6 +1,7 @@
 from __future__ import division
 import numpy as np
 from functions import rh
+from rdstarring import *
 from ckm_2hdm import *
 import matplotlib.pyplot as plt
 
@@ -16,10 +17,15 @@ mb, mb_err = [4.18,[0.03,-0.02]]
 mbpls, mbpls_err = [5.27933,[0.00013,-0.00013]]
 mdpls, mdpls_err = [1.86965,[0.00005,-0.00005]]
 mdspls, mdspls_err  = [1.96834,[0.00007,-0.00007]]
+mBs, mBs_err = [5.27964,[0.00013,-0.00013]]
 mtau, mtau_err = [1.77686,[0.00012,-0.00012]]
 mmu, mmu_err = [0.105658374,[0.0000000024,-0.0000000024]]
 mK, mK_err = [0.493677,[0.000016,-0.000016]]
 mpi, mpi_err = [0.13957031,[0.00000024,-0.00000024]]
+mDst, mDst_err = [2.1122,[0.0004,-0.0004]]
+rhod, rhod_err = [1.131,[0.033,-0.033]]
+delta, delta_err = [0.46,[0.01,-0.01]]
+vev, vev_err = [246,[0,0]]
 fb, fb_err = [0.190,[0.0013,-0.0013]]
 fd, fd_err = [0.212,[0.0007,-0.0007]]
 fds, fds_err = [0.2499,[0.0005,-0.0005]]
@@ -40,31 +46,31 @@ Vud,Vud_err = [0.97420,[0.00021,-0.00021]]
 Vus,Vus_err = [0.2243,[0.0005,-0.0005]]
 Vub,Vub_err = [0.00401,[0.00037,-0.00037]]
 Vcd,Vcd_err = [0.2164,[0.0052,-0.0052]]
-#Vcs,Vcs_err = [0.997,[0.017,-0.017]]
-Vcs,Vcs_err = [1.006,[0.019,-0.019]]
+Vcs,Vcs_err = [0.997,[0.017,-0.017]]
+#Vcs,Vcs_err = [1.006,[0.019,-0.019]]
 Vcb,Vcb_err = [0.0422,[0.0008,-0.0008]]
 Vtd,Vtd_err = [0.0081,[0.0005,-0.0005]]
 Vts,Vts_err = [0.0394,[0.0023,-0.0023]]
 Vtb,Vtb_err = [1.019,[0.025,-0.025]]
 
-#h1,t1,v1,h2,t2,v2,ha,ta,va = ckmelsr([Vud,Vus,Vub,Vcd,Vcs,Vcb],[Vud_err,Vus_err,Vub_err,Vcd_err,Vcs_err,Vcb_err],mu,mu_err,md,md_err,ms,ms_err,mc,mc_err,mb,mb_err,mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mtau,mtau_err,mmu,mmu_err,fb,fb_err,fd,fd_err,fds,fds_err,taub,taub_err,taud,taud_err,tauds,tauds_err,brb,brb_err,brd,brd_err,brds,brds_err,mK,mK_err,mpi,mpi_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,brk,brk_err,brtk,brtk_err)
+h1,t1,v1,h2,t2,v2,ha,ta,va = ckmelsr([Vud,Vus,Vub,Vcd,Vcs,Vcb],[Vud_err,Vus_err,Vub_err,Vcd_err,Vcs_err,Vcb_err],mu,mu_err,md,md_err,ms,ms_err,mc,mc_err,mb,mb_err,mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mtau,mtau_err,mmu,mmu_err,fb,fb_err,fd,fd_err,fds,fds_err,taub,taub_err,taud,taud_err,tauds,tauds_err,brb,brb_err,brd,brd_err,brds,brds_err,mK,mK_err,mpi,mpi_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,brk,brk_err,brtk,brtk_err,mBs,mBs_err,mDst,mDst_err,rhod,rhod_err,delta,delta_err,vev,vev_err)
 #
 #print len(h1)
 #print len(h2)
 #print len(ha)
 #
-#plt.figure(figsize=(8,6))
-#plt.scatter(t1,h1,c='green')
-#plt.scatter(t2,h2,c='cornflowerblue')
-#plt.scatter(ta,ha,c='darkorchid')
-#plt.axis([-1,2,0,3.5])
-#plt.title('SM4 Allowed Unitarity with 2HDM',fontsize=18)
-#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.ylabel('$\\log[m_{H+}]$',fontsize=18)
-#plt.xticks(fontsize=18)
-#plt.yticks(fontsize=18)
-#plt.show()
-#quit()
+plt.figure(figsize=(8,6))
+plt.scatter(t1,h1,c='green')
+plt.scatter(t2,h2,c='cornflowerblue')
+plt.scatter(ta,ha,c='darkorchid')
+plt.axis([-1,2,0,3.5])
+plt.title('SM4 Allowed Unitarity with 2HDM',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.ylabel('$\\log[m_{H+}]$',fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.show()
+quit()
 ### CKMfitter
 #Vud,Vud_err = [0.974390,[0.000014,-0.000058]]
 #Vus,Vus_err = [0.224834,[0.000252,-0.000059]]

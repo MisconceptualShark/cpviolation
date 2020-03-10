@@ -1,6 +1,7 @@
 from __future__ import division
 import numpy as np
 from functions import rh
+from rdstarring import *
 
 g_gev = (1.1663787e-5)**2
 hbar_gev = 6.582119514e-25
@@ -14,6 +15,7 @@ def v2(vs):
     return v
 
 def Vp2(vs,vse):
+    sigma=1.96
     v = v2(vs)
     u,l=0,0
     for i in range(len(vs)):
@@ -24,15 +26,15 @@ def Vp2(vs,vse):
 #        vs[i] += (vse[i][1]-vse[i][0])
 #        l += abs(v2(vs)-v)**2
 #        vs[i] -= vse[i][1]
-    u = v*np.sqrt(u)
-    l = v*np.sqrt(l)
+    u = sigma*v*np.sqrt(u)
+    l = sigma*v*np.sqrt(l)
     return v, u, l
 
 def vsm(mm,ml,fm,taum):
     '''
         Calculates SM branching ratio
     '''
-    Bs = (1/(8*np.pi))*(g_gev*mm*ml**2)*((1-(ml**2/mm**2))**2)*(fm**2)*taum
+    Bs = (1/(8*np.pi))*(g_gev*mm*ml**2)*((1-(ml**2/mm**2))**2)*(fm**2)*taum*0.982
     return Bs
 
 def vthe(mm,ml,fm,taum,mu,md,tanb,mH,exp):
@@ -176,7 +178,7 @@ def error_kpi(mK,mK_err,mpi,mpi_err,ml,ml_err,mtau,mtau_err,fKpi,fKpi_err,delt_k
 
     return upper1, lower1
 
-def ckmelsr(V,V_err,mu,mu_err,md,md_err,ms,ms_err,mc,mc_err,mb,mb_err,mbp,mbp_err,mdp,mdp_err,mds,mds_err,mtau,mtau_err,mmu,mmu_err,fb,fb_err,fd,fd_err,fds,fds_err,taub,taub_err,taud,taud_err,tauds,tauds_err,expb,expb_err,expd,expd_err,expds,expds_err,mK,mK_err,mpi,mpi_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,ke,ke_err,te,te_err):
+def ckmelsr(V,V_err,mu,mu_err,md,md_err,ms,ms_err,mc,mc_err,mb,mb_err,mbp,mbp_err,mdp,mdp_err,mds,mds_err,mtau,mtau_err,mmu,mmu_err,fb,fb_err,fd,fd_err,fds,fds_err,taub,taub_err,taud,taud_err,tauds,tauds_err,expb,expb_err,expd,expd_err,expds,expds_err,mK,mK_err,mpi,mpi_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,ke,ke_err,te,te_err,mBs,mBs_err,mDst,mDst_err,rhod,rhod_err,delta,delta_err,vev,vev_err):
     '''
         an explanation
     '''
@@ -204,8 +206,10 @@ def ckmelsr(V,V_err,mu,mu_err,md,md_err,ms,ms_err,mc,mc_err,mb,mb_err,mbp,mbp_er
             expect_vus = decay_bsm(mK,mpi,mmu,mtau,fKpi,delt_kpi,delt_tau,ms,md,mu,j,i,ke,te,Vud)
             expect_vus_err = error_kpi(mK,mK_err,mpi,mpi_err,mmu,mmu_err,mtau,mtau_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,ms,ms_err,md,md_err,mu,mu_err,j,i,ke,ke_err,te,te_err,Vud,Vud_err)
 
+            Vcb_erre, Vcb_err = error_rdn(mBs,mBs_err,mDst,mDst_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
+
             row1, u1, l1 = Vp2([Vud,expect_vus,expect_vub],[Vud_err,expect_vus_err,expect_vub_err])
-            row2, u2, l2 = Vp2([expect_vcd,expect_vcs,Vcb],[expect_vcd_err,expect_vcs_err,Vcd_err])
+            row2, u2, l2 = Vp2([expect_vcd,expect_vcs,Vcb_e],[expect_vcd_err,expect_vcs_err,Vcb_erre])
             r1_bool = (row1 > 0) or (row1+u1 > 0) or (row1-l1 > 0)
             r2_bool = (row2 > 0) or (row2+u2 > 0) or (row2-l2 > 0)
             #ve = vs(V,mu,md,mm,j,i)
