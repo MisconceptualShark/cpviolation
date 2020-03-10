@@ -407,20 +407,20 @@ bd_exp, bd_exp_err = [1.4e-10,[1.6e-10,-1.4e-10]] #pdg
 sm, sm_err = [3.1e-9,[0.7e-9,-0.7e-9]]
 wangle, wangle_err = [0.23155,[0.00004,-0.00004]]
 higgs, higgs_err = [125.10,[0.14,-0.14]]
-#mH_bmumu, tanb_bmumu = itera_bmumu(mt1,mt1_err,taubs,taubs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,m_mu,m_mu_err,mbs,mbs_err,mW1,mW1_err,m_b,m_b_err,m_s,m_s_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,bs_exp,bs_exp_err)
+mH_bmumu, tanb_bmumu = itera_bmumu(mt1,mt1_err,taubs,taubs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,m_mu,m_mu_err,mbs,mbs_err,mW1,mW1_err,m_b,m_b_err,m_s,m_s_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,bs_exp,bs_exp_err)
 ##
-#plt.figure(figsize=(8,6))
-#plt.scatter(tanb_bmumu,mH_bmumu,marker=',',c='red')
-#plt.axis([-1,2,0,3.5])
-#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('$M = 1\,TeV,\; m_A = 500\,GeV,\; m_{H^0} = 150\,GeV$',fontsize=18)
-#plt.xticks(fontsize=18)
-#plt.yticks(fontsize=18)
-##plt.show()
-#plt.savefig('bmuH2.png')
-#os.system('play gumdrops.mp3')
-#quit()
+plt.figure(figsize=(8,6))
+plt.scatter(tanb_bmumu,mH_bmumu,marker=',',c='red')
+plt.axis([-1,2,0,3.5])
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.title('$M = 750\,GeV,\; m_{H^0} = 750\,GeV,$\n$\; m_A = 500\,GeV,\; \\beta-\\alpha-\\pi/2=-0.02$',fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+#plt.show()
+plt.savefig('bmuc3.png')
+os.system('play gumdrops.mp3')
+quit()
 
 ###################### GLOBAL CONSTRAINT
 

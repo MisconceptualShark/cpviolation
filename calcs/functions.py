@@ -557,8 +557,8 @@ def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v):
     zd = -tanb
     zl = -tanb
 
-    M = 250
-    mHh = 150
+    M = 750
+    mHh = 750
     mA = 500
     xA = (mA/mW)**2
     xHp = (mH/mW)**2
@@ -583,7 +583,7 @@ def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v):
  #   lamh = -((higgs**2)*(-6*zu + 2*zu) - 16*mH**2 + 8*zu*M**2)/(4*zu*v**2)
  #   lamHh = -((mHh**2)*(6*tanb + 2*tanb) + 16*(zu**2)*mH**2 - 8*tanb*M**2)/(4*zu*v**2)
     b = np.arctan(tanb)
-    a = b-np.pi/2
+    a = b - np.pi/2 + 0.02
     lamh = -((higgs**2)*(3*np.cos(a+b)+np.cos(a-3*b)) + 4*np.sin(2*b)*np.sin(b-a)*mH**2 - 4*np.cos(a+b)*M**2)/(2*np.sin(2*b)*v**2)
     lamHh = -((mHh**2)*(3*np.sin(a+b)+np.sin(a-3*b)) + 4*np.sin(2*b)*np.cos(b-a)*mH**2 - 4*np.sin(a+b)*M**2)/(2*np.sin(2*b)*v**2)
 
