@@ -69,7 +69,8 @@ plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
 plt.ylabel('$\\log[m_{H+}]$',fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
-plt.show()
+#plt.show()
+plt.savefig('ckm_uni.png')
 quit()
 ### CKMfitter
 #Vud,Vud_err = [0.974390,[0.000014,-0.000058]]
