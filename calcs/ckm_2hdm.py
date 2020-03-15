@@ -206,7 +206,7 @@ def ckmelsr(V,V_err,mu,mu_err,md,md_err,ms,ms_err,mc,mc_err,mb,mb_err,mbp,mbp_er
             expect_vus = decay_bsm(mK,mpi,mmu,mtau,fKpi,delt_kpi,delt_tau,ms,md,mu,j,i,ke,te,Vud)
             expect_vus_err = error_kpi(mK,mK_err,mpi,mpi_err,mmu,mmu_err,mtau,mtau_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,ms,ms_err,md,md_err,mu,mu_err,j,i,ke,ke_err,te,te_err,Vud,Vud_err)
 
-            Vcb_erre, Vcb_err = error_rdn(mBs,mBs_err,mDst,mDst_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
+            Vcb_e, Vcb_erre = error_rdn(mBs,mBs_err,mDst,mDst_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
 
             row1, u1, l1 = Vp2([Vud,expect_vus,expect_vub],[Vud_err,expect_vus_err,expect_vub_err])
             row2, u2, l2 = Vp2([expect_vcd,expect_vcs,Vcb_e],[expect_vcd_err,expect_vcs_err,Vcb_erre])
