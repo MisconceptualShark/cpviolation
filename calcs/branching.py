@@ -265,29 +265,32 @@ delta_b,delta_d = 0.982,0.99*0.982
 
 ###############   MIXING
 
-mt, mt_err = [172.9e3,[0.4e3,-0.4e3]]
-mW, mW_err = [80.379e3,[0.012e3,-0.012e3]]
-mBd, mBd_err = [5279.64,[0.13,-0.13]]
-mBs, mBs_err = [5366.88,[0.17,-0.17]]
+mt, mt_err = [172.9,[0.4,-0.4]]
+mW, mW_err = [80.379,[0.012,-0.012]]
+mBd, mBd_err = [5.27964,[0.00013,-0.00013]]
+mBs, mBs_err = [5.36688,[0.00017,-0.00017]]
+lambda_QCD, QCD_err = [0.224972,[0.012886,-0.007412]]
 
 etaB, etaB_err = [0.537856,[0,0]]
 
-fBs, fBs_err = [230.3,[1.3,-1.3]]
-fBd, fBd_err = [190,[1.3,-1.3]]
+fBs, fBs_err = [0.2303,[0.0013,-0.0013]]
+fBd, fBd_err = [0.190,[0.0013,-0.0013]]
 
 BBs, BBs_err = [1.290,[0.035,-0.035]]
 BBd, BBd_err = [1.268,[0.042,-0.042]]
+#BBs, BBs_err = [0.849,[0.023,-0.023]]
+#BBd, BBd_err = [0.835,[0.028,-0.028]]
 
 delt_md, delt_md_err = [0.5064e12,[0.0019e12,-0.0019e12]]
 delt_ms, delt_ms_err = [17.757e12,[0.021e12,-0.021e12]]
 delt_md_expect, delt_md_err_exp = [0.533e12,[0.022e12,-0.036e12]]
 delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 
-#bdmix, bderr = mixing(mt,1,mW,1,Vtd,Vtb,etaB,mBd,fBd,BBd,1),error_mixing(mt,mt_err,1,mW,mW_err,1,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,1,[1,1])
-#bsmix, bserr = mixing(mt,1,mW,1,Vts,Vtb,etaB,mBs,fBs,BBs,1),error_mixing(mt,mt_err,1,mW,mW_err,1,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,1,[1,1])
-#print("Bd mixing =",bdmix*1e-12,"+",bderr[0]*1e-12,"-",bderr[1]*1e-12)
-#print("Bs mixing =",bsmix*1e-12,"+",bserr[0]*1e-12,"-",bserr[1]*1e-12)
-#quit()
+bdmix, bderr = mixing(mt,1e15,mW,1e15,Vtd,Vtb,etaB,mBd,fBd,BBd,1,lambda_QCD),error_mixing(mt,mt_err,1e15,mW,mW_err,1e15,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,1,[1,1],lambda_QCD,QCD_err)
+bsmix, bserr = mixing(mt,1e15,mW,1e15,Vts,Vtb,etaB,mBs,fBs,BBs,1,lambda_QCD),error_mixing(mt,mt_err,1e15,mW,mW_err,1e15,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,1,[1,1],lambda_QCD,QCD_err)
+print("Bd mixing =",bdmix*1e-12,"+",bderr[0]*1e-12,"-",bderr[1]*1e-12)
+print("Bs mixing =",bsmix*1e-12,"+",bserr[0]*1e-12,"-",bserr[1]*1e-12)
+quit()
 
 # OLD INPUTS
 #mt, mt_err = [172.4e3,[1.2e3,-1.2e3]]
@@ -309,7 +312,7 @@ delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 #delt_ms_expect, delt_ms_err_exp = [19.0e12,[6.6e12,-6.6e12]]
 
 # B0d mixing
-#mH_md, tanb_md = itera_mix(mt,mt_err,mW,mW_err,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp)
+#mH_md, tanb_md = itera_mix(mt,mt_err,mW,mW_err,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,lambda_QCD,QCD_err)
 #x,y,z = error_mixing(mt,mt_err,1,mW,mW_err,1,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err)
 ##print (1e-12)*(z+x)
 ##print (1e-12)*(z-y)
@@ -323,7 +326,7 @@ delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 #plt.xticks(fontsize=18)
 #plt.yticks(fontsize=18)
 #plt.axis([-1,2,0,3.5])
-##plt.show()
+#plt.show()
 #plt.savefig('bmix.png')
 
 # B0s mixing
@@ -344,7 +347,6 @@ delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 
 ###################### b to s gamma
 
-lambda_QCD, QCD_err = [0.224972,[0.012886,-0.007412]]
 mt1, mt1_err = [173.1,[0.9,-0.9]]
 mW1, mW1_err = [80.379,[0.012,-0.012]]
 mub = 1.095

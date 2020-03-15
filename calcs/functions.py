@@ -88,62 +88,117 @@ def itera(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,m
 
     return mH_loc, tanb_loc
 
-def mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect):
+def Li2(x):
+    '''
+    Special function
+    '''
+    def func(t):
+        z = np.log(1-t)/t
+        return z
+    inte, err = quad(func,0,x)
+    return -1*inte
+
+def mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam):
     '''
         B mixing mass eqn
     '''
-    x_tH = mt**2/mH**2
-    x_tW = mt**2/mW**2
-    x_HW = mH**2/mW**2
-    S_WH = (x_tH/tanb**2)*((2*x_HW-8)*np.log(x_tH)/((1-x_HW)*(1-x_tH)**2) + 6*x_HW*np.log(x_tW)/((1-x_HW)*(1-x_tW)**2) - (8-2*x_tW)/((1-x_tW)*(1-x_tH)))
-    S_WW = (1 + 9/(1-x_tW) - 6/((1-x_tW)**2) - 6*(x_tW**2)*np.log(x_tW)/((1-x_tW)**3))
-    S_HH = (x_tH/tanb**4)*((1+x_tH)/((1-x_tH)**2) + 2*x_tH*np.log(x_tH)/((1-x_tH)**3))
-    
-#    Dsm = 
-#    DH = 
-#    Dx = 
-#
-#    lam_QCD = 224.972
-#    lmu = 2*np.log(mW/lam_QCD)
-#    as_m = (12*np.pi/(23*lmu))*(1 - (348/529)*(np.log(lmu)/lmu))
-#    eta2 = pow(as_m,-6/23)*(1+(as_m/(4*np.pi))*(Dx/Sx + Z))
+    lmu = 2*np.log(mW/lam)
+    as_m = (12*np.pi/(23*lmu))*(1 - (348/529)*(np.log(lmu)/lmu))
+    lmuM = 2*np.log(mW/mt)
+    amu = as_m/np.pi
+    factor = 1 - (4/3 + lmuM)*amu - (9.125 + 419*lmuM/72 + (2/9)*lmuM**2)*amu**2 - (0.3125*lmuM**3 + 4.5937*lmuM**2 + 25.3188*lmuM + 81.825)*amu**3
+    mtmu = mt*factor
+    gam0,gam1,b0,b1 = 4,-43/9,23/3,116/3
 
-    delt_mq = g_mev/(24*np.pi**2)*((Vtq*Vtb)**2)*etaB*mB*(mt**2)*(fBq**2)*BBq*(S_WW + S_WH + S_HH)
-#    delt_mq = expect*(1+(S_WH/S_WW)+(S_HH/S_WW))
+    x_tH = (mtmu/mH)**2
+    x_tW = (mtmu/mW)**2
+    x_HW = (mH/mW)**2
+    S_WH = (x_tH*x_tW/(4*tanb**2))*((2*x_tW-8*x_tH)*np.log(x_tH)/((x_tH-x_tW)*(1-x_tH)**2) + 6*x_tW*np.log(x_tW)/((x_tH-x_tW)*(1-x_tW)**2) - (8-2*x_tW)/((1-x_tW)*(1-x_tH)))
+    S_WW = x_tW*(1/4 + 9/(4*(1-x_tW)) - 3/(2*(1-x_tW)**2) - 3*(x_tW**2)*np.log(x_tW)/(2*(1-x_tW)**3))
+    S_HH = (x_tH*x_tW/(4*tanb**4))*((1+x_tH)/((1-x_tH)**2) + 2*x_tH*np.log(x_tH)/((1-x_tH)**3))
 
-    return delt_mq/hbar_mev
+    Lo = Li2(1-1/x_tW)
+    Lu = Li2(1-x_tW)
+    WW1tt = (4*x_tW+38*(x_tW**2)+6*(x_tW**3))*np.log(x_tW)/(x_tW-1)**4 + (12*x_tW+48*(x_tW**2)+12*(x_tW**3))*Lo/(x_tW-1)**4 + (24*x_tW+48*(x_tW**2))*Lu/(x_tW-1)**4 - (3+28*x_tW+17*(x_tW**2))/(x_tW-1)**3
+    WW1tu = 2*(3+13*x_tW)/(x_tW-1)**2 - 2*x_tW*(5+11*x_tW)*np.log(x_tW)/(x_tW-1)**3 - 12*x_tW*(1+3*x_tW)*Lo/(x_tW-1)**3 - 24*x_tW*(1+x_tW)*Lu/(x_tW-1)**3
+    PP1 = -(x_tW**2)*(7+52*x_tW-11*(x_tW**2))/(4*(x_tW-1)**3) + 3*(x_tW**3)*(4+5*x_tW-x_tW**2)*np.log(x_tW)/(2*(x_tW-1)**4) + 3*(x_tW**3)*(3+4*x_tW-x_tW**2)*Lo/(x_tW-1)**4 + 18*(x_tW**3)*Lu/(x_tW-1)**4
+    WP1 = 4*(x_tW**2)*(11+13*x_tW)/(x_tW-1)**3  + 2*(x_tW**2)*(5+x_tW)*(1-9*x_tW)*np.log(x_tW)/(x_tW-1)**4 - 24*(x_tW**2)*(1+4*x_tW+x_tW**2)*Lo/(x_tW-1)**4 - 48*(x_tW**2)*(1+2*x_tW)*Lu/(x_tW-1)**4
+    WW1 = WW1tt - WW1tu + 3
+    L1s = WW1 + WP1 + PP1
 
-def error_mixing(mt,mt_err,mH,mW,mW_err,tanb,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_err,fBq,fBq_err,BBq,BBq_err,expect,expect_err):
+    WW8tt = 2*x_tW*(4-3*x_tW)*np.log(x_tW)/(x_tW-1)**3 - (12*x_tW-12*x_tW**2 -8*x_tW**3)*Lo/(x_tW-1)**4 + (8-12*x_tW+12*x_tW**2)*Lu/(x_tW-1)**4 - (23-x_tW)/(x_tW-1)**2 
+    WW8tu = 2*(2-x_tW)*(np.pi**2)/(3*x_tW) - (8-5*x_tW)*np.log(x_tW)/(x_tW-1)**2 - (6*x_tW+4*x_tW**2)*Lo/(x_tW*(x_tW-1)**2) + (8+12*x_tW-6*x_tW**2)*Lu/(x_tW*(x_tW-1)**2) - 15/(x_tW-1)
+    PP8 = -11*(x_tW**2)*(1+x_tW)/(4*(x_tW-1)**2) + (x_tW**3)*(4-3*x_tW)*np.log(x_tW)/(2*(x_tW-1)**3) + (x_tW**3)*(3-3*x_tW+2*x_tW**2)*Lo/(x_tW-1)**4 + (x_tW**2)*(2+3*x_tW-3*x_tW**2)*Lu/(x_tW-1)**4
+    WP8 = 30*(x_tW**2)/(x_tW-1)**2 + 12*(x_tW**3)*np.log(x_tW)/(x_tW-1)**3 - 12*(x_tW**4)*Lo/(x_tW-1)**4 - 12*(x_tW**2)*(2-x_tW**2)*Lu/(x_tW-1)**4 
+    WW8 = WW8tt - WW8tu - 23 + (4/3)*np.pi**2
+    L8s = WW8 + WP8 + PP8
+
+    Loh = Li2(1-1/x_tH)
+    Luh = Li2(1-x_tH)
+    Louh = Li2(1-x_tH/x_tW)
+    PP1h = -(x_tH**2)*(7+52*x_tH-11*(x_tH**2))/(4*(x_tH-1)**3) + 3*(x_tH**3)*(4+5*x_tH-x_tH**2)*np.log(x_tH)/(2*(x_tH-1)**4) + 3*(x_tH**3)*(3+4*x_tH-x_tH**2)*Loh/(x_tH-1)**4 + 18*(x_tH**3)*Luh/(x_tH-1)**4
+    PP8h = -11*(x_tH**2)*(1+x_tH)/(4*(x_tH-1)**2) + (x_tH**3)*(4-3*x_tH)*np.log(x_tH)/(2*(x_tH-1)**3) + (x_tH**3)*(3-3*x_tH+2*x_tH**2)*Loh/(x_tH-1)**4 + (x_tH**2)*(2+3*x_tH-3*x_tH**2)*Luh/(x_tH-1)**4
+    dSHH = (x_tW*(x_tH**2)/(4*tanb**4))*((1+x_tH)/(1-x_tH)**2 + 2*x_tH*np.log(x_tH)/(1-x_tH)**3)
+    dSHW = ((x_tW**3)/(4*tanb**4))*((1+x_tW)/(1-x_tW)**2 + 2*x_tW*np.log(x_tW)/(1-x_tW)**3)
+#    dSHH = x_tH*((x_tH*x_tW/(4*tanb**4))*(2/(1-x_tH)**3 + (1-x_tH)**(-2) + 2*(1+x_tH)/(1-x_tH)**3 + 2*np.log(x_tH)/(1-x_tH)**3 + 6*x_tH*np.log(x_tH)/(1-x_tH)**4) + (x_tW/(4*tanb**4))*((1+x_tH)/(1-x_tH)**2 + 2*x_tH*np.log(x_tH)/(1-x_tH)**3))
+#    dSHW = (x_tH*x_tW/(4*tanb**4))*((1+x_tH)/(1-x_tH)**2 + 2*x_tH*np.log(x_tH)/(1-x_tH)**3)
+    HH1 = (x_tW/x_tH)*PP1h+6*(np.log(x_tH)-np.log(x_tW))*(dSHH+dSHW)
+    WH1 = x_tW*(2*(x_tH**2)*(13+3*x_tH)*np.log(x_tH)/((x_tH-x_tW)*(x_tH-1)**3) - 2*x_tH*(9+7*x_tH+7*x_tW-23*x_tW*x_tH)/pow((x_tW-1)*(x_tH-1),2) - 2*(x_tH**2)*(18-6*x_tH-44*x_tW+13*x_tH*x_tW+9*x_tH*x_tW**2)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) - 24*(x_tH**2)*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**3) + 24*(x_tH**2)*Loh/((x_tH-x_tW)*(x_tH-1)**2) - 24*x_tH*x_tW*(1+x_tW)*Lo/((x_tH-x_tW)*(x_tW-1)**3) - 48*x_tW*x_tH*Lu/((x_tH-x_tW)*(x_tW-1)**3))
+    PH1 = (x_tW**2)*(x_tH*(31-15*x_tH-15*x_tW-x_tH*x_tW)/(2*pow((x_tH-1)*(x_tW-1),2)) - x_tH*(7+21*x_tH-12*x_tH**2)*np.log(x_tH)/(2*(x_tH-x_tW)*(x_tH-1)**3) + x_tH*(7-9*x_tW+36*x_tW**2 - 18*x_tW**3)*np.log(x_tW)/(2*(x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) + (x_tH**2)*(8-36*x_tW+9*x_tW**2 + 3*x_tW**3)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) - (x_tH**3)*(11-45*x_tW+18*x_tW**2)*np.log(x_tW)/(2*(x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) + 6*x_tH*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**3) - 6*x_tH*(1+x_tH-x_tH**2)*Loh/((x_tH-x_tW)*(x_tH-1)**2) + 6*x_tH*(1+2*x_tW**2 -x_tW**3)*Lo/((x_tH-x_tW)*(x_tW-1)**3) + 12*x_tH*Lu/((x_tH-x_tW)*(x_tW-1)**3))
+    HH8 = (x_tW/x_tH)*PP8h+6*(np.log(x_tH)-np.log(x_tW))*S_HH
+    WH8 = x_tW*(24*x_tH*x_tW*Lu/((x_tH-x_tW)*(x_tW-1)**2) + 6*(x_tH**2)*(5*x_tW-x_tH+3*x_tH*x_tW**2)*Lo/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)*x_tW) + 6*x_tH*(2*x_tW**2 -10*x_tH*x_tW+x_tH*x_tW**2)*Lo/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + 6*(x_tH**2)*(5*x_tW-x_tH-8*x_tW**2 +2*x_tH*x_tW**2)*Luh/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)*x_tW) + 6*(x_tW**2 -x_tH*x_tW+2*(x_tH*x_tW)**2)*Luh/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + 6*(x_tH**2)*(-x_tH+5*x_tW)*Loh/(x_tW*(x_tH-x_tW)*(x_tH-1)**2) - 6*(x_tH**2)*(5*x_tW-x_tH-8*x_tW**2 +2*x_tH*x_tW**2)*Louh/(x_tW*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - 6*(x_tW**2 -x_tH*x_tW+2*(x_tH*x_tW)**2)*Louh/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - 6*(x_tH**2)*(1-x_tH-np.log(x_tH))/((x_tW-1)*(x_tH-1)**2) + 6*x_tH*(2*x_tW-1)*np.log(x_tW)/((x_tH-1)*(x_tW-1)**2) + 6*(x_tH**2)*(5*x_tW-x_tH-8*x_tW**2)*np.log(x_tH)*np.log(x_tW)/(x_tW*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + 12*(x_tH**2)*(x_tH*x_tW+x_tW**2)*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)))
+    PH8 = (x_tW**2)*((2*x_tH+2*x_tW-11*x_tH*x_tW)/(2*x_tW*(x_tW-1)*(x_tH-1)) - (2*x_tH**2 -7*x_tH*x_tW+2*x_tW*x_tH**2 +2*x_tW**2 +x_tH*x_tW**2)*np.log(x_tH)/(2*x_tW*(x_tW-1)*(x_tH-x_tW)*(x_tH-1)**2) - x_tH*(7-7*x_tH+4*x_tW-6*x_tW**2)*np.log(x_tW)/(2*(x_tH-1)*(x_tH-x_tW)*(x_tW-1)**2) + (x_tH**2 +x_tW**2 -3*pow(x_tH*x_tW,2))*np.log(x_tW)/(x_tW*(x_tH-1)*(x_tH-x_tW)*(x_tW-1)**2) - (x_tH**2)*(4-6*x_tW+3*x_tH*x_tW)*np.log(x_tH)*np.log(x_tW)/(x_tW*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + x_tH*(x_tH**2 -3*x_tW**2 +6*x_tW**3 -3*x_tW**4)*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*pow(x_tW*(x_tH-1)*(x_tW-1),2)) - x_tH*(3*x_tW**2 +2*x_tH*x_tW*(2+x_tW)-(x_tH**2)*(1+2*x_tW))*Loh/((x_tH-x_tW)*pow(x_tW*(x_tH-1),2)) - (4*x_tH*x_tW-6*x_tW*x_tH**2 +3*pow(x_tH*x_tW,2)-x_tW**2)*Luh/(x_tH*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - (4*x_tW*x_tH**2 -6*pow(x_tH*x_tW,2)-x_tH**3 +3*(x_tW**2)*(x_tH**3))*Luh/((x_tH-x_tW)*pow(x_tW*(x_tW-1)*(x_tH-1),2)) + 2*(x_tH**2)*(6-x_tW**2 -3*x_tH+x_tW*x_tH)*Lo/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - x_tH*(3*x_tW**2 +4*x_tH*x_tW-x_tH**2)*Lo/((x_tH-x_tW)*pow(x_tW*(x_tW-1)*(x_tH-1),2)) + (4*x_tH*x_tW-6*x_tW*x_tH**2 +3*pow(x_tH*x_tW,2)-x_tW**2)*Louh/(x_tH*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + (x_tH**2)*(4*x_tW-6*x_tW**2 -x_tH+3*x_tH*x_tW**2)*Louh/((x_tH-x_tW)*pow(x_tW*(x_tH-1)*(x_tW-1),2)) - 6*x_tH*Lu/((x_tH-x_tW)*(x_tW-1)**2))
+    L1h = (1/tanb**2)*WH1 + (1/tanb**2)*PH1 + (1/tanb**4)*HH1
+    L8h = (1/tanb**2)*WH8 + (1/tanb**2)*PH8 + (1/tanb**4)*HH8
+
+    CA = 1/3
+    CF = 4/3
+    Dsm = CF*(L1s+3*S_WW)+CA*(L8s+5*S_WW)
+    DH = CF*(L1h+3*(S_WH+S_HH))+CA*(L8h+5*(S_WH+S_HH))
+    Dx = Dsm + DH
+    Sx = S_WW+S_WH+S_HH
+    Z = -5165/3174
+    eta2 = pow(as_m,6/23)*(1+(as_m/(4*np.pi))*(Dx/Sx + Z))
+    #print eta2
+
+    delt_mq = g_gev/(6*np.pi**2)*((Vtq*Vtb)**2)*eta2*mB*(mW**2)*(fBq**2)*BBq*Sx
+    #delt_mq = g_mev/(24*np.pi**2)*((Vtq*Vtb)**2)*etaB*mB*(mt**2)*(fBq**2)*BBq*(S_WW)# + S_WH + S_HH)
+
+    return delt_mq/hbar_gev
+
+def error_mixing(mt,mt_err,mH,mW,mW_err,tanb,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_err,fBq,fBq_err,BBq,BBq_err,expect,expect_err,lam,lam_err):
     '''
         Calculates errors in branching ratios, using functional method
         - all err vars are [up,low]
     '''
-    mix = mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect)
-    err1_up = abs(mixing(mt+mt_err[0],mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect)-mix)
-    err1_low = abs(mixing(mt+mt_err[1],mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect)-mix)
-    err2_up = abs(mixing(mt,mH,mW+mW_err[0],tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect)-mix)
-    err2_low = abs(mixing(mt,mH,mW+mW_err[1],tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect)-mix)
-    err3_up = abs(mixing(mt,mH,mW,tanb,Vtq+Vtq_err[0],Vtb,etaB,mB,fBq,BBq,expect)-mix)
-    err3_low = abs(mixing(mt,mH,mW,tanb,Vtq+Vtq_err[1],Vtb,etaB,mB,fBq,BBq,expect)-mix)
-    err4_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb+Vtb_err[0],etaB,mB,fBq,BBq,expect)-mix)
-    err4_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb+Vtb_err[1],etaB,mB,fBq,BBq,expect)-mix)
-    err5_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB+etaB_err[0],mB,fBq,BBq,expect)-mix)
-    err5_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB+etaB_err[1],mB,fBq,BBq,expect)-mix)
-    err6_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB+mB_err[0],fBq,BBq,expect)-mix)
-    err6_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB+mB_err[1],fBq,BBq,expect)-mix)
-    err7_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq+fBq_err[0],BBq,expect)-mix)
-    err7_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq+fBq_err[1],BBq,expect)-mix)
-    err8_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq+BBq_err[0],expect)-mix)
-    err8_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq+BBq_err[1],expect)-mix)
-    err9_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq+BBq_err[0],expect+expect_err[0])-mix)
-    err9_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq+BBq_err[1],expect+expect_err[1])-mix)
+    mix = mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam)
+    err1_up = abs(mixing(mt+mt_err[0],mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam)-mix)
+    err1_low = abs(mixing(mt+mt_err[1],mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam)-mix)
+    err2_up = abs(mixing(mt,mH,mW+mW_err[0],tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam)-mix)
+    err2_low = abs(mixing(mt,mH,mW+mW_err[1],tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam)-mix)
+    err3_up = abs(mixing(mt,mH,mW,tanb,Vtq+Vtq_err[0],Vtb,etaB,mB,fBq,BBq,expect,lam)-mix)
+    err3_low = abs(mixing(mt,mH,mW,tanb,Vtq+Vtq_err[1],Vtb,etaB,mB,fBq,BBq,expect,lam)-mix)
+    err4_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb+Vtb_err[0],etaB,mB,fBq,BBq,expect,lam)-mix)
+    err4_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb+Vtb_err[1],etaB,mB,fBq,BBq,expect,lam)-mix)
+    err5_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB+etaB_err[0],mB,fBq,BBq,expect,lam)-mix)
+    err5_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB+etaB_err[1],mB,fBq,BBq,expect,lam)-mix)
+    err6_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB+mB_err[0],fBq,BBq,expect,lam)-mix)
+    err6_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB+mB_err[1],fBq,BBq,expect,lam)-mix)
+    err7_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq+fBq_err[0],BBq,expect,lam)-mix)
+    err7_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq+fBq_err[1],BBq,expect,lam)-mix)
+    err8_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq+BBq_err[0],expect,lam)-mix)
+    err8_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq+BBq_err[1],expect,lam)-mix)
+    err9_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect+expect_err[0],lam)-mix)
+    err9_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect+expect_err[1],lam)-mix)
+    err10_up = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam+lam_err[0])-mix)
+    err10_low = abs(mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam+lam_err[1])-mix)
 
-    upper = np.sqrt(err1_up**2 + err2_up**2 + err3_up**2 + err4_up**2 + err5_up**2 + err6_up**2 + err7_up**2 + err8_up**2 + err9_up**2)
-    lower = np.sqrt(err1_low**2 + err2_low**2 + err3_low**2 + err4_low**2 + err5_low**2 + err6_low**2 + err7_low**2 + err8_low**2 + err9_low**2)
+    upper = np.sqrt(err1_up**2 + err2_up**2 + err3_up**2 + err4_up**2 + err5_up**2 + err6_up**2 + err7_up**2 + err8_up**2 + err9_up**2 + err10_up**2)
+    lower = np.sqrt(err1_low**2 + err2_low**2 + err3_low**2 + err4_low**2 + err5_low**2 + err6_low**2 + err7_low**2 + err8_low**2 + err9_low**2 + err10_low**2)
 
     return upper, lower
 
-def itera_mix(mt,mt_err,mW,mW_err,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_err,fBq,fBq_err,BBq,BBq_err,branch_exp,branch_exp_error,expect,expect_err):
+def itera_mix(mt,mt_err,mW,mW_err,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_err,fBq,fBq_err,BBq,BBq_err,branch_exp,branch_exp_error,expect,expect_err,lambda_QCD,QCD_err):
     '''
         Choose min,max limits for scope of tan(beta) and mH+, then check for each point in this if:
             - upper error on branching sm is above the lower error on branching exp
@@ -154,7 +209,7 @@ def itera_mix(mt,mt_err,mW,mW_err,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_er
     exp_branch_up,exp_branch_down = branch_exp+branch_exp_error[0],branch_exp+branch_exp_error[1]
     av_br = 0.5*(exp_branch_up+exp_branch_down)
     sige_br = sigma*(exp_branch_up-av_br)
-    log_mH_range = np.linspace(3,6.5,350)
+    log_mH_range = np.linspace(0,3.5,350)
     log_tanb_range = np.linspace(-1,2,300)
     mH_range = 10**log_mH_range
     tanb_range = 10**log_tanb_range
@@ -162,9 +217,9 @@ def itera_mix(mt,mt_err,mW,mW_err,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_er
     tanb_loc = []
     for i in mH_range:
         for j in tanb_range:
-            expect_branch = mixing(mt,i,mW,j,Vtq,Vtb,etaB,mB,fBq,BBq,expect)
+            expect_branch = mixing(mt,i,mW,j,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lambda_QCD)
 #            print expect_branch*1e-12
-            expect_error = error_mixing(mt,mt_err,i,mW,mW_err,j,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_err,fBq,fBq_err,BBq,BBq_err,expect,expect_err)
+            expect_error = error_mixing(mt,mt_err,i,mW,mW_err,j,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_err,fBq,fBq_err,BBq,BBq_err,expect,expect_err,lambda_QCD,QCD_err)
             expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
             mid_br = 0.5*(expect_branch_up+expect_branch_down)
             sig_br = sigma*(expect_branch_up-mid_br)
@@ -174,8 +229,8 @@ def itera_mix(mt,mt_err,mW,mW_err,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_er
                 mH_loc = np.append(mH_loc,i_log)
                 tanb_loc = np.append(tanb_loc,j_log)
 
-    for i in range(len(mH_loc)):
-        mH_loc[i] = mH_loc[i]-3
+#    for i in range(len(mH_loc)):
+#        mH_loc[i] = mH_loc[i]-3
 
     return mH_loc, tanb_loc
 
