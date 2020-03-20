@@ -273,21 +273,23 @@ lambda_QCD, QCD_err = [0.224972,[0.012886,-0.007412]]
 
 etaB, etaB_err = [0.537856,[0,0]]
 
+#fBs, fBs_err = [0.0452,[0.0014,-0.0014]]
+#fBd, fBd_err = [0.0305,[0.0011,-0.0011]]
 fBs, fBs_err = [0.2303,[0.0013,-0.0013]]
 fBd, fBd_err = [0.190,[0.0013,-0.0013]]
 
-BBs, BBs_err = [1.290,[0.035,-0.035]]
-BBd, BBd_err = [1.268,[0.042,-0.042]]
-#BBs, BBs_err = [0.849,[0.023,-0.023]]
-#BBd, BBd_err = [0.835,[0.028,-0.028]]
+#BBs, BBs_err = [1.290,[0.035,-0.035]]
+#BBd, BBd_err = [1.268,[0.042,-0.042]]
+BBs, BBs_err = [0.849,[0.023,-0.023]]
+BBd, BBd_err = [0.835,[0.028,-0.028]]
 
 delt_md, delt_md_err = [0.5064e12,[0.0019e12,-0.0019e12]]
 delt_ms, delt_ms_err = [17.757e12,[0.021e12,-0.021e12]]
 delt_md_expect, delt_md_err_exp = [0.533e12,[0.022e12,-0.036e12]]
 delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 
-bdmix, bderr = mixing(mt,1e15,mW,1e15,Vtd,Vtb,etaB,mBd,fBd,BBd,1,lambda_QCD),error_mixing(mt,mt_err,1e15,mW,mW_err,1e15,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,1,[1,1],lambda_QCD,QCD_err)
-bsmix, bserr = mixing(mt,1e15,mW,1e15,Vts,Vtb,etaB,mBs,fBs,BBs,1,lambda_QCD),error_mixing(mt,mt_err,1e15,mW,mW_err,1e15,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,1,[1,1],lambda_QCD,QCD_err)
+bdmix, bderr = mixing(mt,1,mW,1,Vtd,Vtb,etaB,mBd,fBd,BBd,1,lambda_QCD,m_b),error_mixing(mt,mt_err,1,mW,mW_err,1,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,1,[1,1],lambda_QCD,QCD_err,m_b,m_b_err)
+bsmix, bserr = mixing(mt,1,mW,1,Vts,Vtb,etaB,mBs,fBs,BBs,1,lambda_QCD,m_b),error_mixing(mt,mt_err,1,mW,mW_err,1,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,1,[1,1],lambda_QCD,QCD_err,m_b,m_b_err)
 print("Bd mixing =",bdmix*1e-12,"+",bderr[0]*1e-12,"-",bderr[1]*1e-12)
 print("Bs mixing =",bsmix*1e-12,"+",bserr[0]*1e-12,"-",bserr[1]*1e-12)
 quit()
@@ -312,21 +314,21 @@ quit()
 #delt_ms_expect, delt_ms_err_exp = [19.0e12,[6.6e12,-6.6e12]]
 
 # B0d mixing
-#mH_md, tanb_md = itera_mix(mt,mt_err,mW,mW_err,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,lambda_QCD,QCD_err)
+mH_md, tanb_md = itera_mix(mt,mt_err,mW,mW_err,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,lambda_QCD,QCD_err,m_b,m_b_err)
 #x,y,z = error_mixing(mt,mt_err,1,mW,mW_err,1,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err)
 ##print (1e-12)*(z+x)
 ##print (1e-12)*(z-y)
 ##print 1e-12*z
 ##
-#plt.figure(figsize=(8,6))
-#plt.scatter(tanb_md,mH_md,c='cornflowerblue')
-#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('$B^0_q-\\bar{B}^0_q$',fontsize=18)
-#plt.xticks(fontsize=18)
-#plt.yticks(fontsize=18)
-#plt.axis([-1,2,0,3.5])
-#plt.show()
+plt.figure(figsize=(8,6))
+plt.scatter(tanb_md,mH_md,c='cornflowerblue')
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.title('$B^0_q-\\bar{B}^0_q$',fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.axis([-1,2,0,3.5])
+plt.show()
 #plt.savefig('bmix.png')
 
 # B0s mixing
@@ -400,7 +402,7 @@ gamu, gamu_err = [8.41e-4,[0.59e-4,-0.59e-4]]
 
 ###################### b(s/d) to mumu
 
-taubd, taubd_err = [1.519,[0.004,-0.004]] #ps
+taubd, taubd_err = [(1.519e-12)/hbar_gev,[(0.004e-12)/hbar_gev,(-0.004e-12)/hbar_gev]] #ps
 taubs, taubs_err = [(1.510e-12)/hbar_gev,[(0.004e-12)/hbar_gev,(-0.004e-12)/hbar_gev]]
 mbd, mbd_err = [5.27964,[0.00013,-0.00013]] #GeV
 mbs, mbs_err = [5.36688,[0.00017,-0.00017]]
@@ -409,20 +411,20 @@ bd_exp, bd_exp_err = [1.4e-10,[1.6e-10,-1.4e-10]] #pdg
 sm, sm_err = [3.1e-9,[0.7e-9,-0.7e-9]]
 wangle, wangle_err = [0.23155,[0.00004,-0.00004]]
 higgs, higgs_err = [125.10,[0.14,-0.14]]
-mH_bmumu, tanb_bmumu = itera_bmumu(mt1,mt1_err,taubs,taubs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,m_mu,m_mu_err,mbs,mbs_err,mW1,mW1_err,m_b,m_b_err,m_s,m_s_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,bs_exp,bs_exp_err)
-##
-plt.figure(figsize=(8,6))
-plt.scatter(tanb_bmumu,mH_bmumu,marker=',',c='red')
-plt.axis([-1,2,0,3.5])
-plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-plt.title('$M = 750\,GeV,\; m_{H^0} = 750\,GeV,$\n$\; m_A = 500\,GeV,\; \\beta-\\alpha-\\pi/2=-0.02$',fontsize=18)
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
+#mH_bmumu, tanb_bmumu = itera_bmumu(mt1,mt1_err,taubs,taubs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,m_mu,m_mu_err,mbs,mbs_err,mW1,mW1_err,m_b,m_b_err,m_s,m_s_err,m_c,m_c_err,m_u,m_u_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,Vus,Vus_err,Vub,Vub_err,Vcs,Vcs_err,Vcb,Vcb_err,bs_exp,bs_exp_err)
+###
+#plt.figure(figsize=(8,6))
+#plt.scatter(tanb_bmumu,mH_bmumu,marker=',',c='red')
+#plt.axis([-1,2,0,3.5])
+#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+#plt.title('$M = 750\,GeV,\; m_{H^0} = 2\,TeV$\n$\\beta-\\alpha=\\pi/2+0.05$',fontsize=18)
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+#plt.savefig('bcba9.png')
 #plt.show()
-plt.savefig('bmuc3.png')
-os.system('play gumdrops.mp3')
-quit()
+##os.system('play gumdrops.mp3')
+#quit()
 
 ###################### GLOBAL CONSTRAINT
 
@@ -529,7 +531,7 @@ plt.annotate('$\\Delta M_q$',xy=(0.75,0.35),xycoords='axes fraction',fontsize=18
 plt.annotate('$b\\to s\\gamma$',xy=(0.05,0.9),xycoords='axes fraction',fontsize=18)
 plt.annotate('All',xy=(0.55,0.85),xycoords='axes fraction',fontsize=18)
 plt.annotate('$B_s \\to \\mu^+\\mu^-$',xy=(0.5,0.65),xycoords='axes fraction',fontsize=18)#,rotation=75)
-plt.title('$M = 250\,GeV,\; m_{H^0} = 150\,GeV,\; m_A = 500\,GeV$',fontsize=18)
-plt.savefig('global_test9.png')
+plt.title('$M = 750\,GeV,\; m_{H^0} = 2\,TeV,\; \\beta-\\alpha = \\frac{\\pi}{2}$',fontsize=18)
+plt.savefig('globals1.png')
 #plt.show()
 os.system('play gumdrops.mp3')
