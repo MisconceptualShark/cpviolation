@@ -43,6 +43,15 @@ Vcb, Vcb_err = [0.04162,[0.00026,-0.00080]]
 Vtd, Vtd_err = [0.008545,[0.000075,-0.000157]]
 Vts, Vts_err = [0.04090,[0.00026,-0.00076]]
 Vtb, Vtb_err = [0.999127,[0.000032,-0.000012]]
+#Vud, Vud_err = [0.974390,[0.000000312,-0.00000044]]
+#Vus, Vus_err = [0.224834,[0.000252,-0.000059]]
+#Vub, Vub_err = [0.003683,[0.000075,-0.000061]]
+#Vcd, Vcd_err = [0.224702,[0.000040,-0.000132]]
+#Vcs, Vcs_err = [0.973538,[0.000014,-0.000043]]
+#Vcb, Vcb_err = [0.04162,[0.00026,-0.00080]]
+#Vtd, Vtd_err = [0.00853903,[0.000716,-0.002544]]
+#Vts, Vts_err = [0.0409008,[0.000334,-0.00106]]
+#Vtb, Vtb_err = [0.999127,[0.000011,-0.000033]]
 
 f_bplus, f_bplus_err = [0.190,[0.0013,-0.0013]]
 f_dplus, f_dplus_err = [0.212,[0.0007,-0.0007]]
@@ -90,15 +99,15 @@ delta_b,delta_d = 0.982,0.99*0.982
 
 #bmu, bmerr = bsm(m_bplus,m_mu,Vub,f_bplus,tau_bplus,1), error_branching(m_bplus,m_bplus_err,m_mu,m_mu_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,1,[1,1],1,[1,1],1,1,1)
 #btau, berr = bsm(m_bplus,m_tau,Vub,f_bplus,tau_bplus,1), error_branching(m_bplus,m_bplus_err,m_tau,m_tau_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,1,[1,1],1,[1,1],1,1,1)
-#dtau, derr = bsm(m_dplus,m_mu,Vcd,f_dplus,tau_dplus,0.982*0.99), error_branching(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,1,[1,1],1,[1,1],1,1,0.982*0.99)
+#dtau, derr = bsm(m_dplus,m_mu,Vcd,f_dplus,tau_dplus,0.982), error_branching(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,1,[1,1],1,[1,1],1,1,0.982)
 #dsmu, dsmerr = bsm(m_dsplus,m_mu,Vcs,f_dsplus,tau_dsplus,1), error_branching(m_dsplus,m_dsplus_err,m_mu,m_mu_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,1,[1,1],1,[1,1],1,1,1)
-#dstau, dserr = bsm(m_dsplus,m_tau,Vcs,f_dsplus,tau_dsplus,delta_b), error_branching(m_dsplus,m_dsplus_err,m_tau,m_tau_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,1,[1,1],1,[1,1],1,1,delta_b)
+#dstau, dserr = bsm(m_dsplus,m_tau,Vcs,f_dsplus,tau_dsplus,1), error_branching(m_dsplus,m_dsplus_err,m_tau,m_tau_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,1,[1,1],1,[1,1],1,1,1)
 #print("B -> tau nu Branching =",btau*1e5,"+",berr[0]*1e5,"-",berr[1]*1e5)
 #print("B -> mu nu Branching =",bmu*1e7,"+",bmerr[0]*1e7,"-",bmerr[1]*1e7)
 #print("D -> mu nu Branching =",dtau*1e4,"+",derr[0]*1e4,"-",derr[1]*1e4)
 #print("Ds -> tau nu Branching =",dstau*1e2,"+",dserr[0]*1e2,"-",dserr[1]*1e2)
 #print("Ds -> mu nu Branching =",dsmu*1e3,"+",dsmerr[0]*1e3,"-",dsmerr[1]*1e3)
-#
+##
 #kpi, tkpi = decay_ratios(m_K,m_pi,m_mu,m_tau,Vus,Vud,f_Kpi,delt_kpi,delt_kpitau)
 #kerr0, kerr1, terr0, terr1 = error_kpi(m_K,m_K_err,m_pi,m_pi_err,m_mu,m_mu_err,m_tau,m_tau_err,Vus,Vus_err,Vud,Vud_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,m_s,m_s_err,m_d,m_d_err,m_u,m_u_err,1,1)
 #print("K/pi branching",kpi,"+",kerr0,"-",kerr1)
@@ -271,7 +280,8 @@ mBd, mBd_err = [5.27964,[0.00013,-0.00013]]
 mBs, mBs_err = [5.36688,[0.00017,-0.00017]]
 lambda_QCD, QCD_err = [0.2275,[0.01433,-0.01372]]
 
-etaB, etaB_err = [0.537856,[0,0]]
+#etaB, etaB_err = [0.537856,[0,0]]
+etaB, etaB_err = [0.838606,[0,0]]
 
 fBs, fBs_err = [0.0452,[0.0014,-0.0014]]
 fBd, fBd_err = [0.0305,[0.0011,-0.0011]]
@@ -288,8 +298,8 @@ delt_ms, delt_ms_err = [17.757e12,[0.021e12,-0.021e12]]
 delt_md_expect, delt_md_err_exp = [0.533e12,[0.022e12,-0.036e12]]
 delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 
-bdmix, bderr = mixing(mt,1,mW,1,Vtd,Vtb,etaB,mBd,fBd,BBd,1,lambda_QCD,m_b),error_mixing(mt,mt_err,1,mW,mW_err,1,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,1,[1,1],lambda_QCD,QCD_err,m_b,m_b_err)
-bsmix, bserr = mixing(mt,1,mW,1,Vts,Vtb,etaB,mBs,fBs,BBs,1,lambda_QCD,m_b),error_mixing(mt,mt_err,1,mW,mW_err,1,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,1,[1,1],lambda_QCD,QCD_err,m_b,m_b_err)
+bdmix, bderr = mixing(mt,1e9,mW,1e9,Vtd,Vtb,etaB,mBd,fBd,BBd,1,lambda_QCD,m_b),error_mixing(mt,mt_err,1e9,mW,mW_err,1e9,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,1,[1,1],lambda_QCD,QCD_err,m_b,m_b_err)
+bsmix, bserr = mixing(mt,1e9,mW,1e9,Vts,Vtb,etaB,mBs,fBs,BBs,1,lambda_QCD,m_b),error_mixing(mt,mt_err,1e9,mW,mW_err,1e9,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,1,[1,1],lambda_QCD,QCD_err,m_b,m_b_err)
 print("Bd mixing =",bdmix*1e-12,"+",bderr[0]*1e-12,"-",bderr[1]*1e-12)
 print("Bs mixing =",bsmix*1e-12,"+",bserr[0]*1e-12,"-",bserr[1]*1e-12)
 quit()
@@ -330,6 +340,7 @@ plt.yticks(fontsize=18)
 plt.axis([-1,2,0,3.5])
 plt.show()
 #plt.savefig('bmix.png')
+quit()
 
 # B0s mixing
 #mH_ms, tanb_ms = itera_mix(mt,mt_err,mW,mW_err,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,delt_ms,delt_ms_err,delt_ms_expect,delt_ms_err_exp)
@@ -411,20 +422,20 @@ bd_exp, bd_exp_err = [1.4e-10,[1.6e-10,-1.4e-10]] #pdg
 sm, sm_err = [3.1e-9,[0.7e-9,-0.7e-9]]
 wangle, wangle_err = [0.23155,[0.00004,-0.00004]]
 higgs, higgs_err = [125.10,[0.14,-0.14]]
-#mH_bmumu, tanb_bmumu = itera_bmumu(mt1,mt1_err,taubs,taubs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,m_mu,m_mu_err,mbs,mbs_err,mW1,mW1_err,m_b,m_b_err,m_s,m_s_err,m_c,m_c_err,m_u,m_u_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,Vus,Vus_err,Vub,Vub_err,Vcs,Vcs_err,Vcb,Vcb_err,bs_exp,bs_exp_err)
+mH_bmumu, tanb_bmumu = itera_bmumu(mt1,mt1_err,taubs,taubs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,m_mu,m_mu_err,mbs,mbs_err,mW1,mW1_err,m_b,m_b_err,m_s,m_s_err,m_c,m_c_err,m_u,m_u_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,Vus,Vus_err,Vub,Vub_err,Vcs,Vcs_err,Vcb,Vcb_err,bs_exp,bs_exp_err)
 ###
-#plt.figure(figsize=(8,6))
-#plt.scatter(tanb_bmumu,mH_bmumu,marker=',',c='red')
-#plt.axis([-1,2,0,3.5])
-#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('$M = 750\,GeV,\; m_{H^0} = 2\,TeV$\n$\\beta-\\alpha=\\pi/2+0.05$',fontsize=18)
-#plt.xticks(fontsize=18)
-#plt.yticks(fontsize=18)
+plt.figure(figsize=(8,6))
+plt.scatter(tanb_bmumu,mH_bmumu,marker=',',c='red')
+plt.axis([-1,2,0,3.5])
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.title('$M = 750\,GeV,\; m_{H^0} = 2\,TeV$\n$\\beta-\\alpha=\\pi/2+0.05$',fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
 #plt.savefig('bcba9.png')
-#plt.show()
+plt.show()
 ##os.system('play gumdrops.mp3')
-#quit()
+quit()
 
 ###################### GLOBAL CONSTRAINT
 

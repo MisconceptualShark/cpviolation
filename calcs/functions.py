@@ -124,8 +124,11 @@ def mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam,mbo):
     x_tH = (mtmu/mH)**2
     x_tW = (mtmu/mW)**2
     S_WW = x_tW1*(1/4 +9/(4*(1-x_tW1)) - 3/(2*(1-x_tW1)**2) - 3*(x_tW1**2)*np.log(x_tW1)/(2*(1-x_tW1)**3))
+    S_WW1 = x_tW*(1/4 +9/(4*(1-x_tW)) - 3/(2*(1-x_tW)**2) -3*(x_tW**2)*np.log(x_tW)/(2*(1-x_tW)**3))
     S_WH = (x_tH1*x_tW1/(4*tanb**2))*((2*x_tW1-8*x_tH1)*np.log(x_tH1)/((x_tH1-x_tW1)*(1-x_tH1)**2) + 6*x_tW1*np.log(x_tW1)/((x_tH1-x_tW1)*(1-x_tW1)**2) - (8-2*x_tW1)/((1-x_tW1)*(1-x_tH1)))
+    S_WH1 = (x_tH*x_tW/(4*tanb**2))*((2*x_tW-8*x_tH)*np.log(x_tH)/((x_tH-x_tW)*(1-x_tH)**2) + 6*x_tW*np.log(x_tW)/((x_tH-x_tW)*(1-x_tW)**2) - (8-2*x_tW)/((1-x_tW)*(1-x_tH)))
     S_HH = (x_tH1*x_tW1/(4*tanb**4))*((1+x_tH1)/((1-x_tH1)**2)+2*x_tH1*np.log(x_tH1)/((1-x_tH1)**3))
+    S_HH1 = (x_tH*x_tW/(4*tanb**4))*((1+x_tH)/((1-x_tH)**2)+2*x_tH*np.log(x_tH)/((1-x_tH)**3))
 
     Lo = Li2(1-1/x_tW)
     Lu = Li2(1-x_tW)
@@ -153,7 +156,7 @@ def mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam,mbo):
     HH1 = (x_tW/x_tH)*PP1h+6*(np.log(x_tH)-np.log(x_tW))*(dSHH+dSHW)
     WH1 = x_tW*(2*(x_tH**2)*(13+3*x_tH)*np.log(x_tH)/((x_tH-x_tW)*(x_tH-1)**3) - 2*x_tH*(9+7*x_tH+7*x_tW-23*x_tW*x_tH)/pow((x_tW-1)*(x_tH-1),2) - 2*(x_tH**2)*(18-6*x_tH-44*x_tW+13*x_tH*x_tW+9*x_tH*x_tW**2)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) - 24*(x_tH**2)*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**3) + 24*(x_tH**2)*Loh/((x_tH-x_tW)*(x_tH-1)**2) - 24*x_tH*x_tW*(1+x_tW)*Lo/((x_tH-x_tW)*(x_tW-1)**3) - 48*x_tW*x_tH*Lu/((x_tH-x_tW)*(x_tW-1)**3))
     PH1 = (x_tW**2)*(x_tH*(31-15*x_tH-15*x_tW-x_tH*x_tW)/(2*pow((x_tH-1)*(x_tW-1),2)) - x_tH*(7+21*x_tH-12*x_tH**2)*np.log(x_tH)/(2*(x_tH-x_tW)*(x_tH-1)**3) + x_tH*(7-9*x_tW+36*x_tW**2 - 18*x_tW**3)*np.log(x_tW)/(2*(x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) + (x_tH**2)*(8-36*x_tW+9*x_tW**2 + 3*x_tW**3)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) - (x_tH**3)*(11-45*x_tW+18*x_tW**2)*np.log(x_tW)/(2*(x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) + 6*x_tH*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**3) - 6*x_tH*(1+x_tH-x_tH**2)*Loh/((x_tH-x_tW)*(x_tH-1)**2) + 6*x_tH*(1+2*x_tW**2 -x_tW**3)*Lo/((x_tH-x_tW)*(x_tW-1)**3) + 12*x_tH*Lu/((x_tH-x_tW)*(x_tW-1)**3))
-    HH8 = (x_tW/x_tH)*PP8h+6*(np.log(x_tH)-np.log(x_tW))*S_HH
+    HH8 = (x_tW/x_tH)*PP8h+6*(np.log(x_tH)-np.log(x_tW))*S_HH1
     WH8 = x_tW*(24*x_tH*x_tW*Lu/((x_tH-x_tW)*(x_tW-1)**2) + 6*(x_tH**2)*(5*x_tW-x_tH+3*x_tH*x_tW**2)*Lo/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)*x_tW) + 6*x_tH*(2*x_tW**2 -10*x_tH*x_tW+x_tH*x_tW**2)*Lo/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + 6*(x_tH**2)*(5*x_tW-x_tH-8*x_tW**2 +2*x_tH*x_tW**2)*Luh/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)*x_tW) + 6*(x_tW**2 -x_tH*x_tW+2*(x_tH*x_tW)**2)*Luh/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + 6*(x_tH**2)*(-x_tH+5*x_tW)*Loh/(x_tW*(x_tH-x_tW)*(x_tH-1)**2) - 6*(x_tH**2)*(5*x_tW-x_tH-8*x_tW**2 +2*x_tH*x_tW**2)*Louh/(x_tW*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - 6*(x_tW**2 -x_tH*x_tW+2*(x_tH*x_tW)**2)*Louh/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - 6*(x_tH**2)*(1-x_tH-np.log(x_tH))/((x_tW-1)*(x_tH-1)**2) + 6*x_tH*(2*x_tW-1)*np.log(x_tW)/((x_tH-1)*(x_tW-1)**2) + 6*(x_tH**2)*(5*x_tW-x_tH-8*x_tW**2)*np.log(x_tH)*np.log(x_tW)/(x_tW*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + 12*(x_tH**2)*(x_tH*x_tW+x_tW**2)*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)))
     PH8 = (x_tW**2)*((2*x_tH+2*x_tW-11*x_tH*x_tW)/(2*x_tW*(x_tW-1)*(x_tH-1)) - (2*x_tH**2 -7*x_tH*x_tW+2*x_tW*x_tH**2 +2*x_tW**2 +x_tH*x_tW**2)*np.log(x_tH)/(2*x_tW*(x_tW-1)*(x_tH-x_tW)*(x_tH-1)**2) - x_tH*(7-7*x_tH+4*x_tW-6*x_tW**2)*np.log(x_tW)/(2*(x_tH-1)*(x_tH-x_tW)*(x_tW-1)**2) + (x_tH**2 +x_tW**2 -3*pow(x_tH*x_tW,2))*np.log(x_tW)/(x_tW*(x_tH-1)*(x_tH-x_tW)*(x_tW-1)**2) - (x_tH**2)*(4-6*x_tW+3*x_tH*x_tW)*np.log(x_tH)*np.log(x_tW)/(x_tW*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + x_tH*(x_tH**2 -3*x_tW**2 +6*x_tW**3 -3*x_tW**4)*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*pow(x_tW*(x_tH-1)*(x_tW-1),2)) - x_tH*(3*x_tW**2 +2*x_tH*x_tW*(2+x_tW)-(x_tH**2)*(1+2*x_tW))*Loh/((x_tH-x_tW)*pow(x_tW*(x_tH-1),2)) - (4*x_tH*x_tW-6*x_tW*x_tH**2 +3*pow(x_tH*x_tW,2)-x_tW**2)*Luh/(x_tH*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - (4*x_tW*x_tH**2 -6*pow(x_tH*x_tW,2)-x_tH**3 +3*(x_tW**2)*(x_tH**3))*Luh/((x_tH-x_tW)*pow(x_tW*(x_tW-1)*(x_tH-1),2)) + 2*(x_tH**2)*(6-x_tW**2 -3*x_tH+x_tW*x_tH)*Lo/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - x_tH*(3*x_tW**2 +4*x_tH*x_tW-x_tH**2)*Lo/((x_tH-x_tW)*pow(x_tW*(x_tW-1)*(x_tH-1),2)) + (4*x_tH*x_tW-6*x_tW*x_tH**2 +3*pow(x_tH*x_tW,2)-x_tW**2)*Louh/(x_tH*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + (x_tH**2)*(4*x_tW-6*x_tW**2 -x_tH+3*x_tH*x_tW**2)*Louh/((x_tH-x_tW)*pow(x_tW*(x_tH-1)*(x_tW-1),2)) - 6*x_tH*Lu/((x_tH-x_tW)*(x_tW-1)**2))
     L1h = (1/tanb**2)*WH1 + (1/tanb**2)*PH1 + (1/tanb**4)*HH1
@@ -161,15 +164,14 @@ def mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam,mbo):
 
     CA = 1/3
     CF = 4/3
-    x0 = (mW/mW)**2
-    Dsm = CA*(L8s+S_WW*(5+np.log(x0)))+CF*(L1s+3*S_WW+6*x_tW*np.log(x0)*(1/4 - 3/(2*(1-x_tW)**2) + 9/(4*(1-x_tW)) - 3*(x_tW**2)*np.log(x_tW)/(2*(1-x_tW)**3) + x_tW*(-3/(1-x_tW)**3 + 9/(4*(1-x_tW)**2) - 3*x_tW/(2*(1-x_tW)**3) - 9*(x_tW**2)*np.log(x_tW)/(2*(1-x_tW)**4))))
-    DH = CF*(L1h+3*(S_WH+S_HH))+CA*(L8h+5*(S_WH+S_HH))
-    Dx = Dsm# + DH
-    Sx = S_WW#+S_WH+S_HH
+    Dsm = CA*(L8s+S_WW1*5)+CF*(L1s+3*S_WW1)
+    DH = CF*(L1h+3*(S_WH1+S_HH1))+CA*(L8h+5*(S_WH1+S_HH1))
+    Dx = Dsm + DH
+    Sx = S_WW1+S_WH1+S_HH1
     Z = -5165/3174
-    eta2 = pow(as_m,6/23)*(1+(as_m/(4*np.pi))*(Dx/Sx + Z))
+    eta2 = pow(as_m,6/23)*Bab*(1+(as_m/(4*np.pi))*(Dx/Sx + Z))
 
-    delt_mq = (g_gev/(6*np.pi**2))*((Vtq*Vtb)**2)*eta2*mB*(mW**2)*(fBq)*Bab*Sx
+    delt_mq = (g_gev/(6*np.pi**2))*((Vtq*Vtb)**2)*eta2*mB*(mW**2)*(fBq)*(S_WW+S_WH+S_HH)
 
     return delt_mq/hbar_gev
 
