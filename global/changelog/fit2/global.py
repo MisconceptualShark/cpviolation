@@ -180,6 +180,41 @@ hchi_U2, tchi_U2, U_edges = chi_del(min(chi_Us),chi_Us,hU,tU,m1)
 hchi_2, tchi_2, two_edges_e = chi_del(chi_2[0],chi_2s,hl2,tl2,m2)
 hchi_22, tchi_22, two_edges = chi_del(chi_2[0],chi_2s,hl2,tl2,m1)
 
+#plt.figure(figsize=(8,6))
+#plt.scatter(tchi_S,hchi_S,c='cornflowerblue')
+#for i, j in S_edges_e[0]: 
+#    plt.plot(S_edges_e[1][[i,j],0],S_edges_e[1][[i,j],1],c='midnightblue',linestyle='--')
+#plt.axis([-1,2,0,3.5])
+#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+#plt.title('S Oblique for $m_{A^0} = 600\,GeV,\; m_{H^0} = 750\,GeV,\; \\beta-\\alpha = \\frac{\\pi}{2}$',fontsize=18)
+#
+#plt.figure(figsize=(8,6))
+#plt.scatter(tchi_T,hchi_T,c='green')
+#for i, j in T_edges_e[0]:
+#    plt.plot(T_edges_e[1][[i,j],0],T_edges_e[1][[i,j],1],c='darkgreen',linestyle='--')
+#plt.axis([-1,2,0,3.5])
+#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+#plt.title('T Oblique for $m_{A^0} = 600\,GeV,\; m_{H^0} = 750\,GeV,\; \\beta-\\alpha = \\frac{\\pi}{2}$',fontsize=18)
+#
+#plt.figure(figsize=(8,6))
+#plt.scatter(tchi_U,hchi_U,c='coral')
+#for i, j in U_edges_e[0]:
+#    plt.plot(U_edges_e[1][[i,j],0],U_edges_e[1][[i,j],1],c='darkgoldenrod',linestyle='--')
+#plt.axis([-1,2,0,3.5])
+#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+#plt.title('U Oblique for $m_{A^0} = 600\,GeV,\; m_{H^0} = 750\,GeV,\; \\beta-\\alpha = \\frac{\\pi}{2}$',fontsize=18)
+#plt.show()
+#quit()
+
 # print out some numbers to 95CL and 1 sig
 print [10**min(hchi_2),10**max(hchi_2)], [10**min(hchi_22),10**max(hchi_22)]
 print 10**min(tchi_22), 10**max(tchi_22)

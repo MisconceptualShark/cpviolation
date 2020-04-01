@@ -115,9 +115,9 @@ def mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam,mbo):
     mtmu = mt*factor1
     mtmut = 165.297#mt*factor2
     gam0,gam1,b0,b1 = 4,-43/9,23/3,116/3
-    lmb = 2*np.log(mbo/lam)
+    lmb = 2*np.log(mB/lam)
     as_b = (12*np.pi/(23*lmb))*(1 - (348/529)*(np.log(lmb)/lmb))
-    Bab = pow(as_b,-6/23)*(1-(as_b/(4*np.pi))*(gam1/(2*b0) - gam0*b1/(2*b0**2)))
+    Bab = pow(as_m/as_b,6/23)*(1-(as_b/(4*np.pi))*(gam1/(2*b0) - gam0*b1/(2*b0**2)))
 
     x_tH1 = (mtmut/mH)**2
     x_tW1 = (mtmut/mW)**2
@@ -164,15 +164,16 @@ def mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam,mbo):
 
     CA = 1/3
     CF = 4/3
-    Dsm = CA*(L8s+S_WW1*5)+CF*(L1s+3*S_WW1)
-    DH = CF*(L1h+3*(S_WH1+S_HH1))+CA*(L8h+5*(S_WH1+S_HH1))
+    Dsm = CA*(L8s+S_WW*5)+CF*(L1s+3*S_WW)
+    DH = CF*(L1h+3*(S_WH+S_HH))+CA*(L8h+5*(S_WH+S_HH))
     Dx = Dsm + DH
     Sx = S_WW1+S_WH1+S_HH1
     Z = -5165/3174
-    eta2 = pow(as_m,6/23)*Bab*(1+(as_m/(4*np.pi))*(Dx/Sx + Z))
+    cons = (4*np.pi/as_m)*(pow(as_m,-6/23)*etaB - 1) - Z
+    eta2 = Bab*(1+(as_m/(4*np.pi))*(cons*((1+DH/(cons*S_WW))/(1+(S_WH+S_HH)/S_WW)) + Z))
 
     delt_mq = (g_gev/(6*np.pi**2))*((Vtq*Vtb)**2)*eta2*mB*(mW**2)*(fBq)*(S_WW+S_WH+S_HH)
-
+#    print cons*((1+DH/Dsm)/(1+(S_WH+S_HH)/S_WW)), cons, eta2
     return delt_mq/hbar_gev
 
 def error_mixing(mt,mt_err,mH,mW,mW_err,tanb,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_err,fBq,fBq_err,BBq,BBq_err,expect,expect_err,lam,lam_err,m_b,m_b_err):
@@ -229,7 +230,6 @@ def itera_mix(mt,mt_err,mW,mW_err,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_er
     for i in mH_range:
         for j in tanb_range:
             expect_branch = mixing(mt,i,mW,j,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lambda_QCD,mbo)
-#            print expect_branch*1e-12
             expect_error = error_mixing(mt,mt_err,i,mW,mW_err,j,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_err,fBq,fBq_err,BBq,BBq_err,expect,expect_err,lambda_QCD,QCD_err,mbo,mbo_err)
             expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
             mid_br = 0.5*(expect_branch_up+expect_branch_down)
@@ -239,9 +239,6 @@ def itera_mix(mt,mt_err,mW,mW_err,Vtq,Vtq_err,Vtb,Vtb_err,etaB,etaB_err,mB,mB_er
                 i_log, j_log = np.log10(i), np.log10(j)
                 mH_loc = np.append(mH_loc,i_log)
                 tanb_loc = np.append(tanb_loc,j_log)
-
-#    for i in range(len(mH_loc)):
-#        mH_loc[i] = mH_loc[i]-3
 
     return mH_loc, tanb_loc
 
@@ -488,7 +485,7 @@ def itera_rd(mc,mc_err,mb,mb_err,m_B,m_B_err,m_D,m_D_err,p,p_err,d,d_err,rd_exp,
     return mH_loc, tanb_loc, chi_rds, chi_rmin
 
 
-def bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM):
+def bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C):
     '''
         Find R[B->Xsgamma/B->Xclv]
     '''
@@ -503,7 +500,6 @@ def bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt
     amu = as_mu0/np.pi
     factor = 1 - (4/3 + lmuM)*amu - (9.125 + 419*lmuM/72 + (2/9)*lmuM**2)*amu**2 - (0.3125*lmuM**3 + 4.5937*lmuM**2 + 25.3188*lmuM + 81.825)*amu**3
     mtmu = mt*factor
-
     xtW = (mtmu/mW)**2
     xtH = (mtmu/mH)**2
 
@@ -529,43 +525,44 @@ def bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt
     B = B0*(1+bc*delt_mc+bt*delt_mt+bs*delt_as)
     PplN = (Ceff_SM + B*Ceff_H)**2 + A
 
-    C = ((Vub/Vcb)**2)*(gamc/gamu)
-
-    R = ((Vts*Vtb/Vcb)**2)*(6*alp_EM/(np.pi*C))*PplN
+    C1 = ((Vub/Vcb)**2)*gamc/gamu
+    R = ((Vts*Vtb/Vcb)**2)*(6*alp_EM/(np.pi*C1))*PplN
 
     return R
 
-def error_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM):
+def error_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM,C,C_err):
     '''
         Calculates errors in branching ratios, using functional method
         - all err vars are [up,low]
     '''
-    gams = bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM)
-    err1_up = abs(bsgamma(mt+mt_err[0],mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM)-gams)
-    err1_low = abs(bsgamma(mt+mt_err[1],mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM)-gams)
-    err2_up = abs(bsgamma(mt,mW+mW_err[0],mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM)-gams)
-    err2_low = abs(bsgamma(mt,mW+mW_err[1],mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM)-gams)
-    err3_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc+gamc_err[0],gamu,Vub,Vts,Vtb,Vcb,alp_EM)-gams)
-    err3_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc+gamc_err[1],gamu,Vub,Vts,Vtb,Vcb,alp_EM)-gams)
-    err4_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts+Vts_err[0],Vtb,Vcb,alp_EM)-gams)
-    err4_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts+Vts_err[1],Vtb,Vcb,alp_EM)-gams)
-    err5_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb+Vtb_err[0],Vcb,alp_EM)-gams)
-    err5_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb+Vtb_err[1],Vcb,alp_EM)-gams)
-    err6_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb+Vcb_err[0],alp_EM)-gams)
-    err6_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb+Vcb_err[1],alp_EM)-gams)
-    err7_up = abs(bsgamma(mt,mW,mub,lam_QCD+QCD_err[0],hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM)-gams)
-    err7_low = abs(bsgamma(mt,mW,mub,lam_QCD+QCD_err[1],hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM)-gams)
-    err8_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu+gamu_err[0],Vub,Vts,Vtb,Vcb,alp_EM)-gams)
-    err8_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu+gamu_err[1],Vub,Vts,Vtb,Vcb,alp_EM)-gams)
-    err9_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub+Vub_err[0],Vts,Vtb,Vcb,alp_EM)-gams)
-    err9_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub+Vub_err[1],Vts,Vtb,Vcb,alp_EM)-gams)
+    gams = bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C)
+    err1_up = abs(bsgamma(mt+mt_err[0],mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C)-gams)
+    err1_low = abs(bsgamma(mt+mt_err[1],mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C)-gams)
+    err2_up = abs(bsgamma(mt,mW+mW_err[0],mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C)-gams)
+    err2_low = abs(bsgamma(mt,mW+mW_err[1],mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C)-gams)
+    err3_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc+gamc_err[0],gamu,Vub,Vts,Vtb,Vcb,alp_EM,C)-gams)
+    err3_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc+gamc_err[1],gamu,Vub,Vts,Vtb,Vcb,alp_EM,C)-gams)
+    err4_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts+Vts_err[0],Vtb,Vcb,alp_EM,C)-gams)
+    err4_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts+Vts_err[1],Vtb,Vcb,alp_EM,C)-gams)
+    err5_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb+Vtb_err[0],Vcb,alp_EM,C)-gams)
+    err5_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb+Vtb_err[1],Vcb,alp_EM,C)-gams)
+    err6_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb+Vcb_err[0],alp_EM,C)-gams)
+    err6_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb+Vcb_err[1],alp_EM,C)-gams)
+    err7_up = abs(bsgamma(mt,mW,mub,lam_QCD+QCD_err[0],hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C)-gams)
+    err7_low = abs(bsgamma(mt,mW,mub,lam_QCD+QCD_err[1],hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C)-gams)
+    err8_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu+gamu_err[0],Vub,Vts,Vtb,Vcb,alp_EM,C)-gams)
+    err8_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu+gamu_err[1],Vub,Vts,Vtb,Vcb,alp_EM,C)-gams)
+    err9_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub+Vub_err[0],Vts,Vtb,Vcb,alp_EM,C)-gams)
+    err9_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub+Vub_err[1],Vts,Vtb,Vcb,alp_EM,C)-gams)
+    err10_up = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C+C_err[0])-gams)
+    err10_low = abs(bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C+C_err[1])-gams)
 
-    upper = np.sqrt(err1_up**2 + err2_up**2 + err3_up**2 + err4_up**2 + err5_up**2 + err6_up**2 + err7_up**2 + err8_up**2 + err9_low**2)
-    lower = np.sqrt(err1_low**2 + err2_low**2 + err3_low**2 + err4_low**2 + err5_low**2 + err6_low**2 + err7_low**2 + err8_low**2 + err9_low**2)
+    upper = np.sqrt(err1_up**2 + err2_up**2 + err3_up**2 + err4_up**2 + err5_up**2 + err6_up**2 + err7_up**2 + err8_up**2 + err9_up**2 + err10_up**2)
+    lower = np.sqrt(err1_low**2 + err2_low**2 + err3_low**2 + err4_low**2 + err5_low**2 + err6_low**2 + err7_low**2 + err8_low**2 + err9_low**2 + err10_low**2)
 
     return upper, lower
 
-def iter_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM,branchc_exp,branchc_exp_error,branchs_exp,branchs_exp_error):
+def iter_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM,branchc_exp,branchc_exp_error,branchs_exp,branchs_exp_error,C,C_err):
     '''
         Iterate over mH, tanb space
     '''
@@ -586,9 +583,8 @@ def iter_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,b
     tanb_loc = []
     for i in mH_range:
         for j in tanb_range:
-            expect_branch = bsgamma(mt,mW,mub,lam_QCD,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM)
-            print expect_branch
-            expect_error = error_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM)
+            expect_branch = bsgamma(mt,mW,mub,lam_QCD,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C)
+            expect_error = error_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM,C,C_err)
             expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
             mid_g = 0.5*(expect_branch_up+expect_branch_down)
             sig_g = sigma*(expect_branch_up-mid_g)
@@ -639,7 +635,7 @@ def bmumu(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,mc,mu,wangle,higgs,v,Vus
     def I7(b):
         i = -b*I1(b)
         return i
-    M,mH0,cob,g2 = 750,2000,1/tanb,0.65
+    M,mH0,cob,g2 = 750,750,1/tanb,0.65
     z1,z2,z3,y,yh,yH0 = (mu/mH)**2,(mc/mH)**2,(mt/mH)**2,(mW/mH)**2,(mH/higgs)**2,(mH/mH0)**2
     el = np.sqrt(4*np.pi/137)
     b = np.arctan(tanb)
@@ -670,65 +666,6 @@ def bmumu(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,mc,mu,wangle,higgs,v,Vus
     bs1 = pow(abs((mbs**2)*(np.conj(CS)-np.conj(CSP))/((mb+ms)*(2*mmu)) - (np.conj(C10)-np.conj(C10P))),2)
     bs2 = pow(abs((mbs**2)*(np.conj(CS)-np.conj(CSP))/((mb+ms)*(2*mmu))),2)*(1-(4*rm**2))
     bs = pref*(bs1+bs2)
-
-    return bs
-
-def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v):
-    mH = 1000
-    tanb = 20
-    zu = 1/tanb
-    zd = -tanb
-    zl = -tanb
-
-    M = 750
-    mHh = 750
-    mA = 500
-    xA = (mA/mW)**2
-    xHp = (mH/mW)**2
-    xt = (mt/mW)**2
-    xb = (mb/mW)**2
-    xl = (mmu/mW)**2
-    xh = (higgs/mW)**2
-    xHh = (mHh/mW)**2
-
-    f1 = (-xHp+xt+xHp*np.log(xHp)-xt*np.log(xt))/(2*(xHp-xt))
-    f2 = (xt - xHp*xt*np.log(xHp/xt)/(xHp-xt))/(2*(xHp-xt))
-    f3 = (xHp - (xHp**2)*np.log(xHp)/(xHp-xt) + xt*(2*xHp - xt)*np.log(xt)/(xHp-xt))/(2*(xHp-xt))
-    f4 = (xt*(3*xHp-xt)/2 - (xHp**2)*xt*np.log(xHp/xt)/(xHp-xt))/(4*(xHp-xt)**2)
-    f5 = (xt*(xHp-3*xt)/2 - xHp*xt*(xHp-2*xt)*np.log(xHp/xt)/(xHp-xt))/(4*(xHp-xt)**2)
-    f6 = (xt*(xt**2 - 3*xHp*xt + 9*xHp - 5*xt - 2)/(4*(xt-1)**2) + xHp*(xHp*xt - 3*xHp + 2*xt)*np.log(xHp)/(2*(xHp-1)*(xHp-xt)) + ((xHp**2)*(-2*xt**3 + 6*xt**2 - 9*xt + 2) + 3*xHp*(xt**2)*(xt**2 - 2*xt + 3) - (xt**2)*(2*xt**3 - 3*xt**2 + 3*xt + 1))*np.log(xt)/(2*(xHp-xt)*(xt-1)**3))/(2*(xHp-xt))
-    f7 = ((xt**2 + xt - 8)*(xHp-xt)/(4*(xt-1)**2) - xHp*(xHp+2)*np.log(xHp)/(2*(xHp-1)) + (xHp*(xt**3 - 3*xt**2 + 3*xt + 2) + 3*(xt-2)*xt**2)*np.log(xt)/(2*(xt-1)**3))/(2*(xHp-xt))
-
-    g0 = (1/(4*(xHp-xt)))*(zd*np.conj(zu)*((xt/(xHp-xt))*np.log(xHp/xt)-1) + (abs(zu)**2)*(((xt**2)/(2*(xHp-xt)**2))*np.log(xHp/xt) + (xHp-3*xt)/(4*(xHp-xt))))
-    g1 = -3/4 + zd*np.conj(zu)*(xt/(xHp-xt))*(1 - (xHp/(xHp-xt))*np.log(xHp/xt)) + (abs(zu)**2)*(xt/(2*(xHp-xt)**2))*((xHp+xt)/2 - (xHp*xt/(xHp-xt))*np.log(xHp/xt))
-    g2 = zd*(zd*np.conj(zu)+1)*f1 + zd*(np.conj(zu)**2)*f2 + zd*(abs(zu)**2)*f3 + zu*(abs(zu)**2)*f4 - np.conj(zu)*(abs(zu)**2)*f5 - zu*f6 - np.conj(zu)*f7
-
-    b = np.arctan(tanb)
-    a = b - np.pi/2 + 0.02
-    lamh = -((higgs**2)*(3*np.cos(a+b)+np.cos(a-3*b)) + 4*np.sin(2*b)*np.sin(b-a)*mH**2 - 4*np.cos(a+b)*M**2)/(2*np.sin(2*b)*v**2)
-    lamHh = -((mHh**2)*(3*np.sin(a+b)+np.sin(a-3*b)) + 4*np.sin(2*b)*np.cos(b-a)*mH**2 - 4*np.sin(a+b)*M**2)/(2*np.sin(2*b)*v**2)
-
-    C10Z = (abs(zu)**2)*((xt**2)/(8*wangle))*(1/(xHp-xt) - xHp*np.log(xHp/xt)/((xHp-xt)**2))
-    CPZ1 = np.conj(zu)*zd*np.sqrt(xb*xl)*(xt/(16*wangle))*((xt-3*xHp)/pow(xHp-xt,2) + 2*pow(xHp,2)*np.log(xHp/xt)/pow(xHp-xt,3))
-    CPZ2 = (abs(zu)**2)*np.sqrt(xb*xl)*(xt/216)*((38*xHp**2 + 54*xt*xHp**2 - 79*xHp*xt - 108*xHp*xt**2 + 47*xt**2 + 54*xt**3)/pow(xHp-xt,3) - (6*np.log(xHp/xt)*(4*xHp**3 + 9*xt*xHp**3 - 6*xt*xHp**2 - 18*(xHp**2)*(xt**2) + 9*xHp*xt**3 + 3*xt**3)/pow(xHp-xt,4)) - (3/(2*wangle))*((2*xHp**2 + 36*xt*xHp**2 - 7*xHp*xt - 72*xHp*xt**2 + 11*xt**2 + 36*xt**3)/pow(xHp-xt,3) - (6*xt*np.log(xHp/xt)*(6*xHp**3 - 12*xt*xHp**2 + 6*xHp*xt**2 + xt**2)/pow(xHp-xt,4))))
-    CSbox = (np.sqrt(xl*xb)*xt/(8*(xHp-xt)*wangle))*(np.conj(zu)*zl*((xt*np.log(xt)/(xt-1)) - (xHp*np.log(xHp)/(xHp-1))) + zu*np.conj(zl)*(1 - (xHp-xt**2)*np.log(xt)/((xHp-xt)*(xt-1)) - (xHp*(xt-1)*np.log(xHp))/((xHp-xt)*(xHp-1))) + 2*zd*np.conj(zl)*np.log(xt/xHp))
-    CPbox = CSbox
-    CPA = -(np.sqrt(xl*xb)*zl*xt/(wangle*2*xA))*(((zu**3)*xt/2)*(1/(xHp-xt) - xHp*np.log(xHp/xt)/pow(xHp-xt,2)) + (zu/4)*(-(3*xHp*xt - 6*xHp - 2*xt**2 + 5*xt)/((xt-1)*(xHp-xt)) + xHp*(xHp**2 - 7*xHp + 6*xt)*np.log(xHp)/(pow(xHp-xt,2)*(xHp-1)) - ((xHp**2)*(xt**2 - 2*xt + 4) + 3*(xt**2)*(2*xt - 2*xHp - 1))*np.log(xt)/pow((xHp-xt)*(xt-1),2)))
-    CSh = (np.sqrt(xl*xb)*xt/(wangle*2*xh))*(np.sin(b-a)+np.cos(b-a)*zl)*(g1*np.sin(b-a)+g2*np.cos(b-a)-g0*2*lamh*(v/mW)**2)
-    CSHh = (np.sqrt(xl*xb)*xt/(wangle*2*xHh))*(np.cos(b-a)-np.sin(b-a)*zl)*(g1*np.cos(b-a)-g2*np.sin(b-a)-g0*2*lamHh*(v/mW)**2)
-
-    C10 = -4.103 + C10Z
-    C10P = 0
-    CP = CPbox + CPZ1 + CPZ2 + CPA
-    CPP = 0
-    CS = CSbox + CSh + CSHh
-    CSP = 0
-    beta = np.sqrt(1-4*pow(mmu/mbs,2))
-    pref = taubs*((pow(1/137,2)*g_gev*mbs*beta)/(16*np.pi**3))*pow(Vtb*Vts,2)*pow(fbs*mmu*1e-3,2)
-    bs1 = abs(C10-C10P+(pow(mbs,2)*(CP-CPP)/(2*mmu*(mb+ms))))**2
-    bs2 = pow(abs(CS-CSP),2)*(pow(mbs,2)*(pow(mbs,2)-4*pow(mmu,2))/(4*pow(mmu,2)*(mb+ms)**2))
-    bsi = pref*(bs1+bs2)
-    bs = bsi/(1-0.061)
 
     return bs
 
@@ -801,78 +738,6 @@ def error_bmumu(mt,mt_err,taubs,taubs_err,fbs,fbs_err,Vtd,Vtd_err,Vts,Vts_err,mm
 
     upper1 = np.sqrt(err1_up1**2 + err2_up1**2 + err3_up1**2 + err4_up1**2 + err5_up1**2 + err6_up1**2 + err7_up1**2 + err8_up1**2 + err9_up1**2 + err10_up1**2 + err11_up1**2 + err12_up1**2 + err13_up1**2 + err14_up1**2 + err15_up1**2 + err16_up1**2 + err17_up1**2 + err18_up1**2 + err19_up1**2)
     lower1 = np.sqrt(err1_low1**2 + err2_low1**2 + err3_low1**2 + err4_low1**2 + err5_low1**2 + err6_low1**2 + err7_low1**2 + err8_low1**2 + err9_low1**2 + err10_low1**2 + err11_low1**2 + err12_low1**2 + err13_low1**2 + err14_low1**2 + err15_low1**2 + err16_low1**2 + err17_low1**2 + err18_low1**2 + err19_low1**2)
-
-    ## bs
-#    err1_up2, err1_low2 = abs(err1_up[1]-bs),abs(err1_low[1]-bs)
-#    err2_up2, err2_low2 = abs(err2_up[1]-bs),abs(err2_low[1]-bs)
-#    err3_up2, err3_low2 = abs(err3_up[1]-bs),abs(err3_low[1]-bs)
-#    err4_up2, err4_low2 = abs(err4_up[1]-bs),abs(err4_low[1]-bs)
-#    err5_up2, err5_low2 = abs(err5_up[1]-bs),abs(err5_low[1]-bs)
-#    err6_up2, err6_low2 = abs(err6_up[1]-bs),abs(err6_low[1]-bs)
-#    err7_up2, err7_low2 = abs(err7_up[1]-bs),abs(err7_low[1]-bs)
-#    err8_up2, err8_low2 = abs(err8_up[1]-bs),abs(err8_low[1]-bs)
-#    err9_up2, err9_low2 = abs(err9_up[1]-bs),abs(err9_low[1]-bs)
-#    err10_up2, err10_low2 = abs(err10_up[1]-bs),abs(err10_low[1]-bs)
-#    err11_up2, err11_low2 = abs(err11_up[1]-bs),abs(err11_low[1]-bs)
-#
-#    upper2 = np.sqrt(err1_up2**2 + err2_up2**2 + err3_up2**2 + err4_up2**2 + err5_up2**2 + err6_up2**2 + err7_up2**2 + err9_up2**2 + err10_up2**2 + err11_up2**2 + err11_up2**2)
-#    lower2 = np.sqrt(err1_low2**2 + err2_low2**2 + err3_low2**2 + err4_low2**2 + err5_low2**2 + err6_low2**2 + err7_low2**2 + err9_low2**2 + err10_low2**2 + err11_low2**2 + err11_low2**2)
-
-    return upper1, lower1#, upper2, lower2
-
-def error_bmumu2(mt,mt_err,taubs,taubs_err,fbs,fbs_err,Vtb,Vtb_err,Vts,Vts_err,mmu,mmu_err,mbs,mbs_err,mW,mW_err,tanb,mH,mb,mb_err,ms,ms_err,wangle,wan_err,higgs,higgs_err,v,v_err):
-#def bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v):
-    '''
-        Error propagation for b(s/d) to mumu
-    '''
-#    bd, bs = bmumu(mt,taubd,taubs,fbd,fbs,Vtd,Vts,mmu,mbd,mbs,mW,tanb,mH)
-    bs = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-
-    ## errors
-    err1_up = bmumu2(mt+mt_err[0],taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err1_low = bmumu2(mt+mt_err[1],taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err3_up = bmumu2(mt,taubs+taubs_err[0],fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err3_low = bmumu2(mt,taubs+taubs_err[1],fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err5_up = bmumu2(mt,taubs,fbs+fbs_err[0],Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err5_low = bmumu2(mt,taubs,fbs+fbs_err[1],Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err6_up = bmumu2(mt,taubs,fbs,Vtb+Vtb_err[0],Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err6_low = bmumu2(mt,taubs,fbs,Vtb+Vtb_err[1],Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err7_up = bmumu2(mt,taubs,fbs,Vtb,Vts+Vts_err[0],mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err7_low = bmumu2(mt,taubs,fbs,Vtb,Vts+Vts_err[1],mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err8_up = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu+mmu_err[0],mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err8_low = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu+mmu_err[1],mbs,mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err10_up = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs+mbs_err[0],mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err10_low = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs+mbs_err[1],mW,tanb,mH,mb,ms,wangle,higgs,v)
-    err11_up = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW+mW_err[0],tanb,mH,mb,ms,wangle,higgs,v)
-    err11_low = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW+mW_err[1],tanb,mH,mb,ms,wangle,higgs,v)
-    err12_up = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb+mb_err[0],ms,wangle,higgs,v)
-    err12_low = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb+mb_err[1],ms,wangle,higgs,v)
-    err13_up = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms+ms_err[0],wangle,higgs,v)
-    err13_low = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms+ms_err[1],wangle,higgs,v)
-    err14_up = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle+wan_err[0],higgs,v)
-    err14_low = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle+wan_err[1],higgs,v)
-    err15_up = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs+higgs_err[0],v)
-    err15_low = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs+higgs_err[1],v)
-    err16_up = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v+v_err[0])
-    err16_low = bmumu2(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,wangle,higgs,v+v_err[1])
-
-    ## bs
-    err1_up1, err1_low1 = abs(err1_up-bs),abs(err1_low-bs)
-    err3_up1, err3_low1 = abs(err3_up-bs),abs(err3_low-bs)
-    err5_up1, err5_low1 = abs(err5_up-bs),abs(err5_low-bs)
-    err6_up1, err6_low1 = abs(err6_up-bs),abs(err6_low-bs)
-    err7_up1, err7_low1 = abs(err7_up-bs),abs(err7_low-bs)
-    err8_up1, err8_low1 = abs(err8_up-bs),abs(err8_low-bs)
-    err10_up1, err10_low1 = abs(err10_up-bs),abs(err10_low-bs)
-    err11_up1, err11_low1 = abs(err11_up-bs),abs(err11_low-bs)
-    err12_up1, err12_low1 = abs(err12_up-bs),abs(err12_low-bs)
-    err13_up1, err13_low1 = abs(err13_up-bs),abs(err13_low-bs)
-    err14_up1, err14_low1 = abs(err14_up-bs),abs(err14_low-bs)
-    err15_up1, err15_low1 = abs(err15_up-bs),abs(err15_low-bs)
-    err16_up1, err16_low1 = abs(err16_up-bs),abs(err16_low-bs)
-
-    upper1 = np.sqrt(err1_up1**2 + err3_up1**2 + err5_up1**2 + err6_up1**2 + err7_up1**2 + err8_up1**2 + err10_up1**2 + err11_up1**2 + err12_up1**2 + err13_up1**2 + err14_up1**2 + err15_up1**2 + err16_up1**2)
-    lower1 = np.sqrt(err1_low1**2 + err3_low1**2 + err5_low1**2 + err6_low1**2 + err7_low1**2 + err8_low1**2 + err10_low1**2 + err11_low1**2 + err12_low1**2 + err13_low1**2 + err14_low1**2 + err15_low1**2 + err16_low1**2)
 
     return upper1, lower1
 

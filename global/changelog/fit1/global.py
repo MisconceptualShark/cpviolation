@@ -14,7 +14,6 @@ hbar_mev = 6.582119514e-22
 # W, h, neutral B mesons
 higgs, higgs_err = [125.10,[0.14,-0.14]]
 mW, mW_err = [80.379,[0.012,-0.012]]
-mZ, mZ_err = [91.1876,[0.0021,-0.0021]]
 mBd, mBd_err = [5.27964,[0.00013,-0.00013]]
 mBs, mBs_err = [5.36688,[0.00017,-0.00017]]
 
@@ -119,10 +118,6 @@ wangle, wangle_err = [0.23155,[0.00004,-0.00004]] #sin^2 theta_w
 lambda_QCD, QCD_err = [0.2275,[0.01433,-0.01372]]
 vev, vev_err = [246,[0,0]]
 
-#Oblique parameters
-SOblique, SOblique_err= [0.02,[0.10,-0.10]]
-TOblique, TOblique_err=[0.07,[0.12,-0.12]]
-UOblique, UOblique_err=[0.00,[0.09,-0.09]]
 ###################### GLOBAL CONSTRAINT
 
 #big ol function for everything 
@@ -141,14 +136,13 @@ mHs, tanbs, chis, chi_2 = itera_global(
         tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,taubd,taubd_err,taubs,taubs_err,
         mub,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,1/137,C,C_err,
         rho,rho_err,delt_rd,delt_rd_err,
-        delta_b,delta_d,wangle,wangle_err,lambda_QCD,QCD_err,higgs,higgs_err,vev,vev_err,
-        SOblique,SOblique_err,TOblique,TOblique_err,UOblique,UOblique_err,mZ,mZ_err)
+        delta_b,delta_d,wangle,wangle_err,lambda_QCD,QCD_err,higgs,higgs_err,vev,vev_err)
 
 #h - mH; t - tanb
 #l - (semi-)leptonics; b - b mixing; g - bsgamma; a - combine l,b,g; mu - Bs to mumu; l2 -everything
-hl, hb, hg, ha, hmu, hl2, hS, hT, hU = mHs 
-tl, tb, tg, ta, tmu, tl2, tS, tT, tU = tanbs
-chi_ls, chi_ms, chi_gs, chi_as, chi_mus, chi_2s, chi_Ss, chi_Ts, chi_Us = chis #all chisq values
+hl, hb, hg, ha, hmu, hl2 = mHs 
+tl, tb, tg, ta, tmu, tl2 = tanbs
+chi_ls, chi_ms, chi_gs, chi_as, chi_mus, chi_2s = chis #all chisq values
 
 m1,m2 = 2.30,5.99 #different confidence levels for chisq fit
 
@@ -168,22 +162,12 @@ hchi_mu2, tchi_mu2, mu_edges = chi_del(min(chi_mus),chi_mus,hmu,tmu,m1)
 #hchi_a, tchi_a, a_edges_e = chi_del(min(chi_as),chi_as,ha,ta,m2)
 #hchi_a2, tchi_a2, a_edges = chi_del(min(chi_as),chi_as,ha,ta,m1)
 
-hchi_S, tchi_S, S_edges_e = chi_del(min(chi_Ss),chi_Ss,hS,tS,m2)
-hchi_S2, tchi_S2, S_edges = chi_del(min(chi_Ss),chi_Ss,hS,tS,m1)
-
-hchi_T, tchi_T, T_edges_e = chi_del(min(chi_Ts),chi_Ts,hT,tT,m2)
-hchi_T2, tchi_T2, T_edges = chi_del(min(chi_Ts),chi_Ts,hT,tT,m1)
-
-hchi_U, tchi_U, U_edges_e = chi_del(min(chi_Us),chi_Us,hU,tU,m2)
-hchi_U2, tchi_U2, U_edges = chi_del(min(chi_Us),chi_Us,hU,tU,m1)
-
 hchi_2, tchi_2, two_edges_e = chi_del(chi_2[0],chi_2s,hl2,tl2,m2)
 hchi_22, tchi_22, two_edges = chi_del(chi_2[0],chi_2s,hl2,tl2,m1)
 
-# print out some numbers to 95CL and 1 sig
-print [10**min(hchi_2),10**max(hchi_2)], [10**min(hchi_22),10**max(hchi_22)]
+print 10**min(hchi_2), 10**min(hchi_22) #print out some numbers to 95CL and 1 sig
 print 10**min(tchi_22), 10**max(tchi_22)
-print chi_2[0]/12 # reduced chisq, n = 11 observables - 2 free parameters
+print chi_2[0]/9 # reduced chisq, n = 11 observables - 2 free parameters
 print chi_2
 
 # plotting! scatter plots for regions, then the for loops plot out the outline
@@ -201,9 +185,6 @@ for i, j in gam_edges_e[0]:
 plt.scatter(tchi_mu,hchi_mu,c='red')
 for i, j in mu_edges_e[0]:
     plt.plot(mu_edges_e[1][[i,j],0],mu_edges_e[1][[i,j],1],c='chocolate',linestyle='--')
-plt.scatter(tchi_T,hchi_T,c='orchid')
-for i, j in T_edges_e[0]:
-    plt.plot(T_edges_e[1][[i,j],0],T_edges_e[1][[i,j],1],c='deeppink',linestyle='--')
 plt.scatter(tchi_2,hchi_2,c='darkorchid')
 for i, j in two_edges[0]:
     plt.plot(two_edges[1][[i,j],0],two_edges[1][[i,j],1],c='plum',linestyle='--')
@@ -215,9 +196,8 @@ plt.yticks(fontsize=18)
 plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D)$',xy=(0.05,0.5),xycoords='axes fraction',fontsize=18)
 plt.annotate('$\\Delta M_q$',xy=(0.85,0.25),xycoords='axes fraction',fontsize=18)
 plt.annotate('$b\\to s\\gamma$',xy=(0.05,0.9),xycoords='axes fraction',fontsize=18)
-plt.annotate('All',xy=(0.52,0.8),xycoords='axes fraction',fontsize=13)
-plt.annotate('S,T,U',xy=(0.05,0.8),xycoords='axes fraction',fontsize=13)
+plt.annotate('All',xy=(0.55,0.85),xycoords='axes fraction',fontsize=18)
 plt.annotate('$B_s \\to \\mu^+\\mu^-$',xy=(0.5,0.65),xycoords='axes fraction',fontsize=18)#,rotation=75)
-plt.title('$M = 750\,GeV,\; m_{A^0} = 600\,GeV,$ \n $m_{H^0} = 750\,GeV,\; \\beta-\\alpha = \\frac{\\pi}{2}$',fontsize=18)
-plt.savefig('global_test1.png')
+plt.title('$M = 750\,GeV,\; m_{H^0} = 750\,GeV,\; \\beta-\\alpha = \\frac{\\pi}{2}$',fontsize=18)
+plt.savefig('global_test.png')
 plt.show()
