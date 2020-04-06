@@ -117,8 +117,8 @@ def error_rds(mBs,mBs_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r2
     ups = rds+upper
     downs = rds-lower
     
-    return ups, downs
-    #return rds, upper, lower
+    #return ups, downs
+    return rds, [upper, -1*lower]
 
 def itera_rds(mBs,mBs_err,mD,mD_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,rde,rde_err):
 
@@ -201,18 +201,18 @@ def rdn(mBs,mD,rhod,delta,Vcb,mmu,mtau,vev,mc,mb,tanb,mH):
     mgamsm, err1 = quad(rdn1,mmu**2,top,args=(mBs,mD,Vcb,mmu,delta,rhod))
     mgammix, err2 = quad(rdn2,mmu**2,top,args=(mBs,mD,rhod,delta,mmu,gcs,Vcb,mH,fmus,fmup,mb,mc))
     mgamh, err3 = quad(rdn3,mmu**2,top,args=(mBs,mD,rhod,delta,mmu,gcs,Vcb,mH,fmus,fmup,mb,mc))
-    dmu = mgamsm+mgammix+mgamh
-#    mV = (Vcb/mgamsm)/(1+(mgammix+mgamh)/mgamsm)
+#    dmu = mgamsm+mgammix+mgamh
+    mV = (Vcb/mgamsm)/(1+(mgammix+mgamh)/mgamsm)
 
     tgamsm, err1 = quad(rdn1,mtau**2,top,args=(mBs,mD,Vcb,mtau,delta,rhod))
     tgammix, err2 = quad(rdn2,mtau**2,top,args=(mBs,mD,rhod,delta,mtau,gcs,Vcb,mH,fts,ftp,mb,mc))
     tgamh, err3 = quad(rdn3,mtau**2,top,args=(mBs,mD,rhod,delta,mtau,gcs,Vcb,mH,fts,ftp,mb,mc))
-    dtau = tgamsm+tgammix+tgamh
-#    tV = (Vcb/tgamsm)/(1+(tgammix+tgamh)/tgamsm)
+#    dtau = tgamsm+tgammix+tgamh
+    tV = (Vcb/tgamsm)/(1+(tgammix+tgamh)/tgamsm)
 
-    return dtau/dmu
+#    return dtau/dmu
 #    return tgamsm/mgamsm
-#    return (tV+mV)/2
+    return (tV+mV)/2
 #    return np.sqrt(tV)
 
 def error_rdn(mBs,mBs_err,mD,mD_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,tanb,mH):

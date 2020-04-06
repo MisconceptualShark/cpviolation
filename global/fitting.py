@@ -2,6 +2,8 @@ from __future__ import division
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.spatial import Delaunay
+from scipy.special import gamma
+from scipy.integrate import quad 
 
 def chisq_simp(obs,the,sige,sigt):
     '''
@@ -77,5 +79,28 @@ def chi_del(chi_min,chis,hs,ts,parm):
     edges = alpha_shape(points,alpha=0.10,only_outer=True)
 
     return h_min, t_min, [edges,points]
+
+def p_vals(chi_min,nu):
+    '''
+        testing fit validity (following Hughes and Hase ~ pg 104)
+    '''
+    def chi_dist(chi,nu):
+        '''
+            chisq probability distribution
+        '''
+        X = (chi**(nu/2 - 1) * np.exp(-chi/2))/(2**(nu/2) * gamma(nu/2))
+        return X
+    P, err = quad(chi_dist,chi_min,np.inf,args=(nu))
+    return P, err
+
+
+
+
+
+
+
+
+
+
 
 

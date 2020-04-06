@@ -808,9 +808,10 @@ def itera_global(
     for i in mH_range:
         for j in tanb_range:
             b = np.arctan(j)
-            alph = b - np.pi/2 # find alpha in alignment limit
+#            alph = b - np.pi/2 # find alpha in alignment limit
+            alph = b - np.arccos(0.465) # find alpha in wrong sign limit
             mH0 = 750 # set H0 and A0 masses
-            mA0 = 600
+            mA0 = 750
             ##### LEPTONICS #####
             bpls_the, dpls_the, dspls_the = bthe(mbpls,mtau,Vub,fbpls,tbpls,mu,mb,j,i,1),bthe(mdpls,mmu,Vcd,fdpls,tdpls,mc,md,j,i,delta_d),bthe(mdspls,mtau,Vcs,fdspls,tdspls,mc,ms,j,i,1)
             bpmu_the, dsmu_the = bthe(mbpls,mmu,Vub,fbpls,tbpls,mu,mb,j,i,1),bthe(mdspls,mmu,Vcs,fdspls,tdspls,mc,ms,j,i,1)

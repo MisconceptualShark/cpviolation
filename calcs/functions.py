@@ -77,7 +77,7 @@ def itera(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,m
             expect_branch = bthe(mm,ml,Vud,fm,taum,mu,md,j,i,delta)
             expect_error = error_branching(mm,mm_err,ml,ml_err,Vud,Vud_err,fm,fm_err,taum,taum_err,mu,mu_err,md,md_err,j,i,delta)
             expect_branch_up, expect_branch_down = expect_branch+expect_error[0],expect_branch-expect_error[1]
-            print expect_branch_down
+    #        print expect_branch_down
             mid_br = 0.5*(expect_branch_up+expect_branch_down)
             sig_br = sigma*(expect_branch_up-mid_br)
             br_bool = ((av_br >= mid_br and mid_br+sig_br >= av_br-sige_br) or (av_br <= mid_br and mid_br-sig_br <= av_br+sige_br)) 

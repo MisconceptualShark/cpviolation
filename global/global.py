@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.spatial import Delaunay
 from functions import *
 from fitting import *
+from tdfs import *
 
 g_gev = (1.1663787e-5)**2
 hbar_gev = 6.582119514e-25
@@ -125,6 +126,21 @@ TOblique, TOblique_err=[0.07,[0.12,-0.12]]
 UOblique, UOblique_err=[0.00,[0.09,-0.09]]
 ###################### GLOBAL CONSTRAINT
 
+#mHs, tanbs, mAs, chis, chi_min = tdfits(
+#        bs_exp,bs_exp_err,
+#        m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt,mt_err,mW,mW_err,
+#        mBs,mBs_err,m_mu,m_mu_err,
+#        Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,
+#        fBs,fBs_err,taubs,taubs_err,1/137,
+#        wangle,wangle_err,lambda_QCD,QCD_err,higgs,higgs_err,vev,vev_err,
+#        SOblique,SOblique_err,TOblique,TOblique_err,UOblique,UOblique_err,mZ,mZ_err)
+#
+#fig = plt.figure()
+#ax = fig.add_subplot(111,projection='3d')
+#ax.scatter(mHs,mAs,tanbs,c='darkorchid')
+#plt.show()
+#
+#quit()
 #big ol function for everything 
 mHs, tanbs, chis, chi_2 = itera_global(
         bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,
@@ -182,9 +198,12 @@ hchi_22, tchi_22, two_edges = chi_del(chi_2[0],chi_2s,hl2,tl2,m1)
 
 # print out some numbers to 95CL and 1 sig
 print [10**min(hchi_2),10**max(hchi_2)], [10**min(hchi_22),10**max(hchi_22)]
-print 10**min(tchi_22), 10**max(tchi_22)
-print chi_2[0]/12 # reduced chisq, n = 11 observables - 2 free parameters
+print [10**min(tchi_2),10**max(tchi_2)], [10**min(tchi_22), 10**max(tchi_22)]
+print chi_2[0]/13 # reduced chisq, nu = 15 observables - 2 free parameters
 print chi_2
+
+p_val, p_err = p_vals(chi_2[0],13)
+print "p-value for global fit with 13 degrees of freedom is: ", p_val, " +/- ", p_err
 
 # plotting! scatter plots for regions, then the for loops plot out the outline
 # all regions plotted to 95% CL, and their lines plotted to this too, but then the 1 sigma everything region's border is plotted 
@@ -212,12 +231,13 @@ plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
+plt.axvline(x=np.log10(mt/m_b),color='black')
 plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D)$',xy=(0.05,0.5),xycoords='axes fraction',fontsize=18)
 plt.annotate('$\\Delta M_q$',xy=(0.85,0.25),xycoords='axes fraction',fontsize=18)
 plt.annotate('$b\\to s\\gamma$',xy=(0.05,0.9),xycoords='axes fraction',fontsize=18)
 plt.annotate('All',xy=(0.52,0.8),xycoords='axes fraction',fontsize=13)
 plt.annotate('S,T,U',xy=(0.05,0.8),xycoords='axes fraction',fontsize=13)
 plt.annotate('$B_s \\to \\mu^+\\mu^-$',xy=(0.5,0.65),xycoords='axes fraction',fontsize=18)#,rotation=75)
-plt.title('$M = 750\,GeV,\; m_{A^0} = 600\,GeV,$ \n $m_{H^0} = 750\,GeV,\; \\beta-\\alpha = \\frac{\\pi}{2}$',fontsize=18)
-plt.savefig('global_test1.png')
+plt.title('$M = 750\,GeV,\; m_{A^0} = 750\,GeV,$ \n $m_{H^0} = 750\,GeV,\; \\cos(\\beta-\\alpha) = 0.465$',fontsize=18)
+plt.savefig('global_test3.png')
 plt.show()

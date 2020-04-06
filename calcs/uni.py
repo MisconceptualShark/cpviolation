@@ -4,11 +4,10 @@ from functions import rh
 from rdstarring import *
 from ckm_2hdm import *
 import matplotlib.pyplot as plt
+import os
 
 hbar = 6.582119514e-25
 
-tb = 37.9
-mH = 1044
 mu, mu_err = [0.00216,[0.00049,-0.00026]]
 md, md_err = [0.00467,[0.00048,-0.00017]]
 ms, ms_err = [0.093,[0.011,-0.005]]
@@ -47,13 +46,17 @@ Vus,Vus_err = [0.2243,[0.0005,-0.0005]]
 Vub,Vub_err = [0.00401,[0.00037,-0.00037]]
 Vcd,Vcd_err = [0.2164,[0.0052,-0.0052]]
 Vcs,Vcs_err = [0.997,[0.017,-0.017]]
-#Vcs,Vcs_err = [1.006,[0.019,-0.019]]
 Vcb,Vcb_err = [0.0422,[0.0008,-0.0008]]
 Vtd,Vtd_err = [0.0081,[0.0005,-0.0005]]
 Vts,Vts_err = [0.0394,[0.0023,-0.0023]]
 Vtb,Vtb_err = [1.019,[0.025,-0.025]]
 
-h1,t1,v1,h2,t2,v2,ha,ta,va = ckmelsr([Vud,Vus,Vub,Vcd,Vcs,Vcb],[Vud_err,Vus_err,Vub_err,Vcd_err,Vcs_err,Vcb_err],mu,mu_err,md,md_err,ms,ms_err,mc,mc_err,mb,mb_err,mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mtau,mtau_err,mmu,mmu_err,fb,fb_err,fd,fd_err,fds,fds_err,taub,taub_err,taud,taud_err,tauds,tauds_err,brb,brb_err,brd,brd_err,brds,brds_err,mK,mK_err,mpi,mpi_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,brk,brk_err,brtk,brtk_err,mBs,mBs_err,mDst,mDst_err,rhod,rhod_err,delta,delta_err,vev,vev_err)
+h1,t1,v1,h2,t2,v2,ha,ta,va = ckmelsr(
+        [Vud,Vus,Vub,Vcd,Vcs,Vcb],[Vud_err,Vus_err,Vub_err,Vcd_err,Vcs_err,Vcb_err],
+        mu,mu_err,md,md_err,ms,ms_err,mc,mc_err,mb,mb_err,
+        mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mtau,mtau_err,mmu,mmu_err,
+        mK,mK_err,mpi,mpi_err,
+        mBs,mBs_err,mDst,mDst_err,rhod,rhod_err,delta,delta_err,vev,vev_err)
 #
 #print len(h1)
 #print len(h2)
@@ -70,7 +73,8 @@ plt.ylabel('$\\log[m_{H+}]$',fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
 #plt.show()
-plt.savefig('ckm_uni.png')
+plt.savefig('ckm_uni2.png')
+os.system('play gumdrops.mp3')
 quit()
 ### CKMfitter
 #Vud,Vud_err = [0.974390,[0.000014,-0.000058]]

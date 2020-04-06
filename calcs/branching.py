@@ -15,6 +15,7 @@ hbar_mev = 6.582119514e-22
 
 ################ LEPTONIC AND SEMILEPTONIC DECAY
 
+mt, mt_err = [172.9,[0.4,-0.4]]
 m_bplus, m_bplus_err = [5.27933,[0.00013,-0.00013]]
 m_dplus08, m_dplus08_err = [1.86962,[0.00020,-0.00020]] #08
 m_dplus, m_dplus_err = [1.86965,[0.00005,-0.00005]]
@@ -72,7 +73,7 @@ tau_dsplus, tau_dsplus_err = [(504e-15)/hbar_gev,[(4e-15)/hbar_gev,-(4e-15)/hbar
 
 bplus_exp, bplus_err_exp = [1.09e-4,[0.24e-4,-0.24e-4]]
 dplus_exp, dplus_err_exp = [3.77e-4,[0.17e-4,-0.17e-4]]
-dsplus_exp, dsplus_err_exp = [0.0548,[0.0023,-0.0023]]
+dsplus_exp, dsplus_err_exp = [0.0551,[0.0020,-0.0020]]
 bplusmu_exp, bplusmu_err_exp = [5.3e-7,[2.2e-7,-2.2e-7]]
 dsmu_exp, dsmu_err_exp = [5.52e-3,[0.16e-3,-0.16e-3]]
 kpi_exp, kpi_exp_err = [1.337,[0.0032,-0.0032]]
@@ -192,18 +193,18 @@ delta_b,delta_d = 0.982,0.99*0.982
 #
 ## Ds+ -> tau+ nu
 #mH_dsplus, tanb_dsplus, vuds_loc = ckmel(Vcs,Vcs_err,m_c,m_c_err,m_s,m_s_err,m_dsplus,m_dsplus_err,m_tau,m_tau_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,dsplus_exp,dsplus_err_exp)
-#mH_dsplus, tanb_dsplus = itera(m_dsplus,m_dsplus_err,m_mu,m_mu_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,m_c,m_c_err,m_s,m_s_err,dsmu_exp,dsmu_err_exp,1)
-#plt.figure(figsize=(8,6))
-#plt.scatter(tanb_dsplus,mH_dsplus,c='green')
-#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('$D_s^+\\to\\tau^+\\nu,\; V_{cs}$',fontsize=18)
-#plt.xticks(fontsize=18)
-#plt.yticks(fontsize=18)
-#plt.axis([-1,2,0,3.5])
-#plt.show()
-##plt.savefig('vdstau.png')
-#quit()
+mH_dsplus, tanb_dsplus = itera(m_dsplus,m_dsplus_err,m_tau,m_tau_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,m_c,m_c_err,m_s,m_s_err,dsplus_exp,dsplus_err_exp,0.982)
+plt.figure(figsize=(8,6))
+plt.scatter(tanb_dsplus,mH_dsplus,c='green')
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.title('$D_s^+\\to\\tau^+\\nu,\; V_{cs}$',fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.axis([-1,2,0,3.5])
+plt.show()
+#plt.savefig('vdstau.png')
+quit()
 ## (K -> mu)/(pi -> mu) + (tau -> K)/(tau -> pi)
 #mH2, tanb2 = itera_kpi(m_K,m_K_err,m_pi,m_pi_err,m_mu,m_mu_err,m_tau,m_tau_err,Vus,Vus_err,Vud,Vud_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,m_s,m_s_err,m_d,m_d_err,m_u,m_u_err,kpi_exp,kpi_exp_err,kpitau_exp,kpi_exp_err)
 ##
@@ -274,7 +275,6 @@ delta_b,delta_d = 0.982,0.99*0.982
 
 ###############   MIXING
 
-mt, mt_err = [172.9,[0.4,-0.4]]
 mW, mW_err = [80.379,[0.012,-0.012]]
 mBd, mBd_err = [5.27964,[0.00013,-0.00013]]
 mBs, mBs_err = [5.36688,[0.00017,-0.00017]]
