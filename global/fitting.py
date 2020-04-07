@@ -90,7 +90,7 @@ def p_vals(chi_min,nu):
         '''
         X = (chi**(nu/2 - 1) * np.exp(-chi/2))/(2**(nu/2) * gamma(nu/2))
         return X
-    P, err = quad(chi_dist,chi_min,np.inf,args=(nu))
+    P, err = quad(chi_dist,0,chi_min,args=(nu))
     return P, err
 
 

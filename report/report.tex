@@ -7,6 +7,7 @@
 \usepackage[T1]{fontenc} % if needed
 \usepackage{float}
 \usepackage{multicol}
+\usepackage{multirow}
 \usepackage[section]{placeins}
 \usepackage{cancel}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
@@ -15,6 +16,8 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
 \graphicspath{{../images/}}
+\usepackage{array}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
 
 %\title{\boldmath A title with some math: $x=1$}
 \title{CP Violation In and Beyond The Standard Model: Two Higgs Doublet Model Type II Corrections to Flavour Observables}
@@ -524,15 +527,15 @@ After the constraints on the 2HDM for each individual process were found, they w
 \begin{figure}[ht]
     \vspace{-12pt}
     \centering
-    \includegraphics[width=0.49\textwidth]{leps.png}
-    \includegraphics[width=0.49\textwidth]{bmix.png}
-    \includegraphics[width=0.49\textwidth]{bsgam.png}
+    \includegraphics[width=0.49\textwidth]{indy/leps.png}
+    \includegraphics[width=0.49\textwidth]{indy/bmix.png}
+    \includegraphics[width=0.49\textwidth]{indy/bsgamma.png}
     \caption{\label{fig:indies}Constraints of $(m_{H+},\tan\beta)$ space from leptonic decays (top left), meson mixing (top right), and the radiative $b\to s\gamma$ decay (bottom). The leptonic decays used were $B^+\to\tau^+\nu$, $D^+\to\mu^+\nu$, $D_s^+\to\tau^+\nu$, and the ratios $K\to\mu\nu/\pi\to\mu\nu$ and $\tau\to K\nu/\tau\to\pi\nu$. The meson mixings considered are that of $B^0_d$ and $B_s^0$.}
 \end{figure}
 \begin{figure}[ht]
     \vspace{-20pt}
     \centering
-    \includegraphics[scale=0.55]{../calcs/global.png}
+    \includegraphics[scale=0.55]{global.png}
     \caption{\label{fig:glob} Global fit of constraints on $m_{H+}$ and $\tan\beta$ from all observables considered. The green, blue, and coral regions represent constraints shown individually in figure \ref{fig:indies}, and the orange region is the global constraint to $1\sigma$.}
 \end{figure}
 In previous works, such as \cite{a}, the global fit has extended to the very top of the parameter space, so it could not be ruled out that the allowed region did not extend higher. 
@@ -544,15 +547,49 @@ Here, it is found as
 \end{align}
 % IGNORE TANB BOUNDS, NO UPPER LIMIT ON MH
 
+\section{New Observables}
+
+\section{Statistical Fitting}
+
+\section{Results With James}
+
+\section{CKM Element Modification}
+
+\section{SM4x2HDM}
+
 \section{Next Steps}
-\begin{multicols}{2}
 \begin{itemize}
-    \item SM4 and Higgs?
-    \item Z' model, comparison to Higgs?
     \item Move SM intro to appendix
     \item Add appendix for $b\to s\gamma$ maths
 \end{itemize}
-\end{multicols}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cc|C{1.8cm}|C{2.1cm}|C{1.8cm}|C{2.1cm}}
+        \hline\hline
+        \multicolumn{2}{c|}{\multirow{2}{*}{\textbf{Model:}}} & \multicolumn{2}{c}{$\cos(\beta-\alpha)=0.465$} & \multicolumn{2}{|c}{$\cos(\beta-\alpha)=0$} \\ 
+        \cline{3-6}
+        & & \textbf{Flavour} & \textbf{Flavour + Oblique} & \textbf{Flavour} & \textbf{Flavour + Oblique} \\
+        \hline\hline
+        $m_{H^+}$ (GeV): & 95\% CL & $>580$ & $560\to830$ & $>500$ & $630\to870$ \\
+                         & $1\sigma$ & $>1020$ & $600\to830$ & $>790$ & $660\to870$ \\
+                         & $\chi^2_{min}$ & $3200$ & $790$ & $3200$ & $810$ \\
+        \hline
+        $\tan\beta$: & 95\% CL & $<3.7$ & $1.3\to4.1$ & $<10.6$ & $1.4\to11.1$ \\
+                     & $1\sigma$ & $<3.1$ & $1.6\to3.5$ & $<8.6$ & $1.8\to9.3$ \\
+                     & $\chi^2_{min}$ & $1.5$ & $2.4$ & $2.9$ & $4.4$ \\
+        \hline
+        \multicolumn{2}{c|}{$\chi^2_{min}$} & $10.3$ & $13.9$ & $9.9$ & $12.1$ \\
+        \multicolumn{2}{c|}{$\chi^2_{\nu}$} & $0.94$ & $0.99$ & $0.90$ & $0.86$ \\
+        \multicolumn{2}{c|}{$\nu$} & $11$ & $14$ & $11$ & $14$ \\
+        \multicolumn{2}{c|}{p-value} & $49.5\%$ & $54.0\%$ & $45.7\%$ & $40\%$ \\
+        \hline\hline
+    \end{tabular}
+    \caption{Constraints and statistics for various global fits. `Flavour' denotes all of the flavour observables discussed throughout, disregarding $R(D^*)$ for now; `Oblique' denotes adding the three oblique parameters from James' work, S,T,U. 
+    The fits have been done in the wrong-sign limit and the exact alignment limit as shown, and setting the additional parameters at play for now to $M=m_{H^0}=m_{A^0}=750\,$GeV. 
+    The 2HDM potential parameter $M$ does not have much impact on the fit as it varies, although through the oblique parameters, $m_{H^0}$ and $m_{A^0}$ will cause our results to vary on their values as these require all new Higgs masses to be approximately equal, thus confining the space tightly near whatever values are chosen for these two masses. 
+    More thorough fits, e.g. varying the other parameters as well, to higher $\sigma$, or looking at $\chi^2$ and p-values for a fit including $R(D^*)$ to check that validity will be incoming.} 
+\end{table}
 
 %\appendix
 %\section{Some title}
