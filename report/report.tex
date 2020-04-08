@@ -62,7 +62,7 @@ The Standard Model is one of the most successful theories ever developed, descri
     \end{split}
 \end{equation}
 Throughout the latter half of the 20th century and through the 21st, the Standard Model has found strong agreement with many observed phenomena, while also predicting many other observables that took longer to be observed (most notably, the Higgs boson).
-However, there are still many observations that do not align with the Standard Model: some more large scale such as unification with gravity or a description of dark matter, some more specific such as some leptonic and semi-leptonic meson decays.
+However, there are still many observations that do not align with the Standard Model: some more large scale such as unification with gravity or a description of dark matter, some more specific such as some leptonic and semi-leptonic meson decays; for example, the semileptonic decay ratios $\mathcal{R}(K^{(*)})$ notoriously deviate from the Standard Model to approximately $3\sigma$.
 The modifications and additions to the Standard Model needed for these smaller scale problems could open the door to new phenomena that could bring us closer a complete theory of nature. 
 
 \subsection{The Standard Model}
@@ -133,7 +133,7 @@ Considering both quarks and leptons in the traditional three generations, then u
 \end{align}
 where $\alpha$ represents the colour charge of the quarks under the strong interaction \cite{m}.
 We can define the weak isospin quantum number $T$ analagous to spin; in the left-handed doublet: up-type quarks and neutrinos have $T_3=+\frac12$, and down-type quarks and charged leptons have $T_3=-\frac12$.
-Neutrinos only appear in the left-handed doublets and do not form right-handed singlets, as there is currently no experimental evidence for their existence.
+Neutrinos only appear in the left-handed doublets and do not form right-handed singlets, or if they do, these do not interact with the rest of the Standard Model.
 So right- and left-handed fermions are in different SU(2) multiplets; this represents a parity violation in the Standard Model which is also found in nature. 
 This is an important criterion of a theory of nature, as will be discussed more in section \ref{subsec:flavobs}.
 
@@ -151,7 +151,7 @@ To solve this problem, the Higgs mechanism can be introduced as a way to spontan
 The Lagrangian of the scalar Higgs reads
 \begin{equation}
     \label{eq:higgslag}
-    \mathcal{L} = (D^\mu\phi)^\dagger(D_\mu\phi) - V(\phi).
+    \mathcal{L} = (D^\mu\Phi)^\dagger(D_\mu\Phi) - V(\Phi).
 \end{equation}
 Consider a complex scalar field under the SU(2) left-handed doublet representation,
 \begin{equation}
@@ -165,16 +165,16 @@ The covariant derivative in Eq.\eqref{eq:higgslag} is that defined for SU(2)$\ot
     D_\mu\phi = \left(\partial_\mu + igT^iW_\mu^i + \frac{i}{2}g'B_\mu\right)\phi,
 \end{equation}
 with $W^i_\mu$ and $B_\mu$ the gauge fields of SU(2)$_L$ and U(1)$_Y$, and $g$ and $g'$ the SU(2) and U(1) gauge couplings respectively. 
-The Higgs potential $V(\phi)$ in Eq.\eqref{eq:higgslag} is defined as
+The Higgs potential $V(\Phi)$ in Eq.\eqref{eq:higgslag} is defined as
 \begin{equation}
     \label{eq:goldpot}
-    V(\phi) = -\mu^2\phi^\dagger\phi + \lambda(\phi^\dagger\phi)^2.
+    V(\phi) = -\mu^2\Phi^\dagger\Phi + \lambda(\Phi^\dagger\Phi)^2.
 \end{equation}
 If $\mu^2>0$, then the scalar field will acquire a non-zero vacuum expectation value (VEV), which will spontaneously break the symmetry. 
 The VEV can be defined as
 \begin{equation}
     \label{eq:vev}
-    \langle\phi\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}0\\v\end{pmatrix}.
+    \langle\Phi\rangle = \frac{1}{\sqrt{2}}\begin{pmatrix}0\\v\end{pmatrix}.
 \end{equation}
 To ensure that the symmetry of electromagnetism is not broken, the scalar field $\phi^0$ is taken to have charge $Q=0$.
 Under this scheme, both the hypercharge $Y$ and the weak isospin $T_3$ are not conserved, but the specific combination of them which is defined as electric charge, $Q=T_3+\frac12 Y$ is conserved, so the electroweak symmetry is spontaneously broken to form a U(1) symmetry of electric charge $Q$,
@@ -236,9 +236,9 @@ These can be diagonalised in which the constituent states are the mass eigenstat
     \label{eq:massmat}
     \frac{v}{\sqrt{2}}V_1^\dagger Y_uV_1 &= \begin{pmatrix} m_u & & \\ & m_c & \\ & & m_t\end{pmatrix}, & \frac{v}{\sqrt{2}}V_2^\dagger Y_dV_2 &= \begin{pmatrix} m_d & & \\ & m_s & \\ & & m_b\end{pmatrix}.
 \end{align}
-However, generally, these cannot both be diagonalised simultaneously; this could be the case, but we do not start with this in case it is not so. %re-word mayhaps?
+It is possible for these matrices to be diagonalised simultaneously, however, this is not generally expected so we do not start under that assumption. 
 By convention, it is chosen to diagonalise the up-type quarks, and then rotate the down-type quarks between their weak eigenstates and their mass eigenstates \cite{l}. 
-The famous CKM matrix, defined $V_{CKM}\equiv V_1^\dagger V_2$, is the matrix connecting to mass and weak eigenstates,
+The famous Cabibbo-Kobayashi-Maskawa (CKM) matrix, defined $V_{CKM}\equiv V_1^\dagger V_2$, is the matrix connecting to mass and weak eigenstates,
 \begin{equation}
     \label{eq:ckmone}
     \begin{pmatrix} d \\ s \\ b\end{pmatrix} = V_{CKM}\begin{pmatrix} d' \\ s' \\ b'\end{pmatrix},
@@ -253,13 +253,13 @@ The strengths of quark coupling are stored in elements of the CKM matrix as
 \end{align}
 These individual elements can be found through quark coupling processes. 
 For better understanding of the CKM matrix however, it can be easier to parameterise it. 
-There are many parameterisations that can be used for this, though the two most common are the \emph{standard parameterisation}, which is an exact parameterisation, and the \emph{Wolfenstein parameterisation}, which is an approximation \cite{l}.
+There are many parameterisations that can be used for this, though the two most common are the \emph{standard parameterisation} \cite{d}, which is an exact parameterisation, and the \emph{Wolfenstein parameterisation}, which is an approximation \cite{wolf}.
 The standard parameterisation follows from extension of the Cabibbo angle for mixing between the first and second generations, where we now use three Cabibbo-like matrices for interactions of two quark generations, and multiply them for the CKM matrix, including a phase required by the formation of a $3\times3$ unitary matrix:
 \begin{equation}
     \label{eq:standpar}
     \begin{split}
         V_{CKM} &= \begin{pmatrix}1&0&0\\0&\cos\theta_{23}&\sin\theta_{23}\\0&-\sin\theta_{23}&\cos\theta_{23}\end{pmatrix}\begin{pmatrix}\cos\theta_{13}&0&\sin\theta_{13}e^{i\delta}\\0&1&0\\-\sin\theta_{13}e^{i\delta}&0&\cos\theta_{13}\end{pmatrix}\begin{pmatrix}\cos\theta_{12}&\sin\theta_{12}&0\\-\sin\theta_{12}&\cos\theta_{12}&0\\0&0&1\end{pmatrix}\\
-                &= \begin{pmatrix}c_{12}c_{13} & s_{12}c_{13} & s_{13}e^{-i\delta} \\ -s_{12}c_{23}-c_{12}s_{23}s_{13}e^{i\delta} & c_{12}c_{23}-s_{12}s_{23}s_{13}e^{i\delta} & s_{23}c_{13} \\ s_{12}c_{23}-c_{12}c_{23}s_{13}e^{i\delta} & -c_{12}s_{23}-s_{12}c_{23}s_{12}e^{i\delta} & c_{23}c_{13}\end{pmatrix}
+                &= \begin{pmatrix}c_{12}c_{13} & s_{12}c_{13} & s_{13}e^{-i\delta} \\ -s_{12}c_{23}-c_{12}s_{23}s_{13}e^{i\delta} & c_{12}c_{23}-s_{12}s_{23}s_{13}e^{i\delta} & s_{23}c_{13} \\ s_{12}c_{23}-c_{12}c_{23}s_{13}e^{i\delta} & -c_{12}s_{23}-s_{12}c_{23}s_{12}e^{i\delta} & c_{23}c_{13}\end{pmatrix}.
     \end{split}
 \end{equation}
 The Wolfenstein parameterisation approximates the standard parameterisation as $\lambda=s_{12}\approx0.22543$, $A\lambda^2=s_{23}$, and $A\lambda^3(\rho-i\eta)=s_{13}e^{-i\delta}$, and performs a Taylor expansion traditionally to order $\lambda^3$ to yield
@@ -296,7 +296,9 @@ It can also be useful to define a unitarity circle through comparison of experim
 \subsection{Flavour Physics and CP Violation}
 \label{subsec:flavobs}
 A significant focus of flavour physics is the study of CP violation - the violation of CP symmetry (the product of Charge and Parity symmetries) in the Standard Model.
-CP symmetry was introduced as a candidate for the fundamental symmetry of Standard Model interactions after Parity violation was discovered in the 1950s.
+CP symmetry was introduced as a candidate for the fundamental symmetry of Standard Model interactions after Parity violation was discovered in 1957 \cite{wu}.
+Not long after, CP violation was also discovered, in 1964 \cite{cpv}.
+
 One of the big questions about the formulation of our universe is why is there an asymmetry between matter and anti-matter. 
 One of the conditions Sakharov found in 1967 to answer this question is a necessity of CP violation \cite{h}: if left-handed baryons interact differently to right-handed anti-baryons, then one of these can be more prominent than the other. 
 Both the electromagnetic and strong forces appear to conserve CP, the weak force, however, through the chiral nature of its couplings, does not.
@@ -611,62 +613,71 @@ Here, it is found as
 
 \begin{thebibliography}{99}
 
-\bibitem{a}
-O. Deschamps et al, \emph{The Two Higgs Doublet Model of Type II facing flavour physics data}, \href{https://arxiv.org/pdf/0907.5135.pdf}{arxiv:0907.5135}.
+\bibitem{n} %gauge transforms
+D. Bailin and A. Love, \emph{Introduction to Gauge Field Theory} (Institute of Physics, 1993).
 
-\bibitem{b}
-G. Degrassi, P. Gambino, and P. Slavich, \emph{SusyBSG: a fortran code for} BR$[B\to X_s\gamma]$ \emph{in the MSSM with Minimal Flavor Violation}, \href{https://arxiv.org/pdf/0712.3265.pdf}{arxiv:0712.3265}.
+\bibitem{o} %Higgs
+M.D. Schwartz, \emph{Quantum Field Theory and the Standard Model} (Cambridge University Press,2018).
 
-\bibitem{c}
-Y. Amhis et al [HFLAV], \emph{Averages of b-hadron, c-hadron, and $\tau$-lepton properties as of 2018}, \href{https://arxiv.org/pdf/1909.12524.pdf}{arxiv:1909.12524}.
+\bibitem{m} %covar deriv
+G. Kane, \emph{Modern Elementary Particle Physics} (Addison-Wesley, 1987).
+
+\bibitem{l} %CKM ref
+J.F. Donoghue, E. Golowich, and B.R. Holstein, \emph{Dynamics of the Standard Model} (Cambridge University Press, 2014).
 
 \bibitem{d}
 M. Tanabashi et al [Particle Data Group], Phys. Rev. D98, 030001 (2018) and 2019 update
 
-\bibitem{e}
-A. Sibidanov et al [Belle], \emph{Study of Exclusive $B\to X_ul\nu$ Decays and Extraction of $|V_{ub}|$ using Full Reconstruction Tagging at the Belle Experiment}, \href{https://arxiv.org/pdf/1306.2781.pdf}{arxiv:1306.2781}.
-
-\bibitem{f}
-A. Lenz and G. Tetlalmatzi-Xolocotzi, \emph{Model-independent bounds on new physics effects in non-leptonic tree-level decays of B-mesons}, \href{https://arxiv.org/pdf/1912.07621.pdf}{arxiv:1912.07621}.
+\bibitem{wolf}
+L. Wolfenstein, \emph{Parametrization of the Kobayashi-Maskawa Matrix}, Phys. Rev. Lett. \textbf{51} (1983), doi:10.1103/PhysRevLett.51.1945.
 
 \bibitem{g}
 CKMfitter Group (J. Charles et al.), Eur. Phys. J. C41, 1-131 (2005) [hep-ph/0406184], updated results and plots available at: \href{http://ckmfitter.in2p3.fr}{http://ckmfitter.in2p3.fr}.
 
+\bibitem{wu}
+C. Wu at al, \emph{Experimental Test of Parity Conservation in $\beta$ Decay}, Phys. Rev. \textbf{105} (1957), 1413-1414, doi:10.1103/PhysRev.105.1413.
+
+\bibitem{cpv}
+J. Chistenson et al, \emph{Evidence for the $2\pi$ Decay of the $K_2^0$ Meson}, Phys. Rev. Lett. \textbf{13} (1964), 138-140, doi:10.1103/PhysRevLett.13.138.
+
 \bibitem{h}
 A. Sakharov, \emph{Violation of CP Invariance, C asymmetry, and Baryon Asymmetry of the Universe}, Pisma Zh. Eksp. Teor. Fiz. 5 (1967) 32 [JETP Lett. 5 (1967) 24] [Sov. Phys. Usp. 34 (1991) 392] [Usp. Fiz. Nauk 161 (1991) 61].
 
+\bibitem{p}
+T.G. Rizzo, \emph{Z' Phenomenology and the LHC}, \href{https://arxiv.org/pdf/hep-ph/0610104.pdf}{arxiv:0610104}.
+
+\bibitem{r}
+A. Lenz, \emph{Constraints on a Fourth Generation of Fermions from Higgs Boson Searches}, Advances in High Energy Physics \textbf{2013}, 1 (2013).
+
+\bibitem{q}
+S. Bar-Shalom, M. Geller, S. Nandi, and A. Soni, \emph{Two Higgs doublets, a 4th generation and a 125 GeV Higgs: a review}, \href{https://arxiv.org/pdf/1208.3195v2.pdf}{arxiv:1208.3195}.
+
+\bibitem{s}
+G.C. Branco et al, \emph{Theory and phenomenology of two-Higgs-doublet models}, \href{https://arxiv.org/pdf/1106.0034.pdf}{arxiv:1106.0034}.
+
+\bibitem{a}
+O. Deschamps et al, \emph{The Two Higgs Doublet Model of Type II facing flavour physics data}, \href{https://arxiv.org/pdf/0907.5135.pdf}{arxiv:0907.5135}.
+
 \bibitem{i}
 L. Di Luzio, M. Kirk, A. Lenz, T. Rauh, \emph{$\Delta M_s$ theory precision confronts flavour anomalies}, \href{https://arxiv.org/pdf/1909.11087.pdf}{arxiv:1909.11087}.
+
+\bibitem{b}
+G. Degrassi, P. Gambino, and P. Slavich, \emph{SusyBSG: a fortran code for} BR$[B\to X_s\gamma]$ \emph{in the MSSM with Minimal Flavor Violation}, \href{https://arxiv.org/pdf/0712.3265.pdf}{arxiv:0712.3265}.
+
+\bibitem{f}
+A. Lenz and G. Tetlalmatzi-Xolocotzi, \emph{Model-independent bounds on new physics effects in non-leptonic tree-level decays of B-mesons}, \href{https://arxiv.org/pdf/1912.07621.pdf}{arxiv:1912.07621}.
+
+\bibitem{c}
+Y. Amhis et al [HFLAV], \emph{Averages of b-hadron, c-hadron, and $\tau$-lepton properties as of 2018}, \href{https://arxiv.org/pdf/1909.12524.pdf}{arxiv:1909.12524}.
+
+\bibitem{e}
+A. Sibidanov et al [Belle], \emph{Study of Exclusive $B\to X_ul\nu$ Decays and Extraction of $|V_{ub}|$ using Full Reconstruction Tagging at the Belle Experiment}, \href{https://arxiv.org/pdf/1306.2781.pdf}{arxiv:1306.2781}.
 
 \bibitem{j}
 S. Aoki et al [FLAG], \emph{FLAG Review 2019}, \href{https://arxiv.org/pdf/1902.08191.pdf}{arxiv:1902.08191}.
 
 \bibitem{k}
 A. Lenz, private correspondence.
-
-\bibitem{l} %CKM ref
-J.F. Donoghue, E. Golowich, and B.R. Holstein, \emph{Dynamics of the Standard Model} (Cambridge University Press, 2014).
-
-\bibitem{m} %covar deriv
-G. Kane, \emph{Modern Elementary Particle Physics} (Addison-Wesley, 1987).
-
-\bibitem{n} %gauge transforms
-D. Bailin and A. Love, \emph{Introduction to Gauge Field Theory} (Institute of Physics, 1993).
-
-\bibitem{o} %Higgs
-M.D. Schwartz, \emph{Quantum Field Theory and the Standard Model} (Cambridge University Press, 2018).
-
-\bibitem{p}
-T.G. Rizzo, \emph{Z' Phenomenology and the LHC}, \href{https://arxiv.org/pdf/hep-ph/0610104.pdf}{arxiv:0610104}.
-
-\bibitem{q}
-S. Bar-Shalom, M. Geller, S. Nandi, and A. Soni, \emph{Two Higgs doublets, a 4th generation and a 125 GeV Higgs: a review}, \href{https://arxiv.org/pdf/1208.3195v2.pdf}{arxiv:1208.3195}.
-
-\bibitem{r}
-A. Lenz, \emph{Constraints on a Fourth Generation of Fermions from Higgs Boson Searches}, Advances in High Energy Physics \textbf{2013}, 1 (2013).
-
-\bibitem{s}
-G.C. Branco et al, \emph{Theory and phenomenology of two-Higgs-doublet models}, \href{https://arxiv.org/pdf/1106.0034.pdf}{arxiv:1106.0034}.
 
 % Please avoid comments such as "For a review'', "For some examples",
 % "and references therein" or move them in the text. In general,

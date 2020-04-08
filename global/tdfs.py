@@ -12,7 +12,7 @@ def tdfits(
         mu,mu_err,md,md_err,mc,mc_err,ms,ms_err,mb,mb_err,mt,mt_err,mW,mW_err,
         mbs,mbs_err,mbd,mbd_err,mmu,mmu_err,
         Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,
-        fBs,fBs_err,fBd,fBderr,tbs,tbs_err,tbd,tbd_err,alp_EM,
+        fBs,fBs_err,fBd,fBd_err,tbs,tbs_err,tbd,tbd_err,alp_EM,
         wangle,wangle_err,lam_QCD,QCD_err,higgs,higgs_err,vev,vev_err,
         SOblique,SOblique_err,TOblique,TOblique_err,UOblique,UOblique_err,mZ,mZ_err):
     '''
@@ -41,9 +41,9 @@ def tdfits(
     sige_UOblique=sigma*(UOblique_up-av_UOblique)
 
     chis,chi_min = [],[100,0,0,0]
-    log_mH = np.linspace(0.5,3.5,300)
-    log_tanb = np.linspace(-1,2,300)
-    log_mA = np.linspace(0.5,3.5,300)
+    log_mH = np.linspace(1,3.5,125)
+    log_tanb = np.linspace(-1,2,150)
+    log_mA = np.linspace(1,3.5,125)
     mHs,tanbs,mAs = 10**log_mH,10**log_tanb,10**log_mA
     mH_loc,tanb_loc,mA_loc = [],[],[]
 

@@ -128,11 +128,11 @@ UOblique, UOblique_err=[0.00,[0.09,-0.09]]
 ###################### GLOBAL CONSTRAINT
 
 #mHs, tanbs, mAs, chis, chi_min = tdfits(
-#        bs_exp,bs_exp_err,
+#        bs_exp,bs_exp_err,bd_exp,bd_exp_err,
 #        m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt,mt_err,mW,mW_err,
-#        mBs,mBs_err,m_mu,m_mu_err,
+#        mBs,mBs_err,mBd,mBd_err,m_mu,m_mu_err,
 #        Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,
-#        fBs,fBs_err,taubs,taubs_err,1/137,
+#        fBs,fBs_err,f_bplus,f_bplus_err,taubs,taubs_err,taubd,taubd_err,1/137,
 #        wangle,wangle_err,lambda_QCD,QCD_err,higgs,higgs_err,vev,vev_err,
 #        SOblique,SOblique_err,TOblique,TOblique_err,UOblique,UOblique_err,mZ,mZ_err)
 #
@@ -172,6 +172,7 @@ tl, tb, tg, ta, tmu, tl2, tS, tT, tU = tanbs
 chi_ls, chi_ms, chi_gs, chi_as, chi_mus, chi_2s, chi_Ss, chi_Ts, chi_Us = chis #all chisq values
 
 m1,m2 = 2.30,5.99 #different confidence levels for chisq fit
+nu = 11 # degrees of freedom
 
 # returns mH, tanb values, and 'edges' which is to draw around the perimeters of regions
 hchi_leps, tchi_leps, lep_edges_e = chi_del(min(chi_ls),chi_ls,hl,tl,m2) #chisq fit to 95% CL
@@ -207,7 +208,7 @@ print [10**min(tchi_2),10**max(tchi_2)], [10**min(tchi_22), 10**max(tchi_22)]
 print chi_2[0]/11 # reduced chisq, nu = 16 observables - 2 free parameters
 print chi_2
 
-p_val, p_err = p_vals(chi_2[0],11)
+p_val, p_err = p_vals(chi_2[0],nu)
 print "p-value for global fit with 11 degrees of freedom is: ", "{:.1%}".format(p_val)#, " +/- ", p_err
 
 # plotting! scatter plots for regions, then the for loops plot out the outline
