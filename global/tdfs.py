@@ -41,9 +41,9 @@ def tdfits(
     sige_UOblique=sigma*(UOblique_up-av_UOblique)
 
     chis,chi_min = [],[100,0,0,0]
-    log_mH = np.linspace(1,3.5,125)
+    log_mH = np.linspace(2,3.5,75)
     log_tanb = np.linspace(-1,2,150)
-    log_mA = np.linspace(1,3.5,125)
+    log_mA = np.linspace(2,3.5,75)
     mHs,tanbs,mAs = 10**log_mH,10**log_tanb,10**log_mA
     mH_loc,tanb_loc,mA_loc = [],[],[]
 

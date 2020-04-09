@@ -1,5 +1,6 @@
 from __future__ import division
 import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from scipy.spatial import Delaunay
 from functions import *
@@ -127,24 +128,24 @@ TOblique, TOblique_err=[0.07,[0.12,-0.12]]
 UOblique, UOblique_err=[0.00,[0.09,-0.09]]
 ###################### GLOBAL CONSTRAINT
 
-#mHs, tanbs, mAs, chis, chi_min = tdfits(
-#        bs_exp,bs_exp_err,bd_exp,bd_exp_err,
-#        m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt,mt_err,mW,mW_err,
-#        mBs,mBs_err,mBd,mBd_err,m_mu,m_mu_err,
-#        Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,
-#        fBs,fBs_err,f_bplus,f_bplus_err,taubs,taubs_err,taubd,taubd_err,1/137,
-#        wangle,wangle_err,lambda_QCD,QCD_err,higgs,higgs_err,vev,vev_err,
-#        SOblique,SOblique_err,TOblique,TOblique_err,UOblique,UOblique_err,mZ,mZ_err)
-#
-#fig = plt.figure()
-#ax = fig.add_subplot(111,projection='3d')
-#ax.plot_surface(tanbs,mAs,mHs,c='darkorchid')
-#ax.set_xlabel('$\\log[\\tan\\beta]$')
-#ax.set_ylabel('$\\log[m_{A^0}\,(GeV)]$')
-#ax.set_zlabel('$\\log[m_{H^+}\,(GeV)]$')
-#plt.show()
-#
-#quit()
+mHs, tanbs, mAs, chis, chi_min = tdfits(
+        bs_exp,bs_exp_err,bd_exp,bd_exp_err,
+        m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt,mt_err,mW,mW_err,
+        mBs,mBs_err,mBd,mBd_err,m_mu,m_mu_err,
+        Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,
+        fBs,fBs_err,f_bplus,f_bplus_err,taubs,taubs_err,taubd,taubd_err,1/137,
+        wangle,wangle_err,lambda_QCD,QCD_err,higgs,higgs_err,vev,vev_err,
+        SOblique,SOblique_err,TOblique,TOblique_err,UOblique,UOblique_err,mZ,mZ_err)
+
+fig = plt.figure()
+ax = fig.add_subplot(111,projection='3d')
+ax.scatter(tanbs,mAs,mHs,c='darkorchid')
+ax.set_xlabel('$\\log[\\tan\\beta]$')
+ax.set_ylabel('$\\log[m_{A^0}\,(GeV)]$')
+ax.set_zlabel('$\\log[m_{H^+}\,(GeV)]$')
+plt.show()
+
+quit()
 #big ol function for everything 
 mHs, tanbs, chis, chi_2 = itera_global(
         bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,
