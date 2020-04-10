@@ -338,7 +338,7 @@ A key indicator on this extension is in the Higgs mechanism.
     \includegraphics{../notes/higgs.pdf}
     \caption{\label{fig:higgs} Higgs boson production through the top quark loop.}
 \end{figure}
-The Higgs couples more strongly to heavier particles, so the top-Higgs vertex seen in figure \ref{fig:higgs} should be replicated with the theoretical $t'$ and $b'$ quarks with increased amplitudes. 
+The Higgs couples more strongly to heavier particles, so the top-Higgs vertex seen in Figure \ref{fig:higgs} should be replicated with the theoretical $t'$ and $b'$ quarks with increased amplitudes. 
 However, when just considering the SM4 model, the new prediction of the Higgs scattering amplitude is far greater than that observed \cite{sm4}. 
 It could be possible that the SM4 model is physical, but would also need another extension to resolve its issues, such as the Two Higgs Doublet Model discussed below \cite{shal}. 
 
@@ -471,7 +471,7 @@ The radiative decay $b\to s\gamma$ occurs through the flavour-changing neutral c
 The Standard Model calculations of $\bar{B}\to X_s\gamma$ have been performed up to Next-to-Next Leading Order (NNLO), which yields a complicated expression, so the result is parameterised in line with \cite{desc,susy}.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,trim=0 2em 0 0]{bsgam.pdf}
+    \includegraphics[width=\textwidth]{bsgam.pdf}
     \caption{\label{fig:bsgam} One-loop penguin diagrams for $b\to s\gamma$ decay.}
 \end{figure}
 Similarly to B meson mixing, W can be substituted for a charged Higgs in all the relevant penguin diagrams, giving extra contributions again to the theory. 
@@ -488,6 +488,7 @@ $P$ and $N$ are parameterised in \cite{desc,susy} as
     P+N = (C^{\text{eff},(0)}_{7,SM}+B\Delta C_{7,H^+}^{\text{eff},(0)})^2+A,
 \end{equation}
 where $A$ and $B$ are functions defined in \cite{desc}, $C_{7,SM}^{\text{eff},(0)}$ is one of the Wilson coefficients of the effective Hamiltonian in the SM, and $\Delta C_{7,H^+}^{\text{eff},(0)}$ holds the charged Higgs contributions to the SM Wilson coefficient. 
+Although these expressions are calculated to NLO, in calculating the above Wilson coefficients, we choose a renormalisation scheme $\mu_b$ such that we recover the results of the NNLO calculation. 
 
 In Eq.\eqref{eq:xsgam}, $C$ is the non-perturbative phase-space normalisation factor for the difference between the charmed semileptonic branching ratio and $\bar{B}\to X_s\gamma$. 
 From \cite{bmes}, it is defined as 
@@ -509,16 +510,22 @@ The 2HDM-extended branching ratios were tested in $(m_{H^+},\tan\beta)$ paramete
         \hline\hline
         Branching Ratios & Value & Unit & Reference \\
         \hline\hline
-        $\mathcal{B}[B\to\tau\nu]$ & $1.09\pm0.24$ & $10^{-4}$ & \cite{pdg} \\
-        $\mathcal{B}[D\to\mu\nu]$ & $3.82\pm0.33$ & $10^{-4}$ & \cite{pdg} \\
-        $\mathcal{B}[D_s\to\tau\nu]$ & $5.48\pm0.23$ & $10^{-2}$ & \cite{pdg} \\
-        $\Gamma[K\to\mu\nu]/\Gamma[\pi\to\mu\nu]$ & $1.337\pm0.003$ & & \cite{pdg} \\
-        $\Gamma[\tau\to K\nu]/\Gamma[\tau\to\pi\nu]$ & $6.438\pm0.094$ & $10^{-2}$ & \cite{pdg} \\
-        $\Delta m_d$ & $0.5064\pm0.0019$ & $ps^{-1}$ & \cite{hflav} \\ 
-        $\Delta m_s$ & $17.757\pm0.021$ & $ps^{-1}$ & \cite{hflav} \\
-        $\mathcal{B}[\bar{B}\to X_s\gamma]$ & $3.32\pm0.15$ & $10^{-4}$ & \cite{hflav,bmes} \\
-        $\mathcal{B}[\bar{B}\to X_c e\bar{\nu}]$ & $10.65\pm0.16$ & $10^{-2}$ & \cite{hflav,pdg} \\
-        $\Gamma[\bar{B}\to X_ue\bar{\nu}]$ & $8.41\pm0.59$ & $10^{-4}$ & \cite{bxu} \\
+        $\mathcal{B}r[B^+\to\mu^+\nu_\mu]$ & $5.3\pm2.2$ & $10^{-7}$ & \\
+        $\mathcal{B}r[B^+\to\tau^+\nu_\tau]$ & $1.09\pm0.24$ & $10^{-4}$ & \cite{pdg} \\
+        $\mathcal{B}r[D^+\to\mu^+\nu_\mu]$ & $3.82\pm0.33$ & $10^{-4}$ & \cite{pdg} \\
+        $\mathcal{B}r[D_s^+\to\mu^+\nu_\mu]$ & $5.52\pm0.16$ & $10^{-3}$ & \cite{pdg} \\
+        $\mathcal{B}r[D_s^+\to\tau^+\nu_\tau]$ & $5.48\pm0.23$ & $10^{-2}$ & \cite{pdg} \\
+        $\Gamma[K^+\to\mu^+\nu_\mu]/\Gamma[\pi^+\to\mu^+\nu_\nu]$ & $1.337\pm0.003$ & & \cite{pdg}\\
+        $\Gamma[\tau^+\to K^+\nu_\tau]/\Gamma[\tau^+\to\pi^+\nu_\tau]$ & $6.438\pm0.094$ & $10^{-2}$ & \cite{pdg} \\
+        $\Delta m_d$ & $0.5064\pm0.0019$ & ps$^{-1}$ & \cite{hflav} \\ 
+        $\Delta m_s$ & $17.757\pm0.021$ & ps$^{-1}$ & \cite{hflav} \\
+        $\mathcal{B}r[\bar{B}\to X_s\gamma]$ & $3.32\pm0.15$ & $10^{-4}$ & \cite{hflav,bmes} \\
+        $\mathcal{B}r[\bar{B}\to X_c e\bar{\nu}]$ & $10.65\pm0.16$ & $10^{-2}$ & \cite{hflav,pdg} \\
+        $\mathcal{B}r[\bar{B}\to X_ue\bar{\nu}]$ & $8.41\pm0.59$ & $10^{-4}$ & \cite{bxu} \\
+        $\mathcal{B}r[B_d\to\mu^+\mu^-]$ & $1.4^{+1.6}_{-1.4}$ & $10^{-10}$ & \cite{pdg} \\
+        $\mathcal{B}r[B_s\to\mu^+\mu^-]$ & $3.1\pm0.7$ & $10^{-9}$ & \cite{hflav} \\
+        $\mathcal{R}(D)$ & $0.340\pm0.030$ & & \cite{hflav} \\
+        $\mathcal{R}(D^*)$ & $0.298\pm0.014$ & & \cite{hflav} \\
         \hline\hline
     \end{tabular}
     \caption{\label{tab:branches}Branching ratios using in testing parameter space of 2HDM Type II. In the case of normalised ratios, values have been calculated using the constituent values taken from reference.}
@@ -533,7 +540,7 @@ The 2HDM-extended branching ratios were tested in $(m_{H^+},\tan\beta)$ paramete
         \hline\hline
         $f_K/f_\pi$ & $1.1932\pm0.0019$ & & \cite{pdg}\\
         $f_B$ & $190\pm1.3$ & MeV & \cite{flag} \\
-        $f_{B_s}$ & $230.3\pm1.3$ & MeV & \cite{flag} \\
+        $f_{B_s}$ & $230\pm1.3$ & MeV & \cite{flag} \\
         $f_D$ & $212\pm0.7$ & MeV & \cite{flag} \\
         $f_{D_s}$ & $249.9\pm0.5$ & MeV & \cite{flag} \\
         \hline\hline
@@ -544,30 +551,37 @@ The 2HDM-extended branching ratios were tested in $(m_{H^+},\tan\beta)$ paramete
         \hline\hline
         \multicolumn{4}{c}{\bfseries B meson mixing} \\
         \hline\hline
-        $\hat{B}_{B_d}$ & $1.268\pm0.042$ & & \cite{bmix} \\
-        $\hat{B}_{B_s}$ & $1.290\pm0.035$ & & \cite{bmix} \\
-        $\eta_B$ & $0.537856$ & & \cite{alex} \\
+        $f^2_{B_d}B_{B_d}$ & $0.0305\pm0.0011$ & GeV$^2$ & \cite{bmix} \\
+        $f^2_{B_s}B_{B_s}$ & $0.0452\pm0.0014$ & GeV$^2$ & \cite{bmix} \\
+        $\hat{\eta}_B$ & $0.838606$ & & \cite{alex} \\
         \hline\hline
         \multicolumn{4}{c}{$b\to s\gamma$ parameters} \\
         \hline\hline
         $m_t^{pole}$ & $173.1\pm0.9$ & GeV & \cite{pdg} \\
         $\alpha_S(m_Z)$ & $0.1179\pm0.001$ & & \cite{pdg} \\
+        $\mu_b$ & $1.095$ & GeV & \\
         \hline\hline
     \end{tabular}
     \caption{\label{tab:params} Parameters used in the 2HDM fits for decays outlined in sections \ref{subsec:lep}-\ref{subsec:rad}.}
 \end{table}
-The individual constraints found for leptonic decays, B meson mixing, and the radiative $b\to s\gamma$ decay are shown in figure \ref{fig:indies} in a log-log scale.
-After the constraints on the 2HDM for each individual process were found, they were combined for a global fit shown in figure \ref{subfig:glob11} (again in a log-log scale), yielding an overall allowed region in $(m_{H^+},\tan\beta)$ space. 
+The individual constraints found for leptonic decays, B meson mixing, and the radiative $b\to s\gamma$ decay are shown in Figure \ref{fig:indies} in a log-log scale.
+After the constraints on the 2HDM for each individual process were found, they were combined for a global fit shown in Figure \ref{subfig:glob11} (again in a log-log scale), yielding an overall allowed region in $(m_{H^+},\tan\beta)$ space. 
+
+For each constraint, a scan was performed to $2\sigma$ to find regions where the parameter space is not excluded at this level. 
+A $\chi^2$ fit was then performed to constrain these regions to where $\Delta\chi^2$ corresponded to 95\% CL exclusion, such that each region shown in these Figures shows what is not excluded to 95\% CL.
+For the combined fit, we also show the $1\sigma$ confidence region. 
 
 To test the validity of these results, we also show what our calculations produce for 2009 inputs, as done in \cite{desc}.
-This fit is shown in figure \ref{subfig:glob08}, where it is seen to replicate the previous results, finding $m_{H^+} \gtrapprox 316\,\text{GeV}$ at 95\% CL.
+This fit is shown in Figure \ref{subfig:glob08}, where it is seen to replicate the previous results, finding $m_{H^+} \gtrapprox 316\,\text{GeV}$ at 95\% CL.
 \begin{figure}[ht]
     \vspace{-12pt}
     \centering
     \includegraphics[width=0.49\textwidth]{indy/leps.png}
     \includegraphics[width=0.49\textwidth]{indy/bmix.png}
     \includegraphics[width=0.49\textwidth]{indy/bsgamma.png}
-    \caption{\label{fig:indies}Constraints of $(m_{H+},\tan\beta)$ space from leptonic decays (top left), meson mixing (top right), and the radiative $b\to s\gamma$ decay (bottom). The leptonic decays used were $B^+\to\tau^+\nu$, $D^+\to\mu^+\nu$, $D_s^+\to\tau^+\nu$, and the ratios $K\to\mu\nu/\pi\to\mu\nu$ and $\tau\to K\nu/\tau\to\pi\nu$. The meson mixings considered are that of $B^0_d$ and $B_s^0$.}
+    \caption{\label{fig:indies}Constraints of $(m_{H+},\tan\beta)$ space from leptonic decays (top left), $B_d$ and $B_s$ mixing (top right), and the radiative $b\to s\gamma$ decay (bottom). The leptonic decays used were $B^+\to\tau^+\nu$, $D^+\to\mu^+\nu$, $D_s^+\to\tau^+\nu$, and the ratios $K\to\mu\nu/\pi\to\mu\nu$ and $\tau\to K\nu/\tau\to\pi\nu$. 
+        The solid black vertical line (top right) shows $\tan\beta=m_t/m_b$, as for $\tan\beta$ much greater than this, the formulae for B mixing become invalid. 
+    Each region shows what is not excluded to 95\% CL, as discussed in the text.}
 \end{figure}
 \begin{figure}[ht]
     \centering
@@ -576,23 +590,32 @@ This fit is shown in figure \ref{subfig:glob08}, where it is seen to replicate t
         \caption{\label{subfig:glob08}Global fit with 2009 inputs.}
     \end{subfigure}
     \begin{subfigure}[b]{0.48\textwidth}
-        \includegraphics[width=\textwidth]{global.png}
+        \includegraphics[width=\textwidth]{../global/global_test_min.png}
         \caption{\label{subfig:glob11}Global fit with 2020 inputs.}
     \end{subfigure}
-    \caption{\label{fig:glob1} Global fit of constraints on $m_{H+}$ and $\tan\beta$ from all observables considered. The green, blue, and coral regions represent constraints shown individually in figure \ref{fig:indies}, and the orange region is the global constraint to $1\sigma$.}
+    \caption{\label{fig:glob1} Global fit of constraints on $m_{H+}$ and $\tan\beta$ from all observables considered. 
+    Each region shows what is not excluded for the relevant observables to 95\% CL as discussed in the text, then the line within the orange region for all observables marks out the $1\sigma$ confidence area. 
+    The solid black vertical line shows $\tan\beta=m_t/m_b$, as for $\tan\beta$ much greater than this, the formulae for B mixing become invalid. 
+    The dashed black horizontal line marks the limit for a charged Higgs particle from direct searches, at $m_{H^+}>160\,$GeV.}
 \end{figure}
-In previous works, such as \cite{desc}, the global fit has extended to the very top of the parameter space, so it could not be ruled out that the allowed region did not extend higher. 
-However, here it can be seen that the global constraint region is limited to within the region of parameter space shown, so both upper and lower limits for the 2HDM parameters can be found.
-Here, it is found as
+
+The 2HDM is generally taken to be a decoupling theory. 
+That is, taking the limit $m_{H^+} \to \infty$ should recover the Standard Model picture of physics.
+For as far as we scan here, this is reinforced in our results, such that there is no upper bound on $m_{H^+}$. 
+We also see that for the combined fit, $\tan\beta$ will extend both to smaller and larger values as $m_{H^+}\to\infty$, such that there is no definitive constraint on $\tan\beta$. 
+There is, however, a clear indication of a minimum allowed value for $m_{H^+}$, found here as
 \begin{align}
     \label{eq:const}
-    370 &< m_{H+} (\text{GeV}) < 891, & 2.16 &< \tan\beta < 33.0.
+    m_{H^+} >
+    \begin{split}
+         &\; 480 \;\text{GeV},\quad 95\% \text{ CL},\\
+         &\; 750 \;\text{GeV},\quad 1\sigma.
+    \end{split}
 \end{align}
-% IGNORE TANB BOUNDS, NO UPPER LIMIT ON MH
 
-\section{New Observables}
-
-\section{Statistical Fitting}
+\subsection{New Observables}
+\label{sec:rdbmu}
+In the last 10 years, more flavour observables 
 
 \section{Results With James}
 

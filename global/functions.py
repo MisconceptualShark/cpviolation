@@ -449,11 +449,14 @@ def bmumu(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,mc,mu,wangle,higgs,v,Vus
     z1,z2,y,yh,yH0 = (mu/mH)**2,(mc/mH)**2,(mW/mH)**2,(mH/higgs)**2,(mH/mH0)**2
     z3t,z3w = (mtmut/mH)**2,(mtmu/mH)**2
     el = np.sqrt(4*np.pi/137)
+    #cba,sba = np.sin(2*b),-np.sin(2*b)
     cba,sba = np.cos(b-a),np.sin(b-a)
     Lp = (yh*cba**2 + yH0*sba**2)*(-2*tanb*mmu/v)
     Lm = -1*Lp
     lamh = -((higgs**2)*(3*np.cos(a+b)+np.cos(a-3*b)) + 4*np.sin(2*b)*np.sin(b-a)*mH**2 - 4*np.cos(a+b)*M**2)/(2*np.sin(2*b)*v**2)
     lamH0 = -((mH0**2)*(3*np.sin(a+b)+np.sin(a-3*b)) + 4*np.sin(2*b)*np.cos(b-a)*mH**2 - 4*np.sin(a+b)*M**2)/(2*np.sin(2*b)*v**2)
+    #lamh = -((higgs**2)*(-3*np.sin(2*b)+np.sin(6*b)) - 4*np.sin(2*b)*np.sin(2*b)*mH**2 + 4*np.sin(2*b)*M**2)/(2*np.sin(2*b)*v**2)
+    #lamH0 = -((mH0**2)*(3*np.sin(2*b)-np.sin(6*b)) + 4*np.sin(2*b)*np.sin(2*b)*mH**2 - 4*np.sin(2*b)*M**2)/(2*np.sin(2*b)*v**2)
 
     C10_1 = (1/(2*el**2))*(abs(cob*mtmu/v)**2)*(I1(z3t)-1)
     C10P_1 = -(abs(tanb/v)**2)*(mb*ms/(2*el**2))*(I1(z3t)-1)
@@ -607,10 +610,17 @@ def S2HDMofTheta (mHpm,mA0,mH0,Theta,mW,mZ,mh,Gf,alphaem,wangle):
     +(np.cos(Theta))**2*g(mA0**2,mh**2,mZ**2)\
     +2*np.log(mA0*mH0*(mHpm**(-2)))\
     +(np.cos(Theta))**2*(gHat(mH0**2,mZ**2)-gHat(mh**2,mZ**2)))
+    #S2HDMofTheta=(wangle*Gf*mW**2/(alphaem*12*2**(0.5)*np.pi**2))\
+    #*(((2*wangle-1)**2)*g(mHpm**2,mHpm**2,mZ**2)\
+    #+(-np.sin(2*Theta))**2*g(mA0**2,mH0**2,mZ**2)\
+    #+(np.sin(2*Theta))**2*g(mA0**2,mh**2,mZ**2)\
+    #+2*np.log(mA0*mH0*(mHpm**(-2)))\
+    #+(np.sin(2*Theta))**2*(gHat(mH0**2,mZ**2)-gHat(mh**2,mZ**2)))
     return S2HDMofTheta
 
 def S2HDMofAlphaBeta (mHpm,mA0,mH0,Alpha,Beta,mW,mZ,mh,Gf,alphaem,wangle):
     S2HDMofAlphaBeta=S2HDMofTheta(mHpm,mA0,mH0,Beta-Alpha,mW,mZ,mh,Gf,alphaem,wangle)
+    #S2HDMofAlphaBeta=S2HDMofTheta(mHpm,mA0,mH0,Beta,mW,mZ,mh,Gf,alphaem,wangle)
     return S2HDMofAlphaBeta
 
 def U2HDMofTheta (mHpm,mA0,mH0,Theta,mW,mZ,mh,Gf,alphaem,wangle):
@@ -621,10 +631,18 @@ def U2HDMofTheta (mHpm,mA0,mH0,Theta,mW,mZ,mh,Gf,alphaem,wangle):
     -(np.cos(Theta))**2*g(mA0**2,mh**2,mZ**2)\
     +(np.cos(Theta))**2*(gHat(mH0**2,mW**2)-gHat(mH0**2,mZ**2))\
     -(np.cos(Theta))**2*(gHat(mh**2,mW**2)-gHat(mh**2,mZ**2)))
+    #U2HDMofTheta=((Gf*mW**2)/(48*2**0.5*np.pi**2*alphaem))*(g(mHpm**2,mA0**2,mW**2)\
+    #+(-np.sin(2*Theta))**2*g(mHpm**2,mH0**2,mW**2)+(np.sin(2*Theta))**2*g(mHpm**2,mh**2,mW**2)\
+    #-(2*wangle-1)**2*g(mHpm**2,mHpm**2,mZ**2)\
+    #-(-np.sin(2*Theta))**2*g(mA0**2,mH0**2,mZ**2)\
+    #-(np.sin(2*Theta))**2*g(mA0**2,mh**2,mZ**2)\
+    #+(np.sin(2*Theta))**2*(gHat(mH0**2,mW**2)-gHat(mH0**2,mZ**2))\
+    #-(np.sin(2*Theta))**2*(gHat(mh**2,mW**2)-gHat(mh**2,mZ**2)))
     return U2HDMofTheta
 
 def U2HDMofAlphaBeta (mHpm,mA0,mH0,Alpha,Beta,mW,mZ,mh,Gf,alphaem,wangle):
     U2HDMofAlphaBetta=U2HDMofTheta(mHpm,mA0,mH0,Beta-Alpha,mW,mZ,mh,Gf,alphaem,wangle)
+    #U2HDMofAlphaBetta=U2HDMofTheta(mHpm,mA0,mH0,Beta,mW,mZ,mh,Gf,alphaem,wangle)
     return U2HDMofAlphaBetta
 
 def F(x,y):
@@ -635,6 +653,11 @@ def F(x,y):
     return F
 
 def T(MHpm,MA0,MH0,Theta,mW,mZ,mh,Gf,alphaem):
+    #T=(Gf/(8*(2**0.5)*alphaem*(np.pi)**2))*(F(MHpm**2,MA0**2)+(-np.sin(2*Theta))**2*F(MHpm**2,MH0**2)\
+    #+((np.sin(2*Theta))**2)*F(MHpm**2,mh**2)-((-np.sin(2*Theta))**2)*F(MA0**2,MH0**2)\
+    #-((np.sin(2*Theta))**2)*F(MA0**2,mh**2)\
+    #+3*((np.sin(2*Theta))**2)*(F(mZ**2,MH0**2)-F(mW**2,MH0**2))\
+    #-3*((np.sin(2*Theta))**2)*(F(mZ**2,mh**2)-F(mW**2,mh**2)))
     T=(Gf/(8*(2**0.5)*alphaem*(np.pi)**2))*(F(MHpm**2,MA0**2)+(np.sin(Theta))**2*F(MHpm**2,MH0**2)\
     +((np.cos(Theta))**2)*F(MHpm**2,mh**2)-((np.sin(Theta))**2)*F(MA0**2,MH0**2)\
     -((np.cos(Theta))**2)*F(MA0**2,mh**2)\
@@ -644,6 +667,7 @@ def T(MHpm,MA0,MH0,Theta,mW,mZ,mh,Gf,alphaem):
 
 def T2HDMofAlphaBeta(MHpm,MA0,MH0,Alpha,Beta,mW,mZ,mh,Gf,alphaem):
     Tofalphabeta = T(MHpm,MA0,MH0,Beta-Alpha,mW,mZ,mh,Gf,alphaem)
+    #Tofalphabeta = T(MHpm,MA0,MH0,Beta,mW,mZ,mh,Gf,alphaem)
     return Tofalphabeta
 
 ########## GLOBAL ##########
@@ -831,8 +855,8 @@ def itera_global(
     for i in mH_range:
         for j in tanb_range:
             b = np.arctan(j)
-#            alph = b - np.pi/2 # find alpha in alignment limit
-            alph = b - np.arccos(0.465) # find alpha in wrong sign limit
+            alph = b - np.pi/2 # find alpha in alignment limit
+#            alph = b - np.arccos(0.465) # find alpha in wrong sign limit
             mH0 = 750 # set H0 and A0 masses
             mA0 = 750
             ##### LEPTONICS #####
@@ -925,11 +949,12 @@ def itera_global(
             UOblique_bool=((av_UOblique>=mid_UOblique and mid_UOblique>=av_UOblique-sige_UOblique) or (av_UOblique<=mid_UOblique and mid_UOblique<=av_UOblique+sige_UOblique))
 
             ##### (SEMI-)LEPTONICS #####
-            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool and rd_bool and bpmu_bool and dsmu_bool:
+            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool and bpmu_bool and dsmu_bool:# and rd_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHl_loc = np.append(mHl_loc,i_log)
                 tanbl_loc = np.append(tanbl_loc,j_log)
-                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_rd,av_bm,av_dm],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_rd,mid_bmu,mid_dm],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_rd,sige_bm,sige_dm],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_rd,sig_bmu,sig_dm])
+#                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd])
+                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm])
                 chi_ls = np.append(chi_ls,chi_lij)
             
             ##### MIXING #####
@@ -971,11 +996,11 @@ def itera_global(
                 chi_Us=np.append(chi_Us,chi_Uij)
 
             ##### (SEMI-)LEPTONICS, MIXING, AND BSGAMMA #####
-            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool:
+            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bpmu_bool and dsmu_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHa_loc = np.append(mHa_loc,i_log)
                 tanba_loc = np.append(tanba_loc,j_log)
-                chi_1ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g])
+                chi_1ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bm,av_dm],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bmu,mid_dm],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bm,sige_dm],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bmu,sig_dm])
                 chi_1s = np.append(chi_1s,chi_1ij)
           
             ##### B TO MU MU #####

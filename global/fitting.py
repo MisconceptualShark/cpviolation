@@ -65,7 +65,7 @@ def alpha_shape(points, alpha, only_outer=True):
             add_edge(edges, ic, ia)
     return edges
 
-def chi_del(chi_min,chis,hs,ts,parm,nu):
+def chi_del(chi_min,chis,hs,ts,parm):
     '''
         computes delta chisq, for several CLs? so 2 sigma so 95.45 just now
     '''
@@ -76,7 +76,7 @@ def chi_del(chi_min,chis,hs,ts,parm,nu):
             t_min = np.append(t_min,ts[i])
 
     points = np.vstack([t_min,h_min]).T
-    edges = alpha_shape(points,alpha=0.10,only_outer=True)
+    edges = alpha_shape(points,alpha=0.01,only_outer=True)
 
     return h_min, t_min, [edges,points]
 

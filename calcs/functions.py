@@ -130,49 +130,49 @@ def mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,expect,lam,mbo):
     S_HH = (x_tH1*x_tW1/(4*tanb**4))*((1+x_tH1)/((1-x_tH1)**2)+2*x_tH1*np.log(x_tH1)/((1-x_tH1)**3))
     S_HH1 = (x_tH*x_tW/(4*tanb**4))*((1+x_tH)/((1-x_tH)**2)+2*x_tH*np.log(x_tH)/((1-x_tH)**3))
 
-    Lo = Li2(1-1/x_tW)
-    Lu = Li2(1-x_tW)
-    WW1tt = (4*x_tW+38*(x_tW**2)+6*(x_tW**3))*np.log(x_tW)/(x_tW-1)**4 +(12*x_tW+48*(x_tW**2)+12*(x_tW**3))*Lo/(x_tW-1)**4 +(24*x_tW+48*(x_tW**2))*Lu/(x_tW-1)**4 -(3+28*x_tW+17*(x_tW**2))/(x_tW-1)**3
-    WW1tu = 2*(3+13*x_tW)/(x_tW-1)**2 - 2*x_tW*(5+11*x_tW)*np.log(x_tW)/(x_tW-1)**3 - 12*x_tW*(1+3*x_tW)*Lo/(x_tW-1)**3 - 24*x_tW*(1+x_tW)*Lu/(x_tW-1)**3
-    PP1 = -(x_tW**2)*(7+52*x_tW-11*(x_tW**2))/(4*(x_tW-1)**3) + 3*(x_tW**3)*(4+5*x_tW-x_tW**2)*np.log(x_tW)/(2*(x_tW-1)**4) +3*(x_tW**3)*(3+4*x_tW-x_tW**2)*Lo/(x_tW-1)**4 +18*(x_tW**3)*Lu/(x_tW-1)**4
-    WP1 = 4*(x_tW**2)*(11+13*x_tW)/(x_tW-1)**3  + 2*(x_tW**2)*(5+x_tW)*(1-9*x_tW)*np.log(x_tW)/(x_tW-1)**4 - 24*(x_tW**2)*(1+4*x_tW+x_tW**2)*Lo/(x_tW-1)**4 - 48*(x_tW**2)*(1+2*x_tW)*Lu/(x_tW-1)**4
-    WW1 = WW1tt - WW1tu + 3
-    L1s = WW1 + WP1 + PP1
+    #Lo = Li2(1-1/x_tW)
+    #Lu = Li2(1-x_tW)
+    #WW1tt = (4*x_tW+38*(x_tW**2)+6*(x_tW**3))*np.log(x_tW)/(x_tW-1)**4 +(12*x_tW+48*(x_tW**2)+12*(x_tW**3))*Lo/(x_tW-1)**4 +(24*x_tW+48*(x_tW**2))*Lu/(x_tW-1)**4 -(3+28*x_tW+17*(x_tW**2))/(x_tW-1)**3
+    #WW1tu = 2*(3+13*x_tW)/(x_tW-1)**2 - 2*x_tW*(5+11*x_tW)*np.log(x_tW)/(x_tW-1)**3 - 12*x_tW*(1+3*x_tW)*Lo/(x_tW-1)**3 - 24*x_tW*(1+x_tW)*Lu/(x_tW-1)**3
+    #PP1 = -(x_tW**2)*(7+52*x_tW-11*(x_tW**2))/(4*(x_tW-1)**3) + 3*(x_tW**3)*(4+5*x_tW-x_tW**2)*np.log(x_tW)/(2*(x_tW-1)**4) +3*(x_tW**3)*(3+4*x_tW-x_tW**2)*Lo/(x_tW-1)**4 +18*(x_tW**3)*Lu/(x_tW-1)**4
+    #WP1 = 4*(x_tW**2)*(11+13*x_tW)/(x_tW-1)**3  + 2*(x_tW**2)*(5+x_tW)*(1-9*x_tW)*np.log(x_tW)/(x_tW-1)**4 - 24*(x_tW**2)*(1+4*x_tW+x_tW**2)*Lo/(x_tW-1)**4 - 48*(x_tW**2)*(1+2*x_tW)*Lu/(x_tW-1)**4
+    #WW1 = WW1tt - WW1tu + 3
+    #L1s = WW1 + WP1 + PP1
 
-    WW8tt = 2*x_tW*(4-3*x_tW)*np.log(x_tW)/(x_tW-1)**3 - (12*x_tW-12*x_tW**2 -8*x_tW**3)*Lo/(x_tW-1)**4 + (8-12*x_tW+12*x_tW**2)*Lu/(x_tW-1)**4 - (23-x_tW)/(x_tW-1)**2 
-    WW8tu = 2*(2-x_tW)*(np.pi**2)/(3*x_tW) - (8-5*x_tW)*np.log(x_tW)/(x_tW-1)**2 - (6*x_tW+4*x_tW**2)*Lo/(x_tW*(x_tW-1)**2) + (8+12*x_tW-6*x_tW**2)*Lu/(x_tW*(x_tW-1)**2) - 15/(x_tW-1)
-    PP8 = -11*(x_tW**2)*(1+x_tW)/(4*(x_tW-1)**2) + (x_tW**3)*(4-3*x_tW)*np.log(x_tW)/(2*(x_tW-1)**3) + (x_tW**3)*(3-3*x_tW+2*x_tW**2)*Lo/(x_tW-1)**4 + (x_tW**2)*(2+3*x_tW-3*x_tW**2)*Lu/(x_tW-1)**4
-    WP8 = 30*(x_tW**2)/(x_tW-1)**2 + 12*(x_tW**3)*np.log(x_tW)/(x_tW-1)**3 - 12*(x_tW**4)*Lo/(x_tW-1)**4 - 12*(x_tW**2)*(2-x_tW**2)*Lu/(x_tW-1)**4 
-    WW8 = WW8tt - WW8tu - 23 + (4/3)*np.pi**2
-    L8s = WW8 + WP8 + PP8
+    #WW8tt = 2*x_tW*(4-3*x_tW)*np.log(x_tW)/(x_tW-1)**3 - (12*x_tW-12*x_tW**2 -8*x_tW**3)*Lo/(x_tW-1)**4 + (8-12*x_tW+12*x_tW**2)*Lu/(x_tW-1)**4 - (23-x_tW)/(x_tW-1)**2 
+    #WW8tu = 2*(2-x_tW)*(np.pi**2)/(3*x_tW) - (8-5*x_tW)*np.log(x_tW)/(x_tW-1)**2 - (6*x_tW+4*x_tW**2)*Lo/(x_tW*(x_tW-1)**2) + (8+12*x_tW-6*x_tW**2)*Lu/(x_tW*(x_tW-1)**2) - 15/(x_tW-1)
+    #PP8 = -11*(x_tW**2)*(1+x_tW)/(4*(x_tW-1)**2) + (x_tW**3)*(4-3*x_tW)*np.log(x_tW)/(2*(x_tW-1)**3) + (x_tW**3)*(3-3*x_tW+2*x_tW**2)*Lo/(x_tW-1)**4 + (x_tW**2)*(2+3*x_tW-3*x_tW**2)*Lu/(x_tW-1)**4
+    #WP8 = 30*(x_tW**2)/(x_tW-1)**2 + 12*(x_tW**3)*np.log(x_tW)/(x_tW-1)**3 - 12*(x_tW**4)*Lo/(x_tW-1)**4 - 12*(x_tW**2)*(2-x_tW**2)*Lu/(x_tW-1)**4 
+    #WW8 = WW8tt - WW8tu - 23 + (4/3)*np.pi**2
+    #L8s = WW8 + WP8 + PP8
 
-    Loh = Li2(1-1/x_tH)
-    Luh = Li2(1-x_tH)
-    Louh = Li2(1-x_tH/x_tW)
-    PP1h = -(x_tH**2)*(7+52*x_tH-11*(x_tH**2))/(4*(x_tH-1)**3) + 3*(x_tH**3)*(4+5*x_tH-x_tH**2)*np.log(x_tH)/(2*(x_tH-1)**4) + 3*(x_tH**3)*(3+4*x_tH-x_tH**2)*Loh/(x_tH-1)**4 + 18*(x_tH**3)*Luh/(x_tH-1)**4
-    PP8h = -11*(x_tH**2)*(1+x_tH)/(4*(x_tH-1)**2) + (x_tH**3)*(4-3*x_tH)*np.log(x_tH)/(2*(x_tH-1)**3) + (x_tH**3)*(3-3*x_tH+2*x_tH**2)*Loh/(x_tH-1)**4 + (x_tH**2)*(2+3*x_tH-3*x_tH**2)*Luh/(x_tH-1)**4
-    dSHH = (x_tW*(x_tH**2)/(4*tanb**4))*((1+x_tH)/(1-x_tH)**2 + 2*x_tH*np.log(x_tH)/(1-x_tH)**3)
-    dSHW = ((x_tW**3)/(4*tanb**4))*((1+x_tW)/(1-x_tW)**2 + 2*x_tW*np.log(x_tW)/(1-x_tW)**3)
-    HH1 = (x_tW/x_tH)*PP1h+6*(np.log(x_tH)-np.log(x_tW))*(dSHH+dSHW)
-    WH1 = x_tW*(2*(x_tH**2)*(13+3*x_tH)*np.log(x_tH)/((x_tH-x_tW)*(x_tH-1)**3) - 2*x_tH*(9+7*x_tH+7*x_tW-23*x_tW*x_tH)/pow((x_tW-1)*(x_tH-1),2) - 2*(x_tH**2)*(18-6*x_tH-44*x_tW+13*x_tH*x_tW+9*x_tH*x_tW**2)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) - 24*(x_tH**2)*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**3) + 24*(x_tH**2)*Loh/((x_tH-x_tW)*(x_tH-1)**2) - 24*x_tH*x_tW*(1+x_tW)*Lo/((x_tH-x_tW)*(x_tW-1)**3) - 48*x_tW*x_tH*Lu/((x_tH-x_tW)*(x_tW-1)**3))
-    PH1 = (x_tW**2)*(x_tH*(31-15*x_tH-15*x_tW-x_tH*x_tW)/(2*pow((x_tH-1)*(x_tW-1),2)) - x_tH*(7+21*x_tH-12*x_tH**2)*np.log(x_tH)/(2*(x_tH-x_tW)*(x_tH-1)**3) + x_tH*(7-9*x_tW+36*x_tW**2 - 18*x_tW**3)*np.log(x_tW)/(2*(x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) + (x_tH**2)*(8-36*x_tW+9*x_tW**2 + 3*x_tW**3)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) - (x_tH**3)*(11-45*x_tW+18*x_tW**2)*np.log(x_tW)/(2*(x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) + 6*x_tH*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**3) - 6*x_tH*(1+x_tH-x_tH**2)*Loh/((x_tH-x_tW)*(x_tH-1)**2) + 6*x_tH*(1+2*x_tW**2 -x_tW**3)*Lo/((x_tH-x_tW)*(x_tW-1)**3) + 12*x_tH*Lu/((x_tH-x_tW)*(x_tW-1)**3))
-    HH8 = (x_tW/x_tH)*PP8h+6*(np.log(x_tH)-np.log(x_tW))*S_HH1
-    WH8 = x_tW*(24*x_tH*x_tW*Lu/((x_tH-x_tW)*(x_tW-1)**2) + 6*(x_tH**2)*(5*x_tW-x_tH+3*x_tH*x_tW**2)*Lo/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)*x_tW) + 6*x_tH*(2*x_tW**2 -10*x_tH*x_tW+x_tH*x_tW**2)*Lo/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + 6*(x_tH**2)*(5*x_tW-x_tH-8*x_tW**2 +2*x_tH*x_tW**2)*Luh/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)*x_tW) + 6*(x_tW**2 -x_tH*x_tW+2*(x_tH*x_tW)**2)*Luh/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + 6*(x_tH**2)*(-x_tH+5*x_tW)*Loh/(x_tW*(x_tH-x_tW)*(x_tH-1)**2) - 6*(x_tH**2)*(5*x_tW-x_tH-8*x_tW**2 +2*x_tH*x_tW**2)*Louh/(x_tW*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - 6*(x_tW**2 -x_tH*x_tW+2*(x_tH*x_tW)**2)*Louh/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - 6*(x_tH**2)*(1-x_tH-np.log(x_tH))/((x_tW-1)*(x_tH-1)**2) + 6*x_tH*(2*x_tW-1)*np.log(x_tW)/((x_tH-1)*(x_tW-1)**2) + 6*(x_tH**2)*(5*x_tW-x_tH-8*x_tW**2)*np.log(x_tH)*np.log(x_tW)/(x_tW*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + 12*(x_tH**2)*(x_tH*x_tW+x_tW**2)*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)))
-    PH8 = (x_tW**2)*((2*x_tH+2*x_tW-11*x_tH*x_tW)/(2*x_tW*(x_tW-1)*(x_tH-1)) - (2*x_tH**2 -7*x_tH*x_tW+2*x_tW*x_tH**2 +2*x_tW**2 +x_tH*x_tW**2)*np.log(x_tH)/(2*x_tW*(x_tW-1)*(x_tH-x_tW)*(x_tH-1)**2) - x_tH*(7-7*x_tH+4*x_tW-6*x_tW**2)*np.log(x_tW)/(2*(x_tH-1)*(x_tH-x_tW)*(x_tW-1)**2) + (x_tH**2 +x_tW**2 -3*pow(x_tH*x_tW,2))*np.log(x_tW)/(x_tW*(x_tH-1)*(x_tH-x_tW)*(x_tW-1)**2) - (x_tH**2)*(4-6*x_tW+3*x_tH*x_tW)*np.log(x_tH)*np.log(x_tW)/(x_tW*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + x_tH*(x_tH**2 -3*x_tW**2 +6*x_tW**3 -3*x_tW**4)*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*pow(x_tW*(x_tH-1)*(x_tW-1),2)) - x_tH*(3*x_tW**2 +2*x_tH*x_tW*(2+x_tW)-(x_tH**2)*(1+2*x_tW))*Loh/((x_tH-x_tW)*pow(x_tW*(x_tH-1),2)) - (4*x_tH*x_tW-6*x_tW*x_tH**2 +3*pow(x_tH*x_tW,2)-x_tW**2)*Luh/(x_tH*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - (4*x_tW*x_tH**2 -6*pow(x_tH*x_tW,2)-x_tH**3 +3*(x_tW**2)*(x_tH**3))*Luh/((x_tH-x_tW)*pow(x_tW*(x_tW-1)*(x_tH-1),2)) + 2*(x_tH**2)*(6-x_tW**2 -3*x_tH+x_tW*x_tH)*Lo/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - x_tH*(3*x_tW**2 +4*x_tH*x_tW-x_tH**2)*Lo/((x_tH-x_tW)*pow(x_tW*(x_tW-1)*(x_tH-1),2)) + (4*x_tH*x_tW-6*x_tW*x_tH**2 +3*pow(x_tH*x_tW,2)-x_tW**2)*Louh/(x_tH*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + (x_tH**2)*(4*x_tW-6*x_tW**2 -x_tH+3*x_tH*x_tW**2)*Louh/((x_tH-x_tW)*pow(x_tW*(x_tH-1)*(x_tW-1),2)) - 6*x_tH*Lu/((x_tH-x_tW)*(x_tW-1)**2))
-    L1h = (1/tanb**2)*WH1 + (1/tanb**2)*PH1 + (1/tanb**4)*HH1
-    L8h = (1/tanb**2)*WH8 + (1/tanb**2)*PH8 + (1/tanb**4)*HH8
+    #Loh = Li2(1-1/x_tH)
+    #Luh = Li2(1-x_tH)
+    #Louh = Li2(1-x_tH/x_tW)
+    #PP1h = -(x_tH**2)*(7+52*x_tH-11*(x_tH**2))/(4*(x_tH-1)**3) + 3*(x_tH**3)*(4+5*x_tH-x_tH**2)*np.log(x_tH)/(2*(x_tH-1)**4) + 3*(x_tH**3)*(3+4*x_tH-x_tH**2)*Loh/(x_tH-1)**4 + 18*(x_tH**3)*Luh/(x_tH-1)**4
+    #PP8h = -11*(x_tH**2)*(1+x_tH)/(4*(x_tH-1)**2) + (x_tH**3)*(4-3*x_tH)*np.log(x_tH)/(2*(x_tH-1)**3) + (x_tH**3)*(3-3*x_tH+2*x_tH**2)*Loh/(x_tH-1)**4 + (x_tH**2)*(2+3*x_tH-3*x_tH**2)*Luh/(x_tH-1)**4
+    #dSHH = (x_tW*(x_tH**2)/(4*tanb**4))*((1+x_tH)/(1-x_tH)**2 + 2*x_tH*np.log(x_tH)/(1-x_tH)**3)
+    #dSHW = ((x_tW**3)/(4*tanb**4))*((1+x_tW)/(1-x_tW)**2 + 2*x_tW*np.log(x_tW)/(1-x_tW)**3)
+    #HH1 = (x_tW/x_tH)*PP1h+6*(np.log(x_tH)-np.log(x_tW))*(dSHH+dSHW)
+    #WH1 = x_tW*(2*(x_tH**2)*(13+3*x_tH)*np.log(x_tH)/((x_tH-x_tW)*(x_tH-1)**3) - 2*x_tH*(9+7*x_tH+7*x_tW-23*x_tW*x_tH)/pow((x_tW-1)*(x_tH-1),2) - 2*(x_tH**2)*(18-6*x_tH-44*x_tW+13*x_tH*x_tW+9*x_tH*x_tW**2)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) - 24*(x_tH**2)*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**3) + 24*(x_tH**2)*Loh/((x_tH-x_tW)*(x_tH-1)**2) - 24*x_tH*x_tW*(1+x_tW)*Lo/((x_tH-x_tW)*(x_tW-1)**3) - 48*x_tW*x_tH*Lu/((x_tH-x_tW)*(x_tW-1)**3))
+    #PH1 = (x_tW**2)*(x_tH*(31-15*x_tH-15*x_tW-x_tH*x_tW)/(2*pow((x_tH-1)*(x_tW-1),2)) - x_tH*(7+21*x_tH-12*x_tH**2)*np.log(x_tH)/(2*(x_tH-x_tW)*(x_tH-1)**3) + x_tH*(7-9*x_tW+36*x_tW**2 - 18*x_tW**3)*np.log(x_tW)/(2*(x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) + (x_tH**2)*(8-36*x_tW+9*x_tW**2 + 3*x_tW**3)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) - (x_tH**3)*(11-45*x_tW+18*x_tW**2)*np.log(x_tW)/(2*(x_tH-x_tW)*(x_tH-1)**2 *(x_tW-1)**3) + 6*x_tH*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*(x_tH-1)**3) - 6*x_tH*(1+x_tH-x_tH**2)*Loh/((x_tH-x_tW)*(x_tH-1)**2) + 6*x_tH*(1+2*x_tW**2 -x_tW**3)*Lo/((x_tH-x_tW)*(x_tW-1)**3) + 12*x_tH*Lu/((x_tH-x_tW)*(x_tW-1)**3))
+    #HH8 = (x_tW/x_tH)*PP8h+6*(np.log(x_tH)-np.log(x_tW))*S_HH1
+    #WH8 = x_tW*(24*x_tH*x_tW*Lu/((x_tH-x_tW)*(x_tW-1)**2) + 6*(x_tH**2)*(5*x_tW-x_tH+3*x_tH*x_tW**2)*Lo/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)*x_tW) + 6*x_tH*(2*x_tW**2 -10*x_tH*x_tW+x_tH*x_tW**2)*Lo/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + 6*(x_tH**2)*(5*x_tW-x_tH-8*x_tW**2 +2*x_tH*x_tW**2)*Luh/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)*x_tW) + 6*(x_tW**2 -x_tH*x_tW+2*(x_tH*x_tW)**2)*Luh/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + 6*(x_tH**2)*(-x_tH+5*x_tW)*Loh/(x_tW*(x_tH-x_tW)*(x_tH-1)**2) - 6*(x_tH**2)*(5*x_tW-x_tH-8*x_tW**2 +2*x_tH*x_tW**2)*Louh/(x_tW*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - 6*(x_tW**2 -x_tH*x_tW+2*(x_tH*x_tW)**2)*Louh/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - 6*(x_tH**2)*(1-x_tH-np.log(x_tH))/((x_tW-1)*(x_tH-1)**2) + 6*x_tH*(2*x_tW-1)*np.log(x_tW)/((x_tH-1)*(x_tW-1)**2) + 6*(x_tH**2)*(5*x_tW-x_tH-8*x_tW**2)*np.log(x_tH)*np.log(x_tW)/(x_tW*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + 12*(x_tH**2)*(x_tH*x_tW+x_tW**2)*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)))
+    #PH8 = (x_tW**2)*((2*x_tH+2*x_tW-11*x_tH*x_tW)/(2*x_tW*(x_tW-1)*(x_tH-1)) - (2*x_tH**2 -7*x_tH*x_tW+2*x_tW*x_tH**2 +2*x_tW**2 +x_tH*x_tW**2)*np.log(x_tH)/(2*x_tW*(x_tW-1)*(x_tH-x_tW)*(x_tH-1)**2) - x_tH*(7-7*x_tH+4*x_tW-6*x_tW**2)*np.log(x_tW)/(2*(x_tH-1)*(x_tH-x_tW)*(x_tW-1)**2) + (x_tH**2 +x_tW**2 -3*pow(x_tH*x_tW,2))*np.log(x_tW)/(x_tW*(x_tH-1)*(x_tH-x_tW)*(x_tW-1)**2) - (x_tH**2)*(4-6*x_tW+3*x_tH*x_tW)*np.log(x_tH)*np.log(x_tW)/(x_tW*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + x_tH*(x_tH**2 -3*x_tW**2 +6*x_tW**3 -3*x_tW**4)*np.log(x_tH)*np.log(x_tW)/((x_tH-x_tW)*pow(x_tW*(x_tH-1)*(x_tW-1),2)) - x_tH*(3*x_tW**2 +2*x_tH*x_tW*(2+x_tW)-(x_tH**2)*(1+2*x_tW))*Loh/((x_tH-x_tW)*pow(x_tW*(x_tH-1),2)) - (4*x_tH*x_tW-6*x_tW*x_tH**2 +3*pow(x_tH*x_tW,2)-x_tW**2)*Luh/(x_tH*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - (4*x_tW*x_tH**2 -6*pow(x_tH*x_tW,2)-x_tH**3 +3*(x_tW**2)*(x_tH**3))*Luh/((x_tH-x_tW)*pow(x_tW*(x_tW-1)*(x_tH-1),2)) + 2*(x_tH**2)*(6-x_tW**2 -3*x_tH+x_tW*x_tH)*Lo/((x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) - x_tH*(3*x_tW**2 +4*x_tH*x_tW-x_tH**2)*Lo/((x_tH-x_tW)*pow(x_tW*(x_tW-1)*(x_tH-1),2)) + (4*x_tH*x_tW-6*x_tW*x_tH**2 +3*pow(x_tH*x_tW,2)-x_tW**2)*Louh/(x_tH*(x_tH-x_tW)*pow((x_tH-1)*(x_tW-1),2)) + (x_tH**2)*(4*x_tW-6*x_tW**2 -x_tH+3*x_tH*x_tW**2)*Louh/((x_tH-x_tW)*pow(x_tW*(x_tH-1)*(x_tW-1),2)) - 6*x_tH*Lu/((x_tH-x_tW)*(x_tW-1)**2))
+    #L1h = (1/tanb**2)*WH1 + (1/tanb**2)*PH1 + (1/tanb**4)*HH1
+    #L8h = (1/tanb**2)*WH8 + (1/tanb**2)*PH8 + (1/tanb**4)*HH8
 
-    CA = 1/3
-    CF = 4/3
-    Dsm = CA*(L8s+S_WW*5)+CF*(L1s+3*S_WW)
-    DH = CF*(L1h+3*(S_WH+S_HH))+CA*(L8h+5*(S_WH+S_HH))
-    Dx = Dsm + DH
-    Sx = S_WW1+S_WH1+S_HH1
-    Z = -5165/3174
-    cons = (4*np.pi/as_m)*(pow(as_m,-6/23)*etaB - 1) - Z
-    eta2 = Bab*(1+(as_m/(4*np.pi))*(cons*((1+DH/(cons*S_WW))/(1+(S_WH+S_HH)/S_WW)) + Z))
+    #CA = 1/3
+    #CF = 4/3
+    #Dsm = CA*(L8s+S_WW*5)+CF*(L1s+3*S_WW)
+    #DH = CF*(L1h+3*(S_WH+S_HH))+CA*(L8h+5*(S_WH+S_HH))
+    #Dx = Dsm + DH
+    #Sx = S_WW1+S_WH1+S_HH1
+    #Z = -5165/3174
+    #cons = (4*np.pi/as_m)*(pow(as_m,-6/23)*etaB - 1) - Z
+    #eta2 = Bab*(1+(as_m/(4*np.pi))*(cons*((1+DH/(cons*S_WW))/(1+(S_WH+S_HH)/S_WW)) + Z))
 
-    delt_mq = (g_gev/(6*np.pi**2))*((Vtq*Vtb)**2)*eta2*mB*(mW**2)*(fBq)*(S_WW+S_WH+S_HH)
+    delt_mq = (g_gev/(6*np.pi**2))*((Vtq*Vtb)**2)*etaB*mB*(mW**2)*(fBq**2)*BBq*(S_WW+S_WH+S_HH)
 #    print cons*((1+DH/Dsm)/(1+(S_WH+S_HH)/S_WW)), cons, eta2
     return delt_mq/hbar_gev
 
@@ -860,7 +860,7 @@ def itera_firstglobal(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,
     return mHl_loc, tanbl_loc, mHb_loc, tanbb_loc, mHg_loc, tanbg_loc, mHa_loc, tanba_loc
 
 
-def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls_exp_error,bmix_exp,bmix_exp_error,bmix_sm,bmix_sm_error,kpi_exp,kpi_exp_error,tkpi_exp,tkpi_exp_error,gams_exp,gams_exp_error,gamc_exp,gamc_exp_error,mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mK,mK_err,mpi,mpi_err,mmB,mmB_err,mtau,mtau_err,mmu,mmu_err,etaB,etaB_err,fBd,fBd_err,Bbd,Bbd_err,fbpls,fbpls_err,fdpls,fdpls_err,fdspls,fdspls_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,tbpls,tbpls_err,tdpls,tdpls_err,tdspls,tdspls_err,mu,mu_err,md,md_err,mc,mc_err,ms,ms_err,mb,mb_err,mt,mt_err,mtb,mtb_err,mW,mW_err,mWb,mWb_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamu,gamu_err,alp_EM,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,tbd,tbd_err,tbs,tbs_err,fBs,fBs_err,mbd,mbd_err,mbs,mbs_err,bs_e,bs_eerr,bd_e,bd_eerr,mB_s,mB_serr,BBs,BBs_err,bmixs_exp,bmixs_exp_error,bmixs_sm,bmixs_sm_error,m_Bmu,m_Bmu_err,p,p_err,d,d_err,rd_exp,rd_exp_err,delta_b,delta_d,wangle,wangle_err,higgs,higgs_err,vev,vev_err,bpmu,bpmu_err,dsmu,dsmu_err):
+def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls_exp_error,bmix_exp,bmix_exp_error,bmix_sm,bmix_sm_error,kpi_exp,kpi_exp_error,tkpi_exp,tkpi_exp_error,gams_exp,gams_exp_error,gamc_exp,gamc_exp_error,mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mK,mK_err,mpi,mpi_err,mmB,mmB_err,mtau,mtau_err,mmu,mmu_err,etaB,etaB_err,fBd,fBd_err,Bbd,Bbd_err,fbpls,fbpls_err,fdpls,fdpls_err,fdspls,fdspls_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,tbpls,tbpls_err,tdpls,tdpls_err,tdspls,tdspls_err,mu,mu_err,md,md_err,mc,mc_err,ms,ms_err,mb,mb_err,mt,mt_err,mtb,mtb_err,mW,mW_err,mWb,mWb_err,mub,lam_QCD,QCD_err,hi,a,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamu,gamu_err,alp_EM,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,tbd,tbd_err,tbs,tbs_err,fBs,fBs_err,mbd,mbd_err,mbs,mbs_err,bs_e,bs_eerr,bd_e,bd_eerr,mB_s,mB_serr,BBs,BBs_err,bmixs_exp,bmixs_exp_error,bmixs_sm,bmixs_sm_error,m_Bmu,m_Bmu_err,p,p_err,d,d_err,rd_exp,rd_exp_err,delta_b,delta_d,wangle,wangle_err,higgs,higgs_err,vev,vev_err,bpmu,bpmu_err,dsmu,dsmu_err,C,C_err):
     '''
         Iterate of mH,tanb space for everything
     '''
@@ -906,7 +906,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
     chi_ls,chi_ms,chi_gs,chi_mus,chi_1s,chi_2s,chi_rds=[],[],[],[],[],[],[]
     chi_lmin,chi_mmin,chi_gmin,chi_umin,chi_1min,chi_2min,chi_rmin = 100,100,100,100,[100,0,0],[100,0,0],100
 
-    log_mH_range = np.linspace(0,3.5,350)
+    log_mH_range = np.linspace(1,3.5,350)
     log_tanb_range = np.linspace(-1,2,300)
     mH_range = 10**log_mH_range
     tanb_range = 10**log_tanb_range
@@ -946,15 +946,15 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
             kpi_bool = ((av_k >= mid_k and mid_k+sig_k >= av_k-sige_k) or (av_k <= mid_k and mid_k-sig_k <= av_k+sige_k)) 
             tkpi_bool = ((av_t >= mid_t and mid_t+sig_t >= av_t-sige_t) or (av_t <= mid_t and mid_t-sig_t <= av_t+sige_t)) 
 
-            gam_the = bsgamma(mt,mW,mub,lam_QCD,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc_exp,gamu,Vub,Vts,Vtb,Vcb,alp_EM)
-            gam_err = error_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc_exp,gamc_exp_error,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM)
+            gam_the = bsgamma(mt,mW,mub,lam_QCD,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc_exp,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C)
+            gam_err = error_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc_exp,gamc_exp_error,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM,C,C_err)
             gam_the_up,gam_the_down = gam_the+gam_err[0],gam_the-gam_err[1]
             mid_g=0.5*(gam_the_up+gam_the_down)
             sig_g=sigma*(gam_the_up-mid_g)
             gam_bool = ((av_g >= mid_g and mid_g+sig_g >= av_g-sige_g) or (av_g <= mid_g and mid_g-sig_g <= av_g+sige_g)) 
 
-            expect_bs = bmumu(mt,tbs,fBs,Vtb,Vts,mmu,mbs,mW,j,i,mb,ms,mc,mu,wangle,higgs,vev,Vus,Vub,Vcs,Vcb)
-            expect_bs_uperr,expect_bs_downerr = error_bmumu(mt,mt_err,tbs,tbs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,mmu,mmu_err,mbs,mbs_err,mW,mW_err,j,i,mb,mb_err,ms,ms_err,mc,mc_err,mu,mu_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,Vus,Vus_err,Vub,Vub_err,Vcs,Vcs_err,Vcb,Vcb_err)
+            expect_bs = bmumu(mt,tbs,fBs,Vtb,Vts,mmu,mbs,mW,j,i,mb,ms,mc,mu,wangle,higgs,vev,Vus,Vub,Vcs,Vcb,lam_QCD)
+            expect_bs_uperr,expect_bs_downerr = error_bmumu(mt,mt_err,tbs,tbs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,mmu,mmu_err,mbs,mbs_err,mW,mW_err,j,i,mb,mb_err,ms,ms_err,mc,mc_err,mu,mu_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,Vus,Vus_err,Vub,Vub_err,Vcs,Vcs_err,Vcb,Vcb_err,lam_QCD,QCD_err)
             expect_bs_up, expect_bs_down = expect_bs+expect_bs_uperr, expect_bs-expect_bs_downerr
             mid_smu=0.5*(expect_bs_up+expect_bs_down)#,0.5*(expect_bd_up+expect_bd_down)
             sig_smu=sigma*(expect_bs_up-mid_smu)#,sigma*(expect_bd_up-mid_dmu)
@@ -967,12 +967,12 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
             sig_rd = sigma*(expect_rd_up-mid_rd)
             rd_bool = ((av_rd >= mid_rd and mid_rd+sig_rd >= av_rd-sige_rd) or (av_rd <= mid_rd and mid_rd-sig_rd <= av_rd+sige_rd)) 
 
-            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool and rd_bool and bpmu_bool and dsmu_bool:
+            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool and dsmu_bool:#and bpmu_bool and rd_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHl_loc = np.append(mHl_loc,i_log)
                 tanbl_loc = np.append(tanbl_loc,j_log)
-#                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t],[mid_b,mid_d,mid_ds,mid_k,mid_t],[sige_b,sige_d,sige_ds,sige_k,sige_t],[sig_b,sig_d,sig_ds,sig_k,sig_t])
-                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_rd,av_bm,av_dm],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_rd,mid_bmu,mid_dm],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_rd,sige_bm,sige_dm],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_rd,sig_bmu,sig_dm])
+                #chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_rd,av_bm,av_dm],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_rd,mid_bmu,mid_dm],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_rd,sige_bm,sige_dm],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_rd,sig_bmu,sig_dm])
+                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_dm],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_dm],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_dm],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_dm])
                 chi_ls = np.append(chi_ls,chi_lij)
                 if chi_lij < chi_lmin:
                     chi_lmin = chi_lij
@@ -995,11 +995,11 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
                 if chi_gij < chi_gmin:
                     chi_gmin = chi_gij
 
-            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool:
+            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and dsmu_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHa_loc = np.append(mHa_loc,i_log)
                 tanba_loc = np.append(tanba_loc,j_log)
-                chi_1ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g])
+                chi_1ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_dm],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_dm],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_dm],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_dm])
                 chi_1s = np.append(chi_1s,chi_1ij)
                 if chi_1ij < chi_1min[0]:
                     chi_1min = [chi_1ij,i,j]
@@ -1022,7 +1022,7 @@ def itera_global(bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls
                 if chi_rij < chi_rmin:
                     chi_rmin = chi_rij
 
-            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and rd_bool and bpmu_bool and dsmu_bool and bd_bool:
+            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and rd_bool and bpmu_bool and dsmu_bool:# and bd_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHa2_loc = np.append(mHa2_loc,i_log)
                 tanba2_loc = np.append(tanba2_loc,j_log)
