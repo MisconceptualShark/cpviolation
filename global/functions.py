@@ -857,8 +857,8 @@ def itera_global(
             b = np.arctan(j)
             alph = b - np.pi/2 # find alpha in alignment limit
 #            alph = b - np.arccos(0.465) # find alpha in wrong sign limit
-            mH0 = 750 # set H0 and A0 masses
-            mA0 = 750
+            mH0 = 1500 # set H0 and A0 masses
+            mA0 = 1500
             ##### LEPTONICS #####
             bpls_the, dpls_the, dspls_the = bthe(mbpls,mtau,Vub,fbpls,tbpls,mu,mb,j,i,1),bthe(mdpls,mmu,Vcd,fdpls,tdpls,mc,md,j,i,delta_d),bthe(mdspls,mtau,Vcs,fdspls,tdspls,mc,ms,j,i,1)
             bpmu_the, dsmu_the = bthe(mbpls,mmu,Vub,fbpls,tbpls,mu,mb,j,i,1),bthe(mdspls,mmu,Vcs,fdspls,tdspls,mc,ms,j,i,1)
@@ -949,12 +949,12 @@ def itera_global(
             UOblique_bool=((av_UOblique>=mid_UOblique and mid_UOblique>=av_UOblique-sige_UOblique) or (av_UOblique<=mid_UOblique and mid_UOblique<=av_UOblique+sige_UOblique))
 
             ##### (SEMI-)LEPTONICS #####
-            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool and bpmu_bool and dsmu_bool:# and rd_bool:
+            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool and bpmu_bool and dsmu_bool and rd_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHl_loc = np.append(mHl_loc,i_log)
                 tanbl_loc = np.append(tanbl_loc,j_log)
-#                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd])
-                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm])
+                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd])
+#                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm])
                 chi_ls = np.append(chi_ls,chi_lij)
             
             ##### MIXING #####
@@ -1012,20 +1012,20 @@ def itera_global(
                 chi_mus = np.append(chi_mus,chi_uij)
 
             ##### GLOBAL #####
-            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool and rd_bool and bpmu_bool and dsmu_bool:# and SOblique_bool and TOblique_bool and UOblique_bool:
+            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool and rd_bool and bpmu_bool and dsmu_bool and SOblique_bool and TOblique_bool and UOblique_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHa2_loc = np.append(mHa2_loc,i_log)
                 tanba2_loc = np.append(tanba2_loc,j_log)
-                chi_2ij = chisq_simp(
-                        [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm],
-                        [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm],
-                        [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm],
-                        [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm])
 #                chi_2ij = chisq_simp(
-#                        [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm, av_SOblique, av_TOblique, av_UOblique],
-#                        [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm,mid_SOblique,mid_TOblique,mid_UOblique],
-#                        [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm,sige_SOblique,sige_TOblique,sige_UOblique],
-#                        [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm,sig_SOblique,sig_TOblique,sig_UOblique])
+#                        [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm],
+#                        [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm],
+#                        [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm],
+#                        [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm])
+                chi_2ij = chisq_simp(
+                        [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm, av_SOblique, av_TOblique, av_UOblique],
+                        [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm,mid_SOblique,mid_TOblique,mid_UOblique],
+                        [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm,sige_SOblique,sige_TOblique,sige_UOblique],
+                        [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm,sig_SOblique,sig_TOblique,sig_UOblique])
                 chi_2s = np.append(chi_2s,chi_2ij)
                 if chi_2ij < chi_2min[0]:
                     chi_2min = [chi_2ij,i,j]

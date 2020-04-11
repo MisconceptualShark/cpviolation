@@ -66,7 +66,7 @@ bplus_exp, bplus_err_exp = [1.09e-4,[0.24e-4,-0.24e-4]]
 dplus_exp, dplus_err_exp = [3.77e-4,[0.17e-4,-0.17e-4]]
 dsplus_exp, dsplus_err_exp = [0.0551,[0.0020,-0.0020]]
 bplusmu_exp, bplusmu_err_exp = [5.3e-7,[2.2e-7,-2.2e-7]]
-smu_exp, dsmu_err_exp = [6.2e-3,[0.6e-3,-0.6e-3]]
+#dsmu_exp, dsmu_err_exp = [6.2e-3,[0.6e-3,-0.6e-3]]
 dsmu_exp, dsmu_err_exp = [5.52e-3,[0.16e-3,-0.16e-3]]
 kpi_exp, kpi_exp_err = [1.337,[0.0032,-0.0032]]
 kpitau_exp, kpitau_exp_err = [6.438e-2,[9.384e-4,-9.384e-4]]
@@ -154,9 +154,7 @@ delta_b,delta_d = 0.982,0.99*0.982
 #kpitau_exp, kpitau_exp_err = [6.38e-2,[0.215e-2,-0.215e-2]]
 #rd_exp, rd_exp_err = [0.416,[0.128,-0.128]] #08
 
-
 # B+ -> tau+ nu
-#mH_bplus, tanb_bplus, vub_loc = ckmel(Vub,Vub_err,m_u,m_u_err,m_b,m_b_err,m_bplus,m_bplus_err,m_tau,m_tau_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,bplus_exp,bplus_err_exp)
 #mH_bplus, tanb_bplus = itera(m_bplus,m_bplus_err,m_mu,m_mu_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,m_u,m_u_err,m_b,m_b_err,bplusmu_exp,bplusmu_err_exp,1)
 #plt.figure(figsize=(8,6))
 #plt.scatter(tanb_bplus,mH_bplus,c='green')
@@ -166,11 +164,9 @@ delta_b,delta_d = 0.982,0.99*0.982
 #plt.xticks(fontsize=18)
 #plt.yticks(fontsize=18)
 #plt.axis([-1,2,0,3.5])
-#plt.show()
 #plt.savefig('vbtau.png')
 
 # D+ -> mu+ nu
-#mH_dplus, tanb_dplus, vud_loc = ckmel(Vcd,Vcd_err,m_c,m_c_err,m_d,m_d_err,m_dplus,m_dplus_err,m_mu,m_mu_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,dplus_exp,dplus_err_exp)
 #mH_dplus, tanb_dplus = itera(m_dplus,m_dplus_err,m_mu,m_mu_err,Vcd,Vcd_err,f_dplus,f_dplus_err,tau_dplus,tau_dplus_err,m_c,m_c_err,m_d,m_d_err,dplus_exp,dplus_err_exp,0.982*0.99)
 #plt.figure(figsize=(8,6))
 #plt.scatter(tanb_dplus,mH_dplus,c='green')
@@ -180,11 +176,9 @@ delta_b,delta_d = 0.982,0.99*0.982
 #plt.xticks(fontsize=18)
 #plt.yticks(fontsize=18)
 #plt.axis([-1,2,0,3.5])
-#plt.show()
 #plt.savefig('vdmu.png')
-#
+
 ## Ds+ -> tau+ nu
-#mH_dsplus, tanb_dsplus, vuds_loc = ckmel(Vcs,Vcs_err,m_c,m_c_err,m_s,m_s_err,m_dsplus,m_dsplus_err,m_tau,m_tau_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,dsplus_exp,dsplus_err_exp)
 #mH_dsplus, tanb_dsplus = itera(m_dsplus,m_dsplus_err,m_tau,m_tau_err,Vcs,Vcs_err,f_dsplus,f_dsplus_err,tau_dsplus,tau_dsplus_err,m_c,m_c_err,m_s,m_s_err,dsplus_exp,dsplus_err_exp,0.982)
 #plt.figure(figsize=(8,6))
 #plt.scatter(tanb_dsplus,mH_dsplus,c='green')
@@ -194,9 +188,8 @@ delta_b,delta_d = 0.982,0.99*0.982
 #plt.xticks(fontsize=18)
 #plt.yticks(fontsize=18)
 #plt.axis([-1,2,0,3.5])
-#plt.show()
 ##plt.savefig('vdstau.png')
-#quit()
+
 ## (K -> mu)/(pi -> mu) + (tau -> K)/(tau -> pi)
 #mH2, tanb2 = itera_kpi(m_K,m_K_err,m_pi,m_pi_err,m_mu,m_mu_err,m_tau,m_tau_err,Vus,Vus_err,Vud,Vud_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,m_s,m_s_err,m_d,m_d_err,m_u,m_u_err,kpi_exp,kpi_exp_err,kpitau_exp,kpi_exp_err)
 ##
@@ -226,94 +219,85 @@ delta_b,delta_d = 0.982,0.99*0.982
 
 #hrdst, trdst, chi_rdsst, chi_stmin = itera_rds(m_Brd,m_Brd_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rdst_exp,rdst_exp_err)
 # hrdn, trdn, chi_rdn, chi_nmin = itera_rdn(m_Brd,m_Brd_err,m_dplus,m_dplus_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rd_exp,rd_exp_err)
-#hrdn, trdn, chi_rdn, chi_nmin, hrdst, trdst, chi_rdst, chi_stmin = itera_rda(m_Brd,m_Brd_err,m_dplus,m_dplus_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rd_exp,rd_exp_err,rdst_exp,rdst_exp_err)
-#
-#m2,m1=5.99,2.30
-##hchi_rd, tchi_rd, rd_edges_e = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m2)
-#hchi_rd2, tchi_rd2, rd_edges = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m1)
-##hchi_rds, tchi_rds, rd_edges_e = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m2)
-#hchi_rds2, tchi_rds2, rds_edges = chi_del(chi_stmin,chi_rdst,hrdst,trdst,m1)
+hrdn, trdn, chi_rdn, chi_nmin, hrdst, trdst, chi_rdst, chi_stmin = itera_rda(m_Brd,m_Brd_err,m_dplus,m_dplus_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rd_exp,rd_exp_err,rdst_exp,rdst_exp_err)
 
-#plt.figure(figsize=(8,6))
-#plt.scatter(trdst,hrdst,c='turquoise',marker=',')
-#plt.scatter(trdn,hrdn,c='cadetblue',marker=',')
-#for i, j in rd_edges[0]:
-#    plt.plot(rd_edges[1][[i,j],0],rd_edges[1][[i,j],1],c='black',linestyle='--')
-#for i, j in rds_edges[0]:
-#    plt.plot(rds_edges[1][[i,j],0],rds_edges[1][[i,j],1],c='black',linestyle='--')
-#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('$\\mathcal{R}(D^{(*)}), 1\\sigma$',fontsize=18)
-#plt.xticks(fontsize=18)
-#plt.yticks(fontsize=18)
-#plt.axis([-1,2,0,3.5])
-#plt.savefig('rd_both196sig.png')
+m2,m1=5.99,2.30
+hchi_rd, tchi_rd, rd_edges_e = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m2)
+hchi_rd2, tchi_rd2, rd_edges = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m1)
+hchi_rds, tchi_rds, rds_edges_e = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m2)
+hchi_rds2, tchi_rds2, rds_edges = chi_del(chi_stmin,chi_rdst,hrdst,trdst,m1)
+
+plt.figure(figsize=(8,6))
+plt.scatter(trdst,hrdst,c='turquoise',marker=',')
+plt.scatter(trdn,hrdn,c='cadetblue',marker=',')
+for i, j in rd_edges_e[0]:
+    plt.plot(rd_edges_e[1][[i,j],0],rd_edges_e[1][[i,j],1],c='black',linestyle='--')
+for i, j in rds_edges_e[0]:
+    plt.plot(rds_edges_e[1][[i,j],0],rds_edges_e[1][[i,j],1],c='black',linestyle='--')
+for i, j in rd_edges[0]:
+    plt.plot(rd_edges[1][[i,j],0],rd_edges[1][[i,j],1],c='blue',linestyle='--')
+for i, j in rds_edges[0]:
+    plt.plot(rds_edges[1][[i,j],0],rds_edges[1][[i,j],1],c='blue',linestyle='--')
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+#plt.title('$\\mathcal{R}(D^{(*)}),$ 95% CL',fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.axis([-1,2,0,3.5])
+plt.savefig('rd_both196sig.png')
 #plt.show()
-#os.system('play gumdrops.mp3')
-#quit()
-
-#hlepi,tlepi = itera_lepis(bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,m_K,m_K_err,m_pi,m_pi_err,m_tau,m_tau_err,m_mu,m_mu_err,f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,)
-#plt.figure(figsize=(8,6))
-#plt.scatter(tlepi,hlepi,c='green')
-#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('$M\\to l\\nu + \\tau \\to M\\nu$',fontsize=18)
-#plt.xticks(fontsize=18)
-#plt.yticks(fontsize=18)
-#plt.axis([-1,2,0,3.5])
-##plt.show()
-#plt.savefig('leps.png')
-#quit()
+os.system('play gumdrops.mp3')
+quit()
 
 ###############   MIXING
 
-mW, mW_err = [80.379,[0.012,-0.012]]
-mBd, mBd_err = [5.27964,[0.00013,-0.00013]]
-mBs, mBs_err = [5.36688,[0.00017,-0.00017]]
-lambda_QCD, QCD_err = [0.2275,[0.01433,-0.01372]]
+#mW, mW_err = [80.379,[0.012,-0.012]]
+#mBd, mBd_err = [5.27964,[0.00013,-0.00013]]
+#mBs, mBs_err = [5.36688,[0.00017,-0.00017]]
+#lambda_QCD, QCD_err = [0.2275,[0.01433,-0.01372]]
+#
+#etaB, etaB_err = [0.537856,[0,0]]
+##etaB, etaB_err = [0.838606,[0,0]]
+#
+##fBs, fBs_err = [0.0452,[0.0014,-0.0014]]
+##fBd, fBd_err = [0.0305,[0.0011,-0.0011]]
+#fBs, fBs_err = [0.2303,[0.0013,-0.0013]]
+#fBd, fBd_err = [0.190,[0.0013,-0.0013]]
+#
+##BBs, BBs_err = [1.290,[0.035,-0.035]]
+##BBd, BBd_err = [1.268,[0.042,-0.042]]
+#BBs, BBs_err = [0.849,[0.023,-0.023]]
+#BBd, BBd_err = [0.835,[0.028,-0.028]]
+#
+#delt_md, delt_md_err = [0.5064e12,[0.0019e12,-0.0019e12]]
+#delt_ms, delt_ms_err = [17.757e12,[0.021e12,-0.021e12]]
+#delt_md_expect, delt_md_err_exp = [0.533e12,[0.022e12,-0.036e12]]
+#delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
+#
+##bdmix, bderr = mixing(mt,1e9,mW,1e9,Vtd,Vtb,etaB,mBd,fBd,BBd,1,lambda_QCD,m_b),error_mixing(mt,mt_err,1e9,mW,mW_err,1e9,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,1,[1,1],lambda_QCD,QCD_err,m_b,m_b_err)
+##bsmix, bserr = mixing(mt,1e9,mW,1e9,Vts,Vtb,etaB,mBs,fBs,BBs,1,lambda_QCD,m_b),error_mixing(mt,mt_err,1e9,mW,mW_err,1e9,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,1,[1,1],lambda_QCD,QCD_err,m_b,m_b_err)
+##print("Bd mixing =",bdmix*1e-12,"+",bderr[0]*1e-12,"-",bderr[1]*1e-12)
+##print("Bs mixing =",bsmix*1e-12,"+",bserr[0]*1e-12,"-",bserr[1]*1e-12)
+##quit()
+#
+## OLD INPUTS
+mt, mt_err = [172.4,[1.2,-1.2]]
+mW, mW_err = [80.398,[0.025,-0.025]]
+mBd, mBd_err = [5.27953,[0.00033,-0.00033]]
+mBs, mBs_err = [5.3663,[0.0006,-0.0006]]
 
-etaB, etaB_err = [0.537856,[0,0]]
-#etaB, etaB_err = [0.838606,[0,0]]
+etaB, etaB_err = [0.5510,[0.0022,-0.0022]]
 
-#fBs, fBs_err = [0.0452,[0.0014,-0.0014]]
-#fBd, fBd_err = [0.0305,[0.0011,-0.0011]]
-fBs, fBs_err = [0.2303,[0.0013,-0.0013]]
-fBd, fBd_err = [0.190,[0.0013,-0.0013]]
+fBs, fBs_err = [0.228,[0.0173,-0.0173]]
+fBd, fBd_err = [0.190,[0.015,-0.015]]
 
-#BBs, BBs_err = [1.290,[0.035,-0.035]]
-#BBd, BBd_err = [1.268,[0.042,-0.042]]
-BBs, BBs_err = [0.849,[0.023,-0.023]]
-BBd, BBd_err = [0.835,[0.028,-0.028]]
+BBs, BBs_err = [1.28,[0.036,-0.036]]
+BBd, BBd_err = [1.219,[0.05,-0.05]]
 
-delt_md, delt_md_err = [0.5064e12,[0.0019e12,-0.0019e12]]
-delt_ms, delt_ms_err = [17.757e12,[0.021e12,-0.021e12]]
-delt_md_expect, delt_md_err_exp = [0.533e12,[0.022e12,-0.036e12]]
-delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
-
-#bdmix, bderr = mixing(mt,1e9,mW,1e9,Vtd,Vtb,etaB,mBd,fBd,BBd,1,lambda_QCD,m_b),error_mixing(mt,mt_err,1e9,mW,mW_err,1e9,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,1,[1,1],lambda_QCD,QCD_err,m_b,m_b_err)
-#bsmix, bserr = mixing(mt,1e9,mW,1e9,Vts,Vtb,etaB,mBs,fBs,BBs,1,lambda_QCD,m_b),error_mixing(mt,mt_err,1e9,mW,mW_err,1e9,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mBs,mBs_err,fBs,fBs_err,BBs,BBs_err,1,[1,1],lambda_QCD,QCD_err,m_b,m_b_err)
-#print("Bd mixing =",bdmix*1e-12,"+",bderr[0]*1e-12,"-",bderr[1]*1e-12)
-#print("Bs mixing =",bsmix*1e-12,"+",bserr[0]*1e-12,"-",bserr[1]*1e-12)
-#quit()
-
-# OLD INPUTS
-#mt, mt_err = [172.4,[1.2,-1.2]]
-#mW, mW_err = [80.398,[0.025,-0.025]]
-#mBd, mBd_err = [5.27953,[0.00033,-0.00033]]
-#mBs, mBs_err = [5.3663,[0.0006,-0.0006]]
-##
-#etaB, etaB_err = [0.5510,[0.0022,-0.0022]]
-##
-#fBs, fBs_err = [0.228,[0.0173,-0.0173]]
-#fBd, fBd_err = [0.190,[0.015,-0.015]]
-##
-#BBs, BBs_err = [1.28,[0.036,-0.036]]
-#BBd, BBd_err = [1.219,[0.05,-0.05]]
-##
-#delt_md, delt_md_err = [0.507e12,[0.005e12,-0.005e12]]
-#delt_ms, delt_ms_err = [17.77e12,[0.12e12,-0.12e12]]
-#delt_md_expect, delt_md_err_exp = [0.52e12,[0.02e12,-0.02e12]]
-#delt_ms_expect, delt_ms_err_exp = [19.0e12,[6.6e12,-6.6e12]]
+delt_md, delt_md_err = [0.507e12,[0.005e12,-0.005e12]]
+delt_ms, delt_ms_err = [17.77e12,[0.12e12,-0.12e12]]
+delt_md_expect, delt_md_err_exp = [0.52e12,[0.02e12,-0.02e12]]
+delt_ms_expect, delt_ms_err_exp = [19.0e12,[6.6e12,-6.6e12]]
 
 # B0d mixing
 #mH_md, tanb_md = itera_mix(mt,mt_err,mW,mW_err,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mBd,mBd_err,fBd,fBd_err,BBd,BBd_err,delt_md,delt_md_err,delt_md_expect,delt_md_err_exp,lambda_QCD,QCD_err,m_b,m_b_err)
@@ -344,32 +328,32 @@ delt_ms_expect, delt_ms_err_exp = [18.4e12,[0.7e12,-1.2e12]]
 ###################### b to s gamma
 
 #mub = 8.05
-mub = 1.1
-hi = [626126/272277,-56281/51730,-3/7,-1/14,-0.6494,-0.038,-0.0185,-0.0057]
-a = [14/23,16/23,6/23,-12/23,0.4086,-0.4223,-0.8994,0.1456]
-A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
-B0,bc,bt,b_s = [7.564e-1,-2.43e-1,-7.68e-4,-4.62]
-delt_mc, delt_mt, delt_as = [0.04,1.8,0.002]
-C, C_err = [0.546,[0.033,-0.033]]
-branch_c, branchc_err = [0.1065,[0.0016,-0.0016]]
-branchs, branchs_err = [3.32e-4,[0.15e-4,-0.15e-4]]
-gamu, gamu_err = [8.41e-4,[0.59e-4,-0.59e-4]]
-
-# OLD INPUTS
-#lambda_QCD, QCD_err = [0.22119,[0.02599,-0.02404]]
-#mt1, mt1_err = [172.4,[1.2,-1.2]]
-#mW1, mW1_err = [80.398,[0.025,-0.025]]
-#mub = 8.2
+#mub = 1.1
 #hi = [626126/272277,-56281/51730,-3/7,-1/14,-0.6494,-0.038,-0.0185,-0.0057]
 #a = [14/23,16/23,6/23,-12/23,0.4086,-0.4223,-0.8994,0.1456]
 #A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
 #B0,bc,bt,b_s = [7.564e-1,-2.43e-1,-7.68e-4,-4.62]
-#delt_mc, delt_mt, delt_as = [0.04,1.8,0.004]
+#delt_mc, delt_mt, delt_as = [0.04,1.8,0.002]
 #C, C_err = [0.546,[0.033,-0.033]]
-#branch_c, branchc_err = [0.1052,[0.011,-0.011]]
-#branchs, branchs_err = [3.52e-4,[0.25e-4,-0.25e-4]]
-#gamc, gamc_err = [10.52e-2,[1.1e-2,-1.1e-2]]
-#gamu, gamu_err = [1.4e-3,[0.58e-4,-0.58e-4]]
+#branch_c, branchc_err = [0.1065,[0.0016,-0.0016]]
+#branchs, branchs_err = [3.32e-4,[0.15e-4,-0.15e-4]]
+#gamu, gamu_err = [8.41e-4,[0.59e-4,-0.59e-4]]
+
+# OLD INPUTS
+lambda_QCD, QCD_err = [0.22119,[0.02599,-0.02404]]
+mt1, mt1_err = [172.4,[1.2,-1.2]]
+mW1, mW1_err = [80.398,[0.025,-0.025]]
+mub = 8.2
+hi = [626126/272277,-56281/51730,-3/7,-1/14,-0.6494,-0.038,-0.0185,-0.0057]
+a = [14/23,16/23,6/23,-12/23,0.4086,-0.4223,-0.8994,0.1456]
+A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
+B0,bc,bt,b_s = [7.564e-1,-2.43e-1,-7.68e-4,-4.62]
+delt_mc, delt_mt, delt_as = [0.04,1.8,0.004]
+C, C_err = [0.546,[0.033,-0.033]]
+branch_c, branchc_err = [0.1052,[0.011,-0.011]]
+branchs, branchs_err = [3.52e-4,[0.25e-4,-0.25e-4]]
+gamc, gamc_err = [10.52e-2,[1.1e-2,-1.1e-2]]
+gamu, gamu_err = [1.4e-3,[0.58e-4,-0.58e-4]]
 
 #bgam, gerr = bsgamma(mt,mW,mub,lambda_QCD,hi,a,1e12,1e12,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,branch_c,gamu,Vub,Vts,Vtb,Vcb,1/137,C), error_gamma(mt,mt_err,mW,mW_err,mub,lambda_QCD,QCD_err,hi,a,1e12,1e12,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,branch_c,branchc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,1/137,C,C_err)
 #upg = bgam*branch_c*np.sqrt((branchc_err[0]/branch_c)**2 + (gerr[0]/bgam)**2)
@@ -404,7 +388,7 @@ sm, sm_err = [3.1e-9,[0.7e-9,-0.7e-9]]
 wangle, wangle_err = [0.23155,[0.00004,-0.00004]]
 higgs, higgs_err = [125.10,[0.14,-0.14]]
 #mH_bmumu, tanb_bmumu = itera_bmumu(mt,mt_err,taubs,taubs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,m_mu,m_mu_err,mbs,mbs_err,mW,mW_err,m_b,m_b_err,m_s,m_s_err,m_c,m_c_err,m_u,m_u_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,Vus,Vus_err,Vub,Vub_err,Vcs,Vcs_err,Vcb,Vcb_err,bs_exp,bs_exp_err,lambda_QCD,QCD_err)
-mH_bmumu, tanb_bmumu = itera_bmumu(mt,mt_err,taubd,taubd_err,fBd,fBd_err,Vtb,Vtb_err,Vtd,Vtd_err,m_mu,m_mu_err,mbd,mbd_err,mW,mW_err,m_b,m_b_err,m_s,m_s_err,m_c,m_c_err,m_u,m_u_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,Vus,Vus_err,Vub,Vub_err,Vcs,Vcs_err,Vcb,Vcb_err,bd_exp,bd_exp_err,lambda_QCD,QCD_err)
+#mH_bmumu, tanb_bmumu = itera_bmumu(mt,mt_err,taubd,taubd_err,fBd,fBd_err,Vtb,Vtb_err,Vtd,Vtd_err,m_mu,m_mu_err,mbd,mbd_err,mW,mW_err,m_b,m_b_err,m_s,m_s_err,m_c,m_c_err,m_u,m_u_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,Vus,Vus_err,Vub,Vub_err,Vcs,Vcs_err,Vcb,Vcb_err,bd_exp,bd_exp_err,lambda_QCD,QCD_err)
 ###
 #plt.figure(figsize=(8,6))
 #plt.scatter(tanb_bmumu,mH_bmumu,marker=',',c='red')
@@ -472,14 +456,17 @@ for i, j in a_edges[0]:
 plt.axis([-1,2,1,3.5])
 plt.axvline(x=np.log10(mt/m_b),color='black')
 plt.axhline(y=np.log10(78.6),color='black',linestyle='--')
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
 plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.05,0.5),xycoords='axes fraction',fontsize=18)
+plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
 plt.annotate('$b\\to s\\gamma$',xy=(0.05,0.9),xycoords='axes fraction',fontsize=18)
-plt.annotate('All',xy=(0.55,0.9),xycoords='axes fraction',fontsize=18)
-plt.annotate('$\\Delta M_q$',xy=(0.8,0.35),xycoords='axes fraction',fontsize=18)
+plt.annotate('All',xy=(0.65,0.8),xycoords='axes fraction',fontsize=18)
+plt.annotate('$\\Delta M_q$',xy=(0.75,0.15),xycoords='axes fraction',fontsize=18)
 ##plt.show()
 plt.savefig('global08.png')
+os.system('play gumdrops.mp3')
 quit()
 
 hchi_2, tchi_2, two_edges_e = chi_del(chi_2[0],chi_2s,hl2,tl2,m2)
@@ -524,4 +511,3 @@ plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.5,0.65),xycoords='axes fraction',fo
 plt.title('$M = 750\,GeV,\; m_{H^0} = 750\,TeV,\; \\beta-\\alpha = \\frac{\\pi}{2}$',fontsize=18)
 #plt.savefig('globals1.png')
 plt.show()
-#os.system('play gumdrops.mp3')

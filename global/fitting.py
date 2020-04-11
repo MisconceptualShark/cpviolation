@@ -76,7 +76,7 @@ def chi_del(chi_min,chis,hs,ts,parm):
             t_min = np.append(t_min,ts[i])
 
     points = np.vstack([t_min,h_min]).T
-    edges = alpha_shape(points,alpha=0.01,only_outer=True)
+    edges = alpha_shape(points,alpha=0.1,only_outer=True)
 
     return h_min, t_min, [edges,points]
 
