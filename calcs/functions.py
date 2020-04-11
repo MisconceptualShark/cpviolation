@@ -669,10 +669,10 @@ def bmumu(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,mc,mu,wangle,higgs,v,Vus
     C10_2 = -(pow(mW*mmu,2)/(wangle*Vts*Vtb*(mH**2)*pow(g2*v,4)))*((mu**2)*Vus*Vub*I1(z1)+(ms**2)*Vcs*Vcb*I1(z2)+(mb**2)*Vts*Vtb*I1(z3t))
     C10P_2 = -(pow(mmu*mW,2)*ms*mb*(tanb**4)/(wangle*Vtb*Vts*(mH**2)*pow(g2*v,4)))*(Vus*Vub*I1(z1)+Vcs*Vcb*I1(z2)+Vts*Vtb*I1(z3t))
 
-    C10 = -4.103+C10_1+C10_2
-    C10P = 0+C10P_1+C10P_2
-    CS = 0+CS_1+CS_2 
-    CSP = 0+CSP_1+CSP_2
+    C10 = -4.103#+C10_1+C10_2
+    C10P = 0#+C10P_1+C10P_2
+    CS = 0#+CS_1+CS_2 
+    CSP = 0#+CSP_1+CSP_2
 
     rm = mmu/mbs
     fr = np.sqrt(1-(4*rm**2))
@@ -680,6 +680,8 @@ def bmumu(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,mc,mu,wangle,higgs,v,Vus
     bs1 = pow(abs((mbs**2)*(np.conj(CS)-np.conj(CSP))/((mb+ms)*(2*mmu)) - (np.conj(C10)-np.conj(C10P))),2)
     bs2 = pow(abs((mbs**2)*(np.conj(CS)-np.conj(CSP))/((mb+ms)*(2*mmu))),2)*(1-(4*rm**2))
     bs = pref*(bs1+bs2)
+    print bs
+    quit()
 
     return bs
 

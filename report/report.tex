@@ -114,7 +114,8 @@ From these definitions, the gauge invariance of Eq.\eqref{eq:dirac:1} for U(1) s
     [T^a,T^b] = if^{abc}T^c,
 \end{equation}
 where $f^{abc}$ are the structure constants which define each SU(N) group \cite{bail}. 
-It can be useful to define the fermion field $\psi$ into an upper and lower part, which can be done in many ways, but it is important in the formulation of the Standard Model to separate the fermion field into left- and right-handed components. 
+As in many parts of quantum mechanics, it can be useful to define the fermion field $\psi$ into an upper and lower part, such that $\psi$ can be written as a linear combination of componenet states. 
+This can be done in many ways, but it is important in the formulation of the Standard Model to separate the fermion field into left- and right-handed components; this was suggested in the 1950s by Lee and Yang \cite{lee} and then shown experimentally by Wu and collaborators \cite{wu}, as a description of the parity violation of nature. 
 To this end, we define the operators
 \begin{align}
     \label{eq:helix}
@@ -326,7 +327,7 @@ An example of how $Z'$ could modify Standard Model decays is given in Figure \re
     \begin{equation}
         \Gamma_{\text{Exp}} = \includegraphics[scale=0.8,raise=-16pt]{../notes/bminus.pdf} + \includegraphics[scale=0.8,raise=-16pt]{../notes/bminusprime.pdf}
     \end{equation}
-    \caption{\label{fig:bmes} Proposed $Z'$ extension to $\Gamma[B^-\to K^-\mu^+\mu^-]_{SM}$ (without higher-order corrections).}
+    \caption{\label{fig:bmes} Proposed $Z'$ extension to $\Gamma[B^-\to K^-\mu^+\mu^-]_{SM}$ (without higher-order terms).}
 \end{figure}
 
 It could also be possible that there is a fourth generation of fermions, perfectly replicating the first generation to higher masses as the second and third generations do. 
@@ -395,7 +396,7 @@ The measurements and parameters used for these expressions is given in Tables \r
 In the Standard Model, the leptonic decay $M\to l\nu_l$, where $M$ is a charged meson, has a branching ratio of
 \begin{equation}
     \label{eq:mlv}
-    \mathcal{B}[M\to l\nu_l]_{\text{SM}} = \frac{G_F^2m_Mm_l^2}{8\pi}\left(1-\frac{m_l^2}{m_M^2}\right)^2 |V_{q_uq_d}|^2f_M^2\tau_M(1+\delta_{EM}^{Ml2}),
+    \mathcal{B}r[M\to l\nu_l]_{\text{SM}} = \frac{G_F^2m_Mm_l^2}{8\pi}\left(1-\frac{m_l^2}{m_M^2}\right)^2 |V_{q_uq_d}|^2f_M^2\tau_M(1+\delta_{EM}^{Ml2}),
 \end{equation}
 where $q_u$ and $q_d$ represent the up- and down-like quarks of the meson, $V_{q_uq_d}$ the CKM element, $f_M$ the $M$ meson's decay constant, and $G_F$ is the Fermi constant, defined as
 \begin{align}
@@ -425,7 +426,7 @@ It is also worth considering the ratio of tau decays of kaons to pions:
 These SM branching values will take alterations from the two Higgs doublet model of the form
 \begin{equation}
     \label{eq:mesrh}
-    \mathcal{B}[M\to l\nu] = \mathcal{B}[M\to l\nu]_{\text{SM}}(1+r_H)^2,
+    \mathcal{B}r[M\to l\nu] = \mathcal{B}r[M\to l\nu]_{\text{SM}}(1+r_H)^2,
 \end{equation}
 where $r_H$ is the corrective factor of the two Higgs doublet model:
 \begin{align}
@@ -458,8 +459,8 @@ For $B_q$, where $q=d,s$, this results (to Leading Order) in:
     S_{HH} &= \frac{x_{tH}x_{tW}}{4\tan^4\beta}\left(\frac{1+x_{tH}}{(1-x_{tH})^2}+\frac{2x_{tH}\ln(x_{tH})}{(1-x_{tH})^3}\right),\\
     2S_{WH} &= \frac{x_{tH}x_{tW}}{4\tan^2\beta}\left(\frac{(2x_{tW}-8x_{tH})\ln(x_{tH})}{(1-x_{tH})^2(x_{tH}-x_{tW})}+\frac{6x_{tW}\ln(x_{tW})}{(1-x_{tW})^2(x_{tH}-x_{tW})}-\frac{8-2x_{tW}}{(1-x_{tH})(1-x_{tW})}\right).
 \end{align}
-where $x_{ij} = m_i^2/m_j^2$, and $S_{xy}$ describes the internal bosonic lines for the two bosons $x,y = H^\pm,W^\pm$.
-The current SM predictions for the mass differences are calculated in \cite{bmix} to be
+where $x_{ij} = m_i^2/m_j^2$, and $S_{xy}$ describes the internal bosonic lines for the two bosons $x,y \in H^\pm,W^\pm$.
+The current SM predictions for the mass differences are stated in \cite{bmix} as
 \begin{align}
     \Delta m^{\text{SM}}_d &= \left(0.533^{+0.022}_{-0.036}\right)ps^{-1} = \left(1.05^{+0.04}_{-0.07}\right)\Delta m_d^{\text{exp}}, \\
     \Delta m^{\text{SM}}_s &= \left(18.4^{+0.7}_{-1.2}\right)ps^{-1} = \left(1.04^{+0.04}_{-0.07}\right)\Delta m_s^{\text{exp}}.
@@ -479,7 +480,7 @@ The 2HDM corrections given by these additional contributions are calculated to N
 The branching ratio of $\bar{B}\to X_s\gamma$ is given by
 \begin{equation}
     \label{eq:xsgam}
-    \mathcal{B}[\bar{B}\to X_s\gamma] = \mathcal{B}[\bar{B}\to X_cl\bar{\nu}] \bigg|\frac{V_{ts}^*V_{tb}}{V_{cb}}\bigg|^2 \frac{6\alpha_{\text{EM}}}{\pi C}(P+N).
+    \mathcal{B}r[\bar{B}\to X_s\gamma] = \mathcal{B}r[\bar{B}\to X_cl\bar{\nu}] \bigg|\frac{V_{ts}^*V_{tb}}{V_{cb}}\bigg|^2 \frac{6\alpha_{\text{EM}}}{\pi C}(P+N).
 \end{equation}
 Here, $P$ represents the perturbative leading contribution in the heavy quark expansion, and $N$ the non-perturbative higher-order contributions of the heavy quark expansion.
 $P$ and $N$ are parameterised in \cite{desc,susy} as 
@@ -496,7 +497,7 @@ From \cite{bmes}, it is defined as
     \label{eq:phasespace}
     C &= \bigg|\frac{V_{ub}}{V_{cb}}\bigg|^2\frac{\Gamma(\bar{B}\to X_ce\bar{\nu})}{\Gamma(\bar{B}\to X_ue\bar{\nu})}.
 \end{align}
-This factor is important to cancel out the charm contribution we included earlier in $\mathcal{B}[\bar{B}\to X_cl\bar{\nu}]$ to return us to the charmless state we consider.
+This factor is important to cancel out the charm contribution we included earlier in $\mathcal{B}r[\bar{B}\to X_cl\bar{\nu}]$ to return us to the charmless state we consider.
 For these calculations, we follow the parameterisation of this process laid out in Appendix B of \cite{desc}.
 
 \subsection{Updating The 2HDM Constraints}
@@ -510,25 +511,25 @@ The 2HDM-extended branching ratios were tested in $(m_{H^+},\tan\beta)$ paramete
         \hline\hline
         Branching Ratios & Value & Unit & Reference \\
         \hline\hline
-        $\mathcal{B}r[B^+\to\mu^+\nu_\mu]$ & $5.3\pm2.2$ & $10^{-7}$ & \\
+        $\Gamma[K^+\to\mu^+\nu_\mu]/\Gamma[\pi^+\to\mu^+\nu_\nu]$ & $1.337\pm0.003$ & & \cite{pdg}\\
+        $\Gamma[\tau^+\to K^+\nu_\tau]/\Gamma[\tau^+\to\pi^+\nu_\tau]$ & $6.438\pm0.094$ & $10^{-2}$ & \cite{pdg} \\
+        $\mathcal{B}r[B^+\to\mu^+\nu_\mu]$ & $5.3\pm2.2$ & $10^{-7}$ & \cite{bmu} \\
         $\mathcal{B}r[B^+\to\tau^+\nu_\tau]$ & $1.09\pm0.24$ & $10^{-4}$ & \cite{pdg} \\
         $\mathcal{B}r[D^+\to\mu^+\nu_\mu]$ & $3.82\pm0.33$ & $10^{-4}$ & \cite{pdg} \\
         $\mathcal{B}r[D_s^+\to\mu^+\nu_\mu]$ & $5.52\pm0.16$ & $10^{-3}$ & \cite{pdg} \\
         $\mathcal{B}r[D_s^+\to\tau^+\nu_\tau]$ & $5.48\pm0.23$ & $10^{-2}$ & \cite{pdg} \\
-        $\Gamma[K^+\to\mu^+\nu_\mu]/\Gamma[\pi^+\to\mu^+\nu_\nu]$ & $1.337\pm0.003$ & & \cite{pdg}\\
-        $\Gamma[\tau^+\to K^+\nu_\tau]/\Gamma[\tau^+\to\pi^+\nu_\tau]$ & $6.438\pm0.094$ & $10^{-2}$ & \cite{pdg} \\
-        $\Delta m_d$ & $0.5064\pm0.0019$ & ps$^{-1}$ & \cite{hflav} \\ 
-        $\Delta m_s$ & $17.757\pm0.021$ & ps$^{-1}$ & \cite{hflav} \\
         $\mathcal{B}r[\bar{B}\to X_s\gamma]$ & $3.32\pm0.15$ & $10^{-4}$ & \cite{hflav,bmes} \\
         $\mathcal{B}r[\bar{B}\to X_c e\bar{\nu}]$ & $10.65\pm0.16$ & $10^{-2}$ & \cite{hflav,pdg} \\
         $\mathcal{B}r[\bar{B}\to X_ue\bar{\nu}]$ & $8.41\pm0.59$ & $10^{-4}$ & \cite{bxu} \\
         $\mathcal{B}r[B_d\to\mu^+\mu^-]$ & $1.4^{+1.6}_{-1.4}$ & $10^{-10}$ & \cite{pdg} \\
         $\mathcal{B}r[B_s\to\mu^+\mu^-]$ & $3.1\pm0.7$ & $10^{-9}$ & \cite{hflav} \\
+        $\Delta m_d$ & $0.5064\pm0.0019$ & ps$^{-1}$ & \cite{hflav} \\ 
+        $\Delta m_s$ & $17.757\pm0.021$ & ps$^{-1}$ & \cite{hflav} \\
         $\mathcal{R}(D)$ & $0.340\pm0.030$ & & \cite{hflav} \\
         $\mathcal{R}(D^*)$ & $0.298\pm0.014$ & & \cite{hflav} \\
         \hline\hline
     \end{tabular}
-    \caption{\label{tab:branches}Branching ratios using in testing parameter space of 2HDM Type II. In the case of normalised ratios, values have been calculated using the constituent values taken from reference.}
+    \caption{\label{tab:branches}Branching ratios using in testing parameter space of 2HDM Type II. In the case of normalised ratios, values have been calculated using the constituent measurements taken from reference.}
 \end{table}
 \begin{table}[ht]
     \centering
@@ -555,7 +556,7 @@ The 2HDM-extended branching ratios were tested in $(m_{H^+},\tan\beta)$ paramete
         $f^2_{B_s}B_{B_s}$ & $0.0452\pm0.0014$ & GeV$^2$ & \cite{bmix} \\
         $\hat{\eta}_B$ & $0.838606$ & & \cite{alex} \\
         \hline\hline
-        \multicolumn{4}{c}{$b\to s\gamma$ parameters} \\
+        \multicolumn{4}{c}{\bfseries $\mathbf{b\to s\gamma}$ parameters} \\
         \hline\hline
         $m_t^{pole}$ & $173.1\pm0.9$ & GeV & \cite{pdg} \\
         $\alpha_S(m_Z)$ & $0.1179\pm0.001$ & & \cite{pdg} \\
@@ -572,7 +573,7 @@ A $\chi^2$ fit was then performed to constrain these regions to where $\Delta\ch
 For the combined fit, we also show the $1\sigma$ confidence region. 
 
 To test the validity of these results, we also show what our calculations produce for 2009 inputs, as done in \cite{desc}.
-This fit is shown in Figure \ref{subfig:glob08}, where it is seen to replicate the previous results, finding $m_{H^+} \gtrapprox 316\,\text{GeV}$ at 95\% CL.
+This fit is shown in Figure \ref{subfig:glob08}, where it is seen to replicate the previous results, finding $m_{H^+} > 316\,$GeV at 95\% CL.
 \begin{figure}[ht]
     \vspace{-12pt}
     \centering
@@ -583,22 +584,6 @@ This fit is shown in Figure \ref{subfig:glob08}, where it is seen to replicate t
         The solid black vertical line (top right) shows $\tan\beta=m_t/m_b$, as for $\tan\beta$ much greater than this, the formulae for B mixing become invalid. 
     Each region shows what is not excluded to 95\% CL, as discussed in the text.}
 \end{figure}
-\begin{figure}[ht]
-    \centering
-    \begin{subfigure}[b]{0.48\textwidth}
-        \includegraphics[width=\textwidth]{global_08.png}
-        \caption{\label{subfig:glob08}Global fit with 2009 inputs.}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.48\textwidth}
-        \includegraphics[width=\textwidth]{../global/global_test_min.png}
-        \caption{\label{subfig:glob11}Global fit with 2020 inputs.}
-    \end{subfigure}
-    \caption{\label{fig:glob1} Global fit of constraints on $m_{H+}$ and $\tan\beta$ from all observables considered. 
-    Each region shows what is not excluded for the relevant observables to 95\% CL as discussed in the text, then the line within the orange region for all observables marks out the $1\sigma$ confidence area. 
-    The solid black vertical line shows $\tan\beta=m_t/m_b$, as for $\tan\beta$ much greater than this, the formulae for B mixing become invalid. 
-    The dashed black horizontal line marks the limit for a charged Higgs particle from direct searches, at $m_{H^+}>160\,$GeV.}
-\end{figure}
-
 The 2HDM is generally taken to be a decoupling theory. 
 That is, taking the limit $m_{H^+} \to \infty$ should recover the Standard Model picture of physics.
 For as far as we scan here, this is reinforced in our results, such that there is no upper bound on $m_{H^+}$. 
@@ -612,10 +597,32 @@ There is, however, a clear indication of a minimum allowed value for $m_{H^+}$, 
          &\; 750 \;\text{GeV},\quad 1\sigma.
     \end{split}
 \end{align}
+\begin{figure}[ht]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{global08.png}
+        \caption{\label{subfig:glob08}First global fit with 2009 inputs.}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \includegraphics[width=\textwidth]{../global/global_test_min.png}
+        \caption{\label{subfig:glob11}First global fit with 2020 inputs.}
+    \end{subfigure}
+    \caption{\label{fig:glob1} First global fit of constraints on $m_{H+}$ and $\tan\beta$ from observables considered in \cite{desc}. 
+    Each region shows what is not excluded for the relevant observables to 95\% CL as discussed in the text, then the line within the orange region for all observables marks out the $1\sigma$ confidence area. 
+    The solid black vertical line shows $\tan\beta=m_t/m_b$, as for $\tan\beta$ much greater than this, the formulae for B mixing become invalid. 
+    The dashed horizontal line marks the limit for a charged Higgs from direct searches, at $m_{H^+}>160\,$GeV.}
+\end{figure}
 
 \subsection{New Observables}
 \label{sec:rdbmu}
-In the last 10 years, more flavour observables 
+Having found agreement with the fit in \cite{desc}, and updating this with new inputs, we move on to new observables not yet considered. 
+There are some observables discussed in previous works that they did not include in their fit that we discuss here, as well as some that have had improved work in experiment and theory over the last 10 years. 
+\\
+$\mathbf{B^+}\to\boldsymbol{\mu^+\nu}$: The heavily CKM- and helicity-suppressed leptonic decay was recently measured by the Belle collaboration \cite{bmu}, and can be added to the fit using the theory for leptonic decays in Section \ref{subsec:lep} for the first time to either reinforce the structure of the leptonic decay region in Figure \ref{fig:indies} or to show new sensitivity.
+\\
+$\mathbf{\boldsymbol{\mathcal{R}}(D^{(*)})}$:
+
+
 
 \section{Results With James}
 
@@ -683,6 +690,12 @@ D. Bailin and A. Love, \emph{Introduction to Gauge Field Theory} (Institute of P
 \bibitem{schwartz} %o Higgs
 M.D. Schwartz, \emph{Quantum Field Theory and the Standard Model} (Cambridge University Press,2018).
 
+\bibitem{lee}
+T. Lee and C. Yang, \emph{Question of Parity Conservation in Weak Interactions}, Phys. Rev. \textbf{104} (1956) 254-258, doi:10:1103/PhysRev.104.254.
+
+\bibitem{wu}
+C. Wu et al, \emph{Experimental Test of Parity Conservation in $\beta$ Decay}, Phys. Rev. \textbf{105} (1957), 1413-1414, doi:10.1103/PhysRev.105.1413.
+
 \bibitem{kane} %m covar deriv
 G. Kane, \emph{Modern Elementary Particle Physics} (Addison-Wesley, 1987).
 
@@ -697,9 +710,6 @@ L. Wolfenstein, \emph{Parametrization of the Kobayashi-Maskawa Matrix}, Phys. Re
 
 \bibitem{ckm} %g
 CKMfitter Group (J. Charles et al.), Eur. Phys. J. C41, 1-131 (2005) [hep-ph/0406184], updated results and plots available at: \href{http://ckmfitter.in2p3.fr}{http://ckmfitter.in2p3.fr}.
-
-\bibitem{wu}
-C. Wu at al, \emph{Experimental Test of Parity Conservation in $\beta$ Decay}, Phys. Rev. \textbf{105} (1957), 1413-1414, doi:10.1103/PhysRev.105.1413.
 
 \bibitem{cpv}
 J. Chistenson et al, \emph{Evidence for the $2\pi$ Decay of the $K_2^0$ Meson}, Phys. Rev. Lett. \textbf{13} (1964), 138-140, doi:10.1103/PhysRevLett.13.138.
@@ -733,6 +743,9 @@ G. Degrassi, P. Gambino, and P. Slavich, \emph{SusyBSG: a fortran code for} BR$[
 
 \bibitem{bmes} %f
 A. Lenz and G. Tetlalmatzi-Xolocotzi, \emph{Model-independent bounds on new physics effects in non-leptonic tree-level decays of B-mesons}, \href{https://arxiv.org/pdf/1912.07621.pdf}{arxiv:1912.07621}.
+
+\bibitem{bmu}
+M. T. Prim et al [Belle Collaboration], \emph{Search for $B^+\to\mu^+\nu_\mu$ and $B^+\to\mu^+N$ with inclusive tagging}, Phys. Rev. D \textbf{101} (2020) no.3 032007, doi:10:1103/PhysRevD.101.032007, [\href{https://arxiv.org/abs/1911.03186}{arXiv:1911.03186 [hep-ex]}].
 
 \bibitem{hflav} %c
 Y. Amhis et al [HFLAV], \emph{Averages of b-hadron, c-hadron, and $\tau$-lepton properties as of 2018}, \href{https://arxiv.org/pdf/1909.12524.pdf}{arxiv:1909.12524}.
