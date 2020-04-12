@@ -173,7 +173,7 @@ tl, tb, tg, ta, tmu, tl2, tS, tT, tU = tanbs
 chi_ls, chi_ms, chi_gs, chi_as, chi_mus, chi_2s, chi_Ss, chi_Ts, chi_Us = chis #all chisq values
 
 m1,m2 = 2.30,5.99 #different confidence levels for chisq fit
-nu = 14 # degrees of freedom
+nu = 11 # degrees of freedom
 
 # returns mH, tanb values, and 'edges' which is to draw around the perimeters of regions
 hchi_leps, tchi_leps, lep_edges_e = chi_del(min(chi_ls),chi_ls,hl,tl,m2) #chisq fit to 95% CL
@@ -197,18 +197,19 @@ hchi_mu2, tchi_mu2, mu_edges = chi_del(min(chi_mus),chi_mus,hmu,tmu,m1)
 #hchi_U, tchi_U, U_edges_e = chi_del(min(chi_Us),chi_Us,hU,tU,m2)
 #hchi_U2, tchi_U2, U_edges = chi_del(min(chi_Us),chi_Us,hU,tU,m1)
 #
-#hchi_2, tchi_2, two_edges_e = chi_del(chi_2[0],chi_2s,hl2,tl2,m2)
-#hchi_22, tchi_22, two_edges = chi_del(chi_2[0],chi_2s,hl2,tl2,m1)
+hchi_2, tchi_2, two_edges_e = chi_del(chi_2[0],chi_2s,hl2,tl2,m2)
+hchi_22, tchi_22, two_edges = chi_del(chi_2[0],chi_2s,hl2,tl2,m1)
 
 # print out some numbers to 95CL and 1 sig
-#print [10**min(hchi_2),10**max(hchi_2)], [10**min(hchi_22),10**max(hchi_22)]
-#print [10**min(tchi_2),10**max(tchi_2)], [10**min(tchi_22), 10**max(tchi_22)]
-#print chi_2/nu # reduced chisq, nu = 16 observables - 2 free parameters
-#print chi_2
+print [10**min(hchi_2),10**max(hchi_2)], [10**min(hchi_22),10**max(hchi_22)]
+print [10**min(tchi_2),10**max(tchi_2)], [10**min(tchi_22), 10**max(tchi_22)]
+print chi_2[0]/nu # reduced chisq, nu = 16 observables - 2 free parameters
+print chi_2
 
-#p_val, p_err = p_vals(chi_2[0],nu)
-#print "p-value for global fit with ", nu," degrees of freedom is: ", "{:.1%}".format(p_val)#, " +/- ", p_err
-
+p_val, p_err = p_vals(chi_2[0],nu)
+print "p-value for global fit with ", nu," degrees of freedom is: ", "{:.1%}".format(p_val)#, " +/- ", p_err
+os.system('play draco.mp3')
+quit()
 # plotting! scatter plots for regions, then the for loops plot out the outline
 # all regions plotted to 95% CL, and their lines plotted to this too, but then the 1 sigma everything region's border is plotted 
 plt.figure(figsize=(8,6))

@@ -219,34 +219,32 @@ delta_b,delta_d = 0.982,0.99*0.982
 
 #hrdst, trdst, chi_rdsst, chi_stmin = itera_rds(m_Brd,m_Brd_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rdst_exp,rdst_exp_err)
 # hrdn, trdn, chi_rdn, chi_nmin = itera_rdn(m_Brd,m_Brd_err,m_dplus,m_dplus_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rd_exp,rd_exp_err)
-hrdn, trdn, chi_rdn, chi_nmin, hrdst, trdst, chi_rdst, chi_stmin = itera_rda(m_Brd,m_Brd_err,m_dplus,m_dplus_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rd_exp,rd_exp_err,rdst_exp,rdst_exp_err)
+hrdn, trdn, chi_rdn, chi_nmin, hrdst, trdst, chi_rdst, chi_stmin, ha, ta, chia, am = itera_rda(m_Brd,m_Brd_err,m_dplus,m_dplus_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rd_exp,rd_exp_err,rdst_exp,rdst_exp_err)
 
 m2,m1=5.99,2.30
 hchi_rd, tchi_rd, rd_edges_e = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m2)
 hchi_rd2, tchi_rd2, rd_edges = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m1)
-hchi_rds, tchi_rds, rds_edges_e = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m2)
+hchi_rds, tchi_rds, rds_edges_e = chi_del(chi_stmin,chi_rdst,hrdst,trdst,m2)
 hchi_rds2, tchi_rds2, rds_edges = chi_del(chi_stmin,chi_rdst,hrdst,trdst,m1)
+hchi_rda, tchi_rda, rda_edges_e = chi_del(am,chia,ha,ta,m2)
+hchi_rda2, tchi_rda2, rda_edges = chi_del(am,chia,ha,ta,m1)
 
 plt.figure(figsize=(8,6))
-plt.scatter(trdst,hrdst,c='turquoise',marker=',')
-plt.scatter(trdn,hrdn,c='cadetblue',marker=',')
-for i, j in rd_edges_e[0]:
-    plt.plot(rd_edges_e[1][[i,j],0],rd_edges_e[1][[i,j],1],c='black',linestyle='--')
-for i, j in rds_edges_e[0]:
-    plt.plot(rds_edges_e[1][[i,j],0],rds_edges_e[1][[i,j],1],c='black',linestyle='--')
-for i, j in rd_edges[0]:
-    plt.plot(rd_edges[1][[i,j],0],rd_edges[1][[i,j],1],c='blue',linestyle='--')
-for i, j in rds_edges[0]:
-    plt.plot(rds_edges[1][[i,j],0],rds_edges[1][[i,j],1],c='blue',linestyle='--')
+plt.scatter(ta,ha,c='turquoise',marker=',')
+#plt.scatter(trdn,hrdn,c='cadetblue',marker=',')
+for i, j in rda_edges_e[0]:
+    plt.plot(rda_edges_e[1][[i,j],0],rda_edges_e[1][[i,j],1],c='black',linestyle='--')
+for i, j in rda_edges[0]:
+    plt.plot(rda_edges[1][[i,j],0],rda_edges[1][[i,j],1],c='blue',linestyle='--')
 plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
 #plt.title('$\\mathcal{R}(D^{(*)}),$ 95% CL',fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
 plt.axis([-1,2,0,3.5])
-plt.savefig('rd_both196sig.png')
+plt.savefig('rd_both5sig2.png')
 #plt.show()
-os.system('play gumdrops.mp3')
+os.system('play draco.mp3')
 quit()
 
 ###############   MIXING

@@ -14,6 +14,7 @@
 \usepackage[a4paper,left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
 \usepackage[export]{adjustbox}
 \usepackage{tikz}
+\usepackage[font=small,labelfont=bf]{caption}
 \usepackage{graphicx,subcaption}
 \usetikzlibrary{arrows.meta}
 \graphicspath{{../images/}}
@@ -28,7 +29,7 @@
 %% \author{and A. Nother Author}
 %% \affiliation{Institution,\\Address, Country}
 
-% more complex case: 4 authors, 3 institutions, 2 footn#otes
+% more complex case: 4 authors, 3 institutions, 2 footnotes
 \author{Matthew Rossetter}
 
 % The "\note" macro will give a warning: "Ignoring empty anchor..."
@@ -71,7 +72,7 @@ There are twenty-five fundamental particles currently described in the Standard 
 
 The bases for the Standard Model are the quantum theories of electroweak and strong interactions, and then the symmetry-breaking Higgs mechanism which gives masses to these theories.
 Both the electroweak and strong theories are non-Abelian gauge theories: the electroweak theory has a gauge symmetry of SU(2)$_{L}\otimes$U(1)$_Y$, and the strong theory of SU(3)$_{c}$ \cite{bail}.
-\hspace{-10pt}\footnote{The subscripts of the symmetries describe the "charge" under which particles interact with each gauge theory: $c$ represents the color charge of the strong force, $L$ states that the weak force interacts only with left-handed doublets (through which the weak isospin will be defined analagous to spin), and $Y$ represents the weak hypercharge of U(1) before the spontaneous symmetry breaking of the Higgs mechanism to introduce the electric charge of the electromagnetic force.\cite{schwartz}}
+\hspace{-10pt}\footnote{The subscripts of the symmetries describe the "charge" under which particles interact with each gauge theory: $c$ represents the color charge of the strong force, $L$ states that the weak force interacts only with left-handed doublets (through which the weak isospin will be defined analogous to spin), and $Y$ represents the weak hypercharge of U(1) before the spontaneous symmetry breaking of the Higgs mechanism to introduce the electric charge of the electromagnetic force.\cite{schwartz}}
 \hspace{-5pt}To formulate the Standard Model Lagrangian, we start with the free Lagrangian of a massless Dirac fermion coupled to a gauge field tensor,
 \begin{align}
     \label{eq:dirac:1}
@@ -113,7 +114,7 @@ From these definitions, the gauge invariance of Eq.\eqref{eq:dirac:1} for U(1) s
     [T^a,T^b] = if^{abc}T^c,
 \end{equation}
 where $f^{abc}$ are the structure constants which define each SU(N) group \cite{bail}. 
-As in many parts of quantum mechanics, it can be useful to define the fermion field $\psi$ into an upper and lower part, such that $\psi$ can be written as a linear combination of componenet states. 
+As in many parts of quantum mechanics, it can be useful to define the fermion field $\psi$ into an upper and lower part, such that $\psi$ can be written as a linear combination of component states. 
 This can be done in many ways, but it is important in the formulation of the Standard Model to separate the fermion field into left- and right-handed components; this was suggested in the 1950s by Lee and Yang \cite{lee} and then shown experimentally by Wu and collaborators \cite{wu}, as a description of the parity violation of nature. 
 To this end, we define the operators
 \begin{align}
@@ -133,7 +134,7 @@ Considering both quarks and leptons in the traditional three generations, then u
     \Psi_L &=\begin{pmatrix} \nu_e \\ e^- \end{pmatrix}_L,\; e_R^-, & \Psi_{L\alpha} &=\begin{pmatrix} u_\alpha \\ d_\alpha\end{pmatrix}_L,\; u_{R\alpha},d_{R\alpha},
 \end{align}
 where $\alpha$ represents the colour charge of the quarks under the strong interaction \cite{kane}.
-We can define the weak isospin quantum number $T$ analagous to spin; in the left-handed doublet: up-type quarks and neutrinos have $T_3=+\frac12$, and down-type quarks and charged leptons have $T_3=-\frac12$.
+We can define the weak isospin quantum number $T$ analogous to spin; in the left-handed doublet: up-type quarks and neutrinos have $T_3=+\frac12$, and down-type quarks and charged leptons have $T_3=-\frac12$.
 Neutrinos only appear in the left-handed doublets and do not form right-handed singlets, or if they do, these do not interact with the rest of the Standard Model.
 So right- and left-handed fermions are in different SU(2) multiplets; this represents a parity violation in the Standard Model which is also found in nature. 
 This is an important criterion of a theory of nature, as will be discussed more in section \ref{subsec:flavobs}.
@@ -213,7 +214,7 @@ where $\phi^0$ is defined as $\frac{v}{\sqrt{2}}$ through the transformation
 \end{align}
 from the spontaneous symmetry breaking. 
 So now down-type quarks and charged leptons have gained masses. 
-To generate the masses of the up-type quarks, the hermitian cojugate term is used, where now a second Higgs doublet (not independent of the first, but its charge conjugate) is introduced as
+To generate the masses of the up-type quarks, the hermitian conjugate term is used, where now a second Higgs doublet (not independent of the first, but its charge conjugate) is introduced as
 \begin{align}
     \label{eq:highc}
     \tilde{\Phi} &= i\sigma_2\Phi^* = \begin{pmatrix}\phi^{0*}\\-\phi^{+*}\end{pmatrix} = \frac{1}{\sqrt{2}}\begin{pmatrix}v+h\\0\end{pmatrix}.
@@ -290,7 +291,7 @@ The unitarity triangle can help describe many things in quark mixing, such as CP
 It can also be useful to define a unitarity circle through comparison of experiment and theory in CP-violating processes, and from these and others, many regions in the $(\rho,\eta)$ plane can be defined to interpret various constants and effects in quark mixing. 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{rhoeta_large.png}
+    \includegraphics[scale=0.4,trim=0 20pt 0 50pt,clip]{rhoeta_large.png}
     \caption{\label{fig:ckmfitter} The global CKM fit in the $(\rho,\eta)$ plane, as of 13/01/20 \cite{ckm}.}
 \end{figure}
 
@@ -300,7 +301,7 @@ One of the big questions about the formulation of our universe is why is there a
 Sakharov stated in 1967 three criteria that must have been fulfilled throughout the evolution of the Universe to create the current state of matter-antimatter asymmetry \cite{sak}. 
 These are:
 \begin{enumerate}
-    \item Baryon Number Violation - this is theorised in sphalerons, though not yet confirmed experimentally. 
+    \item Baryon Number Violation - this is theorised in sphalerons, though not yet confirmed experimentally \cite{sphal}. 
     \item C and CP Violation - this is present in the Standard Model, although not to the extent required. 
     \item A First Order Phase Transition in the early universe - this could have been possible in the Standard Model, but only for $m_h<60\,$GeV, whereas we now measure the Higgs mass to be $m_h=125.1\pm0.14\,$GeV.
 \end{enumerate}
@@ -365,13 +366,13 @@ Under this model, the masses of the three weak gauge bosons can still be generat
 This time, however, there would be 5 residual scalar fields, and so, five Higgs fields should be found: three neutral Higgs - two scalar $H$ and $h$ (where $h$ is the SM Higgs particle) and one pseudoscalar $A$.
 There will also be two charged Higgs $H^\pm$.
 The introduction of these new particles requires searching for additional parameters to describe them: the masses of $H$, $A$, and $H^\pm$; the mixing angle between $h$ and $H$; and the VEV ratio $\tan\beta=v_2/v_1$ \cite{desc}.
-%The 2HDM potential can be written in its most general form as
-%\begin{align}
-%    \begin{split}
-%        V(\Phi_1,\Phi_2) =& m_{11}^2\Phi_1^\dagger\Phi_1 + m_{22}^2\Phi_2^\dagger\Phi_2 + m_{12}^2(\Phi_1^\dagger\Phi_2+\Phi_2^\dagger\Phi_1) + \frac{\lambda_1}{2}(\Phi_1^\dagger\Phi)^2 + \frac{\lambda_2}{2}(\Phi_2^\dagger\Phi_2)^2 \\
-%                                                        &+ \lambda_3\Phi_1^\dagger\Phi_1\Phi_2^\dagger\Phi_2 + \lambda_4\Phi_1^\dagger\Phi_2\Phi_2^\dagger\Phi_1 + \frac{\lambda_5}{2}\left[(\Phi_1^\dagger\Phi_2)^2+(\Phi_2^\dagger\Phi_1)^2\right].
-%    \end{split}
-%\end{align}
+The 2HDM potential can be written in its most general form as
+\begin{align}
+    \begin{split}
+        V(\Phi_1,\Phi_2) =& m_{11}^2\Phi_1^\dagger\Phi_1 + m_{22}^2\Phi_2^\dagger\Phi_2 + m_{12}^2(\Phi_1^\dagger\Phi_2+\Phi_2^\dagger\Phi_1) + \frac{\lambda_1}{2}(\Phi_1^\dagger\Phi)^2 + \frac{\lambda_2}{2}(\Phi_2^\dagger\Phi_2)^2 \\
+                                                        &+ \lambda_3\Phi_1^\dagger\Phi_1\Phi_2^\dagger\Phi_2 + \lambda_4\Phi_1^\dagger\Phi_2\Phi_2^\dagger\Phi_1 + \frac{\lambda_5}{2}\left[(\Phi_1^\dagger\Phi_2)^2+(\Phi_2^\dagger\Phi_1)^2\right].
+    \end{split}
+\end{align}
 The two Higgs doublet model (2HDM) described above is the type II version, where $\Phi_1$ couples to down-type quarks and $\Phi_2$ couples to up-type quarks and charged leptons. 
 There are other types of 2HDM where the two Higgs doublets couple in different ways, but the comforting sign from Type II is that it yields a similar expression for the Yukawa Lagrangian to the SM. 
 This in turn yields a similar CKM matrix through which all flavour-changing interactions can be described. 
@@ -395,6 +396,32 @@ Studies of these new contributions have been done in the past, though it is inte
 For flavour observables, a study of the most relevant decays for charged Higgs searches was found in \cite{desc}.
 Here, we begin by following \cite{desc} closely to find the changes to their results in the last ten years, before moving on to further additions. 
 The measurements and parameters used for these expressions is given in Tables \ref{tab:branches} and \ref{tab:params}.
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|ccc}
+        \hline\hline
+        Branching Ratios & Value & Unit & Reference \\
+        \hline\hline
+        $\Gamma[K^+\to\mu^+\nu_\mu]/\Gamma[\pi^+\to\mu^+\nu_\nu]$ & $1.337\pm0.003$ & & \cite{pdg}\\
+        $\Gamma[\tau^+\to K^+\nu_\tau]/\Gamma[\tau^+\to\pi^+\nu_\tau]$ & $6.438\pm0.094$ & $10^{-2}$ & \cite{pdg} \\
+        $\mathcal{B}r[B^+\to\mu^+\nu_\mu]$ & $5.3\pm2.2$ & $10^{-7}$ & \cite{bmu} \\
+        $\mathcal{B}r[B^+\to\tau^+\nu_\tau]$ & $1.09\pm0.24$ & $10^{-4}$ & \cite{pdg} \\
+        $\mathcal{B}r[D^+\to\mu^+\nu_\mu]$ & $3.82\pm0.33$ & $10^{-4}$ & \cite{pdg} \\
+        $\mathcal{B}r[D_s^+\to\mu^+\nu_\mu]$ & $5.52\pm0.16$ & $10^{-3}$ & \cite{pdg} \\
+        $\mathcal{B}r[D_s^+\to\tau^+\nu_\tau]$ & $5.48\pm0.23$ & $10^{-2}$ & \cite{pdg} \\
+        $\mathcal{B}r[\bar{B}\to X_s\gamma]$ & $3.32\pm0.15$ & $10^{-4}$ & \cite{hflav,bmes} \\
+        $\mathcal{B}r[\bar{B}\to X_c e\bar{\nu}]$ & $10.65\pm0.16$ & $10^{-2}$ & \cite{hflav,pdg} \\
+        $\mathcal{B}r[\bar{B}\to X_ue\bar{\nu}]$ & $8.41\pm0.59$ & $10^{-4}$ & \cite{bxu} \\
+        $\mathcal{B}r[B_d\to\mu^+\mu^-]$ & $1.4^{+1.6}_{-1.4}$ & $10^{-10}$ & \cite{pdg} \\
+        $\mathcal{B}r[B_s\to\mu^+\mu^-]$ & $3.1\pm0.7$ & $10^{-9}$ & \cite{hflav} \\
+        $\Delta m_d$ & $0.5064\pm0.0019$ & ps$^{-1}$ & \cite{hflav} \\ 
+        $\Delta m_s$ & $17.757\pm0.021$ & ps$^{-1}$ & \cite{hflav} \\
+        $\mathcal{R}(D)$ & $0.340\pm0.030$ & & \cite{hflav} \\
+        $\mathcal{R}(D^*)$ & $0.298\pm0.014$ & & \cite{hflav} \\
+        \hline\hline
+    \end{tabular}
+    \caption{\label{tab:branches}Branching ratios using in testing parameter space of 2HDM Type II. In the case of normalised ratios, values have been calculated using the constituent measurements taken from reference.}
+\end{table}
 
 \subsection{Leptonic Decays}
 \label{subsec:lep}
@@ -410,7 +437,7 @@ where $q_u$ and $q_d$ represent the up- and down-like quarks of the meson, $V_{q
 $\delta_{EM}^{Ml2}$ is a corrective factor for electromagnetic radiative corrections. 
 For $\pi$ and $K$ mesons, the effect is around 2-3\% and around 1\% for $D$ mesons.
 For B meson phenomena, the effect is approximated to 0. 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{mesons.pdf}
     \caption{\label{fig:mesons}$W^\pm$ and $H^\pm$ pathways for the leptonic decay of a meson (before higher-order terms).}
@@ -441,11 +468,10 @@ where $r_H$ is the corrective factor of the two Higgs doublet model:
 It can still be possible through this method for some leptonic decays to have agreement between the SM predictions and experiment, where $r_H = 0,-2$.
 $r_H=0$ is known as the decoupling solution which can be found as $m_{H^+}$ approaches infinity; $r_H=-2$, the fine-tuned solution, is obtained from a linear relationship between $m_{H^+}$ and $\tan\beta$, which will be dependent of the masses of the meson and its constituent quarks, so will vary between mesons. 
 
-
 \subsection{Mass mixing}
 \label{subsec:mix}
 Neutral B meson mixing is a common study in flavour physics, due to the strong dependence on the heavy $W$ exchange. 
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale=0.95,trim=12em 45em 10em 12em]{bmix.pdf}
     \caption{\label{fig:bmix} Examples of the box diagrams detailing $B_d$ and $B_s$ meson mixing.}
@@ -503,6 +529,40 @@ For these calculations, we follow the parameterisation of this process laid out 
 
 \subsection{Updating The 2HDM Constraints}
 \label{subsec:fit}
+\begin{table}
+    \centering
+    \begin{tabular}{c|ccc}
+        \hline\hline
+        Input & Value & Unit & Reference \\
+        \hline\hline
+        \multicolumn{4}{c}{\bfseries Decay Constants} \\
+        \hline\hline
+        $f_K/f_\pi$ & $1.1932\pm0.0019$ & & \cite{pdg}\\
+        $f_B$ & $190\pm1.3$ & MeV & \cite{flag} \\
+        $f_{B_s}$ & $230\pm1.3$ & MeV & \cite{flag} \\
+        $f_D$ & $212\pm0.7$ & MeV & \cite{flag} \\
+        $f_{D_s}$ & $249.9\pm0.5$ & MeV & \cite{flag} \\
+        \hline\hline
+        \multicolumn{4}{c}{\bfseries Radiative corrections} \\
+        \hline\hline
+        $\delta^{Kl2/\pi l2}_{EM}$ & $-0.0069\pm0.0017$ & & \cite{pdg} \\
+        $\delta^{\tau K2/\tau\pi 2}_{EM}$ & $0.003$ & & \cite{desc} \\
+        \hline\hline
+        \multicolumn{4}{c}{\bfseries B meson mixing} \\
+        \hline\hline
+        $f^2_{B_d}B_{B_d}$ & $0.0305\pm0.0011$ & GeV$^2$ & \cite{bmix} \\
+        $f^2_{B_s}B_{B_s}$ & $0.0452\pm0.0014$ & GeV$^2$ & \cite{bmix} \\
+        $\hat{\eta}_B$ & $0.838606$ & & \cite{alex} \\
+        \hline\hline
+        \multicolumn{4}{c}{\bfseries $\mathbf{b\to s\gamma}$ parameters} \\
+        \hline\hline
+        $m_t^{pole}$ & $173.1\pm0.9$ & GeV & \cite{pdg} \\
+        $\alpha_S(m_Z)$ & $0.1179\pm0.001$ & & \cite{pdg} \\
+        $\mu_b$ & $1.095$ & GeV & \\
+        \hline\hline
+    \end{tabular}
+    \caption{\label{tab:params} Parameters used in the 2HDM fits for decays outlined in Section \ref{sec:probe}.}
+\end{table}
 Before adding to the fit performed in \cite{desc}, we check that we can replicate their results from 2009 and update this with the most recent input values. 
 All processes mentioned above were used to test the constraints on the 2HDM parameters $m_{H^+}$ and $\tan\beta$. 
 The 2HDM-extended branching ratios were tested in $(m_{H^+},\tan\beta)$ parameter space to search for regions where a charged Higgs would be allowed by nature. 
@@ -521,7 +581,7 @@ This fit is shown in Figure \ref{subfig:glob08}, where it is seen to replicate t
     \includegraphics[width=0.49\textwidth]{indy/leps.png}
     \includegraphics[width=0.49\textwidth]{indy/bmix.png}
     \includegraphics[width=0.49\textwidth]{indy/bsgamma.png}
-    \caption{\label{fig:indies}Constraints of $(m_{H+},\tan\beta)$ space from leptonic decays (top left), $B_d$ and $B_s$ mixing (top right), and the radiative $b\to s\gamma$ decay (bottom). The leptonic decays used were $B^+\to\tau^+\nu$, $B^+\to\mu^+\nu$, $D^+\to\mu^+\nu$, $D_s^+\to\mu^+\nu$, $D_s^+\to\tau^+\nu$, and the ratios $K\to\mu\nu/\pi\to\mu\nu$ and $\tau\to K\nu/\tau\to\pi\nu$. 
+    \caption{\label{fig:indies}Constraints of $(m_{H^+},\tan\beta)$ space from leptonic decays (top left), $B_d$ and $B_s$ mixing (top right), and the radiative $b\to s\gamma$ decay (bottom). The leptonic decays used were $B^+\to\tau^+\nu$, $B^+\to\mu^+\nu$, $D^+\to\mu^+\nu$, $D_s^+\to\mu^+\nu$, $D_s^+\to\tau^+\nu$, and the ratios $K\to\mu\nu/\pi\to\mu\nu$ and $\tau\to K\nu/\tau\to\pi\nu$. 
         The solid black vertical line (top right) shows $\tan\beta=m_t/m_b$, as for $\tan\beta$ much greater than this, the formulae for B mixing become invalid. 
     Each region shows what is not excluded to 95\% CL, as discussed in the text.}
 \end{figure}
@@ -548,7 +608,7 @@ There is, however, a clear indication of a minimum allowed value for $m_{H^+}$, 
         \includegraphics[width=\textwidth]{../global/global_test_min.png}
         \caption{\label{subfig:glob11}First global fit with 2020 inputs.}
     \end{subfigure}
-    \caption{\label{fig:glob1} First global fit of constraints on $m_{H+}$ and $\tan\beta$ from observables considered in \cite{desc}. 
+    \caption{\label{fig:glob1} First global fit of constraints on $m_{H^+}$ and $\tan\beta$ from observables considered in \cite{desc}. 
     Each region shows what is not excluded for the relevant observables to 95\% CL as discussed in the text, then the line within the orange region for all observables marks out the $1\sigma$ confidence area. 
     The solid black vertical line shows $\tan\beta=m_t/m_b$, as for $\tan\beta$ much greater than this, the formulae for B mixing become invalid. 
     The dashed horizontal line marks the limit for a charged Higgs from direct searches, at $m_{H^+}>160\,$GeV \cite{dirhp}.}
@@ -587,7 +647,7 @@ These new parameters can all be varied along with $m_{H^+}$ and $\tan\beta$ in a
 
 When working in the 2HDM, it is usually assumed that we are working in the \emph{alignment limit}, where the lighter neutral Higgs $h^0$ is taken to be the SM Higgs, and therefore the mixing angles are aligned such that $\cos(\beta-\alpha) \approx 0$. 
 Using this limit therefore allows us to fix $\alpha$ and $m_{h^0}$, leaving two additional parameters.
-Scanning in ($m_{H^+},\tan\beta$) space, as for other observables, for fixed values of $M$ and $m_{H^0}$ across a range based on the work in \cite{trilin} and the direct searches for $H^0$ in \cite{h0search}, we find that $M$ bears little significance on the shape of the scan, particularly in regions of overlap with other observables. 
+Scanning in ($m_{H^+},\tan\beta$) space, as for other observables, for fixed values of $M$ and $m_{H^0}$ across a range based on the work in \cite{trilin} and the direct searches for $H^0$ in \cite{h0search}, we find that $M$ bears no significance on the constraints, $\chi^2_{min}$, or p-values of the fit.
 We therefore fix $M=750\,$GeV as the median value in the range considered.
 The value of $m_{H^0}$, however, does change the scan across the range chosen. 
 We show here the impact of different values of $m_{H^0}$ on the allowed region of parameter space at the extremities and the middle of our range. 
@@ -599,13 +659,14 @@ We show here the impact of different values of $m_{H^0}$ on the allowed region o
     \caption{\label{fig:bmu}Constraints on ($m_{H^+},\tan\beta$) space from $B_{s,d}\to\mu^+\mu^-$ decays, for $M=750\,$GeV, $\cos(\beta-\alpha)=0$ and varying fixed values of $m_{H^0}$ - $250\,$GeV (left), $750\,$GeV (center), $1.5\,$TeV (right).
         The red region in each plot indicates allowed parameter space after exclusion at 95\% CL.}
 \end{figure}
-As we had previously, we see that there is no specific constraint on $m_{H^+}$ as we move towards $\infty$, and these processes by themselves do not give a minimum value of $m_{H^+}$. 
+We see that there is no specific constraint on $m_{H^+}$ as we move towards $\infty$, and these processes by themselves do not give a minimum value of $m_{H^+}$. 
 We do however now see more significant bounds on $\tan\beta$ than we had previously. 
-The extent of the constraints on $\tan\beta$ does depend on $m_{H^+}$ as seen in Figure \ref{fig:bmu}; for higher $m_{H^0}$, $\tan\beta$ can be higher too.
-When added to the global constraints, this will restrict larger $\tan\beta$ values depending on $m_{H^0}$.
+The extent of the constraint on $\tan\beta$ does depend on $m_{H^+}$ as seen in Figure \ref{fig:bmu}.
+When added to the global constraints, this will restrict larger $\tan\beta$ values depending on $m_{H^0}$, though we see smaller $\tan\beta$ are still allowed as $m_{H^+}\to\infty$.
+Testing across the range of values for $m_{H^0}$, we find that using $m_{H^0}=1.5\,$TeV minimises $\chi^2$ and maximises the p-value of our fit; see Section ref and Table \ref{tab:pval} for details of this fit.
 
 \subsubsection{$\mathcal{R}(D)$ and $\mathcal{R}(D^{(*)})$}
-\begin{figure}[H]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.8\textwidth]{bclnu.pdf}
     \caption{\label{fig:bclnu}Tree level decay diagrams for the $b\to cl\nu$ transitions in $B\to D^{(*)}l\nu$.}
@@ -616,82 +677,32 @@ These semileptonic decay ratios, defined as
 \end{align}
 are well-studied anomalies in the Standard Model, deviating from the Standard Model predictions by $1.4\sigma$ and $2.5\sigma$ respectively \cite{pdg}. 
 Due to these deviations, these ratios seem well-suited for testing constraints on new physics models. 
-In \cite{desc}, a 2HDM parameterisation of $\mathcal{R}(D)$ was discussed and was said to align similarly with the leptonics constraints, however, they did not discuss $\mathcal{R}(D^*)$. 
-Historically, the 2HDM has struggled to fit both these ratios simultaneously, and it may be a killer argument for this model if no resolution to this can be found. 
+In \cite{desc}, a 2HDM parameterisation of $\mathcal{R}(D)$ was discussed and was said to align similarly with the leptonic constraints, however, they did not discuss $\mathcal{R}(D^*)$. 
 We follow the expressions for $\mathcal{R}(D^{(*)})$ in the 2HDM found in Section III of \cite{rds} and perform a scan as before on these observables. 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.49\textwidth]{rd_both196sig.png}
     \caption{\label{fig:rds}Constraint on ($m_{H^+},\tan\beta$) space from $\mathcal{R}(D)$ (blue) and $\mathcal{R}(D^*)$ (turquoise) using a $2\sigma$ scan, then $\chi^2$ fitting as described in the text. 
-    The black lines for each region outlines the 95\% CL region and the blue line outlines the $1\sigma$ confidence region.}
+    The black lines for each region outlines the 95\% CL region and the blue lines outline the $1\sigma$ confidence region.}
+\end{figure}
+Historically, the 2HDM has struggled to fit both these ratios simultaneously, and it may be a killer argument for this model if no resolution to this can be found. 
+So far we have implemented $2\sigma$ scans, and at this level, $\mathcal{R}(D^*)$ excludes the 2HDM.
+However, exclusion at this level only means that the 2HDM performs no better than the Standard Model for this observable. 
+We therefore move forward with two approaches to work through this discrepancy: we continue to fit all observables at the $2\sigma$ level, excluding $\mathcal{R}(D^*)$ as an anomaly as it is in the Standard Model; and we also scan to higher $\sigma$, as $\mathcal{R}(D^*)$ may then agree with the fit to this level, suggesting further new physics to explain its deviation from the 2HDM.
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.49\textwidth]{rd_both5sig2.png}
+    \caption{\label{fig:rd5sig}Constraint on ($m_{H^+},\tan\beta$) space from $\mathcal{R}(D)$ and $\mathcal{R}(D^*)$ from a 5$\sigma$ scan. 
+    The turquoise region shows what is not excluded for the joint fit of these two observables from the $5\sigma$ scan, and the blue line indicates the outline of the 95\% CL region.}
 \end{figure}
 
+\subsection{Results With James}
 
-\section{Results With James}
+\subsection{SM4x2HDM}
 
-\section{CKM Element Modification}
+\section{Conclusion}
 
-\section{SM4x2HDM}
-\begin{table}[ht]
-    \centering
-    \begin{tabular}{c|ccc}
-        \hline\hline
-        Branching Ratios & Value & Unit & Reference \\
-        \hline\hline
-        $\Gamma[K^+\to\mu^+\nu_\mu]/\Gamma[\pi^+\to\mu^+\nu_\nu]$ & $1.337\pm0.003$ & & \cite{pdg}\\
-        $\Gamma[\tau^+\to K^+\nu_\tau]/\Gamma[\tau^+\to\pi^+\nu_\tau]$ & $6.438\pm0.094$ & $10^{-2}$ & \cite{pdg} \\
-        $\mathcal{B}r[B^+\to\mu^+\nu_\mu]$ & $5.3\pm2.2$ & $10^{-7}$ & \cite{bmu} \\
-        $\mathcal{B}r[B^+\to\tau^+\nu_\tau]$ & $1.09\pm0.24$ & $10^{-4}$ & \cite{pdg} \\
-        $\mathcal{B}r[D^+\to\mu^+\nu_\mu]$ & $3.82\pm0.33$ & $10^{-4}$ & \cite{pdg} \\
-        $\mathcal{B}r[D_s^+\to\mu^+\nu_\mu]$ & $5.52\pm0.16$ & $10^{-3}$ & \cite{pdg} \\
-        $\mathcal{B}r[D_s^+\to\tau^+\nu_\tau]$ & $5.48\pm0.23$ & $10^{-2}$ & \cite{pdg} \\
-        $\mathcal{B}r[\bar{B}\to X_s\gamma]$ & $3.32\pm0.15$ & $10^{-4}$ & \cite{hflav,bmes} \\
-        $\mathcal{B}r[\bar{B}\to X_c e\bar{\nu}]$ & $10.65\pm0.16$ & $10^{-2}$ & \cite{hflav,pdg} \\
-        $\mathcal{B}r[\bar{B}\to X_ue\bar{\nu}]$ & $8.41\pm0.59$ & $10^{-4}$ & \cite{bxu} \\
-        $\mathcal{B}r[B_d\to\mu^+\mu^-]$ & $1.4^{+1.6}_{-1.4}$ & $10^{-10}$ & \cite{pdg} \\
-        $\mathcal{B}r[B_s\to\mu^+\mu^-]$ & $3.1\pm0.7$ & $10^{-9}$ & \cite{hflav} \\
-        $\Delta m_d$ & $0.5064\pm0.0019$ & ps$^{-1}$ & \cite{hflav} \\ 
-        $\Delta m_s$ & $17.757\pm0.021$ & ps$^{-1}$ & \cite{hflav} \\
-        $\mathcal{R}(D)$ & $0.340\pm0.030$ & & \cite{hflav} \\
-        $\mathcal{R}(D^*)$ & $0.298\pm0.014$ & & \cite{hflav} \\
-        \hline\hline
-    \end{tabular}
-    \caption{\label{tab:branches}Branching ratios using in testing parameter space of 2HDM Type II. In the case of normalised ratios, values have been calculated using the constituent measurements taken from reference.}
-\end{table}
-\begin{table}[ht]
-    \centering
-    \begin{tabular}{c|ccc}
-        \hline\hline
-        Input & Value & Unit & Reference \\
-        \hline\hline
-        \multicolumn{4}{c}{\bfseries Decay Constants} \\
-        \hline\hline
-        $f_K/f_\pi$ & $1.1932\pm0.0019$ & & \cite{pdg}\\
-        $f_B$ & $190\pm1.3$ & MeV & \cite{flag} \\
-        $f_{B_s}$ & $230\pm1.3$ & MeV & \cite{flag} \\
-        $f_D$ & $212\pm0.7$ & MeV & \cite{flag} \\
-        $f_{D_s}$ & $249.9\pm0.5$ & MeV & \cite{flag} \\
-        \hline\hline
-        \multicolumn{4}{c}{\bfseries Radiative corrections} \\
-        \hline\hline
-        $\delta^{Kl2/\pi l2}_{EM}$ & $-0.0069\pm0.0017$ & & \cite{pdg} \\
-        $\delta^{\tau K2/\tau\pi 2}_{EM}$ & $0.003$ & & \cite{desc} \\
-        \hline\hline
-        \multicolumn{4}{c}{\bfseries B meson mixing} \\
-        \hline\hline
-        $f^2_{B_d}B_{B_d}$ & $0.0305\pm0.0011$ & GeV$^2$ & \cite{bmix} \\
-        $f^2_{B_s}B_{B_s}$ & $0.0452\pm0.0014$ & GeV$^2$ & \cite{bmix} \\
-        $\hat{\eta}_B$ & $0.838606$ & & \cite{alex} \\
-        \hline\hline
-        \multicolumn{4}{c}{\bfseries $\mathbf{b\to s\gamma}$ parameters} \\
-        \hline\hline
-        $m_t^{pole}$ & $173.1\pm0.9$ & GeV & \cite{pdg} \\
-        $\alpha_S(m_Z)$ & $0.1179\pm0.001$ & & \cite{pdg} \\
-        $\mu_b$ & $1.095$ & GeV & \\
-        \hline\hline
-    \end{tabular}
-    \caption{\label{tab:params} Parameters used in the 2HDM fits for decays outlined in sections \ref{subsec:lep}-\ref{subsec:rad}.}
-\end{table}
+%\section{CKM Element Modification}
 
 \begin{table}[ht]
     \centering
@@ -715,7 +726,7 @@ We follow the expressions for $\mathcal{R}(D^{(*)})$ in the 2HDM found in Sectio
         \multicolumn{2}{c|}{p-value} & $49.5\%$ & $54.0\%$ & $45.7\%$ & $40\%$ \\
         \hline\hline
     \end{tabular}
-    \caption{Constraints and statistics for various global fits. `Flavour' denotes all of the flavour observables discussed throughout, disregarding $R(D^*)$ for now; `Oblique' denotes adding the three oblique parameters from James' work, S,T,U. 
+    \caption{\label{tab:pval}Constraints and statistics for various global fits. `Flavour' denotes all of the flavour observables discussed throughout, disregarding $R(D^*)$ for now; `Oblique' denotes adding the three oblique parameters from James' work, S,T,U. 
     The fits have been done in the wrong-sign limit and the exact alignment limit as shown, and setting the additional parameters at play for now to $M=m_{H^0}=m_{A^0}=750\,$GeV. 
     The 2HDM potential parameter $M$ does not have much impact on the fit as it varies, although through the oblique parameters, $m_{H^0}$ and $m_{A^0}$ will cause our results to vary on their values as these require all new Higgs masses to be approximately equal, thus confining the space tightly near whatever values are chosen for these two masses. 
     More thorough fits, e.g. varying the other parameters as well, to higher $\sigma$, or looking at $\chi^2$ and p-values for a fit including $R(D^*)$ to check that validity will be incoming.} 
@@ -734,8 +745,8 @@ We follow the expressions for $\mathcal{R}(D^{(*)})$ in the 2HDM found in Sectio
 
 % The bibliography will probably be heavily edited during typesetting.
 % We'll parse it and, using the arxiv number or the journal data, will
-% query inspire, trying to verify the data (this will probalby spot
-% eventual typos) and retrive the document DOI and eventual errata.
+% query inspire, trying to verify the data (this will probably spot
+% eventual typos) and retrieve the document DOI and eventual errata.
 % We however suggest to always provide author, title and journal data:
 % in short all the informations that clearly identify a document.
 
@@ -771,11 +782,14 @@ L. Wolfenstein, \emph{Parametrization of the Kobayashi-Maskawa Matrix}, Phys. Re
 \bibitem{ckm} %g
 CKMfitter Group (J. Charles et al.), Eur. Phys. J. C41, 1-131 (2005) [hep-ph/0406184], updated results and plots available at: \href{http://ckmfitter.in2p3.fr}{http://ckmfitter.in2p3.fr}.
 
-\bibitem{cpv}
-J. Christenson et al, \emph{Evidence for the $2\pi$ Decay of the $K_2^0$ Meson}, Phys. Rev. Lett. \textbf{13} (1964), 138-140, doi:10.1103/PhysRevLett.13.138.
-
 \bibitem{sak} %h
 A. Sakharov, \emph{Violation of CP Invariance, C asymmetry, and Baryon Asymmetry of the Universe}, Pisma Zh. Eksp. Teor. Fiz. 5 (1967) 32 [JETP Lett. 5 (1967) 24] [Sov. Phys. Usp. 34 (1991) 392] [Usp. Fiz. Nauk 161 (1991) 61].
+
+\bibitem{sphal}
+F. R. Klinkhamer and N. Manton, \emph{A Saddle Point in the Weinberg-Salam Theory}, Phys. Rev. D \textbf{30} (1984) 2212, doi:10.1103/PhysRevD.30.2212.
+
+\bibitem{cpv}
+J. Christenson et al, \emph{Evidence for the $2\pi$ Decay of the $K_2^0$ Meson}, Phys. Rev. Lett. \textbf{13} (1964), 138-140, doi:10.1103/PhysRevLett.13.138.
 
 \bibitem{zp} %p
 T.G. Rizzo, \emph{Z' Phenomenology and the LHC}, [\href{https://arxiv.org/abs/hep-ph/0610104}{arXiv:0610104 [hep-ph]}].
