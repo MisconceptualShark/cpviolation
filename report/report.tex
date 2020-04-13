@@ -20,6 +20,7 @@
 \graphicspath{{../images/}}
 \usepackage{array}
 \newcolumntype{C}[1]{>{\centering\arraybackslash}m{#1}}
+\setcounter{tocdepth}{2}
 
 \title{CP Violation In and Beyond The Standard Model: Two Higgs Doublet Model Type II Corrections to Flavour Observables}
 
@@ -695,12 +696,63 @@ We therefore move forward with two approaches to work through this discrepancy: 
     \caption{\label{fig:rd5sig}Constraint on ($m_{H^+},\tan\beta$) space from $\mathcal{R}(D)$ and $\mathcal{R}(D^*)$ from a 5$\sigma$ scan. 
     The turquoise region shows what is not excluded for the joint fit of these two observables from the $5\sigma$ scan, and the blue line indicates the outline of the 95\% CL region.}
 \end{figure}
+In Figure \ref{fig:rd5sig}, it is shown that the joint constraint from $\mathcal{R}(D)$ and $\mathcal{R}(D^*)$ aligns well with that of the leptonic decays in Figure \ref{fig:indies} when we now scan at $5\sigma$. 
+Something else here. 
 
-\subsection{Results With James}
+\subsection{SM4 with Two Higgs Doublet Model}
+As discussed in Section \ref{subsec:flavobs}, a fourth generation of fermions can be proposed as a way of inducing more CP violation, but the SM4 model alone has been excluded. 
+One proposal to still include a fourth generation is to combine this with the 2HDM. 
+Traditionally in the 2HDM, we take the alignment limit to replicate the observed Higgs particle in the lighter neutral Higgs $h$ of the 2HDM.
+This also follows from measurements of the coupling strengths of the Higgs sector, which agree with the SM predictions within $1\sigma$ \cite{couple}.
 
-\subsection{SM4x2HDM}
+There is, however, an alternate treatment to this data. 
+LHC measurements may measure the magnitudes of the couplings to closely align with the Standard Model, but they cannot necessarily determine the phase of the coupling. 
+Defining $\kappa_i$ as the ratio of the 2HDM Higgs coupling to particles $ii$ to the SM coupling, we therefore can propose a scenario in which 
+\begin{align}
+    \kappa_{W,Z} &= 1, & \kappa_u &= 1, & \kappa_{d,l} &= -1,
+\end{align}
+where $u$ denotes up-type quarks, $d$ down-type quarks, and $l$ the charged leptons.
+In this scenario, the common argument for the exclusion of the SM4 model that the gluon fusion Higgs production would be enhanced by a factor 9 over the Standard Model would no longer be valid as the new quark contributions approximately cancel each other and we approximately recover the SM result.
+This is known as the \emph{wrong sign limit} (for a review, see e.g. \cite{wrong1,wrong2}).
+Within the 2HDM Type II, this limit can be written with the relationship
+\begin{align}
+    \label{eq:wrongsign}
+    \cos(\beta-\alpha) = \sin(2\beta).
+\end{align}
+In this work, we consider the wrong sign limit in the 2HDM only, as an indication of its validity for use in future works considering the 2HDM fit in the framework of SM4. 
+Moving forward, we consider both the exact wrong sign limit from Eq. \ref{eq:wrongsign}, and the use of numerical constraints on $\cos(\beta-\alpha)$ provided from collaboration of the fit with \cite{oliver}.
+
+\subsection{The Global Fit with Oblique Parameters}
+Flavour constraints alone are not enough to give a full judgement on the 2HDM. 
+There are other observables that can also provide indicative constraints on this model, such as the oblique parameters of the electroweak theory. 
+These have not been the focus of this study, but we collaborate with \cite{james} for their work on the oblique parameters in the 2HDM (working from the expressions given in \cite{oblique}), and add these to the global 2HDM fit. 
+These observables have a different dependency on the 2HDM parameters than the flavour observables considered here, depending on $\theta=\beta-\alpha$ rather than $\beta$, $\alpha$ separately, as well as $m_{H^0}$ and $m_{A^0}$. 
+The choice of $\beta-\alpha$ is fixed by our choice either of the alignment limit or the wrong sign limit, and we will therefore expect no variation across $\tan\beta$ for these constraints. 
+There is however still dependency on $m_{H^0}$ and $m_{A^0}$ to consider.
+
+We previously fixed $m_{H^0}=1.5\,$TeV, where it minimised $\chi^2$ across the range of test values used. 
+Due to the additional dependencies here, we perform a test three-dimensional scan across ($m_{H^+},m_{A^0},\tan\beta$) space, assuming $m_{A^0}\approx m_{H^0}$, for the Oblique parameters and $B_q\to\mu^+\mu^-$ as these are the only observables to have this additional dependency. 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{../global/threedimfit.png}
+    \caption{\label{fig:threed}Constraints in ($m_{H^+},m_{A^0},\tan\beta$) space from $B\to\mu^+\mu^-$ and the Oblique parameters, where we assume $m_{A^0}\approx m_{H^0}$, and have scanned to $2\sigma$.}
+\end{figure}
+In Figure \ref{fig:threed}, we see that there is an approximate linear relationship in between $m_{A^0}$ and $m_{H^+}$, particularly for higher values. 
+The value of $m_{H^+}$ is therefore tightly constrained to be of a similar mass to $m_{H^0}$ and $m_{A^0}$. 
+\footnote{In \cite{james}, it is found that there can be some fine-tuned solutions away from this confinement, however, these are for choices of $\theta$ away from either the alignment or wrong sign limits which we consider here.}
+We find that for increased values of $m_{H^0}\approx m_{A^0}\approx m_{H^+}$, the value of $\chi^2$ for our fit decreases. 
+This is, however, moving towards the decoupling limit of the 2HDM and therefore recovering the Standard Model solutions, so it yields little information for testing a realistic 2HDM. 
+We choose to work with $m_{H^0}=m_{A^0}=1.5\,$TeV as chosen earlier and test the global fit using these fixed parameters. 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.49\textwidth]{../global/global_test.png}
+    \includegraphics[width=0.49\textwidth]{../global/global_test1.png}
+    \includegraphics[width=0.49\textwidth]{../global/global_test3.png}
+    \includegraphics[width=0.49\textwidth]{../global/global_test4.png}
+\end{figure}
 
 \section{Conclusion}
+Something about checking calculations with Tom \cite{tom}.
 
 %\section{CKM Element Modification}
 
@@ -742,13 +794,6 @@ We therefore move forward with two approaches to work through this discrepancy: 
 %
 %\paragraph{Note added.} This is also a good position for notes added
 %after the paper has been written.
-
-% The bibliography will probably be heavily edited during typesetting.
-% We'll parse it and, using the arxiv number or the journal data, will
-% query inspire, trying to verify the data (this will probably spot
-% eventual typos) and retrieve the document DOI and eventual errata.
-% We however suggest to always provide author, title and journal data:
-% in short all the informations that clearly identify a document.
 
 \begin{thebibliography}{99}
 
@@ -850,6 +895,28 @@ A. M. Sirunyan et al [CMS], \emph{Search for MSSM Higgs bosons decaying to $\mu^
 
 \bibitem{rds}
 J. Lee, \emph{$B\to D^{(*)}\tau\nu_\tau$ in the 2HDM with an anomalous $\tau$ coupling}, Phys. Rev. D \textbf{96} (2017) no.5 055005, doi:10.1103/PhysRevD.96.055005, [\href{https://arxiv.org/abs/1705.02465}{arXiv:1705.02465 [hep-ph]}].
+
+\bibitem{couple}
+A. M. Sirunyan et al [CMS], \emph{Combined measurements of Higgs boson couplings in proton-proton collisions at $\sqrt{s}=13\,$TeV}, Eur. Phys. J. C \textbf{79}(2019) no.5 421, doi:10.1140/epjc/s10052-019-6909-y, [\href{https://arxiv.org/abs/1809.10733}{arXiv:1809.10733 [hep-ex]}].
+
+\bibitem{wrong1}
+D. Das, A. Kundu and I. Saha, \emph{Higgs data does not rule out a sequential fourth generation with an extended scalar sector}, Phys. Rev. D \textbf{97} (2018) no.1 011701, doi:10.1103/PhysRevD.97.011701, [\href{https://arxiv.org/abs/1707.03000}{arXiv:1707.03000 [hep-ph]}].
+
+\bibitem{wrong2}
+M. Raju, J. P. Saha, D. Das and A. Kundu, \emph{Double Higgs production as an exclusive probe for a sequential fourth generation with wrong-sign Yukawa couplings}, Phys. Rev. D \textbf{101} (2020) no.5 055036, doi:10.1103/PhysRevD.101.055036, [\href{https://arxiv.org/abs/2001.05280}{arXiv:2001.05280 [hep-ph]}].
+
+\bibitem{oliver}
+O. Atkinson, private correspondence.
+
+\bibitem{james}
+J. Wynne, private correspondence.
+
+\bibitem{oblique}
+W. Grimus, L. Lavoura, O. Ogreid and P. Osland, \emph{The Oblique parameters in multi-Higgs models}, Nucl. Phys. B \textbf{801} (2008) 81-96, doi:10.1016/j.nuclphysb.2008.04.019, [\href{https://arxiv.org/abs/0802.4353}{arXiv:0802.4353 [hep-ph]}].
+
+\bibitem{tom}
+T. Eaton, private correspondence.
+
 \end{thebibliography}
 
 
