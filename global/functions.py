@@ -1,5 +1,6 @@
 from __future__ import division 
 import numpy as np
+from rdstarring import *
 from fitting import *
 from scipy.integrate import quad
 
@@ -676,10 +677,10 @@ def itera_global(
         bpls_exp,bpls_exp_error,dpls_exp,dpls_exp_error,dspls_exp,dspls_exp_error,
         bpmu,bpmu_err,dsmu,dsmu_err,bmix_exp,bmix_exp_error,bmixs_exp,bmixs_exp_error,
         kpi_exp,kpi_exp_error,tkpi_exp,tkpi_exp_error,
-        bsmu_exp,bsmu_exp_err,bdmu_exp,bdmu_exp_err,rd_exp,rd_exp_err,
+        bsmu_exp,bsmu_exp_err,bdmu_exp,bdmu_exp_err,rd_exp,rd_exp_err,rdst_exp,rdst_exp_err,
         gams_exp,gams_exp_error,gamc_exp,gamc_exp_error,gamu,gamu_err,
         mu,mu_err,md,md_err,mc,mc_err,ms,ms_err,mb,mb_err,mt,mt_err,mW,mW_err,
-        mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mbd,mbd_err,mbs,mbs_err,
+        mbpls,mbpls_err,mdpls,mdpls_err,mdspls,mdspls_err,mbd,mbd_err,mbs,mbs_err,mdst,mdst_err,
         mK,mK_err,mpi,mpi_err,mtau,mtau_err,mmu,mmu_err,
         Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,
         etaB,etaB_err,f2Bd,f2Bd_err,f2Bs,f2Bs_err,fBs,fBs_err,Bbd,Bbd_err,BBs,BBs_err,
@@ -687,7 +688,7 @@ def itera_global(
         fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,
         tbpls,tbpls_err,tdpls,tdpls_err,tdspls,tdspls_err,tbd,tbd_err,tbs,tbs_err,
         mub,hi,a,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,alp_EM,C,C_err,
-        p,p_err,d,d_err,
+        p,p_err,ps,ps_err,d,d_err,r01,r01_err,r11,r11_err,r21,r21_err,
         delta_b,delta_d,
         wangle,wangle_err,lam_QCD,QCD_err,higgs,higgs_err,vev,vev_err,
         SOblique,SOblique_err,TOblique,TOblique_err,UOblique,UOblique_err,mZ,mZ_err):
@@ -826,8 +827,9 @@ def itera_global(
 
     ##### R(D) #####
     rd_exp_up,rd_exp_down = rd_exp+rd_exp_err[0],rd_exp+rd_exp_err[1]
-    av_rd = 0.5*(rd_exp_up+rd_exp_down)
-    sige_rd = sigma*(rd_exp_up-av_rd)
+    rds_exp_up,rds_exp_down = rdst_exp+rdst_exp_err[0],rdst_exp+rdst_exp_err[1]
+    av_rd,av_rds = 0.5*(rd_exp_up+rd_exp_down),0.5*(rds_exp_up+rds_exp_down)
+    sige_rd,sige_rds = sigma*(rd_exp_up-av_rd),sigma*(rds_exp_up-av_rds)
 
     #Oblique
     SOblique_up,SOblique_down=SOblique+SOblique_err[0],SOblique+SOblique_err[1]
@@ -919,12 +921,17 @@ def itera_global(
             bd_bool = ((av_bdmu >= mid_bdmu and mid_bdmu+sig_bdmu >= av_bdmu-sige_bdmu) or (av_bdmu <= mid_bdmu and mid_bdmu-sig_bdmu <= av_bdmu+sige_bdmu)) 
 
             ##### R(D) #####
+            expect_rds_up,expect_rds_down = error_rds(mbd,mbd_err,mdst,mdst_err,ps,ps_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
+#            expect_rd_up,expect_rd_down = error_rdn(mbd,mbd_err,mdpls,mdpls_err,p,p_err,d,d_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
             expect_rd = bsemi(mc,mb,mbd,mdpls,p,d,i,j)
             expect_rd_err = error_bsemi(mc,mc_err,mb,mb_err,mbd,mbd_err,mdpls,mdpls_err,p,p_err,d,d_err,i,j)
             expect_rd_up,expect_rd_down=expect_rd+expect_rd_err[0],expect_rd-expect_rd_err[1]
             mid_rd = 0.5*(expect_rd_up+expect_rd_down)
+            mid_rds = 0.5*(expect_rds_up+expect_rds_down)
             sig_rd = sigma*(expect_rd_up-mid_rd)
+            sig_rds = sigma*(expect_rds_up-mid_rds)
             rd_bool = ((av_rd >= mid_rd and mid_rd+sig_rd >= av_rd-sige_rd) or (av_rd <= mid_rd and mid_rd-sig_rd <= av_rd+sige_rd)) 
+#            rds_bool = ((av_rds >= mid_rds and mid_rds+sig_rds >= av_rds-sige_rds) or (av_rds <= mid_rds and mid_rds-sig_rds <= av_rds+sige_rds)) 
 
             #Oblique
             expect_SOblique=S2HDMofAlphaBeta (i,mA0,mH0,alph,np.arctan(j),mW,mZ,higgs,Gf,alp_EM,wangle)
@@ -949,12 +956,12 @@ def itera_global(
             UOblique_bool=((av_UOblique>=mid_UOblique and mid_UOblique>=av_UOblique-sige_UOblique) or (av_UOblique<=mid_UOblique and mid_UOblique<=av_UOblique+sige_UOblique))
 
             ##### (SEMI-)LEPTONICS #####
-            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool and bpmu_bool and dsmu_bool and rd_bool:
+            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool and bpmu_bool and dsmu_bool and rd_bool:# and rds_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHl_loc = np.append(mHl_loc,i_log)
                 tanbl_loc = np.append(tanbl_loc,j_log)
-                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd])
-#                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm])
+                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd,av_rds],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd,mid_rds],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd,sige_rds],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd,sig_rds])
+                #chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd])
                 chi_ls = np.append(chi_ls,chi_lij)
             
             ##### MIXING #####
@@ -1012,15 +1019,15 @@ def itera_global(
                 chi_mus = np.append(chi_mus,chi_uij)
 
             ##### GLOBAL #####
-            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool and rd_bool and bpmu_bool and dsmu_bool:# and SOblique_bool and TOblique_bool and UOblique_bool:
+            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool and rd_bool and bpmu_bool and dsmu_bool and SOblique_bool and TOblique_bool and UOblique_bool:# and rds_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHa2_loc = np.append(mHa2_loc,i_log)
                 tanba2_loc = np.append(tanba2_loc,j_log)
                 chi_2ij = chisq_simp(
-                        [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm],
-                        [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm],
-                        [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm],
-                        [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm])
+                        [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm, av_SOblique, av_TOblique, av_UOblique,av_rds],
+                        [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm,mid_SOblique,mid_TOblique,mid_UOblique,mid_rds],
+                        [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm,sige_SOblique,sige_TOblique,sige_UOblique,sige_rds],
+                        [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm,sig_SOblique,sig_TOblique,sig_UOblique,sig_rds])
 #                chi_2ij = chisq_simp(
 #                        [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm, av_SOblique, av_TOblique, av_UOblique],
 #                        [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm,mid_SOblique,mid_TOblique,mid_UOblique],

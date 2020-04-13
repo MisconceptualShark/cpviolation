@@ -219,7 +219,7 @@ delta_b,delta_d = 0.982,0.99*0.982
 
 #hrdst, trdst, chi_rdsst, chi_stmin = itera_rds(m_Brd,m_Brd_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rdst_exp,rdst_exp_err)
 # hrdn, trdn, chi_rdn, chi_nmin = itera_rdn(m_Brd,m_Brd_err,m_dplus,m_dplus_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rd_exp,rd_exp_err)
-hrdn, trdn, chi_rdn, chi_nmin, hrdst, trdst, chi_rdst, chi_stmin, ha, ta, chia, am = itera_rda(m_Brd,m_Brd_err,m_dplus,m_dplus_err,m_dstar,m_dstar_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rd_exp,rd_exp_err,rdst_exp,rdst_exp_err)
+hrdn, trdn, chi_rdn, chi_nmin, hrdst, trdst, chi_rdst, chi_stmin, ha, ta, chia, am = itera_rda(m_Brd,m_Brd_err,m_dplus,m_dplus_err,m_dstar,m_dstar_err,rho,rho_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,delta,delta_err,Vcb,Vcb_err,m_mu,m_mu_err,m_tau,m_tau_err,vev,vev_err,m_c,m_c_err,m_b,m_b_err,rd_exp,rd_exp_err,rdst_exp,rdst_exp_err)
 
 m2,m1=5.99,2.30
 hchi_rd, tchi_rd, rd_edges_e = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m2)
@@ -242,7 +242,7 @@ plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
 plt.axis([-1,2,0,3.5])
-plt.savefig('rd_both5sig2.png')
+plt.savefig('rd_both3sig.png')
 #plt.show()
 os.system('play draco.mp3')
 quit()

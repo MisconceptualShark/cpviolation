@@ -151,10 +151,10 @@ mHs, tanbs, chis, chi_2 = itera_global(
         bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,
         bplusmu_exp,bplusmu_err_exp,dsmu_exp,dsmu_err_exp,delt_md,delt_md_err,delt_ms,delt_ms_err,
         kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,
-        bs_exp,bs_exp_err,bd_exp,bd_exp_err,rd_exp,rd_exp_err,
+        bs_exp,bs_exp_err,bd_exp,bd_exp_err,rd_exp,rd_exp_err,rdst_exp,rdst_exp_err,
         branchs,branchs_err,branch_c,branchc_err,gamu,gamu_err,
         m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt,mt_err,mW,mW_err,
-        m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,mBd,mBd_err,mBs,mBs_err,
+        m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,mBd,mBd_err,mBs,mBs_err,m_dstar,m_dstar_err,
         m_K,m_K_err,m_pi,m_pi_err,m_tau,m_tau_err,m_mu,m_mu_err,
         Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,
         etaB,etaB_err,f2Bd,f2Bd_err,f2Bs,f2Bs_err,fBs,fBs_err,BBd,BBd_err,BBs,BBs_err,
@@ -162,7 +162,7 @@ mHs, tanbs, chis, chi_2 = itera_global(
         f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,
         tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,taubd,taubd_err,taubs,taubs_err,
         mub,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,1/137,C,C_err,
-        rho,rho_err,delt_rd,delt_rd_err,
+        rho,rho_err,rhod,rhod_err,delt_rd,delt_rd_err,r01,r01_err,r11,r11_err,r21,r21_err,
         delta_b,delta_d,wangle,wangle_err,lambda_QCD,QCD_err,higgs,higgs_err,vev,vev_err,
         SOblique,SOblique_err,TOblique,TOblique_err,UOblique,UOblique_err,mZ,mZ_err)
 
@@ -173,7 +173,7 @@ tl, tb, tg, ta, tmu, tl2, tS, tT, tU = tanbs
 chi_ls, chi_ms, chi_gs, chi_as, chi_mus, chi_2s, chi_Ss, chi_Ts, chi_Us = chis #all chisq values
 
 m1,m2 = 2.30,5.99 #different confidence levels for chisq fit
-nu = 11 # degrees of freedom
+nu = 15 # degrees of freedom
 
 # returns mH, tanb values, and 'edges' which is to draw around the perimeters of regions
 hchi_leps, tchi_leps, lep_edges_e = chi_del(min(chi_ls),chi_ls,hl,tl,m2) #chisq fit to 95% CL
@@ -190,13 +190,13 @@ hchi_mu2, tchi_mu2, mu_edges = chi_del(min(chi_mus),chi_mus,hmu,tmu,m1)
 
 #hchi_S, tchi_S, S_edges_e = chi_del(min(chi_Ss),chi_Ss,hS,tS,m2)
 #hchi_S2, tchi_S2, S_edges = chi_del(min(chi_Ss),chi_Ss,hS,tS,m1)
-#
+
 #hchi_T, tchi_T, T_edges_e = chi_del(min(chi_Ts),chi_Ts,hT,tT,m2)
 #hchi_T2, tchi_T2, T_edges = chi_del(min(chi_Ts),chi_Ts,hT,tT,m1)
-#
-#hchi_U, tchi_U, U_edges_e = chi_del(min(chi_Us),chi_Us,hU,tU,m2)
-#hchi_U2, tchi_U2, U_edges = chi_del(min(chi_Us),chi_Us,hU,tU,m1)
-#
+
+hchi_U, tchi_U, U_edges_e = chi_del(min(chi_Us),chi_Us,hU,tU,m2)
+hchi_U2, tchi_U2, U_edges = chi_del(min(chi_Us),chi_Us,hU,tU,m1)
+
 hchi_2, tchi_2, two_edges_e = chi_del(chi_2[0],chi_2s,hl2,tl2,m2)
 hchi_22, tchi_22, two_edges = chi_del(chi_2[0],chi_2s,hl2,tl2,m1)
 
@@ -208,45 +208,43 @@ print chi_2
 
 p_val, p_err = p_vals(chi_2[0],nu)
 print "p-value for global fit with ", nu," degrees of freedom is: ", "{:.1%}".format(p_val)#, " +/- ", p_err
-os.system('play draco.mp3')
-quit()
+
 # plotting! scatter plots for regions, then the for loops plot out the outline
 # all regions plotted to 95% CL, and their lines plotted to this too, but then the 1 sigma everything region's border is plotted 
 plt.figure(figsize=(8,6))
-#plt.scatter(tchi_mix,hchi_mix,c='cornflowerblue')
-#for i, j in mix_edges_e[0]: 
-#    plt.plot(mix_edges_e[1][[i,j],0],mix_edges_e[1][[i,j],1],c='midnightblue',linestyle='--')
-#plt.scatter(tchi_leps,hchi_leps,c='green')
-#for i, j in lep_edges_e[0]:
-#    plt.plot(lep_edges_e[1][[i,j],0],lep_edges_e[1][[i,j],1],c='darkgreen',linestyle='--')
-#plt.scatter(tchi_gam,hchi_gam,c='coral')
-#for i, j in gam_edges_e[0]:
-#    plt.plot(gam_edges_e[1][[i,j],0],gam_edges_e[1][[i,j],1],c='darkgoldenrod',linestyle='--')
+plt.scatter(tchi_mix,hchi_mix,c='cornflowerblue')
+for i, j in mix_edges_e[0]: 
+    plt.plot(mix_edges_e[1][[i,j],0],mix_edges_e[1][[i,j],1],c='midnightblue',linestyle='--')
+plt.scatter(tchi_leps,hchi_leps,c='green')
+for i, j in lep_edges_e[0]:
+    plt.plot(lep_edges_e[1][[i,j],0],lep_edges_e[1][[i,j],1],c='darkgreen',linestyle='--')
+plt.scatter(tchi_gam,hchi_gam,c='coral')
+for i, j in gam_edges_e[0]:
+    plt.plot(gam_edges_e[1][[i,j],0],gam_edges_e[1][[i,j],1],c='darkgoldenrod',linestyle='--')
 plt.scatter(tchi_mu,hchi_mu,c='red')
 for i, j in mu_edges_e[0]:
     plt.plot(mu_edges_e[1][[i,j],0],mu_edges_e[1][[i,j],1],c='chocolate',linestyle='--')
-#plt.scatter(tchi_U,hchi_U,c='orchid')
-#for i, j in U_edges_e[0]:
-#    plt.plot(U_edges_e[1][[i,j],0],U_edges_e[1][[i,j],1],c='deeppink',linestyle='--')
-#plt.scatter(tchi_2,hchi_2,c='darkorchid')
-#for i, j in two_edges[0]:
-#    plt.plot(two_edges[1][[i,j],0],two_edges[1][[i,j],1],c='plum',linestyle='--')
+plt.scatter(tchi_U,hchi_U,c='orchid')
+for i, j in U_edges_e[0]:
+    plt.plot(U_edges_e[1][[i,j],0],U_edges_e[1][[i,j],1],c='deeppink',linestyle='--')
+plt.scatter(tchi_2,hchi_2,c='darkorchid')
+for i, j in two_edges[0]:
+    plt.plot(two_edges[1][[i,j],0],two_edges[1][[i,j],1],c='plum',linestyle='--')
 plt.axis([-1,2,1,3.5])
 plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
-#plt.axvline(x=np.log10(mt/m_b),color='black')
-#plt.axhline(y=np.log10(160),color='black',linestyle='--')
-#plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D)$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
-#plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
-#plt.annotate('$\\Delta M_q$',xy=(0.75,0.15),xycoords='axes fraction',fontsize=18)
-#plt.annotate('$b\\to s\\gamma$',xy=(0.05,0.9),xycoords='axes fraction',fontsize=18)
-#plt.annotate('All',xy=(0.65,0.8),xycoords='axes fraction',fontsize=18)
-#plt.annotate('S,T,U',xy=(0.05,0.73),xycoords='axes fraction',fontsize=13)
-#plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.5,0.55),xycoords='axes fraction',fontsize=18)
-#plt.title('$M = 750\,GeV,\; m_{A^0} = 750\,GeV,$ \n $m_{H^0} = 750\,GeV,\; \\cos(\\beta-\\alpha) = 0$',fontsize=18)
-plt.title('$M = 750\,GeV,\; m_{H^0} = 1.5\,TeV,\; \\cos(\\beta-\\alpha) = 0$',fontsize=18)
-plt.savefig('bmu3.png')
+plt.axvline(x=np.log10(mt/m_b),color='black')
+plt.axhline(y=np.log10(160),color='black',linestyle='--')
+plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D)$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
+#plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D^{(*)})$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
+plt.annotate('$\\Delta M_q$',xy=(0.75,0.15),xycoords='axes fraction',fontsize=18)
+plt.annotate('$b\\to s\\gamma$',xy=(0.05,0.9),xycoords='axes fraction',fontsize=18)
+plt.annotate('All',xy=(0.65,0.8),xycoords='axes fraction',fontsize=18)
+plt.annotate('S,T,U',xy=(0.05,0.73),xycoords='axes fraction',fontsize=13)
+plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.5,0.55),xycoords='axes fraction',fontsize=18)
+plt.title('$M = 750\,GeV,\; m_{A^0} = 1.5\,TeV,$ \n $m_{H^0} = 1.5\,TeV,\; \\cos(\\beta-\\alpha) = 0$',fontsize=18)
+plt.savefig('global_test2.png')
 #plt.show()
-os.system('play gumdrops.mp3')
+os.system('play draco.mp3')

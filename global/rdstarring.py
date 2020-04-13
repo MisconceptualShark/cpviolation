@@ -278,9 +278,9 @@ def itera_rdn(mBs,mBs_err,mD,mD_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mm
 
     return mH_loc, tanb_loc, chi_rds, chi_rmin
 
-def itera_rda(mBs,mBs_err,mD,mD_err,mDs,mDs_err,rhod,rhod_err,rhods,rhods_err,r01,r01_err,r11,r11_err,r21,r21_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,rde,rde_err,rdste,rdste_err):
+def itera_rda(mBs,mBs_err,mD,mD_err,mDs,mDs_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,rde,rde_err,rdste,rdste_err):
 
-    sigma = 3
+    sigma = 5
     rde_u,rde_d = rde+rde_err[0],rde+rde_err[1]
     rdste_u,rdste_d = rdste+rdste_err[0],rdste+rdste_err[1]
     av_rd = 0.5*(rde_u+rde_d)
@@ -297,7 +297,7 @@ def itera_rda(mBs,mBs_err,mD,mD_err,mDs,mDs_err,rhod,rhod_err,rhods,rhods_err,r0
     chi_rmin,chist_rmin,chia_rmin = 1000,1000,1000
     for i in mH_range:
         for j in tanb_range:
-            st_branch_up, st_branch_down = error_rds(mBs,mBs_err,mDs,mDs_err,rhods,rhods_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
+            st_branch_up, st_branch_down = error_rds(mBs,mBs_err,mDs,mDs_err,rhod,rhod_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
             expect_branch_up, expect_branch_down = error_rdn(mBs,mBs_err,mD,mD_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
             mid_rd = 0.5*(expect_branch_up+expect_branch_down)
             mid_rdst = 0.5*(st_branch_up+st_branch_down)
