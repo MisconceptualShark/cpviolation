@@ -692,12 +692,14 @@ However, exclusion at this level only means that the 2HDM performs no better tha
 We therefore move forward with two approaches to work through this discrepancy: we continue to fit all observables at the $2\sigma$ level, excluding $\mathcal{R}(D^*)$ as an anomaly as it is in the Standard Model; and we also scan to higher $\sigma$, as $\mathcal{R}(D^*)$ may then agree with the fit to this level, suggesting further new physics to explain its deviation from the 2HDM.
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.49\textwidth]{rd_both5sig2.png}
-    \caption{\label{fig:rd5sig}Constraint on ($m_{H^+},\tan\beta$) space from $\mathcal{R}(D)$ and $\mathcal{R}(D^*)$ from a 5$\sigma$ scan. 
-    The turquoise region shows what is not excluded for the joint fit of these two observables from the $5\sigma$ scan, and the blue line indicates the outline of the 95\% CL region.}
+    \includegraphics[width=0.49\textwidth]{rd_both25sig.png}
+    \includegraphics[width=0.49\textwidth]{rd_both3sig.png}
+    \caption{\label{fig:rd3sig}Constraint on ($m_{H^+},\tan\beta$) space from $\mathcal{R}(D)$ and $\mathcal{R}(D^*)$ from a $2.5\sigma$ scan (left) and $3\sigma$ scan (right). 
+    The turquoise region shows what is not excluded for the joint fit of these two observables from the scan, and the blue line indicates the outline of the 95\% CL region.}
 \end{figure}
-In Figure \ref{fig:rd5sig}, it is shown that the joint constraint from $\mathcal{R}(D)$ and $\mathcal{R}(D^*)$ aligns well with that of the leptonic decays in Figure \ref{fig:indies} when we now scan at $5\sigma$. 
-Something else here. 
+In Figure \ref{fig:rd3sig}, it is shown that the joint constraint from $\mathcal{R}(D)$ and $\mathcal{R}(D^*)$ aligns well with that of the leptonic decays in Figure \ref{fig:indies} when we now scan at $3\sigma$, but the 2HDM does fit this anomaly slightly worse than the Standard Model, as $\mathcal{R}(D^*)$ does not fit at $2.5\sigma$. 
+We test our fit with $\mathcal{R}(D^*)$ included as an anomaly at $2\sigma$, and also include it as in Figure \ref{fig:rd3sig} to a fit of a $3\sigma$ scan. 
+The statistical significance of these different approaches are found in Table ref.
 
 \subsection{SM4 with Two Higgs Doublet Model}
 As discussed in Section \ref{subsec:flavobs}, a fourth generation of fermions can be proposed as a way of inducing more CP violation, but the SM4 model alone has been excluded. 
@@ -717,40 +719,54 @@ This is known as the \emph{wrong sign limit} (for a review, see e.g. \cite{wrong
 Within the 2HDM Type II, this limit can be written with the relationship
 \begin{align}
     \label{eq:wrongsign}
-    \cos(\beta-\alpha) = \sin(2\beta).
+    \cos(\beta-\alpha) = \sin(2\beta), \text{ or equivalently when} \tan\beta\gg2,\; \cos(\beta-\alpha) = 2\cot\beta.
 \end{align}
 In this work, we consider the wrong sign limit in the 2HDM only, as an indication of its validity for use in future works considering the 2HDM fit in the framework of SM4. 
-Moving forward, we consider both the exact wrong sign limit from Eq. \ref{eq:wrongsign}, and the use of numerical constraints on $\cos(\beta-\alpha)$ provided from collaboration of the fit with \cite{oliver}.
+Moving forward, in addition to working in the alignment limit as discussed previously, we consider both the exact wrong sign limit from Eq. \ref{eq:wrongsign}, and the use of numerical constraints on $\cos(\beta-\alpha)$ provided from collaboration of the fit with \cite{oliver}.
+The only observable that is dependent on the limit we choose for the Higgs couplings so far is $B_q\to\mu^+\mu^-$, so we now look to other observables that can also compare the alignment and wrong sign limits.
 
 \subsection{The Global Fit with Oblique Parameters}
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.6\textwidth,trim=6em 3em 10pt 6em,clip]{../global/threedimfit.png}
+    \caption{\label{fig:threed}Constraints in ($m_{H^+},m_{A^0},\tan\beta$) space from $B\to\mu^+\mu^-$ and the oblique parameters, where we assume $m_{A^0}\approx m_{H^0}$, and have scanned to $2\sigma$.}
+\end{figure}
 Flavour constraints alone are not enough to give a full judgement on the 2HDM. 
 There are other observables that can also provide indicative constraints on this model, such as the oblique parameters of the electroweak theory. 
 These have not been the focus of this study, but we collaborate with \cite{james} for their work on the oblique parameters in the 2HDM (working from the expressions given in \cite{oblique}), and add these to the global 2HDM fit. 
 These observables have a different dependency on the 2HDM parameters than the flavour observables considered here, depending on $\theta=\beta-\alpha$ rather than $\beta$, $\alpha$ separately, as well as $m_{H^0}$ and $m_{A^0}$. 
 The choice of $\beta-\alpha$ is fixed by our choice either of the alignment limit or the wrong sign limit, and we will therefore expect no variation across $\tan\beta$ for these constraints. 
 There is however still dependency on $m_{H^0}$ and $m_{A^0}$ to consider.
-
 We previously fixed $m_{H^0}=1.5\,$TeV, where it minimised $\chi^2$ across the range of test values used. 
-Due to the additional dependencies here, we perform a test three-dimensional scan across ($m_{H^+},m_{A^0},\tan\beta$) space, assuming $m_{A^0}\approx m_{H^0}$, for the Oblique parameters and $B_q\to\mu^+\mu^-$ as these are the only observables to have this additional dependency. 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.7\textwidth]{../global/threedimfit.png}
-    \caption{\label{fig:threed}Constraints in ($m_{H^+},m_{A^0},\tan\beta$) space from $B\to\mu^+\mu^-$ and the Oblique parameters, where we assume $m_{A^0}\approx m_{H^0}$, and have scanned to $2\sigma$.}
-\end{figure}
-In Figure \ref{fig:threed}, we see that there is an approximate linear relationship in between $m_{A^0}$ and $m_{H^+}$, particularly for higher values. 
-The value of $m_{H^+}$ is therefore tightly constrained to be of a similar mass to $m_{H^0}$ and $m_{A^0}$. 
-\footnote{In \cite{james}, it is found that there can be some fine-tuned solutions away from this confinement, however, these are for choices of $\theta$ away from either the alignment or wrong sign limits which we consider here.}
-We find that for increased values of $m_{H^0}\approx m_{A^0}\approx m_{H^+}$, the value of $\chi^2$ for our fit decreases. 
-This is, however, moving towards the decoupling limit of the 2HDM and therefore recovering the Standard Model solutions, so it yields little information for testing a realistic 2HDM. 
-We choose to work with $m_{H^0}=m_{A^0}=1.5\,$TeV as chosen earlier and test the global fit using these fixed parameters. 
+Due to the additional dependencies here, we perform a test three-dimensional scan across ($m_{H^+},m_{A^0},\tan\beta$) space, assuming $m_{A^0}\approx m_{H^0}$, for the oblique parameters and $B_q\to\mu^+\mu^-$ as these are the only observables to have this additional dependency. 
+In Figure \ref{fig:threed}, we see that there is a close linear relationship between $m_{A^0}$ and $m_{H^+}$, particularly for higher values. 
+The value of $m_{H^+}$ is tightly constrained to be of a similar mass to $m_{H^0}$ and $m_{A^0}$. 
+\hspace{-8pt}\footnote{In the work of \cite{james}, it is found that there can be fine-tuned solutions away from this close confinement. However, these are for values of $\theta$ away from either the alignment or wrong sign limits we consider here.}
+\hspace{-3pt}Within the range of test values considered previously for $m_{H^0}$, we still find that $\chi^2$ is minimised for $m_{H^0}=1.5\,$TeV, so we choose to work with $m_{H^0}=m_{A^0}=1.5\,$TeV and test the two-dimensional global fit using these fixed parameters. 
+\textbf{LOOK AT $\chi^2$ FOR 3D FIT.}
+
+It is worth noting that, as we had in Section \ref{subsec:fit}, the 2HDM is a decoupling theory, so as we simultaneously take $m_{H^+},m_{H^0},m_{A^0}\to\infty$, we will recover the Standard Model results for these processes. 
+Working several orders of magnitudes above the mass scales of the Standard Model particles approximates this limit to infinity, so to test a physical, and observable, Two Higgs Doublet Model of the kind discussed here, it is of no use looking to such large scales so we remain working with more relevant mass scales as chosen for $m_{H^0}$ and $m_{A^0}$.
+
+We now show in Figure \ref{fig:global}
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.49\textwidth]{../global/global_test.png}
     \includegraphics[width=0.49\textwidth]{../global/global_test1.png}
     \includegraphics[width=0.49\textwidth]{../global/global_test3.png}
     \includegraphics[width=0.49\textwidth]{../global/global_test4.png}
+    \caption{\label{fig:global}Constraints on ($m_{H^+},\tan\beta$) in the alignment limit (top) and the wrong sign limit (bottom). 
+    The constraints found in this work for flavour observables are shown (left), and then the oblique parameter constraints from \cite{james} are shown too (right). 
+    Each region shows what is not excluded for the relevant observables to 95\% CL as discussed in the text, then the line within the purple region for all observables marks out the $1\sigma$ confidence area. 
+    The solid black vertical line shows $\tan\beta=m_t/m_b$, as for $\tan\beta$ much greater than this, the formulae for B mixing become invalid. 
+    The dashed horizontal line marks the limit for a charged Higgs from direct searches, at $m_{H^+}>160\,$GeV \cite{dirhp}.
+    For this two-dimensional fit, we fix the additional 2HDM parameters as in the titles of the plots and described in the text. 
+    For the wrong sign limit, we show here the numerical constraint on $\cos(\beta-\alpha)$ found by \cite{oliver}, and mark with the vertical turquoise line indicates the lower limit of where this constraint is valid.
+    The upper and lower bounds on parameters and the statistical indicators for each fit are shown in Table \ref{tab:pval}.}
 \end{figure}
+\textbf{MARK OUT VALIDITY > 6 FOR WRONG SIGN, ADD SIN2B AS WELL.}
 
+\section{Discussion}
 \section{Conclusion}
 Something about checking calculations with Tom \cite{tom}.
 
