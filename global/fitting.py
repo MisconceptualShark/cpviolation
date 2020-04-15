@@ -67,7 +67,7 @@ def alpha_shape(points, alpha, only_outer=True):
 
 def chi_del(chi_min,chis,hs,ts,parm):
     '''
-        computes delta chisq, for several CLs? so 2 sigma so 95.45 just now
+        computes delta chisq, for several CL giving by parm, using PDG statistics for delt chisq
     '''
     h_min,t_min = [],[]
     for i in range(len(hs)):
@@ -76,9 +76,22 @@ def chi_del(chi_min,chis,hs,ts,parm):
             t_min = np.append(t_min,ts[i])
 
     points = np.vstack([t_min,h_min]).T
-    edges = alpha_shape(points,alpha=0.1,only_outer=True)
+    edges = alpha_shape(points,alpha=0.03,only_outer=True)
 
     return h_min, t_min, [edges,points]
+
+def chi_del_threed(chi_min,chis,hps,hos,tbs,parm):
+    '''
+        delta chisq fitting for threed fit
+    '''
+    hp_min,tb_min,ho_min = [],[],[]
+    for i in range(len(hps)):
+        if (chis[i]-chi_min) <= parm:
+            hp_min = np.append(hp_min,hps[i])
+            ho_min = np.append(ho_min,hos[i])
+            tb_min = np.append(tb_min,tbs[i])
+
+    return hp_min, ho_min, tb_min
 
 def p_vals(chi_min,nu):
     '''

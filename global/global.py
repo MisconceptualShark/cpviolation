@@ -37,7 +37,7 @@ m_c, m_c_err = [1.27,[0.02,-0.02]]
 m_b, m_b_err = [4.18,[0.03,-0.02]]
 mt, mt_err = [172.9,[0.4,-0.4]]
 
-### CKM 
+### CKM
 Vud, Vud_err = [0.974390,[0.000014,-0.000058]]
 Vus, Vus_err = [0.224834,[0.000252,-0.000059]]
 Vub, Vub_err = [0.003683,[0.000075,-0.000061]]
@@ -54,9 +54,9 @@ f_bplus, f_bplus_err = [0.190,[0.0013,-0.0013]] # fBd same as bplus
 f_dplus, f_dplus_err = [0.212,[0.0007,-0.0007]]
 f_dsplus, f_dsplus_err = [0.2499,[0.0005,-0.0005]]
 f_Kpi, f_Kpi_err = [1.1932,[0.0019,-0.0019]]
-fBs, fBs_err = [0.2303,[0.0013,-0.0013]] 
+fBs, fBs_err = [0.2303,[0.0013,-0.0013]]
 f2Bs, f2Bs_err = [0.0452,[0.0014,-0.0014]] # f^2 * Bag(mu) (need etaB = 0.8...)
-f2Bd, f2Bd_err = [0.0305,[0.0011,-0.0011]] 
+f2Bd, f2Bd_err = [0.0305,[0.0011,-0.0011]]
 
 # deltas for K/pi to tau and tau to K/pi
 delt_kpi, delt_kpi_err = [-0.0069,[0.0017,-0.0017]]
@@ -76,7 +76,7 @@ rho, rho_err = [1.131,[0.033,-0.033]] #rho for R(D)
 rhod, rhod_err = [1.122,[0.024,-0.024]] #rho for R(D*)
 delt_rd, delt_rd_err = [0.46,[0.01,-0.01]] #delta for parameterisation in 0907.5135
 delta, delta_err = [1,[1,-1]] #delta for full integration in 1705.02456
-r01, r01_err = [1.85,[0.05,-0.05]] #inputs for 1705.02456 
+r01, r01_err = [1.85,[0.05,-0.05]] #inputs for 1705.02456
 r11, r11_err = [1.270,[0.026,-0.026]]
 r21, r21_err = [0.852,[0.018,-0.018]]
 
@@ -84,7 +84,7 @@ r21, r21_err = [0.852,[0.018,-0.018]]
 tau_bplus, tau_bplus_err = [(1.638e-12)/hbar_gev,[(0.004e-12)/hbar_gev,-(0.004e-12)/hbar_gev]]
 tau_dplus, tau_dplus_err = [(1040e-15)/hbar_gev,[(7e-15)/hbar_gev,-(7e-15)/hbar_gev]]
 tau_dsplus, tau_dsplus_err = [(504e-15)/hbar_gev,[(4e-15)/hbar_gev,-(4e-15)/hbar_gev]]
-taubd, taubd_err = [(1.519e-12)/hbar_gev,[(0.004e-12)/hbar_gev,(-0.004e-12)/hbar_gev]] 
+taubd, taubd_err = [(1.519e-12)/hbar_gev,[(0.004e-12)/hbar_gev,(-0.004e-12)/hbar_gev]]
 taubs, taubs_err = [(1.510e-12)/hbar_gev,[(0.004e-12)/hbar_gev,(-0.004e-12)/hbar_gev]]
 
 ### Experiment Values
@@ -128,25 +128,48 @@ TOblique, TOblique_err=[0.07,[0.12,-0.12]]
 UOblique, UOblique_err=[0.00,[0.09,-0.09]]
 ###################### GLOBAL CONSTRAINT
 
+#m3d = 7.82 #different confidence levels for chisq fit
+#nu3 = 14 # degrees of freedom
+#
 #mHs, tanbs, mAs, chis, chi_min = tdfits(
-#        bs_exp,bs_exp_err,bd_exp,bd_exp_err,
+#        bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,
+#        bplusmu_exp,bplusmu_err_exp,dsmu_exp,dsmu_err_exp,delt_md,delt_md_err,delt_ms,delt_ms_err,
+#        kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,
+#        bs_exp,bs_exp_err,bd_exp,bd_exp_err,rd_exp,rd_exp_err,rdst_exp,rdst_exp_err,
+#        branchs,branchs_err,branch_c,branchc_err,gamu,gamu_err,
 #        m_u,m_u_err,m_d,m_d_err,m_c,m_c_err,m_s,m_s_err,m_b,m_b_err,mt,mt_err,mW,mW_err,
-#        mBs,mBs_err,mBd,mBd_err,m_mu,m_mu_err,
+#        m_bplus,m_bplus_err,m_dplus,m_dplus_err,m_dsplus,m_dsplus_err,mBd,mBd_err,mBs,mBs_err,m_dstar,m_dstar_err,
+#        m_K,m_K_err,m_pi,m_pi_err,m_tau,m_tau_err,m_mu,m_mu_err,
 #        Vud,Vud_err,Vus,Vus_err,Vub,Vub_err,Vcd,Vcd_err,Vcs,Vcs_err,Vcb,Vcb_err,Vtd,Vtd_err,Vts,Vts_err,Vtb,Vtb_err,
-#        fBs,fBs_err,f_bplus,f_bplus_err,taubs,taubs_err,taubd,taubd_err,1/137,
-#        wangle,wangle_err,lambda_QCD,QCD_err,higgs,higgs_err,vev,vev_err,
+#        etaB,etaB_err,f2Bd,f2Bd_err,f2Bs,f2Bs_err,fBs,fBs_err,BBd,BBd_err,BBs,BBs_err,
+#        f_bplus,f_bplus_err,f_dplus,f_dplus_err,f_dsplus,f_dsplus_err,
+#        f_Kpi,f_Kpi_err,delt_kpi,delt_kpi_err,delt_kpitau,delt_kpitau_err,
+#        tau_bplus,tau_bplus_err,tau_dplus,tau_dplus_err,tau_dsplus,tau_dsplus_err,taubd,taubd_err,taubs,taubs_err,
+#        mub,hi,a,A0,ac,at,a_s,B0,bc,bt,b_s,delt_mc,delt_mt,delt_as,1/137,C,C_err,
+#        rho,rho_err,rhod,rhod_err,delt_rd,delt_rd_err,r01,r01_err,r11,r11_err,r21,r21_err,
+#        delta_b,delta_d,wangle,wangle_err,lambda_QCD,QCD_err,higgs,higgs_err,vev,vev_err,
 #        SOblique,SOblique_err,TOblique,TOblique_err,UOblique,UOblique_err,mZ,mZ_err)
+#
+#hpc, hoc, tbc = chi_del_threed(chi_min[0],chis,mHs,mAs,tanbs,m3d)
+#
+## print out some numbers to 95CL and 1 sig
+#print [10**min(hpc),10**max(hpc)], [10**min(hoc),10**max(hoc)], [10**min(tbc),10**max(tbc)]
+#print chi_min[0]/nu3 # reduced chisq, nu = 17 observables - 3 free parameters
+#print chi_min
+#
+#p_val, p_err = p_vals(chi_min[0],nu3)
+#print "p-value for global fit with ", nu3," degrees of freedom is: ", "{:.1%}".format(p_val)#, " +/- ", p_err
 #
 #fig = plt.figure()
 #ax = fig.add_subplot(111,projection='3d')
-#ax.scatter(tanbs,mAs,mHs,c='darkorchid')
+#ax.scatter(tbc,hoc,hpc,c='darkorchid')
 #ax.set_xlabel('$\\log[\\tan\\beta]$')
 #ax.set_ylabel('$\\log[m_{A^0}\,(GeV)]$')
 #ax.set_zlabel('$\\log[m_{H^+}\,(GeV)]$')
 #plt.show()
 #
 #quit()
-#big ol function for everything 
+#big ol function for everything
 mHs, tanbs, chis, chi_2 = itera_global(
         bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,
         bplusmu_exp,bplusmu_err_exp,dsmu_exp,dsmu_err_exp,delt_md,delt_md_err,delt_ms,delt_ms_err,
@@ -168,7 +191,7 @@ mHs, tanbs, chis, chi_2 = itera_global(
 
 #h - mH; t - tanb
 #l - (semi-)leptonics; b - b mixing; g - bsgamma; a - combine l,b,g; mu - Bs to mumu; l2 -everything
-hl, hb, hg, ha, hmu, hl2, hS, hT, hU = mHs 
+hl, hb, hg, ha, hmu, hl2, hS, hT, hU = mHs
 tl, tb, tg, ta, tmu, tl2, tS, tT, tU = tanbs
 chi_ls, chi_ms, chi_gs, chi_as, chi_mus, chi_2s, chi_Ss, chi_Ts, chi_Us = chis #all chisq values
 
@@ -210,10 +233,10 @@ p_val, p_err = p_vals(chi_2[0],nu)
 print "p-value for global fit with ", nu," degrees of freedom is: ", "{:.1%}".format(p_val)#, " +/- ", p_err
 
 # plotting! scatter plots for regions, then the for loops plot out the outline
-# all regions plotted to 95% CL, and their lines plotted to this too, but then the 1 sigma everything region's border is plotted 
+# all regions plotted to 95% CL, and their lines plotted to this too, but then the 1 sigma everything region's border is plotted
 plt.figure(figsize=(8,6))
 plt.scatter(tchi_mix,hchi_mix,c='cornflowerblue')
-for i, j in mix_edges_e[0]: 
+for i, j in mix_edges_e[0]:
     plt.plot(mix_edges_e[1][[i,j],0],mix_edges_e[1][[i,j],1],c='midnightblue',linestyle='--')
 plt.scatter(tchi_leps,hchi_leps,c='green')
 for i, j in lep_edges_e[0]:
@@ -235,6 +258,7 @@ plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
+#plt.axvline(x=np.log10(6),color='lightseagreen')
 plt.axvline(x=np.log10(mt/m_b),color='black')
 plt.axhline(y=np.log10(160),color='black',linestyle='--')
 plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D)$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
@@ -245,6 +269,7 @@ plt.annotate('All',xy=(0.65,0.8),xycoords='axes fraction',fontsize=18)
 plt.annotate('S,T,U',xy=(0.05,0.73),xycoords='axes fraction',fontsize=13)
 plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.5,0.55),xycoords='axes fraction',fontsize=18)
 plt.title('$M = 750\,GeV,\; m_{A^0} = 1.5\,TeV,$ \n $m_{H^0} = 1.5\,TeV,\; \\cos(\\beta-\\alpha) = 0$',fontsize=18)
-plt.savefig('global_test2.png')
+#plt.title('$M = 750\,GeV,\; m_{H^0} = 1.5\,TeV,\; \\cos(\\beta-\\alpha) = \\sin(2\\beta)$',fontsize=18)
+plt.savefig('global_test3sig.png')
 #plt.show()
 os.system('play draco.mp3')

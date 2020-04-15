@@ -445,7 +445,7 @@ def bmumu(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,mc,mu,wangle,higgs,v,Vus
     mtmu = mt*factor1
     mtmut = 163.1#mt*factor2
 
-    M = 1500 # M 2HDM param, choose as you wish
+    M = 750 # M 2HDM param, choose as you wish
     cob,g2,b = 1/tanb,0.65,np.arctan(tanb)
     z1,z2,y,yh,yH0 = (mu/mH)**2,(mc/mH)**2,(mW/mH)**2,(mH/higgs)**2,(mH/mH0)**2
     z3t,z3w = (mtmut/mH)**2,(mtmu/mH)**2
@@ -624,6 +624,23 @@ def S2HDMofAlphaBeta (mHpm,mA0,mH0,Alpha,Beta,mW,mZ,mh,Gf,alphaem,wangle):
     #S2HDMofAlphaBeta=S2HDMofTheta(mHpm,mA0,mH0,Beta,mW,mZ,mh,Gf,alphaem,wangle)
     return S2HDMofAlphaBeta
 
+def SOb_err(mHp,mA0,mH0,alpha,beta,mW,mW_err,mZ,mZ_err,mh,mh_err,Gf,alphaem,wangle,wan_err):
+    S = S2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh,Gf,alphaem,wangle)
+
+    err1_up = abs(S2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW+mW_err[0],mZ,mh,Gf,alphaem,wangle)-S)
+    err1_lo = abs(S2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW+mW_err[1],mZ,mh,Gf,alphaem,wangle)-S)
+    err2_up = abs(S2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ+mZ_err[0],mh,Gf,alphaem,wangle)-S)
+    err2_lo = abs(S2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ+mZ_err[1],mh,Gf,alphaem,wangle)-S)
+    err3_up = abs(S2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh+mh_err[0],Gf,alphaem,wangle)-S)
+    err3_lo = abs(S2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh+mh_err[1],Gf,alphaem,wangle)-S)
+    err4_up = abs(S2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh,Gf,alphaem,wangle+wan_err[0])-S)
+    err4_lo = abs(S2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh,Gf,alphaem,wangle+wan_err[1])-S)
+
+    upper = np.sqrt(err1_up**2 + err2_up**2 + err3_up**2 + err4_up**4)
+    lower = np.sqrt(err1_lo**2 + err2_lo**2 + err3_lo**2 + err4_lo**4)
+
+    return upper, lower
+
 def U2HDMofTheta (mHpm,mA0,mH0,Theta,mW,mZ,mh,Gf,alphaem,wangle):
     U2HDMofTheta=((Gf*mW**2)/(48*2**0.5*np.pi**2*alphaem))*(g(mHpm**2,mA0**2,mW**2)\
     +(np.sin(Theta))**2*g(mHpm**2,mH0**2,mW**2)+(np.cos(Theta))**2*g(mHpm**2,mh**2,mW**2)\
@@ -645,6 +662,23 @@ def U2HDMofAlphaBeta (mHpm,mA0,mH0,Alpha,Beta,mW,mZ,mh,Gf,alphaem,wangle):
     U2HDMofAlphaBetta=U2HDMofTheta(mHpm,mA0,mH0,Beta-Alpha,mW,mZ,mh,Gf,alphaem,wangle)
     #U2HDMofAlphaBetta=U2HDMofTheta(mHpm,mA0,mH0,Beta,mW,mZ,mh,Gf,alphaem,wangle)
     return U2HDMofAlphaBetta
+
+def UOb_err(mHp,mA0,mH0,alpha,beta,mW,mW_err,mZ,mZ_err,mh,mh_err,Gf,alphaem,wangle,wan_err):
+    U = U2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh,Gf,alphaem,wangle)
+
+    err1_up = abs(U2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW+mW_err[0],mZ,mh,Gf,alphaem,wangle)-U)
+    err1_lo = abs(U2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW+mW_err[1],mZ,mh,Gf,alphaem,wangle)-U)
+    err2_up = abs(U2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ+mZ_err[0],mh,Gf,alphaem,wangle)-U)
+    err2_lo = abs(U2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ+mZ_err[1],mh,Gf,alphaem,wangle)-U)
+    err3_up = abs(U2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh+mh_err[0],Gf,alphaem,wangle)-U)
+    err3_lo = abs(U2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh+mh_err[1],Gf,alphaem,wangle)-U)
+    err4_up = abs(U2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh,Gf,alphaem,wangle+wan_err[0])-U)
+    err4_lo = abs(U2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh,Gf,alphaem,wangle+wan_err[1])-U)
+
+    upper = np.sqrt(err1_up**2 + err2_up**2 + err3_up**2 + err4_up**4)
+    lower = np.sqrt(err1_lo**2 + err2_lo**2 + err3_lo**2 + err4_lo**4)
+
+    return upper, lower
 
 def F(x,y):
     if x!=y:
@@ -670,6 +704,21 @@ def T2HDMofAlphaBeta(MHpm,MA0,MH0,Alpha,Beta,mW,mZ,mh,Gf,alphaem):
     Tofalphabeta = T(MHpm,MA0,MH0,Beta-Alpha,mW,mZ,mh,Gf,alphaem)
     #Tofalphabeta = T(MHpm,MA0,MH0,Beta,mW,mZ,mh,Gf,alphaem)
     return Tofalphabeta
+
+def TOb_err(mHp,mA0,mH0,alpha,beta,mW,mW_err,mZ,mZ_err,mh,mh_err,Gf,alphaem):
+    T = T2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh,Gf,alphaem)
+
+    err1_up = abs(T2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW+mW_err[0],mZ,mh,Gf,alphaem)-T)
+    err1_lo = abs(T2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW+mW_err[1],mZ,mh,Gf,alphaem)-T)
+    err2_up = abs(T2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ+mZ_err[0],mh,Gf,alphaem)-T)
+    err2_lo = abs(T2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ+mZ_err[1],mh,Gf,alphaem)-T)
+    err3_up = abs(T2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh+mh_err[0],Gf,alphaem)-T)
+    err3_lo = abs(T2HDMofAlphaBeta(mHp,mA0,mH0,alpha,beta,mW,mZ,mh+mh_err[1],Gf,alphaem)-T)
+
+    upper = np.sqrt(err1_up**2 + err2_up**2 + err3_up**2)
+    lower = np.sqrt(err1_lo**2 + err2_lo**2 + err3_lo**2)
+
+    return upper, lower
 
 ########## GLOBAL ##########
 
@@ -783,7 +832,7 @@ def itera_global(
 
     Any issues, let me know. 
     '''
-    sigma = 2 # to 95% CL
+    sigma = 3 # to 95% CL
 
     ##### LEPTONICS #####
     bpls_exp_up,bpls_exp_down = bpls_exp+bpls_exp_error[0],bpls_exp+bpls_exp_error[1]
@@ -931,28 +980,31 @@ def itera_global(
             sig_rd = sigma*(expect_rd_up-mid_rd)
             sig_rds = sigma*(expect_rds_up-mid_rds)
             rd_bool = ((av_rd >= mid_rd and mid_rd+sig_rd >= av_rd-sige_rd) or (av_rd <= mid_rd and mid_rd-sig_rd <= av_rd+sige_rd)) 
-#            rds_bool = ((av_rds >= mid_rds and mid_rds+sig_rds >= av_rds-sige_rds) or (av_rds <= mid_rds and mid_rds-sig_rds <= av_rds+sige_rds)) 
+            rds_bool = ((av_rds >= mid_rds and mid_rds+sig_rds >= av_rds-sige_rds) or (av_rds <= mid_rds and mid_rds-sig_rds <= av_rds+sige_rds)) 
 
             #Oblique
-            expect_SOblique=S2HDMofAlphaBeta (i,mA0,mH0,alph,np.arctan(j),mW,mZ,higgs,Gf,alp_EM,wangle)
+            expect_SOblique = S2HDMofAlphaBeta(i,mA0,mH0,alph,b,mW,mZ,higgs,Gf,alp_EM,wangle)
             #theoretical error very small here
-            sig_SOblique=0
-            expect_SOblique_up,expect_SOblique_down=expect_SOblique,expect_SOblique
-            mid_SOblique=expect_SOblique
-            SOblique_bool=((av_SOblique>=mid_SOblique and mid_SOblique>=av_SOblique-sige_SOblique) or (av_SOblique<=mid_SOblique and mid_SOblique<=av_SOblique+sige_SOblique))
+            S_up, S_down = SOb_err(i,mA0,mH0,alph,b,mW,mW_err,mZ,mZ_err,higgs,higgs_err,Gf,alp_EM,wangle,wangle_err)
+            expect_SOblique_up,expect_SOblique_down = expect_SOblique+S_up,expect_SOblique-S_down
+            mid_SOblique = 0.5*(expect_SOblique_up+expect_SOblique_down)
+            sig_SOblique = sigma*(expect_SOblique_up-mid_SOblique)
+            SOblique_bool=((av_SOblique>=mid_SOblique and mid_SOblique+sig_SOblique>=av_SOblique-sige_SOblique) or (av_SOblique<=mid_SOblique and mid_SOblique-sig_SOblique<=av_SOblique+sige_SOblique))
 
-            expect_TOblique=T2HDMofAlphaBeta (i,mA0,mH0,alph,np.arctan(j),mW,mZ,higgs,Gf,alp_EM)
+            expect_TOblique = T2HDMofAlphaBeta(i,mA0,mH0,alph,b,mW,mZ,higgs,Gf,alp_EM)
             #theoretical error very small here
-            sig_TOblique=0
-            expect_TOblique_up,expect_TOblique_down=expect_TOblique,expect_TOblique
-            mid_TOblique=expect_TOblique
+            T_up, T_down = TOb_err(i,mA0,mH0,alph,b,mW,mW_err,mZ,mZ_err,higgs,higgs_err,Gf,alp_EM)
+            expect_TOblique_up,expect_TOblique_down = expect_TOblique+T_up,expect_TOblique-T_down
+            mid_TOblique = 0.5*(expect_TOblique_up+expect_TOblique_down)
+            sig_TOblique = sigma*(expect_TOblique_up-mid_TOblique)
             TOblique_bool=((av_TOblique>=mid_TOblique and mid_TOblique>=av_TOblique-sige_TOblique) or (av_TOblique<=mid_TOblique and mid_TOblique<=av_TOblique+sige_TOblique))
 
-            expect_UOblique=U2HDMofAlphaBeta (i,mA0,mH0,alph,np.arctan(j),mW,mZ,higgs,Gf,alp_EM,wangle)
+            expect_UOblique = U2HDMofAlphaBeta(i,mA0,mH0,alph,b,mW,mZ,higgs,Gf,alp_EM,wangle)
             #theoretical error very small here
-            sig_UOblique=0
-            expect_UOblique_up,expect_UOblique_down=expect_UOblique,expect_UOblique
-            mid_UOblique=expect_UOblique
+            U_up, U_down = UOb_err(i,mA0,mH0,alph,b,mW,mW_err,mZ,mZ_err,higgs,higgs_err,Gf,alp_EM,wangle,wangle_err)
+            expect_UOblique_up,expect_UOblique_down = expect_UOblique+U_up,expect_UOblique-U_down
+            mid_UOblique = 0.5*(expect_UOblique_up+expect_UOblique_down)
+            sig_UOblique = sigma*(expect_UOblique_up-mid_UOblique)
             UOblique_bool=((av_UOblique>=mid_UOblique and mid_UOblique>=av_UOblique-sige_UOblique) or (av_UOblique<=mid_UOblique and mid_UOblique<=av_UOblique+sige_UOblique))
 
             ##### (SEMI-)LEPTONICS #####
@@ -960,8 +1012,8 @@ def itera_global(
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHl_loc = np.append(mHl_loc,i_log)
                 tanbl_loc = np.append(tanbl_loc,j_log)
-                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd,av_rds],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd,mid_rds],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd,sige_rds],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd,sig_rds])
-                #chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd])
+#                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd,av_rds],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd,mid_rds],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd,sige_rds],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd,sig_rds])
+                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd])
                 chi_ls = np.append(chi_ls,chi_lij)
             
             ##### MIXING #####
@@ -1019,7 +1071,7 @@ def itera_global(
                 chi_mus = np.append(chi_mus,chi_uij)
 
             ##### GLOBAL #####
-            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool and rd_bool and bpmu_bool and dsmu_bool and SOblique_bool and TOblique_bool and UOblique_bool:# and rds_bool:
+            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool and rd_bool and bpmu_bool and dsmu_bool and SOblique_bool and TOblique_bool and UOblique_bool and rds_bool:
                 i_log, j_log = np.log10(i), np.log10(j)
                 mHa2_loc = np.append(mHa2_loc,i_log)
                 tanba2_loc = np.append(tanba2_loc,j_log)
@@ -1028,11 +1080,6 @@ def itera_global(
                         [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm,mid_SOblique,mid_TOblique,mid_UOblique,mid_rds],
                         [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm,sige_SOblique,sige_TOblique,sige_UOblique,sige_rds],
                         [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm,sig_SOblique,sig_TOblique,sig_UOblique,sig_rds])
-#                chi_2ij = chisq_simp(
-#                        [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm, av_SOblique, av_TOblique, av_UOblique],
-#                        [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm,mid_SOblique,mid_TOblique,mid_UOblique],
-#                        [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm,sige_SOblique,sige_TOblique,sige_UOblique],
-#                        [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm,sig_SOblique,sig_TOblique,sig_UOblique])
                 chi_2s = np.append(chi_2s,chi_2ij)
                 if chi_2ij < chi_2min[0]:
                     chi_2min = [chi_2ij,i,j]
