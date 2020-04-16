@@ -701,8 +701,8 @@ We therefore move forward with two approaches to work through this discrepancy: 
     The turquoise region shows what is not excluded for the joint fit of these two observables from the scan, and the blue line indicates the outline of the 95\% CL region.}
 \end{figure}
 In Figure \ref{fig:rd3sig}, it is shown that the joint constraint from $\mathcal{R}(D)$ and $\mathcal{R}(D^*)$ aligns well with that of the leptonic decays in Figure \ref{fig:indies} when we now scan at $3\sigma$, but the 2HDM does fit this slightly worse than the Standard Model, as $\mathcal{R}(D^*)$ will still lead to an exclusion at $2.5\sigma$. 
-We test our fit with $\mathcal{R}(D^*)$ included as an anomaly at $2\sigma$, and also include it as in Figure \ref{fig:rd3sig} to a fit of a $3\sigma$ scan. 
-The statistical significance of these approaches are found in Table ref.
+We test our fit with $\mathcal{R}(D^*)$ included as an anomaly at $2\sigma$, and also include it as in Figure \ref{fig:rd3sig} to a $3\sigma$ scan. 
+The statistical significance of these approaches are found in Tables \ref{tab:pval1} and \ref{tab:pval2}.
 
 \subsection{SM4 with Two Higgs Doublet Model}
 As discussed in Section \ref{subsec:flavobs}, a fourth generation of fermions can be proposed as a way of inducing more CP violation, but the SM4 model alone has been excluded. 
@@ -732,8 +732,9 @@ The only observable that is dependent on the limit we choose for the Higgs coupl
 \label{subsec:oblique}
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.6\textwidth,trim=6em 3em 10pt 6em,clip]{../global/threedimfit.png}
-    \caption{\label{fig:threed}Constraints in ($m_{H^+},m_{A^0},\tan\beta$) space from $B\to\mu^+\mu^-$ and the oblique parameters, where we assume $m_{A^0}\approx m_{H^0}$, and have scanned to $2\sigma$ in the alignment limit.}
+    \includegraphics[width=0.6\textwidth,trim=6em 3em 10pt 6em,clip]{../global/threedimfit1.png}
+    \caption{\label{fig:threed}Constraints in ($m_{H^+},m_{A^0},\tan\beta$) space from $B\to\mu^+\mu^-$ and the oblique parameters, where we assume $m_{A^0}\approx m_{H^0}$, and have scanned to $2\sigma$ in the alignment limit.
+    The purple region indicates what is not excluded at 95\% CL.}
 \end{figure}
 Flavour constraints alone are not enough to give a full judgement on the 2HDM. 
 There are other observables that can also provide indicative constraints on this model, such as the oblique parameters of the electroweak theory. 
@@ -747,7 +748,45 @@ In Figure \ref{fig:threed}, we see that there is a close linear relationship bet
 The value of $m_{H^+}$ is tightly constrained to be of a similar mass to $m_{H^0}$ and $m_{A^0}$. 
 \hspace{-8pt}\footnote{In the work of \cite{james}, it is found that there can be fine-tuned solutions away from this close confinement. However, these are for values of $\theta$ away from either the alignment or wrong sign limits we consider here.}
 \hspace{-3pt}Within the range of test values considered previously for $m_{H^0}$, we still find that $\chi^2$ is minimised for $m_{H^0}=1.5\,$TeV, so we choose to work with $m_{H^0}=m_{A^0}=1.5\,$TeV and test the two-dimensional global fit using these fixed parameters. 
-\textbf{LOOK AT $\chi^2$ FOR 3D FIT.}
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|c|c}
+        \hline\hline
+        \textbf{Model:} & $\cos(\beta-\alpha)=\sin(2\beta)$ & $\cos(\beta-\alpha)=0$ \\ 
+        \hline\hline
+        $m_{H^+}$ (GeV) & & $>270$ \\
+        $m_{A^0}$ (GeV) & & $>210$ \\
+        $\tan\beta$ & & $0.42\to54.7$ \\
+        \hline
+        $\chi^2_{min}$ & & $8.19$ \\
+        $\chi^2_\nu$ & & $0.58$ \\
+        $\nu$ & & $14$ \\
+        p-value & & $87.9\%$ \\
+        \hline\hline
+    \end{tabular}
+    \caption{\label{tab:pthreed}Constraints and statistics for three-dimensional fit from $2\sigma$ scan in Figure \ref{fig:threed}. 
+    The fits have been done in the exact wrong-sign limit and the exact alignment limit as shown, and setting the additional 2HDM parameter $M=750\,$GeV. 
+    For $m_{H^+}$, $m_{A^0}$ and $\tan\beta$, the constraint from each model at 95\% CL are shown.
+    The information from the $\chi^2$ fitting of each model is then shown.}
+    \vspace{-20pt}
+\end{table}
+
+\section{Discussion}
+\label{sec:discuss}
+We now show in Figure \ref{fig:global} the results of our fit, for the flavour observables discussed alone, and also including the oblique parameters from \cite{james}.
+This has been done both in the alignment and wrong sign limits. 
+As marked in the figure, it was found by \cite{oliver} that the exact wrong sign limit can only be allowed for $\tan\beta\gtrapprox6$ at the $2\sigma$ level, which significantly reduces the allowed region in our parameter space. 
+This limit has not been included when performing the fit here, but we take note of the limitations this imposes on our results.
+
+It is important to have any calculations performed confirmed by another source such that they maintain credibility, and to this end, the flavour observables studied throughout have been cross-checked in \cite{tom} as part a larger collaboration, and close agreement between results thus far has been found, lending to the validity of the results we present here. 
+
+It is worth noting that, as we had in Section \ref{subsec:fit}, the 2HDM is a decoupling theory, so as we simultaneously take $m_{H^+},m_{H^0},m_{A^0}\to\infty$, we will recover the Standard Model results for these processes.
+In the case of observables that are in agreement with the Standard Model, tending these masses to infinity will lead to a good statistical fit, as we would have in a Standard Model fit of these. 
+Working several orders of magnitudes above the mass scales of the Standard Model particles approximates this limit to infinity, so to test a physical, and observable, Two Higgs Doublet Model Type II which is significant against the Standard Model, it is of no use looking to such large scales so we therefore remain working with more relevant mass scales as chosen for $m_{H^0}$ and $m_{A^0}$.
+This effect is also seen in the $\chi^2$ fitting in Tables \ref{tab:pthreed}, \ref{tab:pval1}, and \ref{tab:pval2}. 
+The value of $m_{H^+}$ that minimises $\chi^2$ for flavour observables alone and fixed $m_{H^0}$ is $3200\,$GeV, and similarly for $m_{A^0}$ and $m_{H^+}$ in the three-dimensional global fit. 
+These values are not representative of what would actually minimise $\chi^2$ across any value these parameters could take, but rather the minimum within the range chosen, where we do not scan any higher than $3200\,$GeV for any mass. 
+Were we to scan higher than this, we would expect a similar result whereby the values of $m_{H^+}$ and $m_{A^0}$ which minimise $\chi^2$ would be the highest value scanned to, and so on to the decoupling limit of this model. 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.49\textwidth]{../global/global_test.png}
@@ -763,15 +802,9 @@ The value of $m_{H^+}$ is tightly constrained to be of a similar mass to $m_{H^0
     For the wrong sign limit, we use the exact form given in Eq. \ref{eq:wrongsign}, and mark with the vertical turquoise line the lower limit of its validity, as found by \cite{oliver}.
     The upper and lower bounds on parameters and the statistical indicators for each fit are shown in Table \ref{tab:pval1}.}
 \end{figure}
-It is worth noting that, as we had in Section \ref{subsec:fit}, the 2HDM is a decoupling theory, so as we simultaneously take $m_{H^+},m_{H^0},m_{A^0}\to\infty$, we will recover the Standard Model results for these processes.
-In the case of observables that are in agreement with the Standard Model, tending these masses to infinity will lead to a good statistical fit, as we would have in a Standard Model fit of these. 
-Working several orders of magnitudes above the mass scales of the Standard Model particles approximates this limit to infinity, so to test a physical, and observable, Two Higgs Doublet Model of the kind discussed here, it is of no use looking to such large scales so we remain working with more relevant mass scales as chosen for $m_{H^0}$ and $m_{A^0}$.
 
-\section{Discussion}
-\label{sec:discuss}
-We now show in Figure \ref{fig:global} the results of our fit, for the flavour observables discussed alone, and also including the oblique parameters from \cite{james}.
-This has been done both in the alignment and wrong sign limits. 
-As marked in the figure, it was found by \cite{oliver} that the exact wrong sign limit can only be allowed for $\tan\beta\gtrapprox6$, which significantly reduces the allowed region in our parameter space. 
+We show in Table \ref{tab:pval1} the numerical constraints found in our parameter space from Figure \ref{fig:global}, and the statistical significance of the various fits. 
+Due to the discrepancy found in $\mathcal{R}(D^*)$, different approaches were taken to explore its impact on the fit: in Table \ref{tab:pval1}, the statistical indicators for including this as an anomaly at $2\sigma$ are given, and then in brackets we give the indicators for a fit disregarding $\mathcal{R}(D^*)$ altogether, such that we see the impact this observable has on the validity of the 2HDM; we also show in Table \ref{tab:pval2} how the values of the constraints of our fit change for a $3\sigma$ scan as opposed to a $2\sigma$ scan, as at this error level, $\mathcal{R}(D^*)$ agrees with the shape of leptonic and semileptonic constraints, as shown in Figure \ref{fig:rd3sig}.
 \begin{table}[ht]
     \centering
     \begin{tabular}{cc|C{1cm}C{1.1cm}|C{1cm}C{1.4cm}|C{1cm}C{1.2cm}|C{1.2cm}C{1.2cm}}
@@ -780,36 +813,76 @@ As marked in the figure, it was found by \cite{oliver} that the exact wrong sign
         \cline{3-10}
         & & \multicolumn{2}{c|}{\textbf{Flavour}} & \multicolumn{2}{C{2.4cm}|}{\textbf{Flavour + Oblique}} & \multicolumn{2}{c|}{\textbf{Flavour}} & \multicolumn{2}{C{2.4cm}}{\textbf{Flavour + Oblique}} \\
         \hline\hline
-        $m_{H^+}$: & 95\% CL & \multicolumn{2}{c|}{$>700$} & \multicolumn{2}{c|}{$720\to1580$} & \multicolumn{2}{c|}{$>480$} & \multicolumn{2}{c}{$1380\to1620$} \\
-        (GeV)                & $1\sigma$ & \multicolumn{2}{c|}{$>1480$} & \multicolumn{2}{c|}{$790\to1540$} & \multicolumn{2}{c|}{$>750$} & \multicolumn{2}{c}{$1410\to1580$} \\
+        $m_{H^+}$: & 95\% CL & \multicolumn{2}{c|}{$>740$} & \multicolumn{2}{c|}{$720\to1580$} & \multicolumn{2}{c|}{$>480$} & \multicolumn{2}{c}{$1380\to1620$} \\
+        (GeV)                & $1\sigma$ & \multicolumn{2}{c|}{$>1510$} & \multicolumn{2}{c|}{$790\to1540$} & \multicolumn{2}{c|}{$>750$} & \multicolumn{2}{c}{$1410\to1580$} \\
                          & $\chi^2_{min}$ & \multicolumn{2}{c|}{$3200$} & \multicolumn{2}{c|}{$1510$} & \multicolumn{2}{c|}{$3200$} & \multicolumn{2}{c}{$1440$} \\
         \hline
-        $\tan\beta$: & 95\% CL & \multicolumn{2}{c|}{$<4.42$} & \multicolumn{2}{c|}{$0.84\to8.1$} & \multicolumn{2}{c|}{$<21.3$} & \multicolumn{2}{c}{$0.9\to21.3$} \\
-                     & $1\sigma$ & \multicolumn{2}{c|}{$<1.97$} & \multicolumn{2}{c|}{$1.1\to7.9$} & \multicolumn{2}{c|}{$<17.3$} & \multicolumn{2}{c}{$1.2\to16.8$} \\
+        $\tan\beta$: & 95\% CL & \multicolumn{2}{c|}{$<4.03$} & \multicolumn{2}{c|}{$0.84\to8.1$} & \multicolumn{2}{c|}{$<21.3$} & \multicolumn{2}{c}{$0.9\to21.3$} \\
+                     & $1\sigma$ & \multicolumn{2}{c|}{$<1.92$} & \multicolumn{2}{c|}{$1.1\to7.9$} & \multicolumn{2}{c|}{$<17.3$} & \multicolumn{2}{c}{$1.2\to16.8$} \\
                      & $\chi^2_{min}$ & \multicolumn{2}{c|}{$0.98$} & \multicolumn{2}{c|}{$1.9$} & \multicolumn{2}{c|}{$4.1$} & \multicolumn{2}{c}{$5.2$} \\
         \hline
-        \multicolumn{2}{c|}{$\chi^2_{min}$} & $19.7$ & ($11.0$) & $24.6$ & ($15.9$) & $18.1$ & ($9.39$) & $18.6$ & ($9.89$) \\
-        \multicolumn{2}{c|}{$\chi^2_{\nu}$} & $1.6$ & ($1.0$) & $1.6$ & ($1.1$) & $1.5$ & ($0.9$) & $1.2$ & ($0.7$) \\
+        \multicolumn{2}{c|}{$\chi^2_{min}$} & $20.6$ & ($11.5$) & $24.6$ & ($16.6$) & $18.1$ & ($9.78$) & $18.6$ & ($10.3$) \\
+        \multicolumn{2}{c|}{$\chi^2_{\nu}$} & $1.7$ & ($1.0$) & $1.6$ & ($1.2$) & $1.5$ & ($0.9$) & $1.2$ & ($0.7$) \\
         \multicolumn{2}{c|}{$\nu$} & $12$ & ($11$) & $15$ & ($14$) & $12$ & ($11$) & $15$ & ($14$)\\
-        \multicolumn{2}{c|}{p-value} & $7.2\%$ & ($44\%$) & $5.5\%$ & ($32\%$) & $11\%$ & ($59\%$) & $23\%$ & ($77\%$) \\
+        \multicolumn{2}{c|}{p-value} & $5.7\%$ & ($40\%$) & $5.5\%$ & ($28\%$) & $11\%$ & ($55\%$) & $23\%$ & ($74\%$) \\
         \hline\hline
     \end{tabular}
-    \caption{\label{tab:pval1}Constraints and statistics for global fits from $2\sigma$ scans. `Flavour' denotes all of the flavour observables discussed throughout, including $R(D^*)$ as an anomaly; `Oblique' denotes adding the three oblique parameters from \cite{james}. 
+    \caption{\label{tab:pval1}Constraints and statistics for global fits following $2\sigma$ scans. `Flavour' denotes all of the flavour observables discussed throughout, including $R(D^*)$ as an anomaly; `Oblique' denotes adding the three oblique parameters from \cite{james}. 
     The fits have been done in the exact wrong-sign limit and the exact alignment limit as shown, and setting the additional 2HDM parameters as $M=750\,$GeV and $m_{H^0}=m_{A^0}=1.5\,$TeV. 
     For $m_{H^+}$ and $\tan\beta$, the constraints from each model at 95\% CL and $1\sigma$ and their $\chi^2_{min}$ values are shown respectively.
     The information from the $\chi^2$ fitting of each model is then shown, first for the inclusion of the anomalous $\mathcal{R}(D^*)$ in this fit, and then in brackets we show the fit in we were to exclude $\mathcal{R}(D^*)$.
-    The 2HDM potential parameter $M$ does not have impact the fit as it varies, although through the oblique parameters, $m_{H^0}$ and $m_{A^0}$ will cause our results to vary values as these require all new Higgs masses to be approximately equal, thus confining the space tightly near whatever values are chosen for these two masses.
+    The 2HDM potential parameter $M$ does not impact the fit as it varies, although through the oblique parameters, $m_{H^0}$ and $m_{A^0}$ will cause our results to vary as these require all new Higgs masses to be approximately equal, thus confining the space tightly near whatever values are chosen for these masses.
     The constraints, therefore, which include the oblique parameters are test constraints for fixed $m_{H^0}=m_{A^0}$ as above, and not indicative of global constraints. 
     The flavour alone constraints, however, do give a minimum constraint of $m_{H^+}$ with no extra dependency.}
 \end{table}
+The effect of $\mathcal{R}(D^*)$ at $2\sigma$ is clear. 
+Including $\mathcal{R}(D^*)$ almost doubles $\chi^2_{min}$ in most of the cases shown, and heavily reduces the p-values for these fits, taking them from where we could still consider the 2HDM a valid hypothesis, to where we now near definite exclusion of this model (under the conditions imposed here).
+We do not propose any further solution to the problem of $\mathcal{R}(D^*)$ here, though we recognise one must be found if the Two Higgs Doublet Model Type II could still be considered.
+%REWORD
 
-Something about checking calculations with Tom \cite{tom}.
-
-Due to the additional dependencies from the oblique parameters, we cannot conclude much from our fit on the limitations in our ($m_{H^+},\tan\beta$) parameter space, apart from that $H^+$ must have a similar mass to $H^0$ and $A^0$. 
+Due to the additional dependencies from the oblique parameters, we cannot conclude many limitations in our ($m_{H^+},\tan\beta$) parameter space, apart from that $H^+$ must have a similar mass to $H^0$ and $A^0$. 
 The most definitive constraints on $m_{H^+}$ and $\tan\beta$ come from the $b\to s\gamma$ radiative decay and $B_q\to\mu^+\mu^-$ repectively. 
 The flavour constraints in Table \ref{tab:pval1} show the minimum value for $m_{H^+}$ that is primarily constrained from $b\to s\gamma$, and also show the maximum $\tan\beta$ as constrained from $B_q\to\mu^+\mu^-$. 
 This $\tan\beta$ constraint is, however, dependent on $m_{H^0}$, and is therefore not conclusive due to the lack of constraint on this parameter. 
-The maximum allowed value for $\tan\beta$ is seen to increase with larger $m_{H^0}$, as shown in Figure \ref{fig:bmu}, and so, this is not a definitive constraint, but indicative of the limitations for larger $\tan\beta$ for the mass limits considered here.
+The maximum allowed value for $\tan\beta$ is seen to increase with larger $m_{H^0}$, as shown in Figure \ref{fig:bmu}, and so, this is only indicative of the limitations for larger $\tan\beta$ for more finite masses as considered here.
+\begin{itemize}
+    \item $R(D^*)$ is a killer, Table demonstrates how significantly it changes the fit. Do not propose a solution for this here, but one must be found for any 2HDM to be valid. 
+    \item P-values all very low, particularly when including $R(D^*)$ - likelihood of model being correct is very small
+    \item Wrong sign limit fits worse than alignment limit - in WSL, obliques make fit worse, can see a strange pattern in its allowed region in the figure, discussed more in James' paper mayybe; in AL, obliques make fit betterm coming from theta dependence, less variation close to pi/2
+    \item From 3d figure and table, expect fit to get better again as we increase fixed vals, but this is less significant against the SM - ramble on more about decoupling 
+    \item WSL gets even more likely with Oliver's constraint - very slim space for tanb with obliques, but nothing at all for flavour alone - would expect more space for lower mH0 near the bsgamma limit
+    \item AL still somewhat possible, but $R(D^*)$ kills it - main limit is still bsgamma then roughly equal masses
+    \item Future works - inclusion of NLO mixing, add SM4 for full exclusion of SM4x2HDM in wrong sign limit, three/four/+ dimensional fits properly
+\end{itemize}
+
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{cc|C{2.4cm}|C{2.2cm}|C{1.8cm}|C{2.4cm}}
+        \hline\hline
+        \multicolumn{2}{c|}{\multirow{2}{*}{\textbf{Model:}}} & \multicolumn{2}{c}{$\cos(\beta-\alpha)=\sin(2\beta)$} & \multicolumn{2}{|c}{$\cos(\beta-\alpha)=0$} \\ 
+        \cline{3-6}
+        & & \textbf{Flavour} & \textbf{Flavour + Oblique} & \textbf{Flavour} & \textbf{Flavour + Oblique} \\
+        \hline\hline
+        $m_{H^+}$ (GeV): & 95\% CL & $>740$ & $720\to1620$ & $>490$ & $1380\to1620$ \\
+                         & $1\sigma$ & $>1510$ & $790\to1540$ & $>780$ & $1410\to1580$ \\
+                         & $\chi^2_{min}$ & $3200$ & $1510$ & $3200$ & $1440$ \\
+        \hline
+        $\tan\beta$: & 95\% CL & $<4$ & $0.8\to32$ & $<21$ & $0.9\to21$ \\
+                     & $1\sigma$ & $<1.9$ & $1.1\to7.7$ & $<17$ & $1.2\to17$ \\
+                     & $\chi^2_{min}$ & $0.98$ & $1.9$ & $4.1$ & $5.2$ \\
+        \hline
+        \multicolumn{2}{c|}{$\chi^2_{min}$} & $20.6$ & $25.7$ & $18.8$ & $19.4$ \\
+        \multicolumn{2}{c|}{$\chi^2_{\nu}$} & $1.71$ & $1.71$ & $1.57$ & $1.29$ \\
+        \multicolumn{2}{c|}{$\nu$} & $12$ & $15$ & $12$ & $15$ \\
+        \multicolumn{2}{c|}{p-value} & $5.7\%$ & $4.2\%$ & $9.3\%$ & $19.8\%$ \\
+        \hline\hline
+    \end{tabular}
+    \caption{\label{tab:pval2}Constraints and statistics for global fits following $3\sigma$ scans. `Flavour' denotes all of the flavour observables discussed throughout, including $R(D^*)$ which fits to this level; `Oblique' denotes adding the three oblique parameters from \cite{james}. 
+    The fits have been done in the exact wrong-sign limit and the exact alignment limit as shown, and setting the additional 2HDM parameters as $M=750\,$GeV and $m_{H^0}=m_{A^0}=1.5\,$TeV. 
+    For $m_{H^+}$ and $\tan\beta$, the constraints from each model at 95\% CL and $1\sigma$ and their $\chi^2_{min}$ values are shown respectively.
+    The information from the $\chi^2$ fitting of each model is then shown.
+    The 2HDM potential parameter $M$ does not impact the fit as it varies, although through the oblique parameters, $m_{H^0}$ and $m_{A^0}$ cause our results to vary as these require all new Higgs masses to be approximately equal, thus confining the space tightly near whatever values are chosen for these masses.}
+\end{table}
 
 %\section{CKM Element Modification}
 
@@ -955,28 +1028,3 @@ T. Eaton, private correspondence.
 
 
 \end{document}
-%\begin{table}[ht]
-%    \centering
-%    \begin{tabular}{cc|C{1.8cm}|C{2.1cm}|C{1.8cm}|C{2.1cm}}
-%        \hline\hline
-%        \multicolumn{2}{c|}{\multirow{2}{*}{\textbf{Model:}}} & \multicolumn{2}{c}{$\cos(\beta-\alpha)=0.465$} & \multicolumn{2}{|c}{$\cos(\beta-\alpha)=0$} \\ 
-%        \cline{3-6}
-%        & & \textbf{Flavour} & \textbf{Flavour + Oblique} & \textbf{Flavour} & \textbf{Flavour + Oblique} \\
-%        \hline\hline
-%        $m_{H^+}$ (GeV): & 95\% CL & $>580$ & $560\to830$ & $>500$ & $630\to870$ \\
-%                         & $1\sigma$ & $>1020$ & $600\to830$ & $>790$ & $660\to870$ \\
-%                         & $\chi^2_{min}$ & $3200$ & $790$ & $3200$ & $810$ \\
-%        \hline
-%        $\tan\beta$: & 95\% CL & $<3.7$ & $1.3\to4.1$ & $<10.6$ & $1.4\to11.1$ \\
-%                     & $1\sigma$ & $<3.1$ & $1.6\to3.5$ & $<8.6$ & $1.8\to9.3$ \\
-%                     & $\chi^2_{min}$ & $1.5$ & $2.4$ & $2.9$ & $4.4$ \\
-%        \hline
-%        \multicolumn{2}{c|}{$\chi^2_{min}$} & $10.3$ & $13.9$ & $9.9$ & $12.1$ \\
-%        \multicolumn{2}{c|}{$\chi^2_{\nu}$} & $0.94$ & $0.99$ & $0.90$ & $0.86$ \\
-%        \multicolumn{2}{c|}{$\nu$} & $11$ & $14$ & $11$ & $14$ \\
-%        \multicolumn{2}{c|}{p-value} & $50.4\%$ & $45.7\%$ & $53.9\%$ & $59.8\%$ \\
-%        \hline\hline
-%    \end{tabular}
-%\end{table}
-
-
