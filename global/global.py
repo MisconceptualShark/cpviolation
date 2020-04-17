@@ -128,9 +128,9 @@ TOblique, TOblique_err=[0.07,[0.12,-0.12]]
 UOblique, UOblique_err=[0.00,[0.09,-0.09]]
 ###################### GLOBAL CONSTRAINT
 
-#m3d = 7.82 #different confidence levels for chisq fit
-#nu3 = 14 # degrees of freedom
-#
+m3d = 7.82 #different confidence levels for chisq fit
+nu3 = 14 # degrees of freedom
+
 #mHs, tanbs, mAs, chis, chi_min = tdfits(
 #        bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,
 #        bplusmu_exp,bplusmu_err_exp,dsmu_exp,dsmu_err_exp,delt_md,delt_md_err,delt_ms,delt_ms_err,
@@ -156,7 +156,7 @@ UOblique, UOblique_err=[0.00,[0.09,-0.09]]
 #print [10**min(hpc),10**max(hpc)], [10**min(hoc),10**max(hoc)], [10**min(tbc),10**max(tbc)]
 #print chi_min[0]/nu3 # reduced chisq, nu = 17 observables - 3 free parameters
 #print chi_min
-#
+##
 #p_val, p_err = p_vals(chi_min[0],nu3)
 #print "p-value for global fit with ", nu3," degrees of freedom is: ", "{:.1%}".format(p_val)#, " +/- ", p_err
 #
@@ -231,6 +231,8 @@ print chi_2
 
 p_val, p_err = p_vals(chi_2[0],nu)
 print "p-value for global fit with ", nu," degrees of freedom is: ", "{:.1%}".format(p_val)#, " +/- ", p_err
+print "alignment limit"
+quit()
 
 # plotting! scatter plots for regions, then the for loops plot out the outline
 # all regions plotted to 95% CL, and their lines plotted to this too, but then the 1 sigma everything region's border is plotted
@@ -263,13 +265,13 @@ plt.axvline(x=np.log10(mt/m_b),color='black')
 plt.axhline(y=np.log10(160),color='black',linestyle='--')
 plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D)$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
 #plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D^{(*)})$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
-plt.annotate('$\\Delta M_q$',xy=(0.75,0.15),xycoords='axes fraction',fontsize=18)
+plt.annotate('$\\Delta M_q$',xy=(0.78,0.15),xycoords='axes fraction',fontsize=18)
 plt.annotate('$b\\to s\\gamma$',xy=(0.05,0.9),xycoords='axes fraction',fontsize=18)
-plt.annotate('All',xy=(0.65,0.8),xycoords='axes fraction',fontsize=18)
-plt.annotate('S,T,U',xy=(0.05,0.73),xycoords='axes fraction',fontsize=13)
-plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.5,0.55),xycoords='axes fraction',fontsize=18)
+plt.annotate('All',xy=(0.6,0.79),xycoords='axes fraction',fontsize=18)
+plt.annotate('S,T,U',xy=(0.88,0.85),xycoords='axes fraction',fontsize=13)
+plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.52,0.55),xycoords='axes fraction',fontsize=18)
 plt.title('$M = 750\,GeV,\; m_{A^0} = 1.5\,TeV,$ \n $m_{H^0} = 1.5\,TeV,\; \\cos(\\beta-\\alpha) = 0$',fontsize=18)
 #plt.title('$M = 750\,GeV,\; m_{H^0} = 1.5\,TeV,\; \\cos(\\beta-\\alpha) = \\sin(2\\beta)$',fontsize=18)
-plt.savefig('global_test3sig.png')
+plt.savefig('global_test2.png')
 #plt.show()
 os.system('play draco.mp3')

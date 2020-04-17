@@ -5,14 +5,14 @@ from scipy.spatial import Delaunay
 from scipy.special import gamma
 from scipy.integrate import quad 
 
-def chisq_simp(obs,the,sige,sigt):
+def chisq_simp(obs,the,sige,sigt,sigma):
     '''
         chisq val, all parameters lists of values, simple
     '''
     N = len(obs)
     chi = 0
     for i in range(N):
-        sig = np.sqrt((sige[i]/1.96)**2 + (sigt[i]/1.96)**2)
+        sig = np.sqrt((sige[i]/sigma)**2 + (sigt[i]/sigma)**2)
         val = (obs[i]-the[i])/sig
         chi += val**2
     return chi

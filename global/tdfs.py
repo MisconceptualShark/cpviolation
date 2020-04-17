@@ -29,7 +29,7 @@ def tdfits(
     '''
         something here if needed
     '''
-    sigma = 3
+    sigma = 2
 
     bpls_exp_up,bpls_exp_down = bpls_exp+bpls_exp_error[0],bpls_exp+bpls_exp_error[1]
     bpmu_exp_up,bpmu_exp_down = bpmu+bpmu_err[0],bpmu+bpmu_err[1]
@@ -101,6 +101,7 @@ def tdfits(
             for k in mAs:
                 b = np.arctan(j)
                 alph = b - np.pi/2
+                #alph = b - np.arccos(0.3)
 
                 bpls_the, dpls_the, dspls_the = bthe(mbpls,mtau,Vub,fbpls,tbpls,mu,mb,j,i,1),bthe(mdpls,mmu,Vcd,fdpls,tdpls,mc,md,j,i,delta_d),bthe(mdspls,mtau,Vcs,fdspls,tdspls,mc,ms,j,i,1)
                 bpmu_the, dsmu_the = bthe(mbpls,mmu,Vub,fbpls,tbpls,mu,mb,j,i,1),bthe(mdspls,mmu,Vcs,fdspls,tdspls,mc,ms,j,i,1)
@@ -174,28 +175,28 @@ def tdfits(
                 rds_bool = ((av_rds >= mid_rds and mid_rds+sig_rds >= av_rds-sige_rds) or (av_rds <= mid_rds and mid_rds-sig_rds <= av_rds+sige_rds))
 
                 #Oblique
-                expect_SOblique=S2HDMofAlphaBeta (i,k,k,alph,np.arctan(j),mW,mZ,higgs,Gf,alp_EM,wangle)
-                #theoretical error very small here
-                sig_SOblique=0
-                expect_SOblique_up,expect_SOblique_down=expect_SOblique,expect_SOblique
-                mid_SOblique=expect_SOblique
-                SOblique_bool=((av_SOblique>=mid_SOblique and mid_SOblique>=av_SOblique-sige_SOblique) or (av_SOblique<=mid_SOblique and mid_SOblique<=av_SOblique+sige_SOblique))
+                expect_SOblique = S2HDMofAlphaBeta(i,k,k,alph,b,mW,mZ,higgs,Gf,alp_EM,wangle)
+                S_up, S_down = SOb_err(i,k,k,alph,b,mW,mW_err,mZ,mZ_err,higgs,higgs_err,Gf,alp_EM,wangle,wangle_err)
+                expect_SOblique_up,expect_SOblique_down =expect_SOblique+S_up,expect_SOblique-S_down
+                mid_SOblique = 0.5*(expect_SOblique_up+expect_SOblique_down)
+                sig_SOblique = sigma*(expect_SOblique_up-mid_SOblique)
+                SOblique_bool=((av_SOblique>=mid_SOblique and mid_SOblique+sig_SOblique>=av_SOblique-sige_SOblique) or (av_SOblique<=mid_SOblique and mid_SOblique-sig_SOblique<=av_SOblique+sige_SOblique))
 
-                expect_TOblique=T2HDMofAlphaBeta (i,k,k,alph,np.arctan(j),mW,mZ,higgs,Gf,alp_EM)
-                #theoretical error very small here
-                sig_TOblique=0
-                expect_TOblique_up,expect_TOblique_down=expect_TOblique,expect_TOblique
-                mid_TOblique=expect_TOblique
-                TOblique_bool=((av_TOblique>=mid_TOblique and mid_TOblique>=av_TOblique-sige_TOblique) or (av_TOblique<=mid_TOblique and mid_TOblique<=av_TOblique+sige_TOblique))
+                expect_TOblique = T2HDMofAlphaBeta(i,k,k,alph,b,mW,mZ,higgs,Gf,alp_EM)
+                T_up, T_down = TOb_err(i,k,k,alph,b,mW,mW_err,mZ,mZ_err,higgs,higgs_err,Gf,alp_EM)
+                expect_TOblique_up,expect_TOblique_down =expect_TOblique+T_up,expect_TOblique-T_down
+                mid_TOblique = 0.5*(expect_TOblique_up+expect_TOblique_down)
+                sig_TOblique = sigma*(expect_TOblique_up-mid_TOblique)
+                TOblique_bool=((av_TOblique>=mid_TOblique and mid_TOblique+sig_TOblique>=av_TOblique-sige_TOblique) or (av_TOblique<=mid_TOblique and mid_TOblique-sig_TOblique<=av_TOblique+sige_TOblique))
 
-                expect_UOblique=U2HDMofAlphaBeta (i,k,k,alph,np.arctan(j),mW,mZ,higgs,Gf,alp_EM,wangle)
-                #theoretical error very small here
-                sig_UOblique=0
-                expect_UOblique_up,expect_UOblique_down=expect_UOblique,expect_UOblique
-                mid_UOblique=expect_UOblique
-                UOblique_bool=((av_UOblique>=mid_UOblique and mid_UOblique>=av_UOblique-sige_UOblique) or (av_UOblique<=mid_UOblique and mid_UOblique<=av_UOblique+sige_UOblique))
+                expect_UOblique = U2HDMofAlphaBeta(i,k,k,alph,b,mW,mZ,higgs,Gf,alp_EM,wangle)
+                U_up, U_down = UOb_err(i,k,k,alph,b,mW,mW_err,mZ,mZ_err,higgs,higgs_err,Gf,alp_EM,wangle,wangle_err)
+                expect_UOblique_up,expect_UOblique_down =expect_UOblique+U_up,expect_UOblique-U_down
+                mid_UOblique = 0.5*(expect_UOblique_up+expect_UOblique_down)
+                sig_UOblique = sigma*(expect_UOblique_up-mid_UOblique)
+                UOblique_bool=((av_UOblique>=mid_UOblique and mid_UOblique+sig_UOblique>=av_UOblique-sige_UOblique) or (av_UOblique<=mid_UOblique and mid_UOblique-sig_UOblique<=av_UOblique+sige_UOblique))
 
-                if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool and rd_bool and bpmu_bool and dsmu_bool and SOblique_bool and TOblique_bool and UOblique_bool and rds_bool:
+                if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool and rd_bool and bpmu_bool and dsmu_bool and SOblique_bool and TOblique_bool and UOblique_bool:
                     i_log, j_log, k_log = np.log10(i),np.log10(j),np.log10(k)
                     mH_loc = np.append(mH_loc,i_log)
                     tanb_loc = np.append(tanb_loc,j_log)
@@ -204,7 +205,7 @@ def tdfits(
                             [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm, av_SOblique, av_TOblique, av_UOblique,av_rds],
                             [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm,mid_SOblique,mid_TOblique,mid_UOblique,mid_rds],
                             [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm,sige_SOblique,sige_TOblique,sige_UOblique,sige_rds],
-                            [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm,sig_SOblique,sig_TOblique,sig_UOblique,sig_rds])
+                            [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm,sig_SOblique,sig_TOblique,sig_UOblique,sig_rds],sigma)
                     chis = np.append(chis,chit)
                     if chit < chi_min[0]:
                         chi_min = [chit,i,j,k]

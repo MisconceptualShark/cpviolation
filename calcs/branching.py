@@ -155,15 +155,19 @@ delta_b,delta_d = 0.982,0.99*0.982
 #rd_exp, rd_exp_err = [0.416,[0.128,-0.128]] #08
 
 # B+ -> tau+ nu
-#mH_bplus, tanb_bplus = itera(m_bplus,m_bplus_err,m_mu,m_mu_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,m_u,m_u_err,m_b,m_b_err,bplusmu_exp,bplusmu_err_exp,1)
-#plt.figure(figsize=(8,6))
-#plt.scatter(tanb_bplus,mH_bplus,c='green')
-#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('$B^+\\to\\tau^+\\nu,\; V_{ub}$',fontsize=18)
-#plt.xticks(fontsize=18)
-#plt.yticks(fontsize=18)
-#plt.axis([-1,2,0,3.5])
+mH_bplus, tanb_bplus = itera(m_bplus,m_bplus_err,m_mu,m_mu_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,m_u,m_u_err,m_b,m_b_err,bplusmu_exp,bplusmu_err_exp,1)
+plt.figure(figsize=(8,6))
+plt.scatter(tanb_bplus,mH_bplus,c='green')
+plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+plt.title('$B^+\\to\\tau^+\\nu,\; V_{ub}$',fontsize=18)
+plt.xticks(fontsize=18)
+plt.yticks(fontsize=18)
+plt.axis([-1,2,0,3.5])
+plt.axvline(x=np.log10(172.9/4.18),color='black')
+plt.annotate('$S,T,U$',xy=(0.88,0.85),xycoords='axes fraction',fontsize=13)
+plt.show()
+quit()
 #plt.savefig('vbtau.png')
 
 # D+ -> mu+ nu
