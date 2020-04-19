@@ -43,7 +43,7 @@
 %\emailAdd{matthew.rossetter@durham.ac.uk}
 
 \abstract{
-    In this study, we test the Two Higgs Doublet Model (2HDM) of Type II as an extension of the Standard Model (SM) using indicative flavour observables, such as some leptonic and semileptonic decays of $B$ and $D$ mesons, $B\bar{B}$ mixing, the $b\to s\gamma$ radiative decay.
+    In this study, we first cover the theory of the Standard Model (SM) and then test the Two Higgs Doublet Model (2HDM) of Type II as an extension to the SM using indicative flavour observables, such as leptonic and semileptonic decays of $B$ and $D$ mesons, $B\bar{B}$ mixing, and the $b\to s\gamma$ radiative decay.
     Testing the 2HDM parameter space ($m_{H^+},\tan\beta$) to find alignment between theoretical calculations and experiment, constraints on the parameters were found for flavour phenomena to work towards a global fit. 
     We perform this fit in both the alignment and wrong sign limits of the 2HDM. 
     Strongly dominated by the $b\to s\gamma$ branching ratio, the mass of a charged Higgs particle would be expected to have a minimum value at 95\% CL of $490$ GeV in the alignment limit and $740$ GeV in the wrong sign limit.
@@ -63,15 +63,15 @@ The Standard Model is one of the most successful theories ever developed, descri
 \begin{equation}
     \label{eq:sm}
     \begin{split}
-        \mathcal{L} = -&\frac14 F^{\mu\nu}F_{\mu\nu} \qquad\qquad\qquad\quad\to \text{gauge term}\\
-                      +& i\bar{\Psi}\cancel{D}\Psi \qquad\qquad\qquad\qquad\;\to \text{Fermion term} \\
+        \mathcal{L} = -&\frac14 F^{\mu\nu}F_{\mu\nu} \qquad\qquad\qquad\quad\;\to \text{gauge term}\\
+                      +& i\bar{\Psi}\cancel{D}\Psi \qquad\qquad\qquad\qquad\;\,\to \text{Fermion term} \\
                       +& (D_\mu\Phi)^\dagger(D^\mu\Phi) - V(\phi) \quad\;\;\,\to \text{Higgs term}\\
                       -& Y_{ij}\bar{\Psi}_i\Phi\Psi_j + h.c. \qquad\qquad\;\to\text{Yukawa term}
     \end{split}
 \end{equation}
 Throughout the latter half of the 20th century and through the 21st, the Standard Model has found strong agreement with many observed phenomena, while also predicting many other observables that took longer to be observed (most notably, the Higgs boson).
-However, there are still many observations that do not align with the Standard Model: some more large scale such as unification with gravity or a description of dark matter, some more specific such as some leptonic and semileptonic meson decays; for example, the semileptonic decay ratios $\mathcal{R}(K^{(*)})$ notoriously deviate from the Standard Model to approximately $2.5\sigma$ \cite{pdg}.
-The modifications and additions to the Standard Model needed for these smaller scale problems could open the door to new phenomena that could bring us closer a complete theory of nature. 
+However, there are still many observations that do not align with the Standard Model: some more large scale such as unification with gravity or a description of dark matter, some more specific such as some individual decay processes; for example, the semileptonic decay ratios $\mathcal{R}(K^{(*)})$ notoriously deviate from the Standard Model to approximately $2.5\sigma$ \cite{pdg}.
+The modifications and additions to the Standard Model needed for these smaller scale problems could open the door to new phenomena that could bring us closer to a complete theory of nature. 
 
 \subsection{The Standard Model}
 The Standard Model is a quantum field theory, describing all constituent particles as quantum fields permeating through space-time. 
@@ -79,7 +79,7 @@ There are twenty-five fundamental particles currently described in the Standard 
 
 The bases for the Standard Model are the quantum theories of electroweak and strong interactions, and then the symmetry-breaking Higgs mechanism which gives masses to these theories.
 Both the electroweak and strong theories are non-Abelian gauge theories: the electroweak theory has a gauge symmetry of SU(2)$_{L}\otimes$U(1)$_Y$, and the strong theory of SU(3)$_{c}$ \cite{bail}.
-\hspace{-9pt}\footnote{The subscripts of the symmetries describe the "charge" under which particles interact with each gauge theory: $c$ represents the color charge of the strong force, $L$ states that the weak force interacts only with left-handed doublets (through which the weak isospin will be defined analogous to spin), and $Y$ represents the weak hypercharge of U(1) before the spontaneous symmetry breaking of the Higgs mechanism to introduce the electric charge of the electromagnetic force.\cite{schwartz}}
+\hspace{-9pt}\footnote{The subscripts of the symmetries describe the "charge" under which particles interact with each gauge theory: $c$ represents the color charge of the strong force, $L$ states that the weak force interacts only with left-handed doublets (through which the weak isospin will be defined analogous to spin), and $Y$ represents the weak hypercharge of U(1) before the spontaneous symmetry breaking of the Higgs mechanism to introduce the electric charge of the electromagnetic force \cite{schwartz}.}
 \hspace{-5pt}To formulate the Standard Model Lagrangian, we start with the free Lagrangian of a massless Dirac fermion coupled to a gauge field tensor,
 \begin{align}
     \label{eq:dirac:1}
@@ -108,7 +108,7 @@ In addition to the definitions in Eq.\eqref{eq:gauge}, to make Eq.\eqref{eq:dira
     \partial_\mu &\to D_\mu = \partial_\mu - igT^aA^a_\mu,
 \end{align}
 where $g$ is the relevant gauge coupling parameter.
-Note that Eqs.\eqref{eq:transform:1} and \eqref{eq:transform:2} are the general forms for the SU(N) theories (if considering U(1), these are simplified).
+Note that Eqs.\eqref{eq:transform:1} and \eqref{eq:transform:2} are the general forms for the SU(N) theories (when considering U(1), these are simplified).
 The full covariant derivative of the Standard Model is
 \begin{equation}
     \label{eq:covar}
@@ -141,12 +141,13 @@ Considering both quarks and leptons in the traditional three generations, then u
     \Psi_L &=\begin{pmatrix} \nu_e \\ e^- \end{pmatrix}_L,\; e_R^-, & \Psi_{L\alpha} &=\begin{pmatrix} u_\alpha \\ d_\alpha\end{pmatrix}_L,\; u_{R\alpha},d_{R\alpha},
 \end{align}
 where $\alpha$ represents the colour charge of the quarks under the strong interaction \cite{kane}.
-We can define the weak isospin quantum number $T$ analogous to spin; in the left-handed doublet: up-type quarks and neutrinos have $T_3=+\frac12$, and down-type quarks and charged leptons have $T_3=-\frac12$.
+We can define the weak isospin quantum number $T$ analogous to spin. 
+In the left-handed doublet, up-type quarks and neutrinos have $T_3=+\frac12$, and down-type quarks and charged leptons have $T_3=-\frac12$.
 Neutrinos only appear in the left-handed doublets and do not form right-handed singlets, or if they do, these do not interact with the rest of the Standard Model.
 So right- and left-handed fermions are in different SU(2) multiplets; this represents a parity violation in the Standard Model which is also found in nature. 
 This is an important criterion of a theory of nature, as will be discussed more in Section \ref{subsec:flavobs}.
 
-Gauge symmetry has thus far yielded a Lagrangian to describe fermions and forces and their interactions, but only for massless particles. 
+Gauge symmetry has thus far yielded a Lagrangian to describe fermions, forces, and their interactions, but only for massless particles. 
 This however is not observed in nature. 
 For massive fermions and bosons, the Lagrangian would require terms of the form $m\bar{\psi}\psi$ and $m_A^2A_\mu A^\mu$ respectively.
 The fermion mass term would initially seem invariant, but under the electroweak symmetry, it is rewritten as
@@ -204,7 +205,7 @@ Through substituting the above into Eq.\eqref{eq:higgslag}, the gauge fields of 
     Z_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(gW^3_\mu-g'B_\mu), & m_Z &= \frac{v}{2}\sqrt{g^2+g'^2},\\
     A_\mu &\equiv \frac{1}{\sqrt{g^2+g'^2}}(g'W_\mu^3+gB_\mu), & m_A &= 0.
 \end{align}
-It can be said that three of the component scalar fields in Eq.\eqref{eq:doubscal} were "eaten" to form the gauge boson masses, and the fourth field becomes the Higgs phenomenon \cite{schwartz}.
+It can be said that three of the component scalar fields in Eq.\eqref{eq:doubscal} were "eaten" to form the gauge boson masses, and the fourth field becomes the Higgs boson \cite{schwartz}.
 
 Now the final piece of the puzzle is fermion masses. 
 We consider the final term of Eq.\eqref{eq:sm}, the Yukawa Lagrangian. 
@@ -238,7 +239,7 @@ The charged lepton masses are generated similarly to the down-type quarks, and t
     m_i = -\frac{Y_iv}{\sqrt{2}},
 \end{align}
 where $i$ will represent the fermions \cite{schwartz}. 
-The question of neutrino mass is at the forefront of some research, and so won't be mentioned in this study, other than that it is now known that neutrinos do have mass, however small. 
+The question of neutrino mass is at the forefront of some research, and so will not be mentioned in this study, other than that it is now known that neutrinos do have mass, however small. 
 
 In Eqs.\eqref{eq:yuk} and \eqref{eq:yukhc}, we have formed non-diagonal mass matrices. 
 These can be diagonalised in which the constituent states are the mass eigenstates, e.g. for the quarks, there would be 
@@ -248,7 +249,7 @@ These can be diagonalised in which the constituent states are the mass eigenstat
 \end{align}
 It is possible for these matrices to be diagonalised simultaneously, however, this is not generally expected so we do not start under that assumption. 
 By convention, it is chosen to diagonalise the up-type quarks, and then rotate the down-type quarks between their weak eigenstates and their mass eigenstates \cite{dono}. 
-The famous Cabibbo-Kobayashi-Maskawa (CKM) matrix, defined $V_{CKM}\equiv V_1^\dagger V_2$, is the matrix connecting to mass and weak eigenstates,
+The famous Cabibbo-Kobayashi-Maskawa (CKM) matrix, defined $V_{CKM}\equiv V_1^\dagger V_2$, is the matrix connecting mass and weak eigenstates,
 \begin{equation}
     \label{eq:ckmone}
     \begin{pmatrix} d \\ s \\ b\end{pmatrix} = V_{CKM}\begin{pmatrix} d' \\ s' \\ b'\end{pmatrix},
@@ -291,12 +292,12 @@ Plotting measurements in the $(\rho,\eta)$ plane can prove useful in understandi
         \draw[-Latex] (0,0) -- (0,2.5) node[anchor=east] {$\eta$};
         \draw[-{Latex[length=3mm,width=2mm]}] (0,0) -- (2,2) node[anchor=north east,xshift=-15pt,yshift=-5pt] {$\frac{V_{ud}V_{ub}^*}{A\lambda^3}$};
         \draw[-{Latex[length=3mm,width=2mm]}] (2,2) node[anchor=north west,xshift=18pt,yshift=-5pt] {$\frac{V_{td}V_{tb}^*}{A\lambda^3}$} -- (4,0);
-        \draw[-Latex] (4,-0.1) -- (0,-0.1) node[anchor=north,midway] {$\frac{V_{cd}V_{cb}^*}{A\lambda^3}$};
+        \draw[-{Latex[length=3mm,width=2mm]}] (4,-0.1) -- (0,-0.1) node[anchor=north,midway] {$\frac{V_{cd}V_{cb}^*}{A\lambda^3}$};
     \end{tikzpicture}
     \caption{\label{fig:unitang} The unitarity triangle from the Wolfenstein parameterisation in $(\rho,\eta)$ space.}
 \end{figure}
 The unitarity triangle can help describe many things in quark mixing, such as CP violation, through the length of its side and its angles. 
-It can also be useful to define a unitarity circle through comparison of experiment and theory in CP-violating processes, and from these and others, many regions in the $(\rho,\eta)$ plane can be defined to interpret various constants and effects in quark mixing. 
+It can also be useful to define a unitarity circle through comparison of experiment and theory in CP-violating processes, and from these and others, many regions in the $(\rho,\eta)$ plane can be defined to interpret and describe various effects in quark mixing. 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.4,trim=0 20pt 0 50pt,clip]{rhoeta_large.png}
@@ -327,7 +328,7 @@ This points toward physics beyond the Standard Model to add to the CP violation 
 There are many proposals for Standard Model extensions which could bridge the gap between theory and experiment, although these extensions would require new particles and processes to explain their phenomena, none of which have so far been observed. 
 
 The $Z'$ boson is a common extension to the Standard Model, which in its simplest application behaves akin to the $Z^0$ boson but with a higher mass. 
-There are many descriptions of the $Z'$ boson ranging from the introduction of a new U(1) gauge symmetry to the inclusion of string theory \cite{zp}. 
+There are many descriptions of the $Z'$ boson ranging from the introduction of a new U(1) gauge symmetry to the inclusion of string theory; for a review, see \cite{zp}. 
 The consideration of a $Z'$ boson to flavour physics is to add extra coupling paths to scattering amplitudes which could better explain flavour observables. 
 An example of how $Z'$ could modify Standard Model decays is given in Figure \ref{fig:bmes}.
 \begin{figure}[H]
@@ -335,12 +336,12 @@ An example of how $Z'$ could modify Standard Model decays is given in Figure \re
     \begin{equation}
         \Gamma_{\text{Exp}} = \includegraphics[scale=0.8,raise=-16pt]{../notes/bminus.pdf} + \includegraphics[scale=0.8,raise=-16pt]{../notes/bminusprime.pdf}
     \end{equation}
-    \caption{\label{fig:bmes} Proposed $Z'$ extension to $\Gamma[B^-\to K^-\mu^+\mu^-]_{SM}$ (without higher-order terms).}
+    \caption{\label{fig:bmes} Proposed $Z'$ extension to $\Gamma[B^-\to K^-\mu^+\mu^-]$ (without higher-order terms).}
 \end{figure}
 
 It could also be possible that there is a fourth generation of fermions, perfectly replicating the first generation to higher masses as the second and third generations do. 
 The presence of the fourth generation could add extra Feynman diagrams to decays, increasing the resulting decay amplitude. 
-Another interesting implication of a fourth generation would be that the CKM matrix would now be a 4x4 matrix, which could see some alterations to flavour-changing interactions, even some additional complex terms where CP violation would arise. 
+Another interesting implication of a fourth generation would be that the CKM matrix would now be a $4\times4$ matrix, which could see some alterations to flavour-changing interactions, even some additional complex terms where CP violation would arise. 
 A key indicator on this extension is in the Higgs mechanism. 
 \begin{figure}[H]
     \centering
@@ -351,9 +352,9 @@ The Higgs couples more strongly to heavier particles, so the top-Higgs vertex se
 However, when just considering the SM4 model, the new prediction of the Higgs scattering amplitude is far greater than that observed \cite{sm4}. 
 It could be possible that the SM4 model is physical, but would also need another extension to resolve its issues, such as the Two Higgs Doublet Model discussed below \cite{shal}. 
 
-Whenever constructing new theories to extend the Standard Model, the inspiration can frequently come from a few specific cases of anomalies which hint to new physics. 
+Whenever constructing new theories to extend the Standard Model, inspiration can frequently come from a few specific cases of anomaly which hint to new physics. 
 However, it is important to test these extensions across all observables which could involve the new processes.
-If the extension resolves issues with some observables while creating new ones with others, then it is of no use; only extensions which work across the whole spectrum of phenomena can be physical. 
+If the extension resolves issues with some observables while creating new ones with others, then it is of no use; only extensions which work across the whole spectrum of phenomena (as well as, or better than, the SM) can be physical. 
 
 \subsection{The Two Higgs Doublet Model of Type II}
 \label{subsec:2hdm}
@@ -373,7 +374,7 @@ Each doublet would have its own VEV, with the quadrature addition of these two V
 Under this model, the masses of the three weak gauge bosons can still be generated in the same way, each eating one of the scalar fields. 
 This time, however, there would be 5 residual scalar fields, and so, five Higgs fields should be found: three neutral Higgs - two scalar $H^0$ and $h^0$ (where $h^0$ is the SM Higgs particle) and one pseudoscalar $A^0$.
 There will also be two charged Higgs $H^\pm$.
-The introduction of these new particles requires searching for additional parameters to describe them: the masses of $H^0$, $A^0$, and $H^\pm$; the mixing angle between $h^0$ and $H^0$, $\alpha$; and the VEV ratio $\tan\beta=v_2/v_1$ \cite{desc}.
+The introduction of these new particles requires searching for additional parameters to describe them: the masses of $H^0$, $A^0$, and $H^\pm$; the mixing angle between $h^0$ and $H^0$, $\alpha$; and the VEV ratio $\tan\beta=v_2/v_1$ \cite{hunter}.
 The two Higgs doublet model (2HDM) potential can be written in its most general form as
 \begin{align}
     \label{eq:HDMpot}
@@ -383,7 +384,7 @@ The two Higgs doublet model (2HDM) potential can be written in its most general 
     \end{split}
 \end{align}
 The 2HDM described above is the type II version, where $\Phi_1$ couples to up-type quarks and $\Phi_2$ couples to down-type quarks and charged leptons. 
-There are other types of 2HDM where the two Higgs doublets couple in different ways, but the comforting sign from Type II is that it yields a similar expression for the Yukawa Lagrangian to the SM. 
+There are other types of 2HDM where the two Higgs doublets couple in different ways, but the comforting sign from Type II is that it yields a similar expression for the Yukawa Lagrangian to the SM; see, e.g. \cite{hunter}. 
 This in turn yields a similar CKM matrix through which all flavour-changing interactions can be described. 
 The addition of 4 new Higgs fields introduces new interactions, where the charged Higgs fields can replace $W^\pm$ fields in flavour-changing charged interactions, as well as additional neutral interactions between the neutral Higgs scalar and pseudoscalar fields \cite{branco}. 
 
@@ -396,7 +397,7 @@ This study considers where regions of the 2HDM Type II parameters can align SM p
 Finally, it is important to specify what makes the 2HDM Type II an interesting New Physics model to study. 
 As hinted at when discussing the Sakharov criteria, one way of inducing CP violation would be through complex Higgs parameters. 
 There are no such complex parameters in the Higgs sector of the Standard Model, however, as shown above, these are apparent in the 2HDM, and therefore we can introduce additional CP violation to possibly meet Sakharov's criterion. 
-In addition to increased CP violation, the 2HDM also solves the problem of Sakharov's third criterion: under this model, a first order phase transition is present regardless of the value of the Higgs mass. 
+In addition to increased CP violation, the 2HDM also solves the problem of Sakharov's third criterion: under this model, a first order phase transition is present regardless of the value of any Higgs mass. 
 
 There is also the possibility that this model can resolve the issues of a fourth generation of fermions, under certain criteria. 
 This is discussed later in Section \ref{subsec:wsl}.
@@ -408,7 +409,7 @@ Studies of these new contributions have been done in the past, though it is inte
 For flavour observables, a study of the most relevant decays for charged Higgs searches was found in \cite{desc}.
 Here, we begin by following \cite{desc} closely to find the changes to their results in the last ten years, before moving on to further additions. 
 The measurements and parameters used for these expressions are given in Tables \ref{tab:branches} and \ref{tab:params}.
-For parameters in these expressions not quoted in these tables, we use \cite{ckm} for the CKM elements, and \cite{pdg} for all else, for example, the quark masses and meson lifetimes.
+For parameters in these expressions not quoted in the tables, we use \cite{ckm} for the CKM elements, and \cite{pdg} for all else, such as the quark masses and meson lifetimes.
 \begin{table}[ht]
     \centering
     \begin{tabular}{c|ccc}
@@ -489,7 +490,7 @@ $r_H=0$ is known as the decoupling solution which can be found as $m_{H^+}$ appr
 Neutral B meson mixing is a common study in flavour physics, due to the strong dependence on the heavy $W$ exchange. 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.95,trim=12em 44.5em 8em 12em,clip]{bmix.pdf}
+    \includegraphics[scale=0.8,trim=12em 44.5em 8em 12em,clip]{bmix.pdf}
     \caption{\label{fig:bmix} Examples of the box diagrams detailing $B_d$ and $B_s$ meson mixing.}
 \end{figure}
 A key observable in the study of B-mixing is the mass difference $\Delta m_q$ between the two mass eigenstates, $\Delta m_q = M_H^q - M_L^q$, where `$H$' denotes the `heavy' eigenstate and `$L$' denotes the `light'. 
@@ -502,7 +503,8 @@ For $B_q$, where $q=d,s$, this results (to Leading Order) in:
     S_{HH} &= \frac{x_{tH}x_{tW}}{4\tan^4\beta}\left(\frac{1+x_{tH}}{(1-x_{tH})^2}+\frac{2x_{tH}\ln(x_{tH})}{(1-x_{tH})^3}\right),\\
     2S_{WH} &= \frac{x_{tH}x_{tW}}{4\tan^2\beta}\left(\frac{(2x_{tW}-8x_{tH})\ln(x_{tH})}{(1-x_{tH})^2(x_{tH}-x_{tW})}+\frac{6x_{tW}\ln(x_{tW})}{(1-x_{tW})^2(x_{tH}-x_{tW})}-\frac{8-2x_{tW}}{(1-x_{tH})(1-x_{tW})}\right).
 \end{align}
-where $x_{ij} = m_i^2/m_j^2$, and $S_{xy}$ describes the internal bosonic lines for the two bosons $x,y \in H^\pm,W^\pm$ \cite{frank}.
+where $x_{ij} = m_i^2/m_j^2$, and $S_{xy}$ describes the internal bosonic lines for the two bosons $x,y \in H^\pm,W^\pm$.
+The more accurate Next-to-Leading-Order (NLO) expression in the 2HDM are found in \cite{frank}, but these could not be included due to time restrictions.
 The current SM predictions are stated in \cite{bmix} as
 \begin{align}
     \Delta m^{\text{SM}}_d &= \left(0.533^{+0.022}_{-0.036}\right)ps^{-1} = \left(1.05^{+0.04}_{-0.07}\right)\Delta m_d^{\text{exp}}, \\
@@ -518,7 +520,7 @@ The Standard Model calculations of $\bar{B}\to X_s\gamma$ have been performed up
     \includegraphics[width=\textwidth]{bsgam.pdf}
     \caption{\label{fig:bsgam} One-loop penguin diagrams for $b\to s\gamma$ decay.}
 \end{figure}
-Similarly to B meson mixing, W can be substituted for a charged Higgs in the relevant penguin diagrams, giving extra contributions again to the theory. 
+Similarly to B meson mixing, we can substitue $W^\pm$ for $H^\pm$ in the relevant penguin diagrams, giving extra contributions again to the theory. 
 The 2HDM corrections given by these additional contributions are calculated to NLO in \cite{susy}, so the SM parameters must be limited to NLO.
 The branching ratio of $\bar{B}\to X_s\gamma$ is given by
 \begin{equation}
@@ -573,7 +575,7 @@ For these calculations, we follow the parameterisation of this process laid out 
         \hline\hline
         \multicolumn{4}{c}{\bfseries $\mathbf{b\to s\gamma}$ parameters} \\
         \hline\hline
-        $m_t^{pole}$ & $173.1\pm0.9$ & GeV & \cite{pdg} \\
+        $m_t^{pole}$ & $172.9\pm0.4$ & GeV & \cite{pdg} \\
         $\alpha_S(m_Z)$ & $0.1179\pm0.001$ & & \cite{pdg} \\
         $\mu_b$ & $1.095$ & GeV & \\
         \hline\hline
@@ -655,11 +657,11 @@ where we follow \cite{criv} for the expressions of the relevant Wilson coefficie
     \includegraphics[width=\textwidth]{bsmu.pdf}
     \caption{\label{fig:bspeng}Examples of penguin contributions to $B_q\to\mu^+\mu^-$ operators.}
 \end{figure}
-Previous works, see \cite{lrgtb}, have focused on studying these processes in the large $\tan\beta$ limit ($\tan\beta\gg\sqrt{\frac{m_t}{m_b}}$) where the Yukawa coupling to $b$ quarks is large and there can large effects on B mesons. 
+Previous works (see \cite{lrgtb}) have focused on studying these processes in the large $\tan\beta$ limit ($\tan\beta\gg\sqrt{\frac{m_t}{m_b}}$) where the Yukawa coupling to $b$ quarks is large and there can large effects on B mesons. 
 Working in the large $\tan\beta$ limit is also useful as it reduces the number of 2HDM parameters that this process will depend on. 
 However, in this work, we choose to work with the general expressions, as given by \cite{criv}, to work with our fit across the whole parameter space we study. 
 Using these general expressions, however, introduces new variables, primarily in the expressions for the trilinear Higgs couplings which we take from \cite{trilin}.
-These new variables are: the masses of the neutral $h^0,H^0$, the mixing angle $\alpha$, and the 2HDM potential parameter $M=\frac{m_{12}^2}{\sin\beta\cos\beta}$ (see Eq. \ref{eq:HDMpot}). 
+These new variables are: the masses of the neutral $h^0,H^0$; the mixing angle $\alpha$; and the 2HDM potential parameter $M=\frac{m_{12}^2}{\sin\beta\cos\beta}$ (see Eq. \ref{eq:HDMpot}). 
 These new parameters can all be varied along with $m_{H^+}$ and $\tan\beta$ in a higher-dimensional fit, although it is simpler to fix some of these at set values. 
 
 When working in the 2HDM, it is usually assumed that we are working in the \emph{alignment limit}, where the lighter neutral Higgs $h^0$ is taken to be the observed Higgs, and the mixing angles are aligned such that $\cos(\beta-\alpha) \approx 0$. 
@@ -678,7 +680,7 @@ We show here the impact of different values of $m_{H^0}$ on the allowed region o
 \end{figure}
 We see that there is no specific constraint on $m_{H^+}$ as we move towards $\infty$, and these processes by themselves do not give a minimum value of $m_{H^+}$. 
 We do however now see more significant bounds on $\tan\beta$ than we had previously. 
-The extent of the constraint on $\tan\beta$ depends on $m_{H^+}$ as seen in Figure \ref{fig:bmu}.
+The extent of the constraint on $\tan\beta$ depends on $m_{H^0}$ as seen in Figure \ref{fig:bmu}.
 When added to the global constraints, this will restrict larger $\tan\beta$ values depending on $m_{H^0}$.
 Testing across the range of values for $m_{H^0}$, we find that using $m_{H^0}=1.5\,$TeV minimises $\chi^2$ and maximises the p-value of our fit; see Section \ref{sec:discuss} and Table \ref{tab:pval1} for details of this fit.
 Further analysis into this three-dimensional parameter space introduced here will be discussed in Section \ref{subsec:oblique}.
@@ -704,7 +706,7 @@ In \cite{desc}, a 2HDM parameterisation of $\mathcal{R}(D)$ was discussed and wa
 \end{figure}
 We follow the expressions for $\mathcal{R}(D^{(*)})$ in the 2HDM found in Section III of \cite{rds} and perform a scan as before on these observables. 
 Historically, the 2HDM has struggled to fit both these ratios simultaneously, and it may be a killer argument for this model if no resolution to this can be found. 
-So far we have implemented $2\sigma$ scans, and at this level, $\mathcal{R}(D^*)$ excludes the 2HDM, as seen in Figure \ref{fig:rds} where $\mathcal{R}(D)$ follows a similar shape to the leptonic constraints in Figure \ref{fig:indies} but $\mathcal{R}(D^*)$ excludes the 2HDM for the regions of overlap found in Figure \ref{subfig:glob11}.
+So far we have implemented $2\sigma$ scans, and at this level, $\mathcal{R}(D^*)$ excludes the 2HDM, as seen in Figure \ref{fig:rds} where $\mathcal{R}(D)$ follows a similar shape to the leptonic constraints in Figure \ref{fig:indies} but $\mathcal{R}(D^*)$ disagrees with any region of overlap found in Figure \ref{subfig:glob11}.
 However, exclusion at this level only means that the 2HDM performs no better than the Standard Model for this observable. 
 We therefore move forward with two approaches to work through this discrepancy: we continue to fit all observables at the $2\sigma$ level, treating $\mathcal{R}(D^*)$ as an anomaly; and we also scan to higher $\sigma$, as $\mathcal{R}(D^*)$ may then agree with the fit to this level, leaving room for further discussion on resolving its deviation.
 \begin{figure}[ht]
@@ -740,7 +742,7 @@ Within the 2HDM Type II, this limit can be written with the relationship
     \cos(\beta-\alpha) = \sin(2\beta), \text{ or equivalently when} \tan\beta\gg2,\; \cos(\beta-\alpha) = 2\cot\beta.
 \end{align}
 In this work, we consider the wrong sign limit in the 2HDM only, as an indication of its validity for use in future works considering the 2HDM fit in the framework of SM4. 
-Moving forward, in addition to working in the alignment limit as discussed previously, we consider the exact wrong sign limit from Eq. \ref{eq:wrongsign}, and the use of numerical constraints on $\tan(\beta)$ provided from collaboration of the fit with \cite{oliver}.
+Moving forward, in addition to working in the alignment limit as discussed previously, we consider the exact wrong sign limit from Eq. \ref{eq:wrongsign}, and the use of numerical constraints on $\tan\beta$ provided from collaboration with \cite{oliver}.
 The only observable that is dependent on the limit we choose for the Higgs couplings so far is $B_q\to\mu^+\mu^-$, so we now look to other observables that can also compare the alignment and wrong sign limits.
 
 \subsection{The Global Fit with Oblique Parameters}
@@ -764,7 +766,7 @@ In Figure \ref{fig:threed}, we see that there is a close linear relationship bet
 The value of $m_{H^+}$ is tightly constrained to be of a similar mass to $m_{H^0}$ and $m_{A^0}$. 
 \hspace{-8pt}\footnote{In the work of \cite{james}, it is found that there can be fine-tuned solutions away from this close confinement. However, these are for values of $\theta$ away from either the alignment or wrong sign limits we consider here.}
 \hspace{-3pt}Within the range of test values considered previously for $m_{H^0}$, we still find that $\chi^2$ is minimised for $m_{H^0}=1.5\,$TeV, so we choose to work with $m_{H^0}=m_{A^0}=1.5\,$TeV and test the two-dimensional global fit using these fixed parameters. 
-Higher values than this would be more even favourable, however, we choose not to work at such high scales as discussed in Section \ref{sec:discuss}.
+Higher values than this would be even more favourable, however, we choose not to work at such high scales as discussed in Section \ref{sec:discuss}.
 \begin{table}[ht]
     \centering
     \begin{tabular}{cc|c|c}
@@ -826,7 +828,7 @@ The value of $m_{H^+}$ that minimises $\chi^2$ for flavour observables alone and
 These values are not representative of what would actually minimise $\chi^2$ across any value these parameters could take, but rather $\chi^2_{min}$ within the range chosen, where we do not scan higher than $3200\,$GeV for any mass. 
 Were we to scan higher than this, we would expect a similar result whereby the values of $m_{H^+}$ and $m_{A^0}$ which minimise $\chi^2$ would be the highest value scanned to, and so on to the decoupling limit of this model. 
 The wrong sign limit, however, shows a different result for $m_{H^+}$ in our three-dimensional fit, where it minimises $\chi^2$ at $1900\,$GeV.
-This is likely due to the upper and lower regions the oblique parameters have in this limit.
+This is due to the upper and lower regions the oblique parameters have in this limit.
 
 We show in Table \ref{tab:pval1} the numerical constraints found in our parameter space from Figure \ref{fig:global}, and the statistical significance of the various fits. 
 Due to the discrepancy found in $\mathcal{R}(D^*)$, different approaches were taken to explore its impact on the fit: in Table \ref{tab:pval1}, the statistical indicators for including this as an anomaly at $2\sigma$ are given, and then in brackets we give the indicators for a fit disregarding $\mathcal{R}(D^*)$, such that we see the sole impact of this observable; we also show in Table \ref{tab:pval2} how the values of the constraints of our fit change for a $3\sigma$ scan as opposed to a $2\sigma$ scan, where $\mathcal{R}(D^*)$ now fits well with other constraints, as shown in Figure \ref{fig:rd3sig}.
@@ -855,7 +857,7 @@ Due to the discrepancy found in $\mathcal{R}(D^*)$, different approaches were ta
     \caption{\label{tab:pval1}Constraints and statistics for global fits following $2\sigma$ scans. `Flavour' denotes all of the flavour observables discussed throughout, including $R(D^*)$ as an anomaly; `Oblique' denotes adding the three oblique parameters from \cite{james}. 
     The fits have been done in the exact wrong-sign limit and the exact alignment limit as shown, and setting the additional 2HDM parameters as $M=750\,$GeV and $m_{H^0}=m_{A^0}=1.5\,$TeV. 
     For $m_{H^+}$ and $\tan\beta$, the constraints from each model at 95\% CL and $1\sigma$ and their $\chi^2_{min}$ values are shown respectively.
-    The information from the $\chi^2$ fitting of each model is then shown, first for the inclusion of $\mathcal{R}(D^*)$ in this fit, and then in brackets we show the fit we were to exclude $\mathcal{R}(D^*)$.
+    The information from the $\chi^2$ fitting of each model is then shown, first for the inclusion of $\mathcal{R}(D^*)$ in this fit, and then in brackets we show the fit were we to exclude $\mathcal{R}(D^*)$.
     The 2HDM potential parameter $M$ does not impact the fit as it varies, although through the oblique parameters, $m_{H^0}$ and $m_{A^0}$ will cause our results to vary as these require all new Higgs masses to be approximately equal, thus confining the space tightly near whatever values are chosen for these masses.
     The constraints, therefore, which include the oblique parameters are test constraints for fixed $m_{H^0}=m_{A^0}$ as above, and not indicative of global constraints. 
     The flavour alone constraints, however, do give a minimum constraint of $m_{H^+}$ with no extra dependency.}
@@ -866,21 +868,21 @@ We do not propose any further solution to the problem of $\mathcal{R}(D^*)$ here
 
 We show the details of the $3\sigma$ fit in Table \ref{tab:pval2}. 
 At this level, all scenarios we consider fit much better than at $2\sigma$, and we cannot consider exclusion at the $3\sigma$ error significance. 
-However, we do see in $\chi^2_\nu$ and the p-values that although the errors do not yet fully dominate, they are significant enough that we begin to lose the significance in our results at this level.
+However, we do see in $\chi^2_\nu$ and the p-values that although the errors do not yet fully dominate, they are significant enough that we begin to lose the resolution in our results at this level.
 We continue to consider the fit at $2\sigma$, where we can find statistical insight into our results.
 
 Due to the additional dependencies from the oblique parameters, we cannot conclude many limitations in our ($m_{H^+},\tan\beta$) parameter space, apart from that $H^+$ must have a similar mass to $H^0$ and $A^0$. 
 The most definitive constraints on $m_{H^+}$ and $\tan\beta$ come from the $b\to s\gamma$ radiative decay and $B_q\to\mu^+\mu^-$ respectively. 
 The flavour constraints in Table \ref{tab:pval1} show the minimum value for $m_{H^+}$ that is primarily constrained from $b\to s\gamma$, and also show the maximum $\tan\beta$ as constrained from $B_q\to\mu^+\mu^-$. 
 This $\tan\beta$ constraint is, however, dependent on $m_{H^0}$, and is therefore not conclusive due to the lack of constraint on this parameter. 
-The maximum allowed value for $\tan\beta$ is seen to increase with larger $m_{H^0}$, as shown in Figure \ref{fig:threed}, and so, this is only indicative of the limitations for $\tan\beta$ for the more finite masses we consider.
+The maximum allowed value for $\tan\beta$ is seen to increase with larger $m_{H^0}$ in the alignment limit, as shown in Figure \ref{fig:threed}, and so, this is only indicative of the limitations for $\tan\beta$ for the more finite masses we consider.
 
 Overall, the statistical indicators of our fit including all observables at the $2\sigma$ level show that the likelihood of the 2HDM being physical is very low. 
 First, when considering the 2HDM in the wrong sign limit, both for flavour observables alone, and for flavour with the oblique parameters, the p-values show exclusion to $\approx95\%$ CL. 
 This is also the case in the three-dimensional fit. 
 The likelihood therefore of this model being correct is slim. 
-This model would likely perform even worse statistically were we to include the $\tan\beta\gtrapprox6$ limit from \cite{oliver} in the fit, as the current $\chi^2_{min}$ value for the ranges of $\tan\beta$ given in Table \ref{tab:pval1} is found at $\tan\beta<6$ in all cases, and as such, we would expect an increased value for $\chi^2_{min}$ from imposing this limit and a further decrease in the p-value. 
-In the case of the flavour observables alone in the wrong sign limit, $\tan\beta$ is restricted from taking values greater than $4.03$ at $95\%$ CL, and although including the constraint from \cite{oliver} may change the fit, it is unlikely to increase it significantly for these observables, in which case, the wrong sign limit is fully excluded from the comparison of flavour observable constraints and the perturbativity constraints from \cite{oliver}.
+This model would likely perform even worse statistically were we to include the $\tan\beta\gtrapprox6$ limit from \cite{oliver} in the fit, as the current $\chi^2_{min}$ value for the ranges of $\tan\beta$ given in Tables \ref{tab:pthreed} and \ref{tab:pval1} is found at $\tan\beta<6$ in all cases, and as such, we would expect an increased value for $\chi^2_{min}$ from imposing this limit and a further decrease in the p-value. 
+In the case of the flavour observables alone in the wrong sign limit, $\tan\beta$ is restricted from taking values greater than $14.3$ at $95\%$ CL, and although including the constraint from \cite{oliver} may change the fit, it is unlikely to increase it significantly for these observables, in which case, the wrong sign limit is fully excluded from the comparison of flavour observable constraints and the perturbativity constraints from \cite{oliver}.
 There would still be some allowed space when including the oblique parameters in the fit for the wrong sign limit, however, this will be a very narrow region, and the confidence in this will be much smaller.
 As can be seen in Figure \ref{fig:global}, the behaviour of the oblique parameters causes two separate allowed regions for lower $\tan\beta$. 
 They do, however, combine above the $\tan\beta\gtrapprox6$ threshold we consider. 
@@ -894,8 +896,18 @@ These lower values are also not as constrained in the wrong sign limit, as we se
 Working in the alignment limit, the fit performs better statistically than in the wrong sign limit, however, it does not overall perform well, as it is excluded at 90\% CL for the flavour constraints, and the joint flavour and oblique constraints are excluded at 80\% CL. 
 In the three-dimensional fit for all observables, it is excluded at 85\% CL.
 As discussed above, $\mathcal{R}(D^*)$ proves to be the undoing of this model. 
-When excluding it from the fit, we find agreeable results for both flavour alone and including the oblique parameters (though we must be careful as for the latter, the errors may be too big). 
+When excluding it from the fit, we find agreeable results for both flavour alone and including the oblique parameters (though we must be careful as for the latter, the errors may be too large). 
 However, when including $\mathcal{R}(D^*)$, as is important to do for the global fit, these results significantly decrease and we must begin to question this model. 
+The allowed parameter space for these conditions is rather slim, as seen in Figure \ref{fig:global}, however, this is due to the fixing of $m_{H^0}\approx m_{A^0}$, whereas in Figure \ref{fig:threed}, we can see this space tend to infinity when allowing these masses to vary too. 
+The main constraints we are left with, therefore, are still that shown for the flavour alone considerations in Table \ref{tab:pval1}, primarily from $b\to s\gamma$, while also considering the direct searches for these particles, as in \cite{h0search,dirhp}.
+
+An interesting contrast between the two limits of the 2HDM discussed is that in the wrong sign limit, combining the flavour and oblique constraints reduces the confidence of the model in comparison to the flavour constraints alone, whereas in the alignment limit, including the oblique constraints actually improves the confidence of the model. 
+A more focused study on the oblique parameters, such as that of \cite{james}, would likely yield more information from this contrast, where the wrong sign limit more poorly fits the oblique parameters than it does the flavour observables. 
+The flavour observables do fit worse in the wrong sign limit than in the alignment limit, although the contrast is not as severe as when including the oblique parameters.
+The oblique parameters hold a lot more importance in our choice of $\beta-\alpha$ than the flavour observables, and a more extensive look into their variation due to $\beta-\alpha$ would prove interesting (we again turn to \cite{james}, where this has been more in focus in their study). 
+It could perhaps be the case that $\beta-\alpha$ does not fall into either of the cases discussed here; even though they seem the most apparent to consider, nature may have found a better choice if this model is correct.
+In certain cases away from the $\beta-\alpha$ constraints considered here, it is also possible to allow the masses of $H^0$, $A^0$, and $H^+$ to be less tightly confined near a single value. 
+This could cause interesting changes in the 2HDM global fit in future works.
 \begin{table}[ht]
     \centering
     \begin{tabular}{cc|C{2.4cm}|C{2.2cm}|C{1.8cm}|C{2.4cm}}
@@ -924,16 +936,6 @@ However, when including $\mathcal{R}(D^*)$, as is important to do for the global
     The information from the $\chi^2$ fitting of each model is then shown.
     The 2HDM potential parameter $M$ does not impact the fit as it varies, although through the oblique parameters, $m_{H^0}$ and $m_{A^0}$ cause our results to vary as these require all new Higgs masses to be approximately equal, thus confining the space tightly near whatever values are chosen for these masses.}
 \end{table}
-The allowed parameter space for these conditions is rather slim, as seen in Figure \ref{fig:global}, however, this is due to the fixing of $m_{H^0}\approx m_{A^0}$, whereas in Figure \ref{fig:threed}, we can see this space tend to infinity when allowing these masses to vary too. 
-The main constraints we are left with, therefore, are still that shown for the flavour alone considerations in Table \ref{tab:pval1}, primarily from $b\to s\gamma$, while also considering the direct searches for these particles, as in \cite{h0search,dirhp}.
-
-An interesting contrast between the two limits of the 2HDM discussed is that in the wrong sign limit, combining the flavour and oblique constraints reduces the confidence of the model in comparison to the flavour constraints alone, whereas in the alignment limit, including the oblique constraints actually improves the confidence of the model. 
-A more focused study on the oblique parameters, such as that of \cite{james}, would likely yield more information from this contrast, where the wrong sign limit more poorly fits the oblique parameters than it does the flavour observables. 
-The flavour observables do fit worse in the wrong sign limit than in the alignment limit, although the contrast is not as severe as when including the oblique parameters.
-The oblique parameters hold a lot more importance in our choice of $\beta-\alpha$ than the flavour observables, and a more extensive look into their variation due to $\beta-\alpha$ would prove interesting (we again turn to \cite{james}, where this has been more in focus in their study). 
-It could perhaps be the case that $\beta-\alpha$ does not fall into either of the cases discussed here; even though they seem the most apparent to consider, nature may have found a better choice if this model is correct.
-In certain cases away from the $\beta-\alpha$ constraints considered here, it is also possible to allow the masses of $H^0$, $A^0$, and $H^+$ to be less tightly confined near a single value. 
-This could cause interesting changes in the 2HDM global fit in future works.
 
 \subsection{Future Prospects}
 While we have attempted to be thorough in our analysis of the 2HDM and its fit to flavour observables (and oblique parameters), and we have found certain definitive statements on the validity of this model, we cannot say these are conclusive yet. 
@@ -954,9 +956,9 @@ We have tested the Two Higgs Doublet Model Type II using flavour observables, wh
 The constraints found from flavour observables are outlined in Table \ref{tab:pval1} in both the alignment and wrong sign limits, using $2\sigma$ scans. 
 We have also collaborated with \cite{james} to include the oblique parameters $S,T,U$ into our fit, where the most definitive constraint found with this is that $m_{H^+}\approx m_{H^0}\approx m_{A^0}$. 
 Details of this fit are found in Tables \ref{tab:pthreed} and \ref{tab:pval1}. 
-We have found that we can exclude this model from $2\sigma$ error signifance to 95\% CL in the wrong sign limit, and 85\% CL in the alignment - these were found both in a two-dimensional fit with fixed $m_{H^0}=m_{A^0}$, and a three-dimensional fit varying $m_{H^0}$.
+We have found that we can exclude this model from $2\sigma$ error signifance to 95\% CL in the wrong sign limit, and 85\% CL in the alignment - this was found both in a two-dimensional fit with fixed $m_{H^0}=m_{A^0}$, and a three-dimensional fit varying $m_{H^0}$.
 The model cannot be excluded with large confidence at the $3\sigma$ error significance.
-The most significant effect towards to poor fitting of this model is the semileptonic ratio $\mathcal{R}(D^*)$, which remains anomalous in the 2HDM to $3\sigma$. 
+The most significant effect towards the poor fitting of this model is the semileptonic ratio $\mathcal{R}(D^*)$, which disagrees with our 2HDM fit to $3\sigma$. 
 Without this ratio, this model cannot be excluded to a high CL, but including it significantly increases the confidence of exclusion. 
 No resolution to this problem is found here, though we hope that future works may either find one, or confirm its use to exclude the 2HDM. 
 
@@ -998,7 +1000,7 @@ P. W. Higgs, \emph{Broken Symmetries and the Masses of Gauge Bosons}, Phys. Rev.
 J.F. Donoghue, E. Golowich, and B.R. Holstein, \emph{Dynamics of the Standard Model} (Cambridge University Press, 2014).
 
 \bibitem{kobamask}
-M. Kobayashi and T. Maskawa, \emph{Cp Violation in the Renormalizable Theory of Weak Interaction}, Prog, Theor, Phys. \textbf{49} (1973) 652-657, doi:10.1143/PTP.49.652.
+M. Kobayashi and T. Maskawa, \emph{CP Violation in the Renormalizable Theory of Weak Interaction}, Prog, Theor, Phys. \textbf{49} (1973) 652-657, doi:10.1143/PTP.49.652.
 
 \bibitem{wolf}
 L. Wolfenstein, \emph{Parametrization of the Kobayashi-Maskawa Matrix}, Phys. Rev. Lett. \textbf{51} (1983), doi:10.1103/PhysRevLett.51.1945.
@@ -1029,6 +1031,9 @@ S. Bar-Shalom, M. Geller, S. Nandi, and A. Soni, \emph{Two Higgs doublets, a 4th
 
 \bibitem{branco} %s
 G.C. Branco et al, \emph{Theory and phenomenology of two-Higgs-doublet models}, Phys. Rept. \textbf{516} (2012) 1-102, doi:10.1016/j.physrep.2012.02.002, [\href{https://arxiv.org/pdf/1106.0034.pdf}{arXiv:1106.0034 [hep-ph]}].
+
+\bibitem{hunter}
+J. Gunion, H. Haber, G. Kane, and S. Dawson, \emph{The Higgs Hunter's Guide} (CRC Press, 2018).
 
 \bibitem{desc} %a
 O. Deschamps et al, \emph{The Two Higgs Doublet Model of Type II facing flavour physics data}, Phys. Rev. D \textbf{82} (2010) 073012, doi:10.1103/PhysRevD.82.073012, [\href{https://arxiv.org/abs/0907.5135}{arXiv:0907.5135 [hep-ph]}].
@@ -1098,9 +1103,6 @@ J. Wynne, private correspondence.
 
 \bibitem{oblique}
 W. Grimus, L. Lavoura, O. Ogreid and P. Osland, \emph{The Oblique parameters in multi-Higgs models}, Nucl. Phys. B \textbf{801} (2008) 81-96, doi:10.1016/j.nuclphysb.2008.04.019, [\href{https://arxiv.org/abs/0802.4353}{arXiv:0802.4353 [hep-ph]}].
-
-\bibitem{hunter}
-J. Gunion, H. Haber, G. Kane, and S. Dawson, \emph{The Higgs Hunter's Guide} (CRC Press, 2018).
 
 \bibitem{tom}
 T. Eaton, private correspondence.
