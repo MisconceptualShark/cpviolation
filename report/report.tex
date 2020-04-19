@@ -43,14 +43,15 @@
 %\emailAdd{matthew.rossetter@durham.ac.uk}
 
 \abstract{
-    In this study, we test the Two Higgs Doublet Model (2HDM) of Type II as an extension of the Standard Model (SM) using indicative flavour observables, such as leptonic decays of $B$ and $D$ mesons, $B\bar{B}$ mixing, the $b\to s\gamma$ radiative decay, and $B_q\to\mu^+\mu^-$.
-    Testing the 2HDM parameter space $m_{H^+},\tan\beta$ to find alignment between theoretical calculations and experiment, constraints on the parameters were found for the above flavour phenomena both individually and then as a global fit. 
-    We perform this fit in both the alignment and wrong sign limits of the 2HDM, the latter of which is to test validity for a future test of the SM4$\times$2HDM extension. 
-    Strongly dominated by the $b\to s\gamma$ branching ratio, the mass of a charged Higgs particle would be expected to have a minimum value at 95\% CL exclusion of $490$ GeV in the alignment limit and $740$ GeV in the wrong sign limit.
-    The value of $\tan\beta$ is constrained by $B_q\to\mu^+\mu^-$ decays, yielding maximum values at 95\% CL exclusion of $20.8$ in the alignment limit and $4.03$ in the wrong sign, for the fixed choices of other parameters. 
+    In this study, we test the Two Higgs Doublet Model (2HDM) of Type II as an extension of the Standard Model (SM) using indicative flavour observables, such as some leptonic and semileptonic decays of $B$ and $D$ mesons, $B\bar{B}$ mixing, the $b\to s\gamma$ radiative decay.
+    Testing the 2HDM parameter space ($m_{H^+},\tan\beta$) to find alignment between theoretical calculations and experiment, constraints on the parameters were found for flavour phenomena to work towards a global fit. 
+    We perform this fit in both the alignment and wrong sign limits of the 2HDM. 
+    Strongly dominated by the $b\to s\gamma$ branching ratio, the mass of a charged Higgs particle would be expected to have a minimum value at 95\% CL of $490$ GeV in the alignment limit and $740$ GeV in the wrong sign limit.
+    The value of $\tan\beta$ is constrained by $B_q\to\mu^+\mu^-$ decays, yielding maximum values at 95\% CL of $20.8$ in the alignment limit and $4.03$ in the wrong sign, for the fixed choices of other parameters. 
     These constraints were then joined with constraints from the oblique parameters $S,T,U$ from another work, to better give judgement on the state of the 2HDM fit. 
-    The constraints of this combined fit are no more conclusive than flavour alone, due to additional parameter dependency in $S,T,U$; the only additional constraint we definitively find here is that $m_{H^+}\approx m_{H^)}\approx m_{A^0}$ in both the alignment and wrong sign limits.
-    The validity of this fit is heavily influenced by the semileptonic ratio $\mathcal{R}(D^*)$, the statistical fit of these observables points to exclusion of this model at 95\% CL in the wrong sign limit, and 80\% CL in the alignment limit. 
+    The constraints of this combined fit are no more conclusive than flavour alone, due to additional parameter dependency in $S,T,U$; the only additional constraint we definitively find here is that $m_{H^+}\approx m_{H^0}\approx m_{A^0}$ in both the alignment and wrong sign limits.
+    The validity of this fit is heavily influenced by the semileptonic ratio $\mathcal{R}(D^*)$ which remains in disagreement to $3\sigma$; the statistical fit of these observables points to exclusion of this model at 95\% CL in the wrong sign limit, and 85\% CL in the alignment limit, at $2\sigma$ error significance. 
+    This model cannot be excluded at $3\sigma$ error significance, where $\mathcal{R}(D^*)$ fits well with the other observables.
 }
 
 \begin{document} 
@@ -501,8 +502,8 @@ For $B_q$, where $q=d,s$, this results (to Leading Order) in:
     S_{HH} &= \frac{x_{tH}x_{tW}}{4\tan^4\beta}\left(\frac{1+x_{tH}}{(1-x_{tH})^2}+\frac{2x_{tH}\ln(x_{tH})}{(1-x_{tH})^3}\right),\\
     2S_{WH} &= \frac{x_{tH}x_{tW}}{4\tan^2\beta}\left(\frac{(2x_{tW}-8x_{tH})\ln(x_{tH})}{(1-x_{tH})^2(x_{tH}-x_{tW})}+\frac{6x_{tW}\ln(x_{tW})}{(1-x_{tW})^2(x_{tH}-x_{tW})}-\frac{8-2x_{tW}}{(1-x_{tH})(1-x_{tW})}\right).
 \end{align}
-where $x_{ij} = m_i^2/m_j^2$, and $S_{xy}$ describes the internal bosonic lines for the two bosons $x,y \in H^\pm,W^\pm$.
-The current SM predictions for the mass differences are stated in \cite{bmix} as
+where $x_{ij} = m_i^2/m_j^2$, and $S_{xy}$ describes the internal bosonic lines for the two bosons $x,y \in H^\pm,W^\pm$ \cite{frank}.
+The current SM predictions are stated in \cite{bmix} as
 \begin{align}
     \Delta m^{\text{SM}}_d &= \left(0.533^{+0.022}_{-0.036}\right)ps^{-1} = \left(1.05^{+0.04}_{-0.07}\right)\Delta m_d^{\text{exp}}, \\
     \Delta m^{\text{SM}}_s &= \left(18.4^{+0.7}_{-1.2}\right)ps^{-1} = \left(1.04^{+0.04}_{-0.07}\right)\Delta m_s^{\text{exp}}.
@@ -746,8 +747,9 @@ The only observable that is dependent on the limit we choose for the Higgs coupl
 \label{subsec:oblique}
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.6\textwidth,trim=6em 3em 10pt 6em,clip]{../global/threedimfit1.png}
-    \caption{\label{fig:threed}Constraints in ($m_{H^+},m_{A^0},\tan\beta$) space from $B\to\mu^+\mu^-$ and the oblique parameters, where we assume $m_{A^0}\approx m_{H^0}$, and have scanned to $2\sigma$ in the alignment limit.
+    \includegraphics[width=0.49\textwidth,trim=6em 3em 10pt 6em,clip]{../global/threedimfit.png}
+    \includegraphics[width=0.49\textwidth,trim=6em 3em 10pt 6em,clip]{../global/threedimfit1.png}
+    \caption{\label{fig:threed}Constraints in ($m_{H^+},m_{A^0},\tan\beta$) space from all observables, where we assume $m_{A^0}\approx m_{H^0}$, and have scanned to $2\sigma$ in the alignment limit (left) and the wrong sign limit (right).
     The purple region indicates what is not excluded at 95\% CL.}
 \end{figure}
 Flavour constraints alone are not enough to give a full judgement on the 2HDM. 
@@ -757,25 +759,31 @@ These observables have a different dependency on the 2HDM parameters than the fl
 The value of $\beta-\alpha$ is fixed by our choice either of the alignment limit or the wrong sign limit, and we can therefore compress this dependency into that of $\tan\beta$ for these constraints. 
 There is however still dependency on $m_{H^0}$ and $m_{A^0}$ to consider.
 We previously fixed $m_{H^0}=1.5\,$TeV, where it minimised $\chi^2$ across the range of test values used. 
-Due to the additional dependencies here, we perform a test three-dimensional scan across ($m_{H^+},m_{A^0},\tan\beta$) space, assuming $m_{A^0}\approx m_{H^0}$, for the oblique parameters and $B_q\to\mu^+\mu^-$ as these are the only observables to have this additional dependency. 
+Due to the additional dependencies here, we perform a test three-dimensional scan across ($m_{H^+},m_{A^0},\tan\beta$) space, assuming $m_{A^0}\approx m_{H^0}$.
 In Figure \ref{fig:threed}, we see that there is a close linear relationship between $m_{A^0}$ and $m_{H^+}$. 
 The value of $m_{H^+}$ is tightly constrained to be of a similar mass to $m_{H^0}$ and $m_{A^0}$. 
 \hspace{-8pt}\footnote{In the work of \cite{james}, it is found that there can be fine-tuned solutions away from this close confinement. However, these are for values of $\theta$ away from either the alignment or wrong sign limits we consider here.}
 \hspace{-3pt}Within the range of test values considered previously for $m_{H^0}$, we still find that $\chi^2$ is minimised for $m_{H^0}=1.5\,$TeV, so we choose to work with $m_{H^0}=m_{A^0}=1.5\,$TeV and test the two-dimensional global fit using these fixed parameters. 
+Higher values than this would be more even favourable, however, we choose not to work at such high scales as discussed in Section \ref{sec:discuss}.
 \begin{table}[ht]
     \centering
-    \begin{tabular}{c|c|c}
+    \begin{tabular}{cc|c|c}
         \hline\hline
-        \textbf{Model:} & $\cos(\beta-\alpha)=\sin(2\beta)$ & $\cos(\beta-\alpha)=0$ \\ 
+        \multicolumn{2}{c|}{\textbf{Model:}} & $\cos(\beta-\alpha)=\sin(2\beta)$ & $\cos(\beta-\alpha)=0$ \\ 
         \hline\hline
-        $m_{H^+}$ (GeV) & & $>270$ \\
-        $m_{A^0}$ (GeV) & & $>210$ \\
-        $\tan\beta$ & & $0.42\to54.7$ \\
+        $m_{H^+}$: & 95\% CL & $>450$ & $>450$ \\
+        (GeV) & $\chi^2_{min}$ & $1900$ & $3200$ \\
         \hline
-        $\chi^2_{min}$ & & $8.19$ \\
-        $\chi^2_\nu$ & & $0.58$ \\
-        $\nu$ & & $14$ \\
-        p-value & & $87.9\%$ \\
+        $m_{A^0}$: & 95\% CL & $>320$ & $>390$ \\
+        (GeV) & $\chi^2_{min}$ & $3200$ & $3200$ \\
+        \hline
+        $\tan\beta$: & 95\% CL & $1.2\to14.3$ & $0.51\to45.5$ \\
+                     & $\chi^2_{min}$ & $5.65$ & $2.45$ \\
+        \hline
+        \multicolumn{2}{c|}{$\chi^2_{min}$} & $25.4$ & $19.2$ \\
+        \multicolumn{2}{c|}{$\chi^2_\nu$} & $1.82$ & $1.37$ \\
+        \multicolumn{2}{c|}{$\nu$} & $14$ & $14$ \\
+        \multicolumn{2}{c|}{p-value} & $3.1\%$ & $15.8\%$ \\
         \hline\hline
     \end{tabular}
     \caption{\label{tab:pthreed}Constraints and statistics for three-dimensional fit from $2\sigma$ scan in Figure \ref{fig:threed}. 
@@ -789,17 +797,17 @@ The value of $m_{H^+}$ is tightly constrained to be of a similar mass to $m_{H^0
 \label{sec:discuss}
 We now show in Figure \ref{fig:global} the results of our fit, for the flavour observables alone, and also including the oblique parameters from \cite{james}.
 This has been done both in the alignment and wrong sign limits. 
-As marked in the figure, it was found by \cite{oliver} that the exact wrong sign limit can only be allowed for $\tan\beta\gtrapprox6$ at the $2\sigma$ level, which significantly reduces the allowed region in our parameter space. 
-This limit has not been included when performing the fit here, but we take note of the limitations this imposes on our results.
+As marked in the figure, it was found by \cite{oliver} from perturbativity that the exact wrong sign limit is only allowed for $\tan\beta\gtrapprox6$ at the $2\sigma$ level, which significantly reduces the allowed region in our parameter space. 
+This limit has not been included when performing the fit here, but we take note of the limitations this imposes.
 
-It is important to have any calculations performed confirmed by another source such that they maintain credibility, and to this end, the flavour observables studied throughout have been cross-checked in \cite{tom} as part of a larger collaboration, and close agreement between results thus far has been found, lending validity to the results we present here. 
+It is important to have any calculations performed confirmed by another source such that they maintain credibility, and to this end, the flavour observables studied throughout have been cross-checked in \cite{tom}, and close agreement between results has been found, lending validity to the results we present here. 
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.49\textwidth]{../global/global_test.png}
     \includegraphics[width=0.49\textwidth]{../global/global_test2.png}
     \includegraphics[width=0.49\textwidth]{../global/global_test5.png}
     \includegraphics[width=0.49\textwidth]{../global/global_test6.png}
-    \caption{\label{fig:global}Constraints on ($m_{H^+},\tan\beta$) in the alignment limit (top) and the wrong sign limit (bottom). 
+    \caption{\label{fig:global}Constraints on ($m_{H^+},\tan\beta$) in the alignment limit (top) and the wrong sign limit (bottom) from $2\sigma$ scans. 
     The constraints found in this work for flavour observables are shown (left), and then the oblique parameter constraints from \cite{james} are included too (right). 
     Each region shows what is not excluded for the relevant observables to 95\% CL as discussed in the text - leptonic and semileptonic decays (green), B mixing (blue), $b\to s\gamma$ (orange), $B_q\to\mu^+\mu^-$ (red), and $S,T,U$ (pink).
     The purple region shows our fit for all observables at $95\%$ CL, and the white line within marks out the $1\sigma$ confidence area. 
@@ -815,11 +823,13 @@ In the case of observables that are in agreement with the Standard Model, tendin
 Working several orders of magnitudes above the mass scales of the other particles approximates this limit to infinity, so to test a physical, and observable, Two Higgs Doublet Model Type II which is significant against the Standard Model, it is of no use looking to such large scales so we therefore remain working with more relevant mass scales as chosen for $m_{H^0}$ and $m_{A^0}$.
 This effect is also seen in the $\chi^2$ fitting in Tables \ref{tab:pthreed}, \ref{tab:pval1}, and \ref{tab:pval2}. 
 The value of $m_{H^+}$ that minimises $\chi^2$ for flavour observables alone and fixed $m_{H^0}$ is $3200\,$GeV, and similarly for $m_{A^0}$ and $m_{H^+}$ in the three-dimensional global fit. 
-These values are not representative of what would actually minimise $\chi^2$ across any value these parameters could take, but rather the $\chi^2$ minimum within the range chosen, where we do not scan any higher than $3200\,$GeV for any mass. 
+These values are not representative of what would actually minimise $\chi^2$ across any value these parameters could take, but rather $\chi^2_{min}$ within the range chosen, where we do not scan higher than $3200\,$GeV for any mass. 
 Were we to scan higher than this, we would expect a similar result whereby the values of $m_{H^+}$ and $m_{A^0}$ which minimise $\chi^2$ would be the highest value scanned to, and so on to the decoupling limit of this model. 
+The wrong sign limit, however, shows a different result for $m_{H^+}$ in our three-dimensional fit, where it minimises $\chi^2$ at $1900\,$GeV.
+This is likely due to the upper and lower regions the oblique parameters have in this limit.
 
 We show in Table \ref{tab:pval1} the numerical constraints found in our parameter space from Figure \ref{fig:global}, and the statistical significance of the various fits. 
-Due to the discrepancy found in $\mathcal{R}(D^*)$, different approaches were taken to explore its impact on the fit: in Table \ref{tab:pval1}, the statistical indicators for including this as an anomaly at $2\sigma$ are given, and then in brackets we give the indicators for a fit disregarding $\mathcal{R}(D^*)$ altogether, such that we see the impact this observable has on the validity of the 2HDM; we also show in Table \ref{tab:pval2} how the values of the constraints of our fit change for a $3\sigma$ scan as opposed to a $2\sigma$ scan, as at this error level, $\mathcal{R}(D^*)$ agrees with the shape of leptonic and semileptonic constraints, as shown in Figure \ref{fig:rd3sig}.
+Due to the discrepancy found in $\mathcal{R}(D^*)$, different approaches were taken to explore its impact on the fit: in Table \ref{tab:pval1}, the statistical indicators for including this as an anomaly at $2\sigma$ are given, and then in brackets we give the indicators for a fit disregarding $\mathcal{R}(D^*)$, such that we see the sole impact of this observable; we also show in Table \ref{tab:pval2} how the values of the constraints of our fit change for a $3\sigma$ scan as opposed to a $2\sigma$ scan, where $\mathcal{R}(D^*)$ now fits well with other constraints, as shown in Figure \ref{fig:rd3sig}.
 \begin{table}[ht]
     \centering
     \begin{tabular}{cc|C{1cm}C{1.1cm}|C{1cm}C{1.4cm}|C{1cm}C{1.2cm}|C{1.2cm}C{1.2cm}}
@@ -851,34 +861,38 @@ Due to the discrepancy found in $\mathcal{R}(D^*)$, different approaches were ta
     The flavour alone constraints, however, do give a minimum constraint of $m_{H^+}$ with no extra dependency.}
 \end{table}
 The effect of $\mathcal{R}(D^*)$ at $2\sigma$ is clear. 
-Including $\mathcal{R}(D^*)$ almost doubles $\chi^2_{min}$ in most of the cases shown, and heavily reduces the p-values for these fits, taking them from where we might still consider the 2HDM a possible physical theory, to where we now near definite exclusion of this model (under the conditions imposed here).
+Including $\mathcal{R}(D^*)$ almost doubles $\chi^2_{min}$ in most of the cases shown, and heavily reduces the p-values for these fits, taking them from where we might still consider the 2HDM a possible physical theory, to where we now consider exclusion of this model (under the conditions imposed here).
 We do not propose any further solution to the problem of $\mathcal{R}(D^*)$ here, though we recognise one must be found if the Two Higgs Doublet Model Type II could still be considered.
 
-We show the details of the $3\sigma$ fit in Table \ref{tab:pval2} to see the effect of $\mathcal{R}(D^*)$ to a level where this agrees with the rest of the constraints for the 2HDM. 
-However, we see $\chi^2_{\nu}\ll1$ due to the increased errors, and we cannot resolve any statistical significance at this level.
-We continue to consider the fit at the $2\sigma$, where we can find statistical insight into our results.
+We show the details of the $3\sigma$ fit in Table \ref{tab:pval2}. 
+At this level, all scenarios we consider fit much better than at $2\sigma$, and we cannot consider exclusion at the $3\sigma$ error significance. 
+However, we do see in $\chi^2_\nu$ and the p-values that although the errors do not yet fully dominate, they are significant enough that we begin to lose the significance in our results at this level.
+We continue to consider the fit at $2\sigma$, where we can find statistical insight into our results.
 
 Due to the additional dependencies from the oblique parameters, we cannot conclude many limitations in our ($m_{H^+},\tan\beta$) parameter space, apart from that $H^+$ must have a similar mass to $H^0$ and $A^0$. 
 The most definitive constraints on $m_{H^+}$ and $\tan\beta$ come from the $b\to s\gamma$ radiative decay and $B_q\to\mu^+\mu^-$ respectively. 
 The flavour constraints in Table \ref{tab:pval1} show the minimum value for $m_{H^+}$ that is primarily constrained from $b\to s\gamma$, and also show the maximum $\tan\beta$ as constrained from $B_q\to\mu^+\mu^-$. 
 This $\tan\beta$ constraint is, however, dependent on $m_{H^0}$, and is therefore not conclusive due to the lack of constraint on this parameter. 
-The maximum allowed value for $\tan\beta$ is seen to increase with larger $m_{H^0}$, as shown in Figure \ref{fig:bmu}, and so, this is only indicative of the limitations for larger $\tan\beta$ for more finite masses as considered here.
+The maximum allowed value for $\tan\beta$ is seen to increase with larger $m_{H^0}$, as shown in Figure \ref{fig:threed}, and so, this is only indicative of the limitations for $\tan\beta$ for the more finite masses we consider.
 
 Overall, the statistical indicators of our fit including all observables at the $2\sigma$ level show that the likelihood of the 2HDM being physical is very low. 
-First, when considering the 2HDM in the wrong sign limit, for flavour observables alone, this model is very near to exclusion at $95\%$ CL in its p-value, and for flavour with the oblique parameters, the p-value shows exclusion just above $95\%$ CL. 
+First, when considering the 2HDM in the wrong sign limit, both for flavour observables alone, and for flavour with the oblique parameters, the p-values show exclusion to $\approx95\%$ CL. 
+This is also the case in the three-dimensional fit. 
 The likelihood therefore of this model being correct is slim. 
-This model would likely perform even worse statistically were we to include the $\tan\beta\gtrapprox6$ limit from \cite{oliver} in the fit, as the current $\chi^2_{min}$ value for the ranges of $\tan\beta$ given in Table \ref{tab:pval1} is found at $\tan\beta<6$ in both cases, and as such, we would expect an increased value for $\chi^2_{min}$ from imposing this limit and a further decrease in the p-value. 
+This model would likely perform even worse statistically were we to include the $\tan\beta\gtrapprox6$ limit from \cite{oliver} in the fit, as the current $\chi^2_{min}$ value for the ranges of $\tan\beta$ given in Table \ref{tab:pval1} is found at $\tan\beta<6$ in all cases, and as such, we would expect an increased value for $\chi^2_{min}$ from imposing this limit and a further decrease in the p-value. 
 In the case of the flavour observables alone in the wrong sign limit, $\tan\beta$ is restricted from taking values greater than $4.03$ at $95\%$ CL, and although including the constraint from \cite{oliver} may change the fit, it is unlikely to increase it significantly for these observables, in which case, the wrong sign limit is fully excluded from the comparison of flavour observable constraints and the perturbativity constraints from \cite{oliver}.
-There would still be some allowed space when including the oblique parameters in the fit for the wrong sign limit, however, this will be a very narrow region, and the confidence in this will be much smaller, as discussed.
+There would still be some allowed space when including the oblique parameters in the fit for the wrong sign limit, however, this will be a very narrow region, and the confidence in this will be much smaller.
 As can be seen in Figure \ref{fig:global}, the behaviour of the oblique parameters causes two separate allowed regions for lower $\tan\beta$. 
 They do, however, combine above the $\tan\beta\gtrapprox6$ threshold we consider. 
-This strange behaviour can be neglected then when we take this limit, however, it could be possible that it does have a more significant impact under further study, as considered in \cite{james}.
+This strange behaviour can then be neglected in this limit, however, it could be possible that it does have a more significant impact under further study.
 
 The dependency on $m_{H^0}$ in the wrong sign limit differs than in the alignment limit, with the constraint from $B_q\to\mu^+\mu^-$ taking a different shape, that may actually favour lower values of $m_{H^0}$ as this would result in an increase in the allowed range for $\tan\beta\gtrapprox6$.
 While we are still limited to a minimum value for $m_{H^+}$ (and consequently $m_{H^0}$ for $m_{H^0}\approx m_{H^+}$) from $b\to s\gamma$, approaching this minimum value could increase the prospects of realising the wrong sign limit. 
-\textbf{CONTINUE THIS WITH 3D STUFF}
+We see this in the three-dimensional fit in Figure \ref{fig:threed} and Table \ref{tab:pthreed} where there is a larger region allowed for $\tan\beta>6$, particularly for lower values of $m_{H^+}$ and $m_{A^0}$. 
+These lower values are also not as constrained in the wrong sign limit, as we see $\chi^2$ can be minimised without tending towards infinity for $m_{H^+}$ as much as in the alignment limit. 
 
-Working in the alignment limit, the fit performs better statistically than in the wrong sign limit, however, it does not overall perform well, and its validity must be questioned as it approaches 95\% CL in its exclusion for the flavour constraints, and the joint flavour and oblique constraints do not hold much more confidence. 
+Working in the alignment limit, the fit performs better statistically than in the wrong sign limit, however, it does not overall perform well, as it is excluded at 90\% CL for the flavour constraints, and the joint flavour and oblique constraints are excluded at 80\% CL. 
+In the three-dimensional fit for all observables, it is excluded at 85\% CL.
 As discussed above, $\mathcal{R}(D^*)$ proves to be the undoing of this model. 
 When excluding it from the fit, we find agreeable results for both flavour alone and including the oblique parameters (though we must be careful as for the latter, the errors may be too big). 
 However, when including $\mathcal{R}(D^*)$, as is important to do for the global fit, these results significantly decrease and we must begin to question this model. 
@@ -898,10 +912,10 @@ However, when including $\mathcal{R}(D^*)$, as is important to do for the global
                      & $1\sigma$ & $<3.2$ & $0.9\to28$ & $<20$ & $0.9\to20$ \\
                      & $\chi^2_{min}$ & $0.98$ & $1.9$ & $4.1$ & $5.2$ \\
         \hline
-        \multicolumn{2}{c|}{$\chi^2_{min}$} & $4.57$ & $5.70$ & $4.19$ & $4.30$ \\
-        \multicolumn{2}{c|}{$\chi^2_{\nu}$} & $0.38$ & $0.38$ & $0.35$ & $0.29$ \\
+        \multicolumn{2}{c|}{$\chi^2_{min}$} & $9.16$ & $11.4$ & $8.36$ & $8.62$ \\
+        \multicolumn{2}{c|}{$\chi^2_{\nu}$} & $0.76$ & $0.76$ & $0.70$ & $0.57$ \\
         \multicolumn{2}{c|}{$\nu$} & $12$ & $15$ & $12$ & $15$ \\
-        \multicolumn{2}{c|}{p-value} & $97.1\%$ & $98.0\%$ & $98.4\%$ & $99.7\%$ \\
+        \multicolumn{2}{c|}{p-value} & $68.9\%$ & $72.4\%$ & $75.6\%$ & $89.7\%$ \\
         \hline\hline
     \end{tabular}
     \caption{\label{tab:pval2}Constraints and statistics for global fits following $3\sigma$ scans. `Flavour' denotes all of the flavour observables discussed throughout, including $R(D^*)$ which fits to this level; `Oblique' denotes adding the three oblique parameters from \cite{james}. 
@@ -914,15 +928,12 @@ The allowed parameter space for these conditions is rather slim, as seen in Figu
 The main constraints we are left with, therefore, are still that shown for the flavour alone considerations in Table \ref{tab:pval1}, primarily from $b\to s\gamma$, while also considering the direct searches for these particles, as in \cite{h0search,dirhp}.
 
 An interesting contrast between the two limits of the 2HDM discussed is that in the wrong sign limit, combining the flavour and oblique constraints reduces the confidence of the model in comparison to the flavour constraints alone, whereas in the alignment limit, including the oblique constraints actually improves the confidence of the model. 
-A more focused study on the oblique parameters, such as that of \cite{james}, would likely yield more information from this contrast, where it can be seen that the wrong sign limit more poorly fits the oblique parameters than it does the flavour observables. 
-The flavour observables do similarly fit worse in the wrong sign limit than in the alignment limit, although the contrast in the statistical indicators is not as severe as for the oblique parameters.
-The oblique parameters therefore seem to hold a lot more importance in our choice of $\beta-\alpha$ than the flavour observables, and a more extensive look into their variation due to $\beta-\alpha$ would prove interesting (we again turn to \cite{james}, where this has been more in focus in their study). 
+A more focused study on the oblique parameters, such as that of \cite{james}, would likely yield more information from this contrast, where the wrong sign limit more poorly fits the oblique parameters than it does the flavour observables. 
+The flavour observables do fit worse in the wrong sign limit than in the alignment limit, although the contrast is not as severe as when including the oblique parameters.
+The oblique parameters hold a lot more importance in our choice of $\beta-\alpha$ than the flavour observables, and a more extensive look into their variation due to $\beta-\alpha$ would prove interesting (we again turn to \cite{james}, where this has been more in focus in their study). 
 It could perhaps be the case that $\beta-\alpha$ does not fall into either of the cases discussed here; even though they seem the most apparent to consider, nature may have found a better choice if this model is correct.
 In certain cases away from the $\beta-\alpha$ constraints considered here, it is also possible to allow the masses of $H^0$, $A^0$, and $H^+$ to be less tightly confined near a single value. 
 This could cause interesting changes in the 2HDM global fit in future works.
-\begin{itemize}
-    \item From 3d figure and table, expect fit to get better again as we increase fixed vals, but this is less significant against the SM - ramble on more about decoupling 
-\end{itemize}
 
 \subsection{Future Prospects}
 While we have attempted to be thorough in our analysis of the 2HDM and its fit to flavour observables (and oblique parameters), and we have found certain definitive statements on the validity of this model, we cannot say these are conclusive yet. 
@@ -933,23 +944,29 @@ First, our list of flavour observables used here is not extensive by any means, 
 Most noticeably, the ratios $\mathcal{R}(K^{(*)})$ present interesting opportunities to further test our constraints on the 2HDM. 
 Recent work on expressions for these observables in the 2HDM can be found, for example, in \cite{criv}. 
 
-Our work in B meson mixing has been performed here to LO, using the expressions written in \cite{desc}. 
-B mixing has, however, been calculated to NLO in \cite{frank}, and it is prudent to work with the most exact expressions we are able to. 
-
 The wrong sign limit in the 2HDM alone was considered here as an indicator towards the possibility of SM4$\times$2HDM as a resolution to the long-standing issues of the standard SM4 extension. 
 We here found that the wrong sign limit is effectively excluded for the 2HDM alone, which does not bode well for a full consideration of SM4$\times$2HDM. 
 However, we cannot guarantee that the inclusion of the SM4 contributions to the observables here would not change the fit significantly enough such that this model is not entirely excluded. 
-A full extension of this study into SM4$\times$2HDM in the wrong sign limit would be the clear next step from our findings here, in which we would test all these observables in this model with freedom for all parameters, unlike the fixing we did here. 
+A full extension of this study into SM4$\times$2HDM in the wrong sign limit would be the clear next step from our findings here.
 
-\section{Conclusion}
+\section{Conclusions}
+We have tested the Two Higgs Doublet Model Type II using flavour observables, where we have looked for constraints on $m_{H^+}$ and $\tan\beta$. 
+The constraints found from flavour observables are outlined in Table \ref{tab:pval1} in both the alignment and wrong sign limits, using $2\sigma$ scans. 
+We have also collaborated with \cite{james} to include the oblique parameters $S,T,U$ into our fit, where the most definitive constraint found with this is that $m_{H^+}\approx m_{H^0}\approx m_{A^0}$. 
+Details of this fit are found in Tables \ref{tab:pthreed} and \ref{tab:pval1}. 
+We have found that we can exclude this model from $2\sigma$ error signifance to 95\% CL in the wrong sign limit, and 85\% CL in the alignment - these were found both in a two-dimensional fit with fixed $m_{H^0}=m_{A^0}$, and a three-dimensional fit varying $m_{H^0}$.
+The model cannot be excluded with large confidence at the $3\sigma$ error significance.
+The most significant effect towards to poor fitting of this model is the semileptonic ratio $\mathcal{R}(D^*)$, which remains anomalous in the 2HDM to $3\sigma$. 
+Without this ratio, this model cannot be excluded to a high CL, but including it significantly increases the confidence of exclusion. 
+No resolution to this problem is found here, though we hope that future works may either find one, or confirm its use to exclude the 2HDM. 
+
+\acknowledgments
+Thanks is given to Prof. Alexander Lenz for his sage advice and guidance throughout the year, and also to Aleksey Rusov for his assistance. 
+I also thank Oliver Atkinson, James Wynne, and Tom Eaton for their collaborating efforts and many fruitful discussions.
 
 %\appendix
 %\section{Some title}
 %Please always give a title also for appendices.
-%
-%\acknowledgments
-%This is the most common positions for acknowledgments. A macro is
-%available to maintain the same layout and spelling of the heading.
 %
 %\paragraph{Note added.} This is also a good position for notes added
 %after the paper has been written.
@@ -1019,6 +1036,9 @@ O. Deschamps et al, \emph{The Two Higgs Doublet Model of Type II facing flavour 
 \bibitem{mix15}
 M. Artuso, G. Borissov, and A. Lenz, \emph{CP Violation in the $B_s^0$ system,} Rev. Mod. Phys. \textbf{88} (2016) no.4 045002, doi:10.1103/RevModPhys.88.045002, [\href{https://arxiv.org/abs/1511.09466}{arXiv:1511.09466 [hep-ph]}].
 
+\bibitem{frank}
+J. Urban, F. Krauss, U. Jentschura and G. Soff, \emph{Next-to-Leading Order QCD corrections for the $B^0\bar{B}^0$-mixing with an extended Higgs sector}, Nucl. Phys. B \textbf{523} (1998) 40-58, doi:10.1016/S0550-3213(98)00043-1, [\href{https://arxiv.org/abs/hep-ph/9710245}{arXiv:9710245 [hep-ph]}].
+
 \bibitem{bmix} %i
 L. Di Luzio, M. Kirk, A. Lenz, and T. Rauh, \emph{$\Delta M_s$ theory precision confronts flavour anomalies}, JHEP \textbf{12} (2019) 009, doi:10.1007/JHEP12(2019)009, [\href{https://arxiv.org/abs/1909.11087}{arXiv:1909.11087 [hep-ph]}].
 
@@ -1084,9 +1104,6 @@ J. Gunion, H. Haber, G. Kane, and S. Dawson, \emph{The Higgs Hunter's Guide} (CR
 
 \bibitem{tom}
 T. Eaton, private correspondence.
-
-\bibitem{frank}
-J. Urban, F. Krauss, U. Jentschura and G. Soff, \emph{Next-to-Leading Order QCD corrections for the $B^0\bar{B}^0$-mixing with an extended Higgs sector}, Nucl. Phys. B \textbf{523} (1998) 40-58, doi:10.1016/S0550-3213(98)00043-1, [\href{https://arxiv.org/abs/hep-ph/9710245}{arXiv:9710245 [hep-ph]}].
 
 \end{thebibliography}
 
