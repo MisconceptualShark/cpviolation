@@ -450,14 +450,14 @@ def bmumu(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,mc,mu,wangle,higgs,v,Vus
     z1,z2,y,yh,yH0 = (mu/mH)**2,(mc/mH)**2,(mW/mH)**2,(mH/higgs)**2,(mH/mH0)**2
     z3t,z3w = (mtmut/mH)**2,(mtmu/mH)**2
     el = np.sqrt(4*np.pi/137)
-    #cba,sba = np.sin(2*b),-np.sin(2*b)
-    cba,sba = np.cos(b-a),np.sin(b-a)
+    cba,sba = np.sin(2*b),-np.sin(2*b)
+    #cba,sba = np.cos(b-a),np.sin(b-a)
     Lp = (yh*cba**2 + yH0*sba**2)*(-2*tanb*mmu/v)
     Lm = -1*Lp
-    lamh = -((higgs**2)*(3*np.cos(a+b)+np.cos(a-3*b)) + 4*np.sin(2*b)*np.sin(b-a)*mH**2 - 4*np.cos(a+b)*M**2)/(2*np.sin(2*b)*v**2)
-    lamH0 = -((mH0**2)*(3*np.sin(a+b)+np.sin(a-3*b)) + 4*np.sin(2*b)*np.cos(b-a)*mH**2 - 4*np.sin(a+b)*M**2)/(2*np.sin(2*b)*v**2)
-    #lamh = -((higgs**2)*(-3*np.sin(2*b)+np.sin(6*b)) - 4*np.sin(2*b)*np.sin(2*b)*mH**2 + 4*np.sin(2*b)*M**2)/(2*np.sin(2*b)*v**2)
-    #lamH0 = -((mH0**2)*(3*np.sin(2*b)-np.sin(6*b)) + 4*np.sin(2*b)*np.sin(2*b)*mH**2 - 4*np.sin(2*b)*M**2)/(2*np.sin(2*b)*v**2)
+    #lamh = -((higgs**2)*(3*np.cos(a+b)+np.cos(a-3*b)) + 4*np.sin(2*b)*np.sin(b-a)*mH**2 - 4*np.cos(a+b)*M**2)/(2*np.sin(2*b)*v**2)
+    #lamH0 = -((mH0**2)*(3*np.sin(a+b)+np.sin(a-3*b)) + 4*np.sin(2*b)*np.cos(b-a)*mH**2 - 4*np.sin(a+b)*M**2)/(2*np.sin(2*b)*v**2)
+    lamh = -((higgs**2)*(-3*np.sin(2*b)+np.sin(6*b)) - 4*np.sin(2*b)*np.sin(2*b)*mH**2 + 4*np.sin(2*b)*M**2)/(2*np.sin(2*b)*v**2)
+    lamH0 = -((mH0**2)*(3*np.sin(2*b)-np.sin(6*b)) + 4*np.sin(2*b)*np.sin(2*b)*mH**2 - 4*np.sin(2*b)*M**2)/(2*np.sin(2*b)*v**2)
 
     C10_1 = (1/(2*el**2))*(abs(cob*mtmu/v)**2)*(I1(z3t)-1)
     C10P_1 = -(abs(tanb/v)**2)*(mb*ms/(2*el**2))*(I1(z3t)-1)
@@ -605,23 +605,23 @@ def gHat(x,z):
     return gHat
 
 def S2HDMofTheta (mHpm,mA0,mH0,Theta,mW,mZ,mh,Gf,alphaem,wangle):
-    S2HDMofTheta=(wangle*Gf*mW**2/(alphaem*12*2**(0.5)*np.pi**2))\
-    *(((2*wangle-1)**2)*g(mHpm**2,mHpm**2,mZ**2)\
-    +(np.sin(Theta))**2*g(mA0**2,mH0**2,mZ**2)\
-    +(np.cos(Theta))**2*g(mA0**2,mh**2,mZ**2)\
-    +2*np.log(mA0*mH0*(mHpm**(-2)))\
-    +(np.cos(Theta))**2*(gHat(mH0**2,mZ**2)-gHat(mh**2,mZ**2)))
     #S2HDMofTheta=(wangle*Gf*mW**2/(alphaem*12*2**(0.5)*np.pi**2))\
     #*(((2*wangle-1)**2)*g(mHpm**2,mHpm**2,mZ**2)\
-    #+(-np.sin(2*Theta))**2*g(mA0**2,mH0**2,mZ**2)\
-    #+(np.sin(2*Theta))**2*g(mA0**2,mh**2,mZ**2)\
+    #+(np.sin(Theta))**2*g(mA0**2,mH0**2,mZ**2)\
+    #+(np.cos(Theta))**2*g(mA0**2,mh**2,mZ**2)\
     #+2*np.log(mA0*mH0*(mHpm**(-2)))\
-    #+(np.sin(2*Theta))**2*(gHat(mH0**2,mZ**2)-gHat(mh**2,mZ**2)))
+    #+(np.cos(Theta))**2*(gHat(mH0**2,mZ**2)-gHat(mh**2,mZ**2)))
+    S2HDMofTheta=(wangle*Gf*mW**2/(alphaem*12*2**(0.5)*np.pi**2))\
+    *(((2*wangle-1)**2)*g(mHpm**2,mHpm**2,mZ**2)\
+    +(-np.sin(2*Theta))**2*g(mA0**2,mH0**2,mZ**2)\
+    +(np.sin(2*Theta))**2*g(mA0**2,mh**2,mZ**2)\
+    +2*np.log(mA0*mH0*(mHpm**(-2)))\
+    +(np.sin(2*Theta))**2*(gHat(mH0**2,mZ**2)-gHat(mh**2,mZ**2)))
     return S2HDMofTheta
 
 def S2HDMofAlphaBeta (mHpm,mA0,mH0,Alpha,Beta,mW,mZ,mh,Gf,alphaem,wangle):
-    S2HDMofAlphaBeta=S2HDMofTheta(mHpm,mA0,mH0,Beta-Alpha,mW,mZ,mh,Gf,alphaem,wangle)
-    #S2HDMofAlphaBeta=S2HDMofTheta(mHpm,mA0,mH0,Beta,mW,mZ,mh,Gf,alphaem,wangle)
+    #S2HDMofAlphaBeta=S2HDMofTheta(mHpm,mA0,mH0,Beta-Alpha,mW,mZ,mh,Gf,alphaem,wangle)
+    S2HDMofAlphaBeta=S2HDMofTheta(mHpm,mA0,mH0,Beta,mW,mZ,mh,Gf,alphaem,wangle)
     return S2HDMofAlphaBeta
 
 def SOb_err(mHp,mA0,mH0,alpha,beta,mW,mW_err,mZ,mZ_err,mh,mh_err,Gf,alphaem,wangle,wan_err):
@@ -642,25 +642,25 @@ def SOb_err(mHp,mA0,mH0,alpha,beta,mW,mW_err,mZ,mZ_err,mh,mh_err,Gf,alphaem,wang
     return upper, lower
 
 def U2HDMofTheta (mHpm,mA0,mH0,Theta,mW,mZ,mh,Gf,alphaem,wangle):
-    U2HDMofTheta=((Gf*mW**2)/(48*2**0.5*np.pi**2*alphaem))*(g(mHpm**2,mA0**2,mW**2)\
-    +(np.sin(Theta))**2*g(mHpm**2,mH0**2,mW**2)+(np.cos(Theta))**2*g(mHpm**2,mh**2,mW**2)\
-    -(2*wangle-1)**2*g(mHpm**2,mHpm**2,mZ**2)\
-    -(np.sin(Theta))**2*g(mA0**2,mH0**2,mZ**2)\
-    -(np.cos(Theta))**2*g(mA0**2,mh**2,mZ**2)\
-    +(np.cos(Theta))**2*(gHat(mH0**2,mW**2)-gHat(mH0**2,mZ**2))\
-    -(np.cos(Theta))**2*(gHat(mh**2,mW**2)-gHat(mh**2,mZ**2)))
     #U2HDMofTheta=((Gf*mW**2)/(48*2**0.5*np.pi**2*alphaem))*(g(mHpm**2,mA0**2,mW**2)\
-    #+(-np.sin(2*Theta))**2*g(mHpm**2,mH0**2,mW**2)+(np.sin(2*Theta))**2*g(mHpm**2,mh**2,mW**2)\
+    #+(np.sin(Theta))**2*g(mHpm**2,mH0**2,mW**2)+(np.cos(Theta))**2*g(mHpm**2,mh**2,mW**2)\
     #-(2*wangle-1)**2*g(mHpm**2,mHpm**2,mZ**2)\
-    #-(-np.sin(2*Theta))**2*g(mA0**2,mH0**2,mZ**2)\
-    #-(np.sin(2*Theta))**2*g(mA0**2,mh**2,mZ**2)\
-    #+(np.sin(2*Theta))**2*(gHat(mH0**2,mW**2)-gHat(mH0**2,mZ**2))\
-    #-(np.sin(2*Theta))**2*(gHat(mh**2,mW**2)-gHat(mh**2,mZ**2)))
+    #-(np.sin(Theta))**2*g(mA0**2,mH0**2,mZ**2)\
+    #-(np.cos(Theta))**2*g(mA0**2,mh**2,mZ**2)\
+    #+(np.cos(Theta))**2*(gHat(mH0**2,mW**2)-gHat(mH0**2,mZ**2))\
+    #-(np.cos(Theta))**2*(gHat(mh**2,mW**2)-gHat(mh**2,mZ**2)))
+    U2HDMofTheta=((Gf*mW**2)/(48*2**0.5*np.pi**2*alphaem))*(g(mHpm**2,mA0**2,mW**2)\
+    +(-np.sin(2*Theta))**2*g(mHpm**2,mH0**2,mW**2)+(np.sin(2*Theta))**2*g(mHpm**2,mh**2,mW**2)\
+    -(2*wangle-1)**2*g(mHpm**2,mHpm**2,mZ**2)\
+    -(-np.sin(2*Theta))**2*g(mA0**2,mH0**2,mZ**2)\
+    -(np.sin(2*Theta))**2*g(mA0**2,mh**2,mZ**2)\
+    +(np.sin(2*Theta))**2*(gHat(mH0**2,mW**2)-gHat(mH0**2,mZ**2))\
+    -(np.sin(2*Theta))**2*(gHat(mh**2,mW**2)-gHat(mh**2,mZ**2)))
     return U2HDMofTheta
 
 def U2HDMofAlphaBeta (mHpm,mA0,mH0,Alpha,Beta,mW,mZ,mh,Gf,alphaem,wangle):
-    U2HDMofAlphaBetta=U2HDMofTheta(mHpm,mA0,mH0,Beta-Alpha,mW,mZ,mh,Gf,alphaem,wangle)
-    #U2HDMofAlphaBetta=U2HDMofTheta(mHpm,mA0,mH0,Beta,mW,mZ,mh,Gf,alphaem,wangle)
+    #U2HDMofAlphaBetta=U2HDMofTheta(mHpm,mA0,mH0,Beta-Alpha,mW,mZ,mh,Gf,alphaem,wangle)
+    U2HDMofAlphaBetta=U2HDMofTheta(mHpm,mA0,mH0,Beta,mW,mZ,mh,Gf,alphaem,wangle)
     return U2HDMofAlphaBetta
 
 def UOb_err(mHp,mA0,mH0,alpha,beta,mW,mW_err,mZ,mZ_err,mh,mh_err,Gf,alphaem,wangle,wan_err):
@@ -688,21 +688,21 @@ def F(x,y):
     return F
 
 def T(MHpm,MA0,MH0,Theta,mW,mZ,mh,Gf,alphaem):
-    #T=(Gf/(8*(2**0.5)*alphaem*(np.pi)**2))*(F(MHpm**2,MA0**2)+(-np.sin(2*Theta))**2*F(MHpm**2,MH0**2)\
-    #+((np.sin(2*Theta))**2)*F(MHpm**2,mh**2)-((-np.sin(2*Theta))**2)*F(MA0**2,MH0**2)\
-    #-((np.sin(2*Theta))**2)*F(MA0**2,mh**2)\
-    #+3*((np.sin(2*Theta))**2)*(F(mZ**2,MH0**2)-F(mW**2,MH0**2))\
-    #-3*((np.sin(2*Theta))**2)*(F(mZ**2,mh**2)-F(mW**2,mh**2)))
-    T=(Gf/(8*(2**0.5)*alphaem*(np.pi)**2))*(F(MHpm**2,MA0**2)+(np.sin(Theta))**2*F(MHpm**2,MH0**2)\
-    +((np.cos(Theta))**2)*F(MHpm**2,mh**2)-((np.sin(Theta))**2)*F(MA0**2,MH0**2)\
-    -((np.cos(Theta))**2)*F(MA0**2,mh**2)\
-    +3*((np.cos(Theta))**2)*(F(mZ**2,MH0**2)-F(mW**2,MH0**2))\
-    -3*((np.cos(Theta))**2)*(F(mZ**2,mh**2)-F(mW**2,mh**2)))
+    T=(Gf/(8*(2**0.5)*alphaem*(np.pi)**2))*(F(MHpm**2,MA0**2)+(-np.sin(2*Theta))**2*F(MHpm**2,MH0**2)\
+    +((np.sin(2*Theta))**2)*F(MHpm**2,mh**2)-((-np.sin(2*Theta))**2)*F(MA0**2,MH0**2)\
+    -((np.sin(2*Theta))**2)*F(MA0**2,mh**2)\
+    +3*((np.sin(2*Theta))**2)*(F(mZ**2,MH0**2)-F(mW**2,MH0**2))\
+    -3*((np.sin(2*Theta))**2)*(F(mZ**2,mh**2)-F(mW**2,mh**2)))
+    #T=(Gf/(8*(2**0.5)*alphaem*(np.pi)**2))*(F(MHpm**2,MA0**2)+(np.sin(Theta))**2*F(MHpm**2,MH0**2)\
+    #+((np.cos(Theta))**2)*F(MHpm**2,mh**2)-((np.sin(Theta))**2)*F(MA0**2,MH0**2)\
+    #-((np.cos(Theta))**2)*F(MA0**2,mh**2)\
+    #+3*((np.cos(Theta))**2)*(F(mZ**2,MH0**2)-F(mW**2,MH0**2))\
+    #-3*((np.cos(Theta))**2)*(F(mZ**2,mh**2)-F(mW**2,mh**2)))
     return T
 
 def T2HDMofAlphaBeta(MHpm,MA0,MH0,Alpha,Beta,mW,mZ,mh,Gf,alphaem):
-    Tofalphabeta = T(MHpm,MA0,MH0,Beta-Alpha,mW,mZ,mh,Gf,alphaem)
-    #Tofalphabeta = T(MHpm,MA0,MH0,Beta,mW,mZ,mh,Gf,alphaem)
+    #Tofalphabeta = T(MHpm,MA0,MH0,Beta-Alpha,mW,mZ,mh,Gf,alphaem)
+    Tofalphabeta = T(MHpm,MA0,MH0,Beta,mW,mZ,mh,Gf,alphaem)
     return Tofalphabeta
 
 def TOb_err(mHp,mA0,mH0,alpha,beta,mW,mW_err,mZ,mZ_err,mh,mh_err,Gf,alphaem):
@@ -906,8 +906,8 @@ def itera_global(
     for i in mH_range:
         for j in tanb_range:
             b = np.arctan(j)
-            alph = b - np.pi/2 # find alpha in alignment limit
-#            alph = b - np.arccos(0.465) # find alpha in wrong sign limit
+#            alph = b - np.pi/2 # find alpha in alignment limit
+            alph = b - np.arccos(0.465) # find alpha in wrong sign limit
             mH0 = 1500 # set H0 and A0 masses
             mA0 = 1500
             ##### LEPTONICS #####

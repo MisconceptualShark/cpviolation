@@ -155,19 +155,19 @@ delta_b,delta_d = 0.982,0.99*0.982
 #rd_exp, rd_exp_err = [0.416,[0.128,-0.128]] #08
 
 # B+ -> tau+ nu
-mH_bplus, tanb_bplus = itera(m_bplus,m_bplus_err,m_mu,m_mu_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,m_u,m_u_err,m_b,m_b_err,bplusmu_exp,bplusmu_err_exp,1)
-plt.figure(figsize=(8,6))
-plt.scatter(tanb_bplus,mH_bplus,c='green')
-plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
-plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-plt.title('$B^+\\to\\tau^+\\nu,\; V_{ub}$',fontsize=18)
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
-plt.axis([-1,2,0,3.5])
-plt.axvline(x=np.log10(172.9/4.18),color='black')
-plt.annotate('$S,T,U$',xy=(0.88,0.85),xycoords='axes fraction',fontsize=13)
-plt.show()
-quit()
+#mH_bplus, tanb_bplus = itera(m_bplus,m_bplus_err,m_mu,m_mu_err,Vub,Vub_err,f_bplus,f_bplus_err,tau_bplus,tau_bplus_err,m_u,m_u_err,m_b,m_b_err,bplusmu_exp,bplusmu_err_exp,1)
+#plt.figure(figsize=(8,6))
+#plt.scatter(tanb_bplus,mH_bplus,c='green')
+#plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
+#plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
+#plt.title('$B^+\\to\\tau^+\\nu,\; V_{ub}$',fontsize=18)
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+#plt.axis([-1,2,0,3.5])
+#plt.axvline(x=np.log10(172.9/4.18),color='black')
+#plt.annotate('$S,T,U$',xy=(0.88,0.85),xycoords='axes fraction',fontsize=13)
+#plt.show()
+#quit()
 #plt.savefig('vbtau.png')
 
 # D+ -> mu+ nu
@@ -227,26 +227,27 @@ hrdn, trdn, chi_rdn, chi_nmin, hrdst, trdst, chi_rdst, chi_stmin, ha, ta, chia, 
 
 m2,m1=5.99,2.30
 hchi_rd, tchi_rd, rd_edges_e = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m2)
-hchi_rd2, tchi_rd2, rd_edges = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m1)
+#hchi_rd2, tchi_rd2, rd_edges = chi_del(chi_nmin,chi_rdn,hrdn,trdn,m1)
 hchi_rds, tchi_rds, rds_edges_e = chi_del(chi_stmin,chi_rdst,hrdst,trdst,m2)
-hchi_rds2, tchi_rds2, rds_edges = chi_del(chi_stmin,chi_rdst,hrdst,trdst,m1)
-hchi_rda, tchi_rda, rda_edges_e = chi_del(am,chia,ha,ta,m2)
-hchi_rda2, tchi_rda2, rda_edges = chi_del(am,chia,ha,ta,m1)
+#hchi_rds2, tchi_rds2, rds_edges = chi_del(chi_stmin,chi_rdst,hrdst,trdst,m1)
+#hchi_rda, tchi_rda, rda_edges_e = chi_del(am,chia,ha,ta,m2)
+#hchi_rda2, tchi_rda2, rda_edges = chi_del(am,chia,ha,ta,m1)
 
 plt.figure(figsize=(8,6))
-plt.scatter(ta,ha,c='turquoise',marker=',')
-#plt.scatter(trdn,hrdn,c='cadetblue',marker=',')
-for i, j in rda_edges_e[0]:
-    plt.plot(rda_edges_e[1][[i,j],0],rda_edges_e[1][[i,j],1],c='black',linestyle='--')
-for i, j in rda_edges[0]:
-    plt.plot(rda_edges[1][[i,j],0],rda_edges[1][[i,j],1],c='blue',linestyle='--')
+plt.scatter(trdst,hrdst,c='turquoise',marker=',')
+plt.scatter(trdn,hrdn,c='cadetblue',marker=',')
+for i, j in rds_edges_e[0]:
+    plt.plot(rds_edges_e[1][[i,j],0],rds_edges_e[1][[i,j],1],c='blue',linestyle='--')
+for i, j in rd_edges_e[0]:
+    plt.plot(rd_edges_e[1][[i,j],0],rd_edges_e[1][[i,j],1],c='blue',linestyle='--')
 plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-#plt.title('$\\mathcal{R}(D^{(*)}),$ 95% CL',fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
 plt.axis([-1,2,0,3.5])
-plt.savefig('rd_both3sig.png')
+plt.annotate('$R(D^*)$',xy=(3/12,0.12),xycoords='axes fraction',fontsize=21)
+plt.annotate('$R(D)$',xy=(3/12,0.7),xycoords='axes fraction',fontsize=21)
+plt.savefig('rd_both196sig.png')
 #plt.show()
 os.system('play draco.mp3')
 quit()

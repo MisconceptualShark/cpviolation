@@ -280,7 +280,7 @@ def itera_rdn(mBs,mBs_err,mD,mD_err,rhod,rhod_err,delta,delta_err,Vcb,Vcb_err,mm
 
 def itera_rda(mBs,mBs_err,mD,mD_err,mDs,mDs_err,rhod,rhod_err,rhods,rhods_err,r01,r01_err,r11,r11_err,r21,r21_err,delta,delta_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,rde,rde_err,rdste,rdste_err):
 
-    sigma = 3
+    sigma = 2
     rde_u,rde_d = rde+rde_err[0],rde+rde_err[1]
     rdste_u,rdste_d = rdste+rdste_err[0],rdste+rdste_err[1]
     av_rd = 0.5*(rde_u+rde_d)

@@ -231,8 +231,7 @@ print chi_2
 
 p_val, p_err = p_vals(chi_2[0],nu)
 print "p-value for global fit with ", nu," degrees of freedom is: ", "{:.1%}".format(p_val)#, " +/- ", p_err
-print "alignment limit"
-quit()
+print "wrong sign limit"
 
 # plotting! scatter plots for regions, then the for loops plot out the outline
 # all regions plotted to 95% CL, and their lines plotted to this too, but then the 1 sigma everything region's border is plotted
@@ -260,18 +259,18 @@ plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
 plt.xticks(fontsize=18)
 plt.yticks(fontsize=18)
-#plt.axvline(x=np.log10(6),color='lightseagreen')
+plt.axvline(x=np.log10(6),color='lightseagreen')
 plt.axvline(x=np.log10(mt/m_b),color='black')
 plt.axhline(y=np.log10(160),color='black',linestyle='--')
-plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D)$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
-#plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D^{(*)})$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
+#plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D)$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
+plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D^{(*)})$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
 plt.annotate('$\\Delta M_q$',xy=(0.78,0.15),xycoords='axes fraction',fontsize=18)
 plt.annotate('$b\\to s\\gamma$',xy=(0.05,0.9),xycoords='axes fraction',fontsize=18)
 plt.annotate('All',xy=(0.6,0.79),xycoords='axes fraction',fontsize=18)
 plt.annotate('S,T,U',xy=(0.88,0.85),xycoords='axes fraction',fontsize=13)
 plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.52,0.55),xycoords='axes fraction',fontsize=18)
-plt.title('$M = 750\,GeV,\; m_{A^0} = 1.5\,TeV,$ \n $m_{H^0} = 1.5\,TeV,\; \\cos(\\beta-\\alpha) = 0$',fontsize=18)
+plt.title('$M = 750\,GeV,\; m_{A^0} = 1.5\,TeV,$ \n $m_{H^0} = 1.5\,TeV,\; \\cos(\\beta-\\alpha) = \\sin(2\\beta)$',fontsize=18)
 #plt.title('$M = 750\,GeV,\; m_{H^0} = 1.5\,TeV,\; \\cos(\\beta-\\alpha) = \\sin(2\\beta)$',fontsize=18)
-plt.savefig('global_test2.png')
+plt.savefig('global_test3sig3.png')
 #plt.show()
 os.system('play draco.mp3')
