@@ -104,13 +104,14 @@ $T^a$ are the generators of these fields, which are represented by the Pauli mat
 For SU(2), there are three gauge fields, which will lead to the three associated bosons ($W^{\pm},Z$) when mixed with U(1); for SU(3), there are eight gauge fields, leading to the eight gluons.
 Clearly for U(1) there is only a single gauge field, which will lead to the photon when mixed with the SU(2) gauge fields.
 In addition to the definitions in Eq.\eqref{eq:gauge}, to make Eq.\eqref{eq:dirac:1} gauge invariant, it is necessary to transform the gauge field, as well as introduce the \textit{covariant derivative}, $D_\mu$:
+\vspace{-18pt}
 \begin{align}
     \label{eq:transform:1}
     A^a_\mu &\to A^a_\mu + \frac{1}{g}\partial_\mu\alpha^a + gf^{abc}\alpha^bA^c_\mu, \\
     \label{eq:transform:2}
     \partial_\mu &\to D_\mu = \partial_\mu - igT^aA^a_\mu,
 \end{align}
-where $g$ is the relevant gauge coupling parameter.
+where $g$ is the gauge coupling parameter and $f^{abc}$ are the structure constants defining each SU(N) group; see, e.g. \cite{schwartz}. 
 Note that Eqs.\eqref{eq:transform:1} and \eqref{eq:transform:2} are the general forms for the SU(N) theories (when considering U(1), these are simplified).
 The full covariant derivative of the Standard Model is
 \begin{equation}
@@ -123,7 +124,6 @@ From these definitions, the gauge invariance of Eq.\eqref{eq:dirac:1} for U(1) s
     \label{eq:commute}
     [T^a,T^b] = if^{abc}T^c,
 \end{equation}
-where $f^{abc}$ are the structure constants which define each SU(N) group; see, e.g. \cite{schwartz}. 
 As in many parts of quantum mechanics, it can be useful to define the fermion field $\psi$ into an upper and lower part, such that $\psi$ can be written as a linear combination of component states. 
 This can be done in many ways, but it is important in the formulation of the Standard Model to separate the fermion field into left- and right-handed components; this was suggested in the 1950s by Lee and Yang \cite{lee} and then shown experimentally by Wu and collaborators \cite{wu}, as a description of the parity violation of nature. 
 To this end, we define the operators
@@ -160,7 +160,7 @@ The fermion mass term would initially seem invariant, but under the electroweak 
 \end{equation}
 and so is no longer invariant, due to the mixing of right-handed and left-handed spinors. 
 
-To solve this problem, the Higgs mechanism can be introduced as a way to spontaneously break the symmetry of the electroweak force to generate massive bosons, described in \cite{higgs} among others. 
+To solve this problem, the Higgs mechanism can be introduced as a way to spontaneously break the symmetry of the electroweak force to generate massive bosons \cite{higgs}.
 The Lagrangian of the scalar Higgs reads
 \begin{equation}
     \label{eq:higgslag}
@@ -171,7 +171,7 @@ Consider a complex scalar field under the SU(2) left-handed doublet representati
     \label{eq:doubscal}
     \Phi = \frac{1}{\sqrt{2}}\begin{pmatrix}\phi_1+i\phi_2\\\phi_0+i\phi_3\end{pmatrix} = \begin{pmatrix} \phi^+\\\phi^0\end{pmatrix},
 \end{equation}
-which has a U(1) hypercharge $Y=+\frac12$; see, e.g. \cite{peskin}.
+which has a U(1) hypercharge $Y=+\frac12$ \cite{higgs}.
 The covariant derivative in Eq.\eqref{eq:higgslag} is that defined for SU(2)$\otimes$U(1):
 \begin{equation}
     \label{eq:covarhiggs}
@@ -250,7 +250,7 @@ These can be diagonalised in which the constituent states are the mass eigenstat
     \label{eq:massmat}
     \frac{v}{\sqrt{2}}V_1^\dagger Y_uV_1 &= \begin{pmatrix} m_u & & \\ & m_c & \\ & & m_t\end{pmatrix}, & \frac{v}{\sqrt{2}}V_2^\dagger Y_dV_2 &= \begin{pmatrix} m_d & & \\ & m_s & \\ & & m_b\end{pmatrix}.
 \end{align}
-It may or may not be possible for these matrices to be diagonalised simultaneously, however, this is not generally expected so we do not start under that assumption. 
+It may or may not be possible for these matrices to be diagonalised simultaneously, however, this is not generally expected so we do not start under any assumption. 
 By convention, it is chosen to diagonalise the up-type quarks, and then rotate the down-type quarks between their weak eigenstates and their mass eigenstates \cite{peskin}. 
 The famous Cabibbo-Kobayashi-Maskawa (CKM) matrix, defined $V_{CKM}\equiv V_1^\dagger V_2$, is the matrix connecting mass and weak eigenstates,
 \begin{equation}
@@ -268,7 +268,7 @@ The strengths of quark coupling are stored in elements of the CKM matrix as
 These individual elements can be found through quark coupling processes. 
 For better understanding of the CKM matrix, however, it can be easier to parameterise it. 
 The two most common parameterisations are the \emph{standard parameterisation} \cite{pdg}, which is exact, and the \emph{Wolfenstein parameterisation}, which is an approximation \cite{wolf}.
-The standard parameterisation follows from extension of the Cabibbo angle for mixing between the first and second generations \cite{cabibbo}, where we now use three Cabibbo-like matrices for interactions of two quark generations, and multiply them for the CKM matrix, including a phase required by the formation of a $3\times3$ unitary matrix:
+The standard parameterisation follows from extension of the Cabibbo angle for mixing between the first and second generations \cite{cabibbo}, where we now use three Cabibbo-like matrices for interactions of two generations, and include a phase required by the formation of a $3\times3$ unitary matrix:
 \begin{equation}
     \label{eq:standpar}
     \begin{split}
@@ -454,7 +454,7 @@ For B meson phenomena, the effect is approximated to 0.
     \caption{\label{fig:mesons}$W^\pm$ and $H^\pm$ pathways for the leptonic decay of a meson (before higher-order terms).}
 \end{figure}
 For the light mesons, kaons and pions, it is easier to determine the ratio of their decay constants $f_K/f_\pi$ than the individual values.
-Thus, it is then easier to consider the ratio of their branching fractions as well. 
+Thus, it is then easier to consider the ratio of their branching fractions. 
 In the Standard Model, 
 \begin{equation}
     \label{eq:kpi}
@@ -484,7 +484,7 @@ $r_H=0$ is known as the decoupling solution which can be found as $m_{H^+}$ appr
 Neutral B meson mixing is a common focus in flavour physics, due to the strong dependence on the heavy $W$ exchange. 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale=0.8,trim=12em 44.5em 8em 12em,clip]{bmix.pdf}
+    \includegraphics[scale=1.0,trim=12em 44.5em 8em 12em,clip]{bmix.pdf}
     \caption{\label{fig:bmix} Examples of the box diagrams detailing $B_d$ and $B_s$ meson mixing.}
 \end{figure}
 A key observable in the study of B-mixing is the mass difference $\Delta m_q$ between the two mass eigenstates, $\Delta m_q = M_H^q - M_L^q$, where `$H$' denotes the `heavy' eigenstate and `$L$' denotes the `light'. 
@@ -529,7 +529,7 @@ $P$ and $N$ are parameterised in \cite{desc,susy} as
     \label{eq:pplsn}
     P+N = (C^{\text{eff},(0)}_{7,SM}+B\Delta C_{7,H^+}^{\text{eff},(0)})^2+A,
 \end{equation}
-where $A$ and $B$ are functions defined in \cite{desc}, $C_{7,SM}^{\text{eff},(0)}$ is one of the Wilson coefficients of the effective Hamiltonian in the SM, and $\Delta C_{7,H^+}^{\text{eff},(0)}$ holds the charged Higgs contributions to the SM Wilson coefficient. 
+where $A$ and $B$ are functions defined in Appendix B of \cite{desc}, $C_{7,SM}^{\text{eff},(0)}$ is one of the Wilson coefficients of the effective Hamiltonian in the SM, and $\Delta C_{7,H^+}^{\text{eff},(0)}$ holds the charged Higgs contributions to the SM Wilson coefficient. 
 Although these expressions are calculated to NLO, in calculating the above Wilson coefficients, we choose a renormalisation scheme $\mu_b$ such that we recover the results of the NNLO calculation. 
 
 In Eq.\eqref{eq:xsgam}, $C$ is the non-perturbative phase-space normalisation factor for the difference between the charmed semileptonic branching ratio and $\bar{B}\to X_s\gamma$. 
@@ -577,14 +577,14 @@ For these calculations, we follow the parameterisation of this process laid out 
     \end{tabular}
     \caption{\label{tab:params} Parameters used in the 2HDM fits for decays outlined in Section \ref{sec:probe}.}
 \end{table}
-Before updating the fit performed in \cite{desc}, we check that we can replicate their results from 2009 and update this with the most recent input values. 
+Before updating and expanding on the fit performed in \cite{desc}, we check that we can replicate their results from 2009 and update this with the most recent input values. 
 All processes mentioned above were used to test the constraints on the 2HDM parameters $m_{H^+}$ and $\tan\beta$. 
 The 2HDM-extended branching ratios were tested in $(m_{H^+},\tan\beta)$ parameter space to search for regions where a charged Higgs would be allowed by nature. 
 The individual constraints found for leptonic decays, B meson mixing, and the radiative $b\to s\gamma$ decay are shown in Figure \ref{fig:indies} in a log-log scale.
 After the constraints on the 2HDM for each individual process were found, they were combined for a global fit shown in Figure \ref{subfig:glob11} (again in a log-log scale), yielding an overall allowed region in $(m_{H^+},\tan\beta)$ space. 
 
 For each constraint, a scan was performed to $2\sigma$ to find regions where the parameter space is not excluded at this level. 
-A $\chi^2$ fit was then performed to constrain these regions to where $\Delta\chi^2$ corresponded to 95\% CL exclusion, such that each coloured region shown in these Figures shows what is not excluded to 95\% CL.
+A $\chi^2$ fit was then performed to constrain these regions to where $\Delta\chi^2$ corresponded to 95\% CL exclusion, such that each coloured region shown in these figures shows what is not excluded to 95\% CL.
 For the combined fit, we also show the $1\sigma$ confidence region. 
 
 To test the validity of these results, we also show what our calculations produce for 2009 inputs, as done in \cite{desc}.
@@ -606,7 +606,7 @@ We also see that for the combined fit, $\tan\beta$ will extend both to smaller a
 There is, however, a clear indication of a minimum allowed value for $m_{H^+}$, found here as
 \begin{align}
     \label{eq:const}
-    m_{H^+} > 480 \;\text{GeV}\, (95\% \text{ CL});\quad 750 \;\text{GeV}\, (1\sigma).
+    m_{H^+} > \begin{split} &\; 480 \;\text{GeV},\, 95\% \text{ CL}, \\ &\; 750 \;\text{GeV},\, 1\sigma. \end{split}
 \end{align}
 \begin{figure}[ht]
     \centering
@@ -651,7 +651,7 @@ where we follow \cite{criv} for the expressions of the relevant Wilson coefficie
 Previous works (see \cite{lrgtb}) have focused on studying these processes in the large $\tan\beta$ limit ($\tan\beta\gg\sqrt{\frac{m_t}{m_b}}$) where the Yukawa coupling to $b$ quarks is large and there can large effects on B mesons. 
 Working in the large $\tan\beta$ limit is also useful as it reduces the number of 2HDM parameters that this process will depend on. 
 However, in this work, we choose to work with the general expressions, as given by \cite{criv}, to work with our fit across the whole parameter space we study. 
-Using these general expressions, however, introduces new variables, primarily in the expressions for the trilinear Higgs couplings which we take from \cite{trilin}.
+Using these general expressions, however, introduces new variables, primarily in the expressions for the trilinear Higgs couplings which we take from \cite{trilin} and write in Eqs. \ref{eq:trilin1} and \ref{eq:trilin2}.
 These new variables are: the masses of the neutral $h^0,H^0$; the mixing angle $\alpha$; and the 2HDM potential parameter $M=\frac{m_{12}^2}{\sin\beta\cos\beta}$ (see Eq. \ref{eq:HDMpot}). 
 These new parameters can all be varied along with $m_{H^+}$ and $\tan\beta$ in a higher-dimensional fit, although it is simpler to fix some of these at set values. 
 
@@ -873,11 +873,10 @@ First, when considering the 2HDM in the wrong sign limit, both for flavour obser
 This is also the case in the three-dimensional fit. 
 The likelihood therefore of this model being correct is slim. 
 This model would likely perform even worse statistically were we to include the $\tan\beta\gtrapprox6$ limit from \cite{oliver} in the fit, as the current $\chi^2_{min}$ value for the ranges of $\tan\beta$ given in Tables \ref{tab:pthreed} and \ref{tab:pval1} is found at $\tan\beta<6$ in all cases, and as such, we would expect an increased value for $\chi^2_{min}$ from imposing this limit and a further decrease in the p-value. 
-In the case of the flavour observables alone in the wrong sign limit, $\tan\beta$ is restricted from taking values greater than $14.3$ at $95\%$ CL, and although including the constraint from \cite{oliver} may change the fit, it is unlikely to increase it significantly for these observables, in which case, the wrong sign limit is fully excluded from the comparison of flavour observable constraints and the perturbativity constraints from \cite{oliver}.
+In the case of the flavour observables alone in the wrong sign limit, $\tan\beta$ is restricted from taking values greater than $14.3$ at $95\%$ CL, and although including the constraint from \cite{oliver} may change the fit, it is unlikely to increase the maximum $\tan\beta$ significantly for these observables, in which case, the wrong sign limit is fully excluded from the comparison of flavour observable constraints and the perturbativity constraints from \cite{oliver}.
 There would still be some allowed space when including the oblique parameters in the fit for the wrong sign limit, however, this will be a very narrow region, and the confidence in this will be much smaller.
-As can be seen in Figure \ref{fig:global}, the behaviour of the oblique parameters causes two separate allowed regions for lower $\tan\beta$. 
-They do, however, combine above the $\tan\beta\gtrapprox6$ threshold we consider. 
-This strange behaviour can then be neglected in this limit, however, it could be possible that it does have a more significant impact under further study.
+As can be seen in Figure \ref{fig:global}, the behaviour of the oblique parameters causes two separate allowed regions for lower $\tan\beta$, although they do combine above the $\tan\beta\gtrapprox6$ threshold we consider. 
+This strange behaviour can be neglected in this limit, but it could be possible that it does have a more significant impact under further study.
 
 The dependency on $m_{H^0}$ in the wrong sign limit differs from the alignment limit, with the constraint from $B_q\to\mu^+\mu^-$ taking a different shape, that may actually favour lower values of $m_{H^0}$ as this would result in an increase in the allowed range for $\tan\beta\gtrapprox6$.
 While we are still limited to a minimum value for $m_{H^+}$ (and consequently $m_{H^0}$ for $m_{H^0}\approx m_{H^+}$) from $b\to s\gamma$, approaching this minimum value could increase the prospects of realising the wrong sign limit. 
@@ -947,8 +946,8 @@ We have tested the Two Higgs Doublet Model Type II using flavour observables, wh
 The constraints found from flavour observables are outlined in Table \ref{tab:pval1} in both the alignment and wrong sign limits, using $2\sigma$ scans. 
 We have also collaborated with \cite{james} to include the oblique parameters $S,T,U$ into our fit, where the most definitive constraint found with this is that $m_{H^+}\approx m_{H^0}\approx m_{A^0}$. 
 Details of this fit are found in Tables \ref{tab:pthreed} and \ref{tab:pval1}. 
-We have found that we can exclude this model from $2\sigma$ error signifance to 95\% CL in the wrong sign limit, and 85\% CL in the alignment - this was found both in a two-dimensional fit with fixed $m_{H^0}=m_{A^0}$, and a three-dimensional fit varying $m_{H^0}$.
-The model cannot be excluded with large confidence at the $3\sigma$ error significance.
+We have found that we can exclude this model at $2\sigma$ error signifance to 95\% CL in the wrong sign limit, and 85\% CL in the alignment - this was found both in a two-dimensional fit with fixed $m_{H^0}=m_{A^0}$, and a three-dimensional fit varying $m_{H^0}$.
+The model cannot be excluded with large confidence at $3\sigma$ error significance.
 The most significant effect towards the poor fitting of this model is the semileptonic ratio $\mathcal{R}(D^*)$, which disagrees with our 2HDM fit to $3\sigma$. 
 Without this ratio, this model cannot be excluded to a high CL, but including it significantly increases the confidence of exclusion. 
 No resolution to this problem is found here, though we hope that future works may either find one, or confirm its use to exclude the 2HDM. 
@@ -1020,14 +1019,14 @@ F. R. Klinkhamer and N. Manton, \emph{A Saddle Point in the Weinberg-Salam Theor
 \bibitem{phase}
 K. Kajantie, M. Laine, K. Rummukainen, and M. Shaposhnikov, \emph{Is There a Hot Electroweak Phase Transition at $m_H\gtrapprox m_W$?}, Phys. Rev. Lett. \textbf{77} (1996) 2887-2890, [\href{https://arxiv.org/abs/hep-ph/9605288}{arXiv:9605288 [hep-ph]}].%, doi:10.1103/PhysRevLett.77.2887
 
+\bibitem{cpv}
+J. Christenson et al, \emph{Evidence for the $2\pi$ Decay of the $K_2^0$ Meson}, Phys. Rev. Lett. \textbf{13} (1964), 138-140.%, doi:10.1103/PhysRevLett.13.138.
+
 \bibitem{mix15}
 M. Artuso, G. Borissov, and A. Lenz, \emph{CP Violation in the $B_s^0$ system,} Rev. Mod. Phys. \textbf{88} (2016) no.4 045002, [\href{https://arxiv.org/abs/1511.09466}{arXiv:1511.09466 [hep-ph]}].%, doi:10.1103/RevModPhys.88.045002
 
 \bibitem{charmcp}
 R. Aaij et al, \emph{Observation of CP Violation in Charm Decays}, Phys. Rev. Lett. \textbf{122} (2019) no.21 211803, [\href{https://arxiv.org/abs/1903.08726}{arXiv:1903.08726 [hep-ex]}].%, doi:10.1103/PhysRevLett.122.211803
-
-\bibitem{cpv}
-J. Christenson et al, \emph{Evidence for the $2\pi$ Decay of the $K_2^0$ Meson}, Phys. Rev. Lett. \textbf{13} (1964), 138-140.%, doi:10.1103/PhysRevLett.13.138.
 
 \bibitem{zp} %p
 T.G. Rizzo, \emph{Z' Phenomenology and the LHC}, [\href{https://arxiv.org/abs/hep-ph/0610104}{arXiv:0610104 [hep-ph]}].
@@ -1168,7 +1167,9 @@ We follow \cite{peskin} for the SM expressions, and \cite{hunter} and \cite{tril
     \includegraphics[raise=-30pt]{feynman/hdubh.pdf} &= \pm\frac{ig}{2}\cos(\beta-\alpha)(p_{H^\pm}+p_{h^0})^\mu \\[1em]
     \includegraphics[raise=-30pt]{feynman/hdubh1.pdf} &= \mp\frac{ig}{2}\cos(\beta-\alpha)(p_{H^\pm}+p_{H^0})^\mu \\[1em]
     \includegraphics[raise=-30pt]{feynman/hdubh2.pdf} &= \frac{g}{2}(p_{H^\pm}+p_{A^0})^\mu \\[1em]
+    \label{eq:trilin1}
     \includegraphics[raise=-30pt]{feynman/trilin1.pdf} &= \frac{-i}{2v\sin(2\beta)}\begin{matrix}\big\{m_{h^0}^2\left[3\cos(\alpha+\beta)+\cos(\alpha-3\beta)\right] \\ \quad+4\sin(2\beta)\sin(\beta-\alpha)m_{H^\pm}^2 \\ -4M^2\cos(\alpha+\beta)\big\}\end{matrix} \\[1em]
+    \label{eq:trilin2}
     \includegraphics[raise=-30pt]{feynman/trilin2.pdf} &= \frac{-i}{2v\sin(2\beta)}\begin{matrix}\big\{m_{H^0}^2\left[3\sin(\alpha+\beta)+\sin(\alpha-3\beta)\right] \\ \quad+4\sin(2\beta)\sin(\beta-\alpha)m_{H^\pm}^2 \\ -4M^2\sin(\alpha+\beta)\big\}\end{matrix}
 \end{align}
 \endgroup
