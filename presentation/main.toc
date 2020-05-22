@@ -1,4 +1,0 @@
-\beamer@sectionintoc {1}{Introduction}{1}{0}{1}
-\beamer@sectionintoc {2}{Global Fits}{6}{0}{2}
-\beamer@sectionintoc {3}{Extension to SM4}{11}{0}{3}
-\beamer@sectionintoc {4}{Questions}{13}{0}{4}
