@@ -15,7 +15,7 @@
 - [x] Choose specific project
     - going into further flavour observable calculation for 2HDM, now with SM4
 
-- [ ] Work on full project
+- [x] Work on full project
     - figure out what observables need more calculation
     - statistical fits need sorted
 
