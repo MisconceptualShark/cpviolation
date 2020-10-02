@@ -524,11 +524,12 @@ def bsgamma(mt,mW,mub,lam_QCD,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt
     A = A0*(1+ac*delt_mc+at*delt_mt+a_s*delt_as)
     B = B0*(1+bc*delt_mc+bt*delt_mt+bs*delt_as)
     PplN = (Ceff_SM + B*Ceff_H)**2 + A
+    #print(PplN)
 
     C1 = ((Vub/Vcb)**2)*gamc/gamu
     R = ((Vts*Vtb/Vcb)**2)*(6*alp_EM/(np.pi*C1))*PplN
 
-    return R
+    return R*gamc
 
 def error_gamma(mt,mt_err,mW,mW_err,mub,lam_QCD,QCD_err,hi,a,mH,tanb,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc,gamc_err,gamu,gamu_err,Vub,Vub_err,Vts,Vts_err,Vtb,Vtb_err,Vcb,Vcb_err,alp_EM,C,C_err):
     '''

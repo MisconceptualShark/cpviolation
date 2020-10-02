@@ -109,7 +109,7 @@ bd_exp, bd_exp_err = [1.4e-10,[1.6e-10,-1.4e-10]] #Bd to mu mu
 bssm, bssm_err = [3.57e-9,[0.17e-9,-0.17e-9]] #Bs to mu mu SM
 
 ### b sgamma stuff
-mub = 1.095
+mub = 1.07325
 hi = [626126/272277,-56281/51730,-3/7,-1/14,-0.6494,-0.038,-0.0185,-0.0057]
 a = [14/23,16/23,6/23,-12/23,0.4086,-0.4223,-0.8994,0.1456]
 A0,ac,at,a_s = [3.155e-2,2.8,-1.06e-4,36.2]
@@ -170,7 +170,8 @@ nu3 = 14 # degrees of freedom
 #
 #quit()
 #big ol function for everything
-mHs, tanbs, chis, chi_2 = itera_global(
+#mHs, tanbs, chis, chi_2 
+gs, chi_2 = itera_global(
         bplus_exp,bplus_err_exp,dplus_exp,dplus_err_exp,dsplus_exp,dsplus_err_exp,
         bplusmu_exp,bplusmu_err_exp,dsmu_exp,dsmu_err_exp,delt_md,delt_md_err,delt_ms,delt_ms_err,
         kpi_exp,kpi_exp_err,kpitau_exp,kpitau_exp_err,
@@ -191,25 +192,26 @@ mHs, tanbs, chis, chi_2 = itera_global(
 
 #h - mH; t - tanb
 #l - (semi-)leptonics; b - b mixing; g - bsgamma; a - combine l,b,g; mu - Bs to mumu; l2 -everything
-hl, hb, hg, ha, hmu, hl2, hS, hT, hU = mHs
-tl, tb, tg, ta, tmu, tl2, tS, tT, tU = tanbs
-chi_ls, chi_ms, chi_gs, chi_as, chi_mus, chi_2s, chi_Ss, chi_Ts, chi_Us = chis #all chisq values
+#hl, hb, hg, ha, hmu, hl2, hS, hT, hU = mHs
+#tl, tb, tg, ta, tmu, tl2, tS, tT, tU = tanbs
+#chi_ls, chi_ms, chi_gs, chi_as, chi_mus, chi_2s, chi_Ss, chi_Ts, chi_Us = chis #all chisq values
+hg,tg,chi_gs = gs
 
 m1,m2 = 2.30,5.99 #different confidence levels for chisq fit
 nu = 15 # degrees of freedom
 
 # returns mH, tanb values, and 'edges' which is to draw around the perimeters of regions
-hchi_leps, tchi_leps, lep_edges_e = chi_del(min(chi_ls),chi_ls,hl,tl,m2) #chisq fit to 95% CL
-hchi_leps2, tchi_leps2, lep_edges = chi_del(min(chi_ls),chi_ls,hl,tl,m1) #chisq fit to 1 sigma
-
-hchi_mix, tchi_mix, mix_edges_e = chi_del(min(chi_ms),chi_ms,hb,tb,m2)
-hchi_mix2, tchi_mix2, mix_edges = chi_del(min(chi_ms),chi_ms,hb,tb,m1)
+#hchi_leps, tchi_leps, lep_edges_e = chi_del(min(chi_ls),chi_ls,hl,tl,m2) #chisq fit to 95% CL
+#hchi_leps2, tchi_leps2, lep_edges = chi_del(min(chi_ls),chi_ls,hl,tl,m1) #chisq fit to 1 sigma
+#
+#hchi_mix, tchi_mix, mix_edges_e = chi_del(min(chi_ms),chi_ms,hb,tb,m2)
+#hchi_mix2, tchi_mix2, mix_edges = chi_del(min(chi_ms),chi_ms,hb,tb,m1)
 
 hchi_gam, tchi_gam, gam_edges_e = chi_del(min(chi_gs),chi_gs,hg,tg,m2)
 hchi_gam2, tchi_gam2, gam_edges = chi_del(min(chi_gs),chi_gs,hg,tg,m1)
 
-hchi_mu, tchi_mu, mu_edges_e = chi_del(min(chi_mus),chi_mus,hmu,tmu,m2)
-hchi_mu2, tchi_mu2, mu_edges = chi_del(min(chi_mus),chi_mus,hmu,tmu,m1)
+#hchi_mu, tchi_mu, mu_edges_e = chi_del(min(chi_mus),chi_mus,hmu,tmu,m2)
+#hchi_mu2, tchi_mu2, mu_edges = chi_del(min(chi_mus),chi_mus,hmu,tmu,m1)
 
 #hchi_S, tchi_S, S_edges_e = chi_del(min(chi_Ss),chi_Ss,hS,tS,m2)
 #hchi_S2, tchi_S2, S_edges = chi_del(min(chi_Ss),chi_Ss,hS,tS,m1)
@@ -217,60 +219,60 @@ hchi_mu2, tchi_mu2, mu_edges = chi_del(min(chi_mus),chi_mus,hmu,tmu,m1)
 #hchi_T, tchi_T, T_edges_e = chi_del(min(chi_Ts),chi_Ts,hT,tT,m2)
 #hchi_T2, tchi_T2, T_edges = chi_del(min(chi_Ts),chi_Ts,hT,tT,m1)
 
-hchi_U, tchi_U, U_edges_e = chi_del(min(chi_Us),chi_Us,hU,tU,m2)
-hchi_U2, tchi_U2, U_edges = chi_del(min(chi_Us),chi_Us,hU,tU,m1)
-
-hchi_2, tchi_2, two_edges_e = chi_del(chi_2[0],chi_2s,hl2,tl2,m2)
-hchi_22, tchi_22, two_edges = chi_del(chi_2[0],chi_2s,hl2,tl2,m1)
+#hchi_U, tchi_U, U_edges_e = chi_del(min(chi_Us),chi_Us,hU,tU,m2)
+#hchi_U2, tchi_U2, U_edges = chi_del(min(chi_Us),chi_Us,hU,tU,m1)
+#
+#hchi_2, tchi_2, two_edges_e = chi_del(chi_2[0],chi_2s,hl2,tl2,m2)
+#hchi_22, tchi_22, two_edges = chi_del(chi_2[0],chi_2s,hl2,tl2,m1)
 
 # print out some numbers to 95CL and 1 sig
-print [10**min(hchi_2),10**max(hchi_2)], [10**min(hchi_22),10**max(hchi_22)]
-print [10**min(tchi_2),10**max(tchi_2)], [10**min(tchi_22), 10**max(tchi_22)]
-print chi_2[0]/nu # reduced chisq, nu = 16 observables - 2 free parameters
-print chi_2
+print([10**min(hchi_gam),10**max(hchi_gam)], [10**min(hchi_gam2),10**max(hchi_gam2)])
+#print([10**min(tchi_2),10**max(tchi_2)], [10**min(tchi_22), 10**max(tchi_22)])
+#print(chi_2[0]/nu) # reduced chisq, nu = 16 observables - 2 free parameters
+#print(chi_2)
 
-p_val, p_err = p_vals(chi_2[0],nu)
-print "p-value for global fit with ", nu," degrees of freedom is: ", "{:.1%}".format(p_val)#, " +/- ", p_err
-print "wrong sign limit"
+#p_val, p_err = p_vals(chi_2[0],nu)
+#print("p-value for global fit with ", nu," degrees of freedom is: ", "{:.1%}".format(p_val))#, " +/- ", p_err
+#print("alignment limit")
 
 # plotting! scatter plots for regions, then the for loops plot out the outline
 # all regions plotted to 95% CL, and their lines plotted to this too, but then the 1 sigma everything region's border is plotted
 plt.figure(figsize=(8,6))
-plt.scatter(tchi_mix,hchi_mix,c='cornflowerblue')
-for i, j in mix_edges_e[0]:
-    plt.plot(mix_edges_e[1][[i,j],0],mix_edges_e[1][[i,j],1],c='midnightblue',linestyle='--')
-plt.scatter(tchi_leps,hchi_leps,c='green')
-for i, j in lep_edges_e[0]:
-    plt.plot(lep_edges_e[1][[i,j],0],lep_edges_e[1][[i,j],1],c='darkgreen',linestyle='--')
+#plt.scatter(tchi_mix,hchi_mix,c='cornflowerblue')
+#for i, j in mix_edges_e[0]:
+#    plt.plot(mix_edges_e[1][[i,j],0],mix_edges_e[1][[i,j],1],c='midnightblue',linestyle='--')
+#plt.scatter(tchi_leps,hchi_leps,c='green')
+#for i, j in lep_edges_e[0]:
+#    plt.plot(lep_edges_e[1][[i,j],0],lep_edges_e[1][[i,j],1],c='darkgreen',linestyle='--')
 plt.scatter(tchi_gam,hchi_gam,c='coral')
 for i, j in gam_edges_e[0]:
     plt.plot(gam_edges_e[1][[i,j],0],gam_edges_e[1][[i,j],1],c='darkgoldenrod',linestyle='--')
-plt.scatter(tchi_mu,hchi_mu,c='red')
-for i, j in mu_edges_e[0]:
-    plt.plot(mu_edges_e[1][[i,j],0],mu_edges_e[1][[i,j],1],c='chocolate',linestyle='--')
-plt.scatter(tchi_U,hchi_U,c='orchid')
-for i, j in U_edges_e[0]:
-    plt.plot(U_edges_e[1][[i,j],0],U_edges_e[1][[i,j],1],c='deeppink',linestyle='--')
-plt.scatter(tchi_2,hchi_2,c='darkorchid')
-for i, j in two_edges[0]:
-    plt.plot(two_edges[1][[i,j],0],two_edges[1][[i,j],1],c='plum',linestyle='--')
+#plt.scatter(tchi_mu,hchi_mu,c='red')
+#for i, j in mu_edges_e[0]:
+#    plt.plot(mu_edges_e[1][[i,j],0],mu_edges_e[1][[i,j],1],c='chocolate',linestyle='--')
+#plt.scatter(tchi_U,hchi_U,c='orchid')
+#for i, j in U_edges_e[0]:
+#    plt.plot(U_edges_e[1][[i,j],0],U_edges_e[1][[i,j],1],c='deeppink',linestyle='--')
+#plt.scatter(tchi_2,hchi_2,c='darkorchid')
+#for i, j in two_edges[0]:
+#    plt.plot(two_edges[1][[i,j],0],two_edges[1][[i,j],1],c='plum',linestyle='--')
 plt.axis([-1,2,1,3.5])
 plt.ylabel('$\\log[m_{H+}$, GeV]',fontsize=18)
 plt.xlabel('$\\log[\\tan(\\beta)]$',fontsize=18)
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
-plt.axvline(x=np.log10(6),color='lightseagreen')
-plt.axvline(x=np.log10(mt/m_b),color='black')
-plt.axhline(y=np.log10(160),color='black',linestyle='--')
+#plt.xticks(fontsize=18)
+#plt.yticks(fontsize=18)
+#plt.axvline(x=np.log10(6),color='lightseagreen')
+#plt.axvline(x=np.log10(mt/m_b),color='black')
+#plt.axhline(y=np.log10(160),color='black',linestyle='--')
 #plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D)$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
-plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D^{(*)})$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
-plt.annotate('$\\Delta M_q$',xy=(0.78,0.15),xycoords='axes fraction',fontsize=18)
-plt.annotate('$b\\to s\\gamma$',xy=(0.05,0.9),xycoords='axes fraction',fontsize=18)
-plt.annotate('All',xy=(0.6,0.79),xycoords='axes fraction',fontsize=18)
-plt.annotate('S,T,U',xy=(0.88,0.85),xycoords='axes fraction',fontsize=13)
-plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.52,0.55),xycoords='axes fraction',fontsize=18)
-plt.title('$M = 750\,GeV,\; m_{A^0} = 1.5\,TeV,$ \n $m_{H^0} = 1.5\,TeV,\; \\cos(\\beta-\\alpha) = \\sin(2\\beta)$',fontsize=18)
+#plt.annotate('$M\\to l\\nu+\\tau\\to M\\nu$ \n $+ \\mathcal{R}(D^{(*)})$',xy=(0.05,0.3),xycoords='axes fraction',fontsize=18)
+#plt.annotate('$\\Delta M_q$',xy=(0.78,0.15),xycoords='axes fraction',fontsize=18)
+#plt.annotate('$b\\to s\\gamma$',xy=(0.05,0.9),xycoords='axes fraction',fontsize=18)
+#plt.annotate('All',xy=(0.6,0.79),xycoords='axes fraction',fontsize=18)
+#plt.annotate('S,T,U',xy=(0.88,0.85),xycoords='axes fraction',fontsize=13)
+#plt.annotate('$B_q \\to \\mu^+\\mu^-$',xy=(0.52,0.55),xycoords='axes fraction',fontsize=18)
+#plt.title(r'$m_{A^0} = 1.5\,TeV,\; m_{H^0} = 1.5\,TeV,\; \cos(\beta-\alpha) = 0$',fontsize=18)
 #plt.title('$M = 750\,GeV,\; m_{H^0} = 1.5\,TeV,\; \\cos(\\beta-\\alpha) = \\sin(2\\beta)$',fontsize=18)
-plt.savefig('global_test3sig3.png')
-#plt.show()
-os.system('play draco.mp3')
+#plt.savefig('global_test3sig3.png')
+plt.show()
+#os.system('play draco.mp3')

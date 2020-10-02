@@ -1,4 +1,3 @@
-from __future__ import division 
 import numpy as np
 from rdstarring import *
 from fitting import *
@@ -450,14 +449,17 @@ def bmumu(mt,taubs,fbs,Vtb,Vts,mmu,mbs,mW,tanb,mH,mb,ms,mc,mu,wangle,higgs,v,Vus
     z1,z2,y,yh,yH0 = (mu/mH)**2,(mc/mH)**2,(mW/mH)**2,(mH/higgs)**2,(mH/mH0)**2
     z3t,z3w = (mtmut/mH)**2,(mtmu/mH)**2
     el = np.sqrt(4*np.pi/137)
-    cba,sba = np.sin(2*b),-np.sin(2*b)
-    #cba,sba = np.cos(b-a),np.sin(b-a)
+    #cba,sba = np.sin(2*b),-np.sin(2*b)
+    cba,sba = np.cos(b-a),np.sin(b-a)
     Lp = (yh*cba**2 + yH0*sba**2)*(-2*tanb*mmu/v)
     Lm = -1*Lp
+    lam3 = 0.08
+    lamh = v*sba*lam3
+    lamH0 = v*cba*lam3
     #lamh = -((higgs**2)*(3*np.cos(a+b)+np.cos(a-3*b)) + 4*np.sin(2*b)*np.sin(b-a)*mH**2 - 4*np.cos(a+b)*M**2)/(2*np.sin(2*b)*v**2)
     #lamH0 = -((mH0**2)*(3*np.sin(a+b)+np.sin(a-3*b)) + 4*np.sin(2*b)*np.cos(b-a)*mH**2 - 4*np.sin(a+b)*M**2)/(2*np.sin(2*b)*v**2)
-    lamh = -((higgs**2)*(-3*np.sin(2*b)+np.sin(6*b)) - 4*np.sin(2*b)*np.sin(2*b)*mH**2 + 4*np.sin(2*b)*M**2)/(2*np.sin(2*b)*v**2)
-    lamH0 = -((mH0**2)*(3*np.sin(2*b)-np.sin(6*b)) + 4*np.sin(2*b)*np.sin(2*b)*mH**2 - 4*np.sin(2*b)*M**2)/(2*np.sin(2*b)*v**2)
+#    lamh = -((higgs**2)*(-3*np.sin(2*b)+np.sin(6*b)) - 4*np.sin(2*b)*np.sin(2*b)*mH**2 + 4*np.sin(2*b)*M**2)/(2*np.sin(2*b)*v**2)
+#    lamH0 = -((mH0**2)*(3*np.sin(2*b)-np.sin(6*b)) + 4*np.sin(2*b)*np.sin(2*b)*mH**2 - 4*np.sin(2*b)*M**2)/(2*np.sin(2*b)*v**2)
 
     C10_1 = (1/(2*el**2))*(abs(cob*mtmu/v)**2)*(I1(z3t)-1)
     C10P_1 = -(abs(tanb/v)**2)*(mb*ms/(2*el**2))*(I1(z3t)-1)
@@ -906,45 +908,45 @@ def itera_global(
     for i in mH_range:
         for j in tanb_range:
             b = np.arctan(j)
-#            alph = b - np.pi/2 # find alpha in alignment limit
-            alph = b - np.arccos(0.465) # find alpha in wrong sign limit
+            alph = b - np.pi/2 # find alpha in alignment limit
+#            alph = b - np.arccos(0.465) # find alpha in wrong sign limit
             mH0 = 1500 # set H0 and A0 masses
             mA0 = 1500
             ##### LEPTONICS #####
-            bpls_the, dpls_the, dspls_the = bthe(mbpls,mtau,Vub,fbpls,tbpls,mu,mb,j,i,1),bthe(mdpls,mmu,Vcd,fdpls,tdpls,mc,md,j,i,delta_d),bthe(mdspls,mtau,Vcs,fdspls,tdspls,mc,ms,j,i,1)
-            bpmu_the, dsmu_the = bthe(mbpls,mmu,Vub,fbpls,tbpls,mu,mb,j,i,1),bthe(mdspls,mmu,Vcs,fdspls,tdspls,mc,ms,j,i,1)
-            bpls_err, dpls_err, dspls_err = error_branching(mbpls,mbpls_err,mtau,mtau_err,Vub,Vub_err,fbpls,fbpls_err,tbpls,tbpls_err,mu,mu_err,mb,mb_err,j,i,1),error_branching(mdpls,mdpls_err,mmu,mmu_err,Vcd,Vcd_err,fdpls,fdpls_err,tdpls,tdpls_err,mc,mc_err,md,md_err,j,i,delta_d),error_branching(mdspls,mdspls_err,mtau,mtau_err,Vcs,Vcs_err,fdspls,fdspls_err,tdspls,tdspls_err,mc,mc_err,ms,ms_err,j,i,1)
-            bpmu_err, dsmu_err = error_branching(mbpls,mbpls_err,mmu,mmu_err,Vub,Vub_err,fbpls,fbpls_err,tbpls,tbpls_err,mu,mu_err,mb,mb_err,j,i,1),error_branching(mdspls,mdspls_err,mmu,mmu_err,Vcs,Vcs_err,fdspls,fdspls_err,tdspls,tdspls_err,mc,mc_err,ms,ms_err,j,i,1)
-            bpls_the_up,bpls_the_down,dpls_the_up,dpls_the_down,dspls_the_up,dspls_the_down=bpls_the+bpls_err[0],bpls_the-bpls_err[1],dpls_the+dpls_err[0],dpls_the-dpls_err[1],dspls_the+dspls_err[0],dspls_the-dspls_err[1]
-            bpmu_the_up,bpmu_the_down,dsmu_the_up,dsmu_the_down=bpmu_the+bpmu_err[0],bpmu_the-bpmu_err[1],dsmu_the+dsmu_err[0],dsmu_the-dsmu_err[1]
-            mid_b,mid_d,mid_ds=0.5*(bpls_the_up+bpls_the_down),0.5*(dpls_the_up+dpls_the_down),0.5*(dspls_the_up+dspls_the_down)
-            mid_bmu,mid_dm=0.5*(bpmu_the_up+bpmu_the_down),0.5*(dsmu_the_up+dsmu_the_down)
-            sig_b,sig_d,sig_ds=sigma*(bpls_the_up-mid_b),sigma*(dpls_the_up-mid_d),sigma*(dspls_the_up-mid_ds)
-            sig_bmu,sig_dm=sigma*(bpmu_the_up-mid_bmu),sigma*(dsmu_the_up-mid_dm)
-            bpls_bool = ((av_b >= mid_b and mid_b+sig_b >= av_b-sige_b) or (av_b <= mid_b and mid_b-sig_b <= av_b+sige_b)) 
-            bpmu_bool = ((av_bm >= mid_bmu and mid_bmu+sig_bmu >= av_bm-sige_bm) or (av_bm <= mid_bmu and mid_bmu-sig_bmu <= av_bm+sige_bm)) 
-            dpls_bool = ((av_d >= mid_d and mid_d+sig_d >= av_d-sige_d) or (av_d <= mid_d and mid_d-sig_d <= av_d+sige_d))
-            dspls_bool = ((av_ds >= mid_ds and mid_ds+sig_ds >= av_ds-sige_ds) or (av_ds <= mid_ds and mid_ds-sig_ds <= av_ds+sige_ds))
-            dsmu_bool = ((av_dm >= mid_dm and mid_dm+sig_dm >= av_dm-sige_dm) or (av_dm <= mid_dm and mid_dm-sig_dm <= av_dm+sige_dm))
-
-            ##### MIXING #####
-            # note - currently putting in fB^2*Bag as fB, change as needed
-            bmix_the,bmixs_the = mixing(mt,i,mW,j,Vtd,Vtb,etaB,mbd,f2Bd,Bbd,lam_QCD,mb),mixing(mt,i,mW,j,Vts,Vtb,etaB,mbs,f2Bs,BBs,lam_QCD,mb)
-            bmix_err,bmixs_err = error_mixing(mt,mt_err,i,mW,mW_err,j,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mbd,mbd_err,f2Bd,f2Bd_err,Bbd,Bbd_err,lam_QCD,QCD_err,mb,mb_err),error_mixing(mt,mt_err,i,mW,mW_err,j,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mbs,mbs_err,f2Bs,f2Bs_err,BBs,BBs_err,lam_QCD,QCD_err,mb,mb_err)
-            bmix_the_up, bmix_the_down = bmix_the+bmix_err[0],bmix_the-bmix_err[1]
-            bmixs_the_up, bmixs_the_down = bmixs_the+bmixs_err[0],bmixs_the-bmixs_err[1]
-            mid_bm,mid_bms=0.5*(bmix_the_up+bmix_the_down),0.5*(bmixs_the_up+bmixs_the_down)
-            sig_bm,sig_bms=sigma*(bmix_the_up-mid_bm),sigma*(bmixs_the_up-mid_bms)
-            bmix_bool = ((av_bmix >= mid_bm and mid_bm+sig_bm >= av_bmix-sige_bmix) or (av_bmix <= mid_bm and mid_bm-sig_bm <= av_bmix+sige_bmix)) and ((av_bmixs >= mid_bms and mid_bms+sig_bms >= av_bmixs-sige_bmixs) or (av_bmixs <= mid_bms and mid_bms-sig_bms <= av_bmixs+sige_bmixs))
-
-            ##### K/PI RATIOS #####
-            kpi_the,tkpi_the = decay_bsm(mK,mpi,mmu,mtau,Vus,Vud,fKpi,delt_kpi,delt_tau,ms,md,mu,j,i)
-            kpi_uperr,kpi_derr,tkpi_uperr,tkpi_derr = error_kpi(mK,mK_err,mpi,mpi_err,mmu,mmu_err,mtau,mtau_err,Vus,Vus_err,Vud,Vud_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,ms,ms_err,md,md_err,mu,mu_err,j,i)
-            kpi_the_up,kpi_the_down,tkpi_the_up,tkpi_the_down = kpi_the+kpi_uperr,kpi_the-kpi_derr,tkpi_the+tkpi_uperr,tkpi_the-tkpi_derr
-            mid_k,mid_t=0.5*(kpi_the_up+kpi_the_down),0.5*(tkpi_the_up+tkpi_the_down)
-            sig_k,sig_t=sigma*(kpi_the_up-mid_k),sigma*(tkpi_the_up-mid_t)
-            kpi_bool = ((av_k >= mid_k and mid_k+sig_k >= av_k-sige_k) or (av_k <= mid_k and mid_k-sig_k <= av_k+sige_k)) 
-            tkpi_bool = ((av_t >= mid_t and mid_t+sig_t >= av_t-sige_t) or (av_t <= mid_t and mid_t-sig_t <= av_t+sige_t)) 
+#            bpls_the, dpls_the, dspls_the = bthe(mbpls,mtau,Vub,fbpls,tbpls,mu,mb,j,i,1),bthe(mdpls,mmu,Vcd,fdpls,tdpls,mc,md,j,i,delta_d),bthe(mdspls,mtau,Vcs,fdspls,tdspls,mc,ms,j,i,1)
+#            bpmu_the, dsmu_the = bthe(mbpls,mmu,Vub,fbpls,tbpls,mu,mb,j,i,1),bthe(mdspls,mmu,Vcs,fdspls,tdspls,mc,ms,j,i,1)
+#            bpls_err, dpls_err, dspls_err = error_branching(mbpls,mbpls_err,mtau,mtau_err,Vub,Vub_err,fbpls,fbpls_err,tbpls,tbpls_err,mu,mu_err,mb,mb_err,j,i,1),error_branching(mdpls,mdpls_err,mmu,mmu_err,Vcd,Vcd_err,fdpls,fdpls_err,tdpls,tdpls_err,mc,mc_err,md,md_err,j,i,delta_d),error_branching(mdspls,mdspls_err,mtau,mtau_err,Vcs,Vcs_err,fdspls,fdspls_err,tdspls,tdspls_err,mc,mc_err,ms,ms_err,j,i,1)
+#            bpmu_err, dsmu_err = error_branching(mbpls,mbpls_err,mmu,mmu_err,Vub,Vub_err,fbpls,fbpls_err,tbpls,tbpls_err,mu,mu_err,mb,mb_err,j,i,1),error_branching(mdspls,mdspls_err,mmu,mmu_err,Vcs,Vcs_err,fdspls,fdspls_err,tdspls,tdspls_err,mc,mc_err,ms,ms_err,j,i,1)
+#            bpls_the_up,bpls_the_down,dpls_the_up,dpls_the_down,dspls_the_up,dspls_the_down=bpls_the+bpls_err[0],bpls_the-bpls_err[1],dpls_the+dpls_err[0],dpls_the-dpls_err[1],dspls_the+dspls_err[0],dspls_the-dspls_err[1]
+#            bpmu_the_up,bpmu_the_down,dsmu_the_up,dsmu_the_down=bpmu_the+bpmu_err[0],bpmu_the-bpmu_err[1],dsmu_the+dsmu_err[0],dsmu_the-dsmu_err[1]
+#            mid_b,mid_d,mid_ds=0.5*(bpls_the_up+bpls_the_down),0.5*(dpls_the_up+dpls_the_down),0.5*(dspls_the_up+dspls_the_down)
+#            mid_bmu,mid_dm=0.5*(bpmu_the_up+bpmu_the_down),0.5*(dsmu_the_up+dsmu_the_down)
+#            sig_b,sig_d,sig_ds=sigma*(bpls_the_up-mid_b),sigma*(dpls_the_up-mid_d),sigma*(dspls_the_up-mid_ds)
+#            sig_bmu,sig_dm=sigma*(bpmu_the_up-mid_bmu),sigma*(dsmu_the_up-mid_dm)
+#            bpls_bool = ((av_b >= mid_b and mid_b+sig_b >= av_b-sige_b) or (av_b <= mid_b and mid_b-sig_b <= av_b+sige_b)) 
+#            bpmu_bool = ((av_bm >= mid_bmu and mid_bmu+sig_bmu >= av_bm-sige_bm) or (av_bm <= mid_bmu and mid_bmu-sig_bmu <= av_bm+sige_bm)) 
+#            dpls_bool = ((av_d >= mid_d and mid_d+sig_d >= av_d-sige_d) or (av_d <= mid_d and mid_d-sig_d <= av_d+sige_d))
+#            dspls_bool = ((av_ds >= mid_ds and mid_ds+sig_ds >= av_ds-sige_ds) or (av_ds <= mid_ds and mid_ds-sig_ds <= av_ds+sige_ds))
+#            dsmu_bool = ((av_dm >= mid_dm and mid_dm+sig_dm >= av_dm-sige_dm) or (av_dm <= mid_dm and mid_dm-sig_dm <= av_dm+sige_dm))
+#
+#            ##### MIXING #####
+#            # note - currently putting in fB^2*Bag as fB, change as needed
+#            bmix_the,bmixs_the = mixing(mt,i,mW,j,Vtd,Vtb,etaB,mbd,f2Bd,Bbd,lam_QCD,mb),mixing(mt,i,mW,j,Vts,Vtb,etaB,mbs,f2Bs,BBs,lam_QCD,mb)
+#            bmix_err,bmixs_err = error_mixing(mt,mt_err,i,mW,mW_err,j,Vtd,Vtd_err,Vtb,Vtb_err,etaB,etaB_err,mbd,mbd_err,f2Bd,f2Bd_err,Bbd,Bbd_err,lam_QCD,QCD_err,mb,mb_err),error_mixing(mt,mt_err,i,mW,mW_err,j,Vts,Vts_err,Vtb,Vtb_err,etaB,etaB_err,mbs,mbs_err,f2Bs,f2Bs_err,BBs,BBs_err,lam_QCD,QCD_err,mb,mb_err)
+#            bmix_the_up, bmix_the_down = bmix_the+bmix_err[0],bmix_the-bmix_err[1]
+#            bmixs_the_up, bmixs_the_down = bmixs_the+bmixs_err[0],bmixs_the-bmixs_err[1]
+#            mid_bm,mid_bms=0.5*(bmix_the_up+bmix_the_down),0.5*(bmixs_the_up+bmixs_the_down)
+#            sig_bm,sig_bms=sigma*(bmix_the_up-mid_bm),sigma*(bmixs_the_up-mid_bms)
+#            bmix_bool = ((av_bmix >= mid_bm and mid_bm+sig_bm >= av_bmix-sige_bmix) or (av_bmix <= mid_bm and mid_bm-sig_bm <= av_bmix+sige_bmix)) and ((av_bmixs >= mid_bms and mid_bms+sig_bms >= av_bmixs-sige_bmixs) or (av_bmixs <= mid_bms and mid_bms-sig_bms <= av_bmixs+sige_bmixs))
+#
+#            ##### K/PI RATIOS #####
+#            kpi_the,tkpi_the = decay_bsm(mK,mpi,mmu,mtau,Vus,Vud,fKpi,delt_kpi,delt_tau,ms,md,mu,j,i)
+#            kpi_uperr,kpi_derr,tkpi_uperr,tkpi_derr = error_kpi(mK,mK_err,mpi,mpi_err,mmu,mmu_err,mtau,mtau_err,Vus,Vus_err,Vud,Vud_err,fKpi,fKpi_err,delt_kpi,delt_kpi_err,delt_tau,delt_tau_err,ms,ms_err,md,md_err,mu,mu_err,j,i)
+#            kpi_the_up,kpi_the_down,tkpi_the_up,tkpi_the_down = kpi_the+kpi_uperr,kpi_the-kpi_derr,tkpi_the+tkpi_uperr,tkpi_the-tkpi_derr
+#            mid_k,mid_t=0.5*(kpi_the_up+kpi_the_down),0.5*(tkpi_the_up+tkpi_the_down)
+#            sig_k,sig_t=sigma*(kpi_the_up-mid_k),sigma*(tkpi_the_up-mid_t)
+#            kpi_bool = ((av_k >= mid_k and mid_k+sig_k >= av_k-sige_k) or (av_k <= mid_k and mid_k-sig_k <= av_k+sige_k)) 
+#            tkpi_bool = ((av_t >= mid_t and mid_t+sig_t >= av_t-sige_t) or (av_t <= mid_t and mid_t-sig_t <= av_t+sige_t)) 
 
             ##### BSGAMMA #####
             gam_the = bsgamma(mt,mW,mub,lam_QCD,hi,a,i,j,A0,ac,at,a_s,B0,bc,bt,bs,delt_mc,delt_mt,delt_as,gamc_exp,gamu,Vub,Vts,Vtb,Vcb,alp_EM,C)
@@ -955,71 +957,71 @@ def itera_global(
             gam_bool = ((av_g >= mid_g and mid_g+sig_g >= av_g-sige_g) or (av_g <= mid_g and mid_g-sig_g <= av_g+sige_g)) 
 
             ##### B TO MU MU #####
-            expect_bs = bmumu(mt,tbs,fBs,Vtb,Vts,mmu,mbs,mW,j,i,mb,ms,mc,mu,wangle,higgs,vev,Vus,Vub,Vcs,Vcb,mH0,alph,lam_QCD)
-            expect_bs_uperr,expect_bs_downerr = error_bmumu(mt,mt_err,tbs,tbs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,mmu,mmu_err,mbs,mbs_err,mW,mW_err,j,i,mb,mb_err,ms,ms_err,mc,mc_err,mu,mu_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,Vus,Vus_err,Vub,Vub_err,Vcs,Vcs_err,Vcb,Vcb_err,mH0,alph,lam_QCD,QCD_err)
-            expect_bs_up, expect_bs_down = expect_bs+expect_bs_uperr, expect_bs-expect_bs_downerr
-            mid_bsmu=0.5*(expect_bs_up+expect_bs_down)
-            sig_bsmu=sigma*(expect_bs_up-mid_bsmu)
-            bs_bool = ((av_bsmu >= mid_bsmu and mid_bsmu+sig_bsmu >= av_bsmu-sige_bsmu) or (av_bsmu <= mid_bsmu and mid_bsmu-sig_bsmu <= av_bsmu+sige_bsmu)) 
-
-            expect_bd = bmumu(mt,tbd,fbpls,Vtb,Vtd,mmu,mbd,mW,j,i,mb,ms,mc,mu,wangle,higgs,vev,Vus,Vub,Vcs,Vcb,mH0,alph,lam_QCD)
-            expect_bd_uperr,expect_bd_downerr = error_bmumu(mt,mt_err,tbd,tbd_err,fbpls,fbpls_err,Vtb,Vtb_err,Vtd,Vtd_err,mmu,mmu_err,mbd,mbd_err,mW,mW_err,j,i,mb,mb_err,ms,ms_err,mc,mc_err,mu,mu_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,Vus,Vus_err,Vub,Vub_err,Vcs,Vcs_err,Vcb,Vcb_err,mH0,alph,lam_QCD,QCD_err)
-            expect_bd_up, expect_bd_down = expect_bd+expect_bd_uperr, expect_bd-expect_bd_downerr
-            mid_bdmu=0.5*(expect_bd_up+expect_bd_down)
-            sig_bdmu=sigma*(expect_bd_up-mid_bdmu)
-            bd_bool = ((av_bdmu >= mid_bdmu and mid_bdmu+sig_bdmu >= av_bdmu-sige_bdmu) or (av_bdmu <= mid_bdmu and mid_bdmu-sig_bdmu <= av_bdmu+sige_bdmu)) 
-
-            ##### R(D) #####
-            expect_rds_up,expect_rds_down = error_rds(mbd,mbd_err,mdst,mdst_err,ps,ps_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
-#            expect_rd_up,expect_rd_down = error_rdn(mbd,mbd_err,mdpls,mdpls_err,p,p_err,d,d_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
-            expect_rd = bsemi(mc,mb,mbd,mdpls,p,d,i,j)
-            expect_rd_err = error_bsemi(mc,mc_err,mb,mb_err,mbd,mbd_err,mdpls,mdpls_err,p,p_err,d,d_err,i,j)
-            expect_rd_up,expect_rd_down=expect_rd+expect_rd_err[0],expect_rd-expect_rd_err[1]
-            mid_rd = 0.5*(expect_rd_up+expect_rd_down)
-            mid_rds = 0.5*(expect_rds_up+expect_rds_down)
-            sig_rd = sigma*(expect_rd_up-mid_rd)
-            sig_rds = sigma*(expect_rds_up-mid_rds)
-            rd_bool = ((av_rd >= mid_rd and mid_rd+sig_rd >= av_rd-sige_rd) or (av_rd <= mid_rd and mid_rd-sig_rd <= av_rd+sige_rd)) 
-            rds_bool = ((av_rds >= mid_rds and mid_rds+sig_rds >= av_rds-sige_rds) or (av_rds <= mid_rds and mid_rds-sig_rds <= av_rds+sige_rds)) 
-
-            #Oblique
-            expect_SOblique = S2HDMofAlphaBeta(i,mA0,mH0,alph,b,mW,mZ,higgs,Gf,alp_EM,wangle)
-            S_up, S_down = SOb_err(i,mA0,mH0,alph,b,mW,mW_err,mZ,mZ_err,higgs,higgs_err,Gf,alp_EM,wangle,wangle_err)
-            expect_SOblique_up,expect_SOblique_down = expect_SOblique+S_up,expect_SOblique-S_down
-            mid_SOblique = 0.5*(expect_SOblique_up+expect_SOblique_down)
-            sig_SOblique = sigma*(expect_SOblique_up-mid_SOblique)
-            SOblique_bool=((av_SOblique>=mid_SOblique and mid_SOblique+sig_SOblique>=av_SOblique-sige_SOblique) or (av_SOblique<=mid_SOblique and mid_SOblique-sig_SOblique<=av_SOblique+sige_SOblique))
-
-            expect_TOblique = T2HDMofAlphaBeta(i,mA0,mH0,alph,b,mW,mZ,higgs,Gf,alp_EM)
-            T_up, T_down = TOb_err(i,mA0,mH0,alph,b,mW,mW_err,mZ,mZ_err,higgs,higgs_err,Gf,alp_EM)
-            expect_TOblique_up,expect_TOblique_down = expect_TOblique+T_up,expect_TOblique-T_down
-            mid_TOblique = 0.5*(expect_TOblique_up+expect_TOblique_down)
-            sig_TOblique = sigma*(expect_TOblique_up-mid_TOblique)
-            TOblique_bool=((av_TOblique>=mid_TOblique and mid_TOblique+sig_TOblique>=av_TOblique-sige_TOblique) or (av_TOblique<=mid_TOblique and mid_TOblique-sig_TOblique<=av_TOblique+sige_TOblique))
-
-            expect_UOblique = U2HDMofAlphaBeta(i,mA0,mH0,alph,b,mW,mZ,higgs,Gf,alp_EM,wangle)
-            U_up, U_down = UOb_err(i,mA0,mH0,alph,b,mW,mW_err,mZ,mZ_err,higgs,higgs_err,Gf,alp_EM,wangle,wangle_err)
-            expect_UOblique_up,expect_UOblique_down = expect_UOblique+U_up,expect_UOblique-U_down
-            mid_UOblique = 0.5*(expect_UOblique_up+expect_UOblique_down)
-            sig_UOblique = sigma*(expect_UOblique_up-mid_UOblique)
-            UOblique_bool=((av_UOblique>=mid_UOblique and mid_UOblique+sig_UOblique>=av_UOblique-sige_UOblique) or (av_UOblique<=mid_UOblique and mid_UOblique-sig_UOblique<=av_UOblique+sige_UOblique))
-
-            ##### (SEMI-)LEPTONICS #####
-            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool and bpmu_bool and dsmu_bool and rd_bool:# and rds_bool:
-                i_log, j_log = np.log10(i), np.log10(j)
-                mHl_loc = np.append(mHl_loc,i_log)
-                tanbl_loc = np.append(tanbl_loc,j_log)
-#                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd,av_rds],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd,mid_rds],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd,sige_rds],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd,sig_rds],2)
-                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd],2)
-                chi_ls = np.append(chi_ls,chi_lij)
-            
-            ##### MIXING #####
-            if bmix_bool:
-                i_log, j_log = np.log10(i), np.log10(j)
-                mHb_loc = np.append(mHb_loc,i_log)
-                tanbb_loc = np.append(tanbb_loc,j_log)
-                chi_mij = chisq_simp([av_bmix,av_bmixs],[mid_bm,mid_bms],[sige_bmix,sige_bmixs],[sig_bm,sig_bms],2)
-                chi_ms = np.append(chi_ms,chi_mij)
+#            expect_bs = bmumu(mt,tbs,fBs,Vtb,Vts,mmu,mbs,mW,j,i,mb,ms,mc,mu,wangle,higgs,vev,Vus,Vub,Vcs,Vcb,mH0,alph,lam_QCD)
+#            expect_bs_uperr,expect_bs_downerr = error_bmumu(mt,mt_err,tbs,tbs_err,fBs,fBs_err,Vtb,Vtb_err,Vts,Vts_err,mmu,mmu_err,mbs,mbs_err,mW,mW_err,j,i,mb,mb_err,ms,ms_err,mc,mc_err,mu,mu_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,Vus,Vus_err,Vub,Vub_err,Vcs,Vcs_err,Vcb,Vcb_err,mH0,alph,lam_QCD,QCD_err)
+#            expect_bs_up, expect_bs_down = expect_bs+expect_bs_uperr, expect_bs-expect_bs_downerr
+#            mid_bsmu=0.5*(expect_bs_up+expect_bs_down)
+#            sig_bsmu=sigma*(expect_bs_up-mid_bsmu)
+#            bs_bool = ((av_bsmu >= mid_bsmu and mid_bsmu+sig_bsmu >= av_bsmu-sige_bsmu) or (av_bsmu <= mid_bsmu and mid_bsmu-sig_bsmu <= av_bsmu+sige_bsmu)) 
+#
+#            expect_bd = bmumu(mt,tbd,fbpls,Vtb,Vtd,mmu,mbd,mW,j,i,mb,ms,mc,mu,wangle,higgs,vev,Vus,Vub,Vcs,Vcb,mH0,alph,lam_QCD)
+#            expect_bd_uperr,expect_bd_downerr = error_bmumu(mt,mt_err,tbd,tbd_err,fbpls,fbpls_err,Vtb,Vtb_err,Vtd,Vtd_err,mmu,mmu_err,mbd,mbd_err,mW,mW_err,j,i,mb,mb_err,ms,ms_err,mc,mc_err,mu,mu_err,wangle,wangle_err,higgs,higgs_err,vev,vev_err,Vus,Vus_err,Vub,Vub_err,Vcs,Vcs_err,Vcb,Vcb_err,mH0,alph,lam_QCD,QCD_err)
+#            expect_bd_up, expect_bd_down = expect_bd+expect_bd_uperr, expect_bd-expect_bd_downerr
+#            mid_bdmu=0.5*(expect_bd_up+expect_bd_down)
+#            sig_bdmu=sigma*(expect_bd_up-mid_bdmu)
+#            bd_bool = ((av_bdmu >= mid_bdmu and mid_bdmu+sig_bdmu >= av_bdmu-sige_bdmu) or (av_bdmu <= mid_bdmu and mid_bdmu-sig_bdmu <= av_bdmu+sige_bdmu)) 
+#
+#            ##### R(D) #####
+#            expect_rds_up,expect_rds_down = error_rds(mbd,mbd_err,mdst,mdst_err,ps,ps_err,r01,r01_err,r11,r11_err,r21,r21_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
+##            expect_rd_up,expect_rd_down = error_rdn(mbd,mbd_err,mdpls,mdpls_err,p,p_err,d,d_err,Vcb,Vcb_err,mmu,mmu_err,mtau,mtau_err,vev,vev_err,mc,mc_err,mb,mb_err,j,i)
+#            expect_rd = bsemi(mc,mb,mbd,mdpls,p,d,i,j)
+#            expect_rd_err = error_bsemi(mc,mc_err,mb,mb_err,mbd,mbd_err,mdpls,mdpls_err,p,p_err,d,d_err,i,j)
+#            expect_rd_up,expect_rd_down=expect_rd+expect_rd_err[0],expect_rd-expect_rd_err[1]
+#            mid_rd = 0.5*(expect_rd_up+expect_rd_down)
+#            mid_rds = 0.5*(expect_rds_up+expect_rds_down)
+#            sig_rd = sigma*(expect_rd_up-mid_rd)
+#            sig_rds = sigma*(expect_rds_up-mid_rds)
+#            rd_bool = ((av_rd >= mid_rd and mid_rd+sig_rd >= av_rd-sige_rd) or (av_rd <= mid_rd and mid_rd-sig_rd <= av_rd+sige_rd)) 
+#            rds_bool = ((av_rds >= mid_rds and mid_rds+sig_rds >= av_rds-sige_rds) or (av_rds <= mid_rds and mid_rds-sig_rds <= av_rds+sige_rds)) 
+#
+#            #Oblique
+#            expect_SOblique = S2HDMofAlphaBeta(i,mA0,mH0,alph,b,mW,mZ,higgs,Gf,alp_EM,wangle)
+#            S_up, S_down = SOb_err(i,mA0,mH0,alph,b,mW,mW_err,mZ,mZ_err,higgs,higgs_err,Gf,alp_EM,wangle,wangle_err)
+#            expect_SOblique_up,expect_SOblique_down = expect_SOblique+S_up,expect_SOblique-S_down
+#            mid_SOblique = 0.5*(expect_SOblique_up+expect_SOblique_down)
+#            sig_SOblique = sigma*(expect_SOblique_up-mid_SOblique)
+#            SOblique_bool=((av_SOblique>=mid_SOblique and mid_SOblique+sig_SOblique>=av_SOblique-sige_SOblique) or (av_SOblique<=mid_SOblique and mid_SOblique-sig_SOblique<=av_SOblique+sige_SOblique))
+#
+#            expect_TOblique = T2HDMofAlphaBeta(i,mA0,mH0,alph,b,mW,mZ,higgs,Gf,alp_EM)
+#            T_up, T_down = TOb_err(i,mA0,mH0,alph,b,mW,mW_err,mZ,mZ_err,higgs,higgs_err,Gf,alp_EM)
+#            expect_TOblique_up,expect_TOblique_down = expect_TOblique+T_up,expect_TOblique-T_down
+#            mid_TOblique = 0.5*(expect_TOblique_up+expect_TOblique_down)
+#            sig_TOblique = sigma*(expect_TOblique_up-mid_TOblique)
+#            TOblique_bool=((av_TOblique>=mid_TOblique and mid_TOblique+sig_TOblique>=av_TOblique-sige_TOblique) or (av_TOblique<=mid_TOblique and mid_TOblique-sig_TOblique<=av_TOblique+sige_TOblique))
+#
+#            expect_UOblique = U2HDMofAlphaBeta(i,mA0,mH0,alph,b,mW,mZ,higgs,Gf,alp_EM,wangle)
+#            U_up, U_down = UOb_err(i,mA0,mH0,alph,b,mW,mW_err,mZ,mZ_err,higgs,higgs_err,Gf,alp_EM,wangle,wangle_err)
+#            expect_UOblique_up,expect_UOblique_down = expect_UOblique+U_up,expect_UOblique-U_down
+#            mid_UOblique = 0.5*(expect_UOblique_up+expect_UOblique_down)
+#            sig_UOblique = sigma*(expect_UOblique_up-mid_UOblique)
+#            UOblique_bool=((av_UOblique>=mid_UOblique and mid_UOblique+sig_UOblique>=av_UOblique-sige_UOblique) or (av_UOblique<=mid_UOblique and mid_UOblique-sig_UOblique<=av_UOblique+sige_UOblique))
+#
+#            ##### (SEMI-)LEPTONICS #####
+#            if bpls_bool and dpls_bool and dspls_bool and kpi_bool and tkpi_bool and bpmu_bool and dsmu_bool and rd_bool:# and rds_bool:
+#                i_log, j_log = np.log10(i), np.log10(j)
+#                mHl_loc = np.append(mHl_loc,i_log)
+#                tanbl_loc = np.append(tanbl_loc,j_log)
+##                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd,av_rds],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd,mid_rds],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd,sige_rds],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd,sig_rds],2)
+#                chi_lij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bm,av_dm,av_rd],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bmu,mid_dm,mid_rd],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bm,sige_dm,sige_rd],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bmu,sig_dm,sig_rd],2)
+#                chi_ls = np.append(chi_ls,chi_lij)
+#            
+#            ##### MIXING #####
+#            if bmix_bool:
+#                i_log, j_log = np.log10(i), np.log10(j)
+#                mHb_loc = np.append(mHb_loc,i_log)
+#                tanbb_loc = np.append(tanbb_loc,j_log)
+#                chi_mij = chisq_simp([av_bmix,av_bmixs],[mid_bm,mid_bms],[sige_bmix,sige_bmixs],[sig_bm,sig_bms],2)
+#                chi_ms = np.append(chi_ms,chi_mij)
                
             ##### BSGAMMA #####
             if gam_bool:
@@ -1030,60 +1032,90 @@ def itera_global(
                 chi_gs = np.append(chi_gs,chi_gij)
 
             #Oblique
-            if SOblique_bool:
-                i_log, j_log = np.log10(i), np.log10(j)
-                mHS_loc=np.append(mHS_loc,i_log)
-                tanbS_loc=np.append(tanbS_loc,j_log)
-                chi_Sij=chisq_simp([av_SOblique],[mid_SOblique],[sige_SOblique],[sig_SOblique],2)
-                chi_Ss=np.append(chi_Ss,chi_Sij)
-
-            if TOblique_bool:
-                i_log, j_log = np.log10(i), np.log10(j)
-                mHT_loc=np.append(mHT_loc,i_log)
-                tanbT_loc=np.append(tanbT_loc,j_log)
-                chi_Tij=chisq_simp([av_TOblique],[mid_TOblique],[sige_TOblique],[sig_TOblique],2)
-                chi_Ts=np.append(chi_Ts,chi_Tij)
-            
-            if SOblique_bool and TOblique_bool and UOblique_bool:
-                i_log, j_log = np.log10(i), np.log10(j)
-                mHU_loc=np.append(mHU_loc,i_log)
-                tanbU_loc=np.append(tanbU_loc,j_log)
-                chi_Uij=chisq_simp([av_SOblique,av_TOblique,av_UOblique],[mid_SOblique,mid_TOblique,mid_UOblique],[sige_SOblique,sige_TOblique,sige_UOblique],[sig_SOblique,sig_TOblique,sig_UOblique],2)
-                chi_Us=np.append(chi_Us,chi_Uij)
-
-            ##### (SEMI-)LEPTONICS, MIXING, AND BSGAMMA #####
-            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bpmu_bool and dsmu_bool:
-                i_log, j_log = np.log10(i), np.log10(j)
-                mHa_loc = np.append(mHa_loc,i_log)
-                tanba_loc = np.append(tanba_loc,j_log)
-                chi_1ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bm,av_dm],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bmu,mid_dm],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bm,sige_dm],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bmu,sig_dm],2)
-                chi_1s = np.append(chi_1s,chi_1ij)
-          
-            ##### B TO MU MU #####
-            if bs_bool and bd_bool:
-                i_log, j_log = np.log10(i), np.log10(j)
-                mHmu_loc = np.append(mHmu_loc,i_log)
-                tanbmu_loc = np.append(tanbmu_loc,j_log)
-                chi_uij = chisq_simp([av_bsmu,av_bdmu],[mid_bsmu,mid_bdmu],[sige_bsmu,sige_bdmu],[sig_bsmu,sig_bdmu],2)
-                chi_mus = np.append(chi_mus,chi_uij)
-
-            ##### GLOBAL #####
-            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool and rd_bool and bpmu_bool and dsmu_bool and rds_bool and SOblique_bool and TOblique_bool and UOblique_bool:# and rds_bool:
-                i_log, j_log = np.log10(i), np.log10(j)
-                mHa2_loc = np.append(mHa2_loc,i_log)
-                tanba2_loc = np.append(tanba2_loc,j_log)
+#            if SOblique_bool:
+#                i_log, j_log = np.log10(i), np.log10(j)
+#                mHS_loc=np.append(mHS_loc,i_log)
+#                tanbS_loc=np.append(tanbS_loc,j_log)
+#                chi_Sij=chisq_simp([av_SOblique],[mid_SOblique],[sige_SOblique],[sig_SOblique],2)
+#                chi_Ss=np.append(chi_Ss,chi_Sij)
+#
+#            if TOblique_bool:
+#                i_log, j_log = np.log10(i), np.log10(j)
+#                mHT_loc=np.append(mHT_loc,i_log)
+#                tanbT_loc=np.append(tanbT_loc,j_log)
+#                chi_Tij=chisq_simp([av_TOblique],[mid_TOblique],[sige_TOblique],[sig_TOblique],2)
+#                chi_Ts=np.append(chi_Ts,chi_Tij)
+#            
+#            if SOblique_bool and TOblique_bool and UOblique_bool:
+#                i_log, j_log = np.log10(i), np.log10(j)
+#                mHU_loc=np.append(mHU_loc,i_log)
+#                tanbU_loc=np.append(tanbU_loc,j_log)
+#                chi_Uij=chisq_simp([av_SOblique,av_TOblique,av_UOblique],[mid_SOblique,mid_TOblique,mid_UOblique],[sige_SOblique,sige_TOblique,sige_UOblique],[sig_SOblique,sig_TOblique,sig_UOblique],2)
+#                chi_Us=np.append(chi_Us,chi_Uij)
+#
+#            ##### (SEMI-)LEPTONICS, MIXING, AND BSGAMMA #####
+#            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bpmu_bool and dsmu_bool:
+#                i_log, j_log = np.log10(i), np.log10(j)
+#                mHa_loc = np.append(mHa_loc,i_log)
+#                tanba_loc = np.append(tanba_loc,j_log)
+#                chi_1ij = chisq_simp([av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bm,av_dm],[mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bmu,mid_dm],[sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bm,sige_dm],[sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bmu,sig_dm],2)
+#                chi_1s = np.append(chi_1s,chi_1ij)
+#          
+#            ##### B TO MU MU #####
+#            if bs_bool and bd_bool:
+#                i_log, j_log = np.log10(i), np.log10(j)
+#                mHmu_loc = np.append(mHmu_loc,i_log)
+#                tanbmu_loc = np.append(tanbmu_loc,j_log)
+#                chi_uij = chisq_simp([av_bsmu,av_bdmu],[mid_bsmu,mid_bdmu],[sige_bsmu,sige_bdmu],[sig_bsmu,sig_bdmu],2)
+#                chi_mus = np.append(chi_mus,chi_uij)
+#
+#            ##### GLOBAL #####
+#            if bpls_bool and dpls_bool and dspls_bool and bmix_bool and kpi_bool and tkpi_bool and gam_bool and bs_bool and bd_bool and rd_bool and bpmu_bool and dsmu_bool and rds_bool and SOblique_bool and TOblique_bool and UOblique_bool:# and rds_bool:
+#                i_log, j_log = np.log10(i), np.log10(j)
+#                mHa2_loc = np.append(mHa2_loc,i_log)
+#                tanba2_loc = np.append(tanba2_loc,j_log)
+##                chi_2ij = chisq_simp(
+##                        [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm,av_rds],
+##                        [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm,mid_rds],
+##                        [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm,sige_rds],
+##                        [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm,sig_rds],2)
 #                chi_2ij = chisq_simp(
-#                        [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm,av_rds],
-#                        [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm,mid_rds],
-#                        [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm,sige_rds],
-#                        [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm,sig_rds],2)
-                chi_2ij = chisq_simp(
-                        [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm, av_SOblique, av_TOblique, av_UOblique,av_rds],
-                        [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm,mid_SOblique,mid_TOblique,mid_UOblique,mid_rds],
-                        [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm,sige_SOblique,sige_TOblique,sige_UOblique,sige_rds],
-                        [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm,sig_SOblique,sig_TOblique,sig_UOblique,sig_rds],2)
-                chi_2s = np.append(chi_2s,chi_2ij)
-                if chi_2ij < chi_2min[0]:
-                    chi_2min = [chi_2ij,i,j]
+#                        [av_b,av_d,av_ds,av_k,av_t,av_bmix,av_bmixs,av_g,av_bsmu,av_bdmu,av_rd,av_bm,av_dm, av_SOblique, av_TOblique, av_UOblique,av_rds],
+#                        [mid_b,mid_d,mid_ds,mid_k,mid_t,mid_bm,mid_bms,mid_g,mid_bsmu,mid_bdmu,mid_rd,mid_bmu,mid_dm,mid_SOblique,mid_TOblique,mid_UOblique,mid_rds],
+#                        [sige_b,sige_d,sige_ds,sige_k,sige_t,sige_bmix,sige_bmixs,sige_g,sige_bsmu,sige_bdmu,sige_rd,sige_bm,sige_dm,sige_SOblique,sige_TOblique,sige_UOblique,sige_rds],
+#                        [sig_b,sig_d,sig_ds,sig_k,sig_t,sig_bm,sig_bms,sig_g,sig_bsmu,sig_bdmu,sig_rd,sig_bmu,sig_dm,sig_SOblique,sig_TOblique,sig_UOblique,sig_rds],2)
+#                chi_2s = np.append(chi_2s,chi_2ij)
+#                if chi_2ij < chi_2min[0]:
+#                    chi_2min = [chi_2ij,i,j]
 
-    return [mHl_loc, mHb_loc, mHg_loc, mHa_loc, mHmu_loc, mHa2_loc,mHS_loc,mHT_loc,mHU_loc], [tanbl_loc, tanbb_loc, tanbg_loc, tanba_loc, tanbmu_loc, tanba2_loc, tanbS_loc,tanbT_loc,tanbU_loc], [chi_ls, chi_ms, chi_gs, chi_1s, chi_mus, chi_2s,chi_Ss,chi_Ts,chi_Us], chi_2min
+    return [
+#            mHl_loc, 
+#            mHb_loc, 
+            mHg_loc, 
+#            mHa_loc, 
+#            mHmu_loc, 
+#            mHa2_loc,
+#            mHS_loc,
+#            mHT_loc,
+#            mHU_loc
+#            ], [
+#           tanbl_loc, 
+#           tanbb_loc, 
+           tanbg_loc, 
+#           tanba_loc, 
+#           tanbmu_loc, 
+#           tanba2_loc, 
+#           tanbS_loc,
+#           tanbT_loc,
+#           tanbU_loc
+#           ], [
+#           chi_ls, 
+#           chi_ms, 
+           chi_gs
+#           chi_1s, 
+#           chi_mus, 
+#           chi_2s,
+#           chi_Ss,
+#           chi_Ts,
+#           chi_Us
+           ], chi_2min
