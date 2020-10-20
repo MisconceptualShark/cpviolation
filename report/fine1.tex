@@ -13,11 +13,11 @@
 
 \begin{document}
 
-\feynmandiagram [horizontal=a to b] {
-    i1 -- [fermion,edge label=$d$] a -- [fermion,edge label=$\bar{d}$] i2,
-    a -- [scalar,edge label=$h^0$] b,
-    i1 -- [half left,looseness=0.3,opacity=0] i2,
-};
+%\feynmandiagram [horizontal=a to b] {
+%    i1 -- [fermion,edge label=$d$] a -- [fermion,edge label=$\bar{d}$] i2,
+%    a -- [scalar,edge label=$h^0$] b,
+%    i1 -- [half left,looseness=0.3,opacity=0] i2,
+%};
 %\qquad
 %\feynmandiagram [layered layout, horizontal=a to b] {
 %    a -- [fermion,edge label=$b$] b -- [fermion,edge label=$c$] f1, 
@@ -36,25 +36,46 @@
 %    {[same layer] f2 -- [half right,looseness=0.3,edge label'=$\bar{B}_q^0$] f1},
 %};
 
-%\begin{tikzpicture}
-%    \begin{feynman}
-%        \vertex (a1);
-%        \vertex[below=3cm of a1] (a2);
-%        \vertex[below right=1cm and 1.5cm of a1] (a3);
-%        \vertex[below=1cm of a3] (a4);
-%        \vertex[above right=0.5cm and 1cm of a4] (a5);
-%        \vertex[right=1.5cm of a5] (a6);
-%        \vertex[above right=1cm and 1.5cm of a6] (a7);
-%        \vertex[below=2cm of a7] (a8);
-%
-%        \diagram* {
-%            (a1) -- [fermion,edge label=$q$] (a3) -- [scalar,edge label'=$H^-$] (a4) -- [fermion,edge label=$\bar{b}$] (a2);
-%            (a3) -- [quarter left,fermion,edge label=${c,t}$] (a5) -- [quarter left,fermion,edge label=${c,t}$] (a4);
-%            (a5) -- [scalar,edge label=${h^0,H^0,A^0}$] (a6);
-%            (a7) -- [fermion,edge label'=$\mu^+$] (a6) -- [fermion,edge label'=$\mu^-$] (a8);
-%            (a1) -- [half left,looseness=0.3] (a2) -- [half left,looseness=0.3,edge label=$B_q$] (a1);
-%        };
-%    \end{feynman}
-%\end{tikzpicture}
+\begin{tikzpicture}
+    \begin{feynman}
+        \vertex (a1);
+        \vertex[below=3cm of a1] (a2);
+        \vertex[below right=1cm and 1.5cm of a1] (a3);
+        \vertex[below=1cm of a3] (a4);
+        \vertex[above right=0.5cm and 1cm of a4] (a5);
+        \vertex[right=1.5cm of a5] (a6);
+        \vertex[above right=1cm and 1.5cm of a6] (a7);
+        \vertex[below=2cm of a7] (a8);
+
+        \diagram* {
+            (a1) -- [fermion,edge label=$q$] (a3) -- [boson,edge label'=$W^-$] (a4) -- [fermion,edge label=$\bar{b}$] (a2);
+            (a3) -- [quarter left,fermion,edge label=${u,c,t}$] (a5) -- [quarter left,fermion,edge label=${u,c,t}$] (a4);
+            (a5) -- [boson,edge label=${Z,\gamma}$] (a6);
+            (a7) -- [fermion,edge label'=$\mu^+$] (a6) -- [fermion,edge label'=$\mu^-$] (a8);
+            (a1) -- [half left,looseness=0.3] (a2) -- [half left,looseness=0.3,edge label=$B_q$] (a1);
+        };
+    \end{feynman}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+    \begin{feynman}
+        \vertex (a1);
+        \vertex[below=3cm of a1] (a2);
+        \vertex[below right=1cm and 1.5cm of a1] (a3);
+        \vertex[below=1cm of a3] (a4);
+        \vertex[above right=0.5cm and 1cm of a4] (a5);
+        \vertex[right=1.5cm of a5] (a6);
+        \vertex[above right=1cm and 1.5cm of a6] (a7);
+        \vertex[below=2cm of a7] (a8);
+
+        \diagram* {
+            (a1) -- [fermion,edge label=$q$] (a3) -- [scalar,edge label'=$H^-$] (a4) -- [fermion,edge label=$\bar{b}$] (a2);
+            (a3) -- [quarter left,fermion,edge label=${u,c,t}$] (a5) -- [quarter left,fermion,edge label=${u,c,t}$] (a4);
+            (a5) -- [scalar,edge label=${h^0,H^0,A^0}$] (a6);
+            (a7) -- [fermion,edge label'=$\mu^+$] (a6) -- [fermion,edge label'=$\mu^-$] (a8);
+            (a1) -- [half left,looseness=0.3] (a2) -- [half left,looseness=0.3,edge label=$B_q$] (a1);
+        };
+    \end{feynman}
+\end{tikzpicture}
 
 \end{document}

@@ -106,7 +106,13 @@ def p_vals(chi_min,nu):
     P, err = quad(chi_dist,chi_min,np.inf,args=(nu))
     return P, err
 
-
+if __name__ == "__main__":
+    print(p_vals(72.8,42)[0]*100)
+    print(p_vals(51.7,39)[0]*100)
+    print(p_vals(71.7,42)[0]*100)
+    print(p_vals(40.9,38)[0]*100)
+    print(p_vals(71.9,42)[0]*100)
+    print(p_vals(39.7,38)[0]*100)
 
 
 
