@@ -65,9 +65,6 @@ def mixing(mt,mH,mW,tanb,Vtq,Vtb,etaB,mB,fBq,BBq,lam,mbo):
         B mixing mass eqn
     '''
     def Li2(x):
-        '''
-        Special function
-        '''
         def func(t):
             z = np.log(1-t)/t
             return z
